@@ -3,7 +3,16 @@ import 'package:flutter/material.dart';
 import 'common/common.dart' show ClearButton;
 
 class UIUsernameInput extends StatefulWidget {
-  const UIUsernameInput({super.key});
+  final void Function(String)? onChanged;
+  final String? errorText;
+  final String? initialText;
+
+  const UIUsernameInput({
+    super.key,
+    this.onChanged,
+    this.errorText,
+    this.initialText,
+  });
 
   @override
   State<UIUsernameInput> createState() => _UIUsernameInputState();
@@ -15,12 +24,15 @@ class _UIUsernameInputState extends State<UIUsernameInput> {
   @override
   void initState() {
     super.initState();
-    _textEditingController = TextEditingController();
+    _textEditingController = TextEditingController(
+      text: widget.initialText,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       controller: _textEditingController,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.person),
@@ -28,6 +40,7 @@ class _UIUsernameInputState extends State<UIUsernameInput> {
         labelText: 'Username',
         hintText: 'Input username ...',
         helperText: 'supporting text',
+        errorText: widget.errorText,
         border: const OutlineInputBorder(),
       ),
     );

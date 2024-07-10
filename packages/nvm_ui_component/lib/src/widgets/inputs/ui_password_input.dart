@@ -3,7 +3,16 @@ import 'package:flutter/material.dart';
 import 'common/common.dart' show ClearButton;
 
 class UIPasswordInput extends StatefulWidget {
-  const UIPasswordInput({super.key});
+  final void Function(String)? onChanged;
+  final String? errorText;
+  final String? initialText;
+
+  const UIPasswordInput({
+    super.key,
+    this.onChanged,
+    this.errorText,
+    this.initialText,
+  });
 
   @override
   State<UIPasswordInput> createState() => _UIPasswordInputState();
@@ -15,12 +24,15 @@ class _UIPasswordInputState extends State<UIPasswordInput> {
   @override
   void initState() {
     super.initState();
-    _textEditingController = TextEditingController();
+    _textEditingController = TextEditingController(
+      text: widget.initialText,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       controller: _textEditingController,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.lock),
@@ -28,6 +40,7 @@ class _UIPasswordInputState extends State<UIPasswordInput> {
         labelText: 'Password',
         hintText: 'Input password ...',
         helperText: 'supporting text',
+        errorText: widget.errorText,
         border: const OutlineInputBorder(),
       ),
     );

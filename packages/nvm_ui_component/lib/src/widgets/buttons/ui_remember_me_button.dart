@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class UIRememberMeButton extends StatefulWidget {
-  const UIRememberMeButton({super.key});
+  final void Function(bool)? onChanged;
+
+  const UIRememberMeButton({
+    super.key,
+    this.onChanged,
+  });
 
   @override
   State<UIRememberMeButton> createState() => _UIRememberMeButtonState();
@@ -25,6 +30,8 @@ class _UIRememberMeButtonState extends State<UIRememberMeButton> {
         setState(() {
           _isChecked = !_isChecked;
         });
+
+        widget.onChanged?.call(_isChecked);
       },
     );
   }

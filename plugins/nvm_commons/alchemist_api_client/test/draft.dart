@@ -8,8 +8,13 @@ void main() {
       RequestField(
         name: 'project',
         children: [
-          RequestField.name('projectName'),
-          RequestField.name('projectCapacity'),
+          RequestField(
+            name: 'user',
+            children: [
+              RequestField.name('id'),
+              RequestField.name('username'),
+            ],
+          ),
         ],
       ),
     ],
@@ -22,6 +27,13 @@ void main() {
     ],
   );
 
-  print(fields1.build());
+  final RequestField fields3 = RequestField.children(
+    [
+      RequestField.name('id'),
+      RequestField.name('username'),
+    ],
+  );
+
+  print(fields2.addChild(fields3).build());
   print(fields2.build());
 }

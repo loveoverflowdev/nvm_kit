@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class UISigninButton extends StatelessWidget {
-  const UISigninButton({super.key});
+  final void Function()? onPressed;
+
+  const UISigninButton({
+    super.key,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: const Text('Signin'),
     );
   }

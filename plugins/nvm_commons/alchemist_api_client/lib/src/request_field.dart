@@ -1,8 +1,8 @@
 final class RequestField {
   final String? name;
-  final List<RequestField>? children;
+  final List<RequestField> children;
 
-  factory RequestField.name(String name) => RequestField._(name, null);
+  factory RequestField.name(String name) => RequestField._(name, []);
   factory RequestField.children(List<RequestField> children) =>
       RequestField._(null, children);
 
@@ -15,19 +15,26 @@ final class RequestField {
     this.name,
     this.children,
   ) : assert(
-          name != null || children != null,
+          name != null || children.isNotEmpty,
           'name or children must be provided',
         );
 
+  RequestField addChild(RequestField field) {
+    children.add(field);
+    return this;
+  }
+
   String build() {
-    if (children != null) {
-      final String fieldChildren = children!
+    if (children.isNotEmpty) {
+      final String fieldChildren = children
           .map(
             (e) => e.build(),
           )
           .where(
             (e) => e.isNotEmpty,
           )
+          .join(',')
+          .split(',')
           .toSet()
           .join(',');
       if (name == null) {

@@ -1,8 +1,9 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nvm_auth/nvm_auth.dart';
 
 void main() async {
-  final authRepo = AuthRepository.nvm(
+  final authRepo = NvmAuthRepository(
     tokenStorage: TokenStorage.inMemory(),
     apiClient: ApiClient.nvm(),
   );
@@ -14,9 +15,9 @@ void main() async {
       .run();
 
   response.getRight().toJson((response) {
-    print(response.toJson());
+    debugPrint(response.toJson().toString());
   });
   response.getLeft().toJson((failure) {
-    print(failure);
+    debugPrint(failure.toString());
   });
 }

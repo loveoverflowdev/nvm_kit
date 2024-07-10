@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  fpdart: ^1.1.0
+
   alchemist_api_client:
     path: ../nvm_commons/alchemist_api_client
 

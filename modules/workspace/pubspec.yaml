@@ -11,13 +11,24 @@ dependencies:
   flutter:
     sdk: flutter
 
-  ui_view:
-    path: ../../packages/ui_view
+  fpdart: ^1.1.0
+  nvm_ui_component:
+    path: ../../packages/nvm_ui_component
+  nvm_workspace:
+    path: ../../plugins/nvm_workspace
+  alchemist_api_client:
+    path: ../../plugins/nvm_commons/alchemist_api_client
+
+  riverpod_annotation: ^2.3.5
+  flutter_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
+  build_runner: ^2.4.11
+  riverpod_generator: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

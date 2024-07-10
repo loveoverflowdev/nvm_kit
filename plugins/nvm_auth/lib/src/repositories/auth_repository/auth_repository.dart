@@ -14,15 +14,6 @@ import 'storages/storages.dart';
 sealed class AuthRepository {
   const AuthRepository();
 
-  factory AuthRepository.nvm({
-    required TokenStorage tokenStorage,
-    required ApiClient apiClient,
-  }) =>
-      _NvmAuthRepository(
-        apiClient: apiClient,
-        tokenStorage: tokenStorage,
-      );
-
   TaskEither<SigninFailure, SigninResponse> signIn({
     required Username username,
     required Password password,
@@ -31,11 +22,11 @@ sealed class AuthRepository {
   TaskEither<SignoutFailure, void> signOut();
 }
 
-class _NvmAuthRepository extends AuthRepository {
+class NvmAuthRepository extends AuthRepository {
   final TokenStorage _tokenStorage;
   final ApiClient _apiClient;
 
-  _NvmAuthRepository({
+  NvmAuthRepository({
     required final TokenStorage tokenStorage,
     required final ApiClient apiClient,
   })  : _apiClient = apiClient,

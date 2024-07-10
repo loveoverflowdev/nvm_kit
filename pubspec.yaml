@@ -1,6 +1,7 @@
 name: nvm_kit
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -9,6 +10,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  template_parser:
+    path: packages/template_parser
+  active_resource:
+    path: modules/active_resource
+  auth:
+    path: modules/auth
+  notification:
+    path: modules/notification
+  project:
+    path: modules/project
+  workspace:
+    path: modules/workspace
 
 dev_dependencies:
   flutter_test:
