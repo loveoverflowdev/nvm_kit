@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../repositories/auth_repository/auth_repository.dart';
+import '../repositories/repositories.dart';
 
 ReaderTaskEither<AuthRepository, SigninFailure, SigninResponse> signIn({
   required Username username,

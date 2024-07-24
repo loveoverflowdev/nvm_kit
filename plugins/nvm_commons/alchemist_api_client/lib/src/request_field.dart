@@ -24,6 +24,13 @@ final class RequestField {
     return this;
   }
 
+  RequestField addChildren(List<RequestField> newChildren) {
+    for (final newChild in newChildren) {
+      children.add(newChild);
+    }
+    return this;
+  }
+
   String build() {
     if (children.isNotEmpty) {
       final String fieldChildren = children

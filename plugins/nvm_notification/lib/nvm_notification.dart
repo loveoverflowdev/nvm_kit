@@ -1,7 +1,5 @@
 library nvm_notification;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+// TODO: nullable for response
+export 'src/repositories/repositories.dart';
+export 'src/commands/commands.dart';
