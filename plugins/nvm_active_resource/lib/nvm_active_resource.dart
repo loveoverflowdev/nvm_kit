@@ -1,5 +1,4 @@
 library nvm_active_resource;
 
-// TODO: nullable for response
-export 'src/commands/commands.dart';
-export 'src/repositories/repositories.dart';
+export 'src/active_resource_repository/active_resource_repository.dart';
+export 'src/active_resource_structure_repository/active_resource_structure_repository.dart';

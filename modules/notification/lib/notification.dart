@@ -1,5 +1,5 @@
 library notification;
 
-export 'functions/functions.dart';
+export 'functions/src/functions.dart';
 export 'notification_list/notification_list.dart';
-export 'notification_creation/notification_creation.dart';
+export 'notification_creating/notification_creating.dart';

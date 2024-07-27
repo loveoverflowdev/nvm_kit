@@ -1,7 +1,20 @@
+import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:nvm_auth/nvm_auth.dart';
 import '../functions/functions.dart';
 
 part 'providers.g.dart';
+
+@riverpod
+TokenStorage tokenStorage(TokenStorageRef ref) => TokenStorage.inMemory();
+
+@riverpod
+AuthRepository authRepository(AuthRepositoryRef ref) {
+  return AuthRepository.nvm(
+    apiClient: ApiClient.nvm(),
+    tokenStorage: ref.read(tokenStorageProvider),
+  );
+}
 
 typedef SigninSubmitState = AsyncValue<SigninBlock?>;
 
@@ -14,14 +27,21 @@ class SigninSubmit extends _$SigninSubmit {
     required SigninForm form,
   }) {
     state = const AsyncValue.loading();
-
-    signinFunction(
-      form: form,
+    signIn(
+      username: form.username,
+      password: form.password,
     ).match((failure) {
-      state = SigninSubmitState.error(failure.error, failure.stackTrace);
+      state = SigninSubmitState.error(
+        failure,
+        StackTrace.current,
+      );
     }, (block) {
-      state = SigninSubmitState.data(block);
-    }).run();
+      state = SigninSubmitState.data(
+        block,
+      );
+    }).run(
+      ref.read(authRepositoryProvider),
+    );
   }
 }
 
@@ -33,10 +53,10 @@ class SigninInput extends _$SigninInput {
   }
 
   void changeUsername(String newValue) {
-    state = state.copyWith(username: Username.dirty(value: newValue));
+    state = state.copyWith(username: Username.dirty(newValue));
   }
 
   void changePassword(String newValue) {
-    state = state.copyWith(password: Password.dirty(value: newValue));
+    state = state.copyWith(password: Password.dirty(newValue));
   }
 }

@@ -18,7 +18,7 @@ class SigninFormView extends StatelessWidget {
           builder: (_, WidgetRef ref, __) {
             final errorText = ref.watch(
               signinInputProvider.select(
-                (form) => form.username.displayError?.errorText,
+                (form) => form.username.displayError?.message,
               ),
             );
             return UIUsernameInput(
@@ -34,7 +34,7 @@ class SigninFormView extends StatelessWidget {
           builder: (_, WidgetRef ref, __) {
             final errorText = ref.watch(
               signinInputProvider.select(
-                (form) => form.password.displayError?.errorText,
+                (form) => form.password.displayError?.message,
               ),
             );
             return UIPasswordInput(

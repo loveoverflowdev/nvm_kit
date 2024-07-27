@@ -1,2 +1,1 @@
-export 'src/commands/commands.dart';
-export 'src/repositories/repositories.dart';
+export 'src/workspace_repository/workspace_repository.dart';

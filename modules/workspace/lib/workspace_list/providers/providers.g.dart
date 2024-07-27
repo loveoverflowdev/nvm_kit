@@ -6,7 +6,24 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$workspaceListHash() => r'5d5c044fedefe5eed1b53ed7e399f748f327f873';
+String _$workspaceRepositoryHash() =>
+    r'1752213df6e422ce11e98095510713a703965ab3';
+
+/// See also [workspaceRepository].
+@ProviderFor(workspaceRepository)
+final workspaceRepositoryProvider =
+    AutoDisposeProvider<WorkspaceRepository>.internal(
+  workspaceRepository,
+  name: r'workspaceRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$workspaceRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WorkspaceRepositoryRef = AutoDisposeProviderRef<WorkspaceRepository>;
+String _$workspaceListHash() => r'fa4c436a4a0dc3f63c08ab2745897c654d073c65';
 
 /// See also [WorkspaceList].
 @ProviderFor(WorkspaceList)

@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 abstract class ApiClient {
   const ApiClient();
 
-  factory ApiClient.nvm({http.Client? httpClient}) =>
-      _NvmApiClient(httpClient: httpClient);
+  factory ApiClient.nvm({http.Client? httpClient}) _NvmApiClient;
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,

@@ -6,7 +6,23 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectListHash() => r'2fd6975ff6841e2afac24fb37ff4f76642b47b0e';
+String _$projectRepositoryHash() => r'd8a7f46f3f48dbd723092f32eb1a186cb5dd53ee';
+
+/// See also [projectRepository].
+@ProviderFor(projectRepository)
+final projectRepositoryProvider =
+    AutoDisposeProvider<ProjectRepository>.internal(
+  projectRepository,
+  name: r'projectRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$projectRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ProjectRepositoryRef = AutoDisposeProviderRef<ProjectRepository>;
+String _$projectListHash() => r'169ff242a8b3e2f338e58745a0a66f19879891ca';
 
 /// See also [ProjectList].
 @ProviderFor(ProjectList)
@@ -36,7 +52,7 @@ final projectInputProvider =
 );
 
 typedef _$ProjectInput = AutoDisposeNotifier<ProjectForm>;
-String _$projectFormSubmitHash() => r'ec76a3613f8832bfbef735acaa1349dbf1d6d42a';
+String _$projectFormSubmitHash() => r'e703bf5d2f2ca07fccf6d8af869bc70ea0fa65bc';
 
 /// See also [ProjectFormSubmit].
 @ProviderFor(ProjectFormSubmit)

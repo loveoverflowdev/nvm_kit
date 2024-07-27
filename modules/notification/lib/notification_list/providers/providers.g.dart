@@ -6,7 +6,25 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$notificationListHash() => r'b203ed5a8a6b6035ea0be246940d7bd1c3c5abc2';
+String _$notificationRepositoryHash() =>
+    r'97e6eea01ecb513bd10a6a1adade6b35bf58d344';
+
+/// See also [notificationRepository].
+@ProviderFor(notificationRepository)
+final notificationRepositoryProvider =
+    AutoDisposeProvider<NotificationRepository>.internal(
+  notificationRepository,
+  name: r'notificationRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$notificationRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef NotificationRepositoryRef
+    = AutoDisposeProviderRef<NotificationRepository>;
+String _$notificationListHash() => r'3aec59e3b3d0ddcb6657a43d87d4733b64ae6b5f';
 
 /// See also [NotificationList].
 @ProviderFor(NotificationList)

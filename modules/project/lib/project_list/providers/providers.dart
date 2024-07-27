@@ -4,12 +4,26 @@ import '../../functions/functions.dart'
         ProjectDescription,
         ProjectForm,
         ProjectName,
-        createProjectFunction,
-        getProjectListFunction;
+        createProject,
+        getProjectList;
 
+import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:nvm_project/nvm_project.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
+
+Future<String?> tokenFetcher() async {
+  return '';
+}
+
+@riverpod
+ProjectRepository projectRepository(ProjectRepositoryRef ref) {
+  return ProjectRepository.remote(
+    apiClient: ApiClient.nvm(),
+    tokenFetcher: tokenFetcher,
+  );
+}
 
 typedef ProjectListState = AsyncValue<List<ProjectBlock>>;
 
@@ -18,17 +32,26 @@ class ProjectList extends _$ProjectList {
   @override
   ProjectListState build() => ProjectListState.data(List.empty());
 
-  void loadProjectList() {
+  Future<void> loadProjectList({
+    required Future<String> Function() workspaceIdFetcher,
+  }) async {
     state = const AsyncValue.loading();
 
-    getProjectListFunction().match((failure) {
-      state = ProjectListState.error(
-        failure.error,
-        failure.stackTrace,
-      );
-    }, (success) {
-      state = ProjectListState.data(success);
-    });
+    getProjectList(
+      workspaceId: await workspaceIdFetcher(),
+    ).match(
+      (failure) {
+        state = ProjectListState.error(
+          failure,
+          StackTrace.current,
+        );
+      },
+      (response) {
+        state = ProjectListState.data(response);
+      },
+    ).run(
+      ref.read(projectRepositoryProvider),
+    );
   }
 }
 
@@ -62,12 +85,21 @@ class ProjectFormSubmit extends _$ProjectFormSubmit {
   }) {
     state = const AsyncValue.loading();
 
-    createProjectFunction(
+    createProject(
       form: form,
-    ).match((failure) {
-      state = ProjectFormSubmitState.error(failure.error, failure.stackTrace);
-    }, (block) {
-      state = ProjectFormSubmitState.data(block);
-    }).run();
+      workspaceId: '',
+    ).match(
+      (failure) {
+        state = ProjectFormSubmitState.error(
+          failure,
+          StackTrace.current,
+        );
+      },
+      (response) {
+        state = ProjectFormSubmitState.data(response);
+      },
+    ).run(
+      ref.read(projectRepositoryProvider),
+    );
   }
 }

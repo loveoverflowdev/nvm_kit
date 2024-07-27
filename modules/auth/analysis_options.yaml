@@ -1,6 +1,6 @@
 analyzer:
   errors:
-    prefer_function_dec ignorelarations_over_variables: ignore
+    prefer_function_declarations_over_variables: ignore
 include: package:flutter_lints/flutter.yaml
 
 # Additional information about this file can be found at
