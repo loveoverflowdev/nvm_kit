@@ -4,33 +4,32 @@ import 'package:fpdart/fpdart.dart';
 
 import 'models/models.dart';
 
-ReaderTaskEither<ProjectRepository, ProjectFailure, ProjectBlock>
-    createProject({
+ReaderTaskEither<ProjectRepository, Exception, ProjectBlock> createProject({
   required ProjectForm form,
   required String workspaceId,
 }) =>
-        ReaderTaskEither(
-          (repository) => repository
-              .createProject(
-                projectName: form.name.value,
-                rojectDescription: form.description.value,
-                workspaceId: workspaceId,
-              )
-              .map(
-                (e) => ProjectBlock(
-                  id: e.id,
-                  name: e.projectName,
-                  description: e.projectDescription,
-                  teamIds: e.teamIds,
-                  // TODO: convert str to date time
-                  // createdAt: e.createdAt,
-                  // updatedAt: e.updatedAt,
-                ),
-              )
-              .run(),
-        );
+    ReaderTaskEither(
+      (repository) => repository
+          .createProject(
+            projectName: form.name.value,
+            rojectDescription: form.description.value,
+            workspaceId: workspaceId,
+          )
+          .map(
+            (e) => ProjectBlock(
+              id: e.id,
+              name: e.projectName,
+              description: e.projectDescription,
+              teamIds: e.teamIds,
+              // TODO: convert str to date time
+              // createdAt: e.createdAt,
+              // updatedAt: e.updatedAt,
+            ),
+          )
+          .run(),
+    );
 
-ReaderTaskEither<ProjectRepository, ProjectFailure, List<ProjectBlock>>
+ReaderTaskEither<ProjectRepository, Exception, List<ProjectBlock>>
     getProjectList({
   required String workspaceId,
   RequestField? requestField,
@@ -59,7 +58,7 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<ProjectBlock>>
               .run(),
         );
 
-ReaderTaskEither<ProjectRepository, ProjectFailure, ProjectBlock> getProject({
+ReaderTaskEither<ProjectRepository, Exception, ProjectBlock> getProject({
   required String workspaceId,
   required String projectId,
   RequestField? requestField,

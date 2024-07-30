@@ -11,7 +11,7 @@ import 'models/models.dart';
 //   required SigninForm form,
 // });
 
-ReaderTaskEither<AuthRepository, SigninFailure, SigninBlock> signIn({
+ReaderTaskEither<AuthRepository, Exception, SigninBlock> signIn({
   required Username username,
   required Password password,
 }) =>
@@ -30,7 +30,7 @@ ReaderTaskEither<AuthRepository, SigninFailure, SigninBlock> signIn({
           .run(),
     );
 
-ReaderTaskEither<AuthRepository, SignoutFailure, void> signOut() {
+ReaderTaskEither<AuthRepository, Exception, void> signOut() {
   return ReaderTaskEither(
     (authRepository) => authRepository.signOut().run(),
   );

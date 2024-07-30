@@ -1,0 +1,1 @@
+library nvm_core;

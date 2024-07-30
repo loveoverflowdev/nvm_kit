@@ -3,7 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'models/models.dart';
 
-ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, List<WorkspaceBlock>>
+ReaderTaskEither<WorkspaceRepository, Exception, List<WorkspaceBlock>>
     getWorkspaceList({
   RequestField? requestField,
 }) =>
@@ -25,22 +25,21 @@ ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, List<WorkspaceBlock>>
               .run(),
         );
 
-ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, WorkspaceBlock>
-    getWorkspace({
+ReaderTaskEither<WorkspaceRepository, Exception, WorkspaceBlock> getWorkspace({
   required String workspaceId,
   RequestField? requestField,
 }) =>
-        ReaderTaskEither(
-          (repository) => repository
-              .getWorkspace(
-                requestField: requestField,
-                workspaceId: workspaceId,
-              )
-              .map(
-                (response) => WorkspaceBlock(
-                  name: response.workspaceName,
-                  namespace: response.namespace,
-                ),
-              )
-              .run(),
-        );
+    ReaderTaskEither(
+      (repository) => repository
+          .getWorkspace(
+            requestField: requestField,
+            workspaceId: workspaceId,
+          )
+          .map(
+            (response) => WorkspaceBlock(
+              name: response.workspaceName,
+              namespace: response.namespace,
+            ),
+          )
+          .run(),
+    );
