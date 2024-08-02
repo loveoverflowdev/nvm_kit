@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:nvm_core/common.dart';
 
-import 'entities/entities.dart';
+import 'entities.dart';
 
 abstract interface class ActiveResourceRepository {
   TaskEither<Failure, ActiveResource> getActiveResource({
