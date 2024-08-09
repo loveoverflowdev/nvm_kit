@@ -1,17 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:fpdart/fpdart.dart';
-import 'failures/failures.dart';
-import 'responses/responses.dart';
-
-sealed class ActiveResourceStructureRepository {
-  TaskEither<Exception, ActiveResourceStructureResponse>
-      getActiveResourceStructure({
-    required String id,
-  });
-
-  TaskEither<Exception, List<ActiveResourceStructureResponse>>
-      getActiveResourceStructureList();
-}
 
 final class RemoteActiveResourceStructureRepository
     implements ActiveResourceStructureRepository {

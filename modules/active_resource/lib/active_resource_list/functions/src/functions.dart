@@ -1,7 +1,5 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-import 'package:nvm_active_resource/nvm_active_resource.dart';
 import 'package:fpdart/fpdart.dart';
-import 'models/models.dart';
 
 ReaderTaskEither<ActiveResourceRepository, Exception, ActiveResourceBlock>
     getActiveResource({

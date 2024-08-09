@@ -1,21 +1,21 @@
-class ActiveResourceBlock {
+class ActiveResource {
   final String id;
   final Map<String, dynamic> attributes;
-  final ActiveResourceProjectBlock? project;
-  final ActiveResourceCreatorBlock? creator;
+  final ActiveResourceProject? project;
+  final ActiveResourceCreator? creator;
 
-  ActiveResourceBlock({
+  ActiveResource({
     String? id,
     Map<String, dynamic>? attributes,
-    ActiveResourceProjectBlock? project,
-    ActiveResourceCreatorBlock? creator,
+    ActiveResourceProject? project,
+    ActiveResourceCreator? creator,
   })  : id = id ?? '',
         attributes = attributes ?? {},
         project = project,
         creator = creator;
 }
 
-class ActiveResourceProjectBlock {
+class ActiveResourceProject {
   final String id;
   final bool isDefault;
   final String name;
@@ -24,7 +24,7 @@ class ActiveResourceProjectBlock {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  ActiveResourceProjectBlock({
+  ActiveResourceProject({
     String? id,
     bool? isDefault,
     String? name,
@@ -41,7 +41,7 @@ class ActiveResourceProjectBlock {
         updatedAt = updatedAt;
 }
 
-class ActiveResourceCreatorBlock {
+class ActiveResourceCreator {
   final String username;
   final String id;
   final String email;
@@ -51,7 +51,7 @@ class ActiveResourceCreatorBlock {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  ActiveResourceCreatorBlock({
+  ActiveResourceCreator({
     String? username,
     String? id,
     String? email,

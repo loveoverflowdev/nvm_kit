@@ -1,1 +1,1 @@
-export 'package:template_parser/template_parser.dart';
+export '../commons/template_parser/lib/template_parser.dart';

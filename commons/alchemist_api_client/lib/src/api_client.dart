@@ -6,7 +6,7 @@ import 'alchemist_query.dart';
 import 'api_endpoint.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ApiClient {
+sealed class ApiClient {
   const ApiClient();
 
   factory ApiClient.nvm({http.Client? httpClient}) = _NvmApiClient;
