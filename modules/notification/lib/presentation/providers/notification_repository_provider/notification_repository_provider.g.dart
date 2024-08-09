@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_list_provider.dart';
+part of 'notification_repository_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeResourceListHash() =>
-    r'94367810e3223f4039eb747e20e77ab7e15a4870';
+String _$notificationRepositoryHash() =>
+    r'27d7044f0e66b29a15f375352dd39bfcfd0c5577';
 
-/// See also [ActiveResourceList].
-@ProviderFor(ActiveResourceList)
-final activeResourceListProvider = AutoDisposeNotifierProvider<
-    ActiveResourceList, ActiveResourceListState>.internal(
-  ActiveResourceList.new,
-  name: r'activeResourceListProvider',
+/// See also [notificationRepository].
+@ProviderFor(notificationRepository)
+final notificationRepositoryProvider =
+    AutoDisposeProvider<NotificationRepository>.internal(
+  notificationRepository,
+  name: r'notificationRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$activeResourceListHash,
+      : _$notificationRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ActiveResourceList = AutoDisposeNotifier<ActiveResourceListState>;
+typedef NotificationRepositoryRef
+    = AutoDisposeProviderRef<NotificationRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

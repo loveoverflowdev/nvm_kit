@@ -1,0 +1,75 @@
+import 'package:notification/domain.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../notification_repository_provider.dart';
+
+part 'notification_list_provider.g.dart';
+
+typedef NotificationListState = AsyncValue<List<Notification>>;
+
+@riverpod
+class NotificationList extends _$NotificationList {
+  @override
+  NotificationListState build() => NotificationListState.data(List.empty());
+
+  void loadNotifications({
+    required Future<String> Function() workspaceIdProvider,
+  }) async {
+    state = const AsyncValue.loading();
+
+    getNotificationListTask(
+      workspaceId: await workspaceIdProvider(),
+    ).match(
+      (failure) {
+        state = NotificationListState.error(
+          failure,
+          StackTrace.current,
+        );
+      },
+      (response) {
+        state = NotificationListState.data(response);
+      },
+    ).run(
+      ref.read(notificationRepositoryProvider),
+    );
+  }
+}
+
+/*
+import 'package:active_resource/domain.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../active_resource_repository_provider.dart';
+
+part 'active_resource_list_provider.g.dart';
+
+typedef ActiveResourceListState = AsyncValue<List<ActiveResource>>;
+
+@riverpod
+class ActiveResourceList extends _$ActiveResourceList {
+  @override
+  ActiveResourceListState build() => ActiveResourceListState.data(List.empty());
+
+  void loadActiveResourceList({
+    required String resourceCode,
+  }) async {
+    state = const AsyncValue.loading();
+    getActiveResourceListTask(resourceCode: '').match(
+      (failure) {
+        state = ActiveResourceListState.error(
+          failure,
+          StackTrace.current,
+        );
+      },
+      (result) {
+        state = ActiveResourceListState.data(
+          result,
+        );
+      },
+    ).run(
+      ref.read(activeResourceRepositoryProvider),
+    );
+  }
+}
+
+*/

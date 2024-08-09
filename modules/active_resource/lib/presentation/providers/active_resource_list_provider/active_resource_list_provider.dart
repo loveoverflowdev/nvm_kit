@@ -12,24 +12,24 @@ class ActiveResourceList extends _$ActiveResourceList {
   @override
   ActiveResourceListState build() => ActiveResourceListState.data(List.empty());
 
-  void loadActiveResourceList() async {
+  void loadActiveResourceList({
+    required String resourceCode,
+  }) async {
     state = const AsyncValue.loading();
-
-    getActiveResourceListTask()
-      .match(
-        (failure) {
-          state = ActiveResourceListState.error(
-            failure,
-            StackTrace.current,
-          );
-        }, (result) {
-          state = ActiveResourceListState.data(
-            result,
-          );
-        },
-      )
-      .run(
-        ref.read(activeResourceRepositoryProvider),
-      );
+    getActiveResourceListTask(resourceCode: '').match(
+      (failure) {
+        state = ActiveResourceListState.error(
+          failure,
+          StackTrace.current,
+        );
+      },
+      (result) {
+        state = ActiveResourceListState.data(
+          result,
+        );
+      },
+    ).run(
+      ref.read(activeResourceRepositoryProvider),
+    );
   }
 }
