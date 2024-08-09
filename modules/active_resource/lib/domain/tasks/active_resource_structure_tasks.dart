@@ -4,7 +4,7 @@ import '../entities.dart';
 import '../repositories.dart';
 
 ReaderTaskEither<ActiveResourceStructureRepository, Exception,
-    ActiveResourceStructure> getActiveResourceStructure({
+    ActiveResourceStructure> getActiveResourceStructureTask({
   required String id,
 }) =>
     ReaderTaskEither(
@@ -13,6 +13,6 @@ ReaderTaskEither<ActiveResourceStructureRepository, Exception,
 
 ReaderTaskEither<ActiveResourceStructureRepository, Exception,
         List<ActiveResourceStructure>>
-    getActiveResourceStructureList() => ReaderTaskEither(
+    getActiveResourceStructureListTask() => ReaderTaskEither(
           (repository) => repository.getActiveResourceStructureList().run(),
         );

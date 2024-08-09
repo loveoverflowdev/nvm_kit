@@ -6,7 +6,7 @@ import '../entities.dart';
 import '../repositories.dart' show ActiveResourceRepository;
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
-    ActiveResource> getActiveResource({
+    ActiveResource> getActiveResourceTask({
   required String id,
   required String resourceCode,
   final RequestField? requestField,
@@ -22,7 +22,7 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     );
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
-    List<ActiveResource>> getActiveResourceList({
+    List<ActiveResource>> getActiveResourceListTask({
   required String resourceCode,
   final RequestField? requestField,
 }) =>
