@@ -23,7 +23,7 @@ final workspaceRepositoryProvider =
 );
 
 typedef WorkspaceRepositoryRef = AutoDisposeProviderRef<WorkspaceRepository>;
-String _$workspaceListHash() => r'fa4c436a4a0dc3f63c08ab2745897c654d073c65';
+String _$workspaceListHash() => r'2a24772d2e29450949155df4d3c10dea5ba4dc90';
 
 /// See also [WorkspaceList].
 @ProviderFor(WorkspaceList)

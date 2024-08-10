@@ -2,7 +2,7 @@ import 'package:nvm_workspace/nvm_workspace.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 
-import '../../functions/functions.dart';
+import '../../../domain/tasks/functions/functions.dart';
 
 part 'providers.g.dart';
 

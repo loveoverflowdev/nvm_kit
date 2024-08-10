@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../functions/functions.dart';
+import 'package:workspace/domain.dart';
 
 final class WorkspaceTile extends StatelessWidget {
-  final WorkspaceBlock workspace;
+  final Workspace workspace;
 
   const WorkspaceTile({
     super.key,

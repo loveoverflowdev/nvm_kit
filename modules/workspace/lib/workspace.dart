@@ -1,3 +1,3 @@
 library workspace;
 
-export 'workspace_list/workspace_list.dart';
+export 'presentation/workspace_list/workspace_list.dart';
