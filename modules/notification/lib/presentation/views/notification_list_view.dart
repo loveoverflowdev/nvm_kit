@@ -22,6 +22,24 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final notificationList = ref.watch(notificationListProvider);
+    return notificationList.when(
+      data: (data) => ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          final notification = data[index];
+          return ListTile(
+            title: Text(
+              notification.title,
+            ),
+            subtitle: Text(
+              notification.content,
+            ),
+          );
+        },
+      ),
+      error: (error, stackTrace) => ErrorWidget(error),
+      loading: () => const CircularProgressIndicator(),
+    );
   }
 }
