@@ -1,4 +1,5 @@
 library auth;
 
-export 'signin/signin.dart';
-export 'register/register.dart';
+export 'domain.dart';
+export 'data.dart';
+export 'presentation.dart';

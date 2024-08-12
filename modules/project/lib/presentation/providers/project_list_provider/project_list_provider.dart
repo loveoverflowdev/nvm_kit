@@ -17,7 +17,7 @@ class ProjectList extends _$ProjectList {
   }) async {
     state = const AsyncValue.loading();
 
-    getProjectList(
+    getProjectListTask(
       workspaceId: await workspaceIdProvider(),
     ).match(
       (failure) {

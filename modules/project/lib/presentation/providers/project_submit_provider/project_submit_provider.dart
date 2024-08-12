@@ -17,7 +17,7 @@ class ProjectFormSubmit extends _$ProjectFormSubmit {
   }) {
     state = const AsyncValue.loading();
 
-    createProject(
+    createProjectTask(
       form: form,
       workspaceId: '',
     ).match(

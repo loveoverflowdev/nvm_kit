@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'entities.dart';
 import 'repositories.dart';
 
-ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProject({
+ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
   required ProjectForm form,
   required String workspaceId,
 }) =>
@@ -19,7 +19,7 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProject({
     );
 
 ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
-    getProjectList({
+    getProjectListTask({
   required String workspaceId,
   RequestField? requestField,
 }) =>
@@ -35,7 +35,7 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
               .run(),
         );
 
-ReaderTaskEither<ProjectRepository, Exception, Project> getProject({
+ReaderTaskEither<ProjectRepository, Exception, Project> getProjectTask({
   required String workspaceId,
   required String projectId,
   RequestField? requestField,
