@@ -43,11 +43,12 @@ final class RemoteAuthRepository implements AuthRepository {
               )
                   .then(
                 (response) {
-                  _tokenStorage.save(
+                  return _tokenStorage.save(
                     accessToken: response.accessToken,
                     refreshToken: response.refreshToken,
+                  ).then(
+                    (_) => _mapResponse(response),
                   );
-                  return response;
                 },
               ),
               (error, stackTrace) => AuthFailure.fromError(error),
@@ -61,8 +62,10 @@ final class RemoteAuthRepository implements AuthRepository {
 
   AuthCredential _mapResponse(SigninResponse response) {
     return AuthCredential(
-        //
-        );
+      accessToken: response.accessToken, 
+      refreshToken: response.refreshToken, 
+      userId: response.userId,
+    );
   }
 
   // Future<bool> _hasAccessToken() {

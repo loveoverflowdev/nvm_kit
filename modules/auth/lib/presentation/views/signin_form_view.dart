@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nvm_ui_component/nvm_ui_component.dart';
 
-import '../providers/providers.dart';
+import '../providers.dart';
+
 
 class SigninFormView extends StatelessWidget {
   const SigninFormView({super.key});
@@ -10,9 +10,8 @@ class SigninFormView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(AppSpacing.lg),
       children: [
-        const UISigninHeadline(),
+        const Placeholder(child: Text('Signin Form Headlines'),),
         const SizedBox(height: 16),
         Consumer(
           builder: (_, WidgetRef ref, __) {
@@ -21,8 +20,8 @@ class SigninFormView extends StatelessWidget {
                 (form) => form.username.displayError?.message,
               ),
             );
-            return UIUsernameInput(
-              errorText: errorText,
+            return TextField(
+              // errorText: errorText,
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changeUsername(value);
               },
@@ -37,8 +36,8 @@ class SigninFormView extends StatelessWidget {
                 (form) => form.password.displayError?.message,
               ),
             );
-            return UIPasswordInput(
-              errorText: errorText,
+            return TextField(
+              // errorText: errorText,
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changePassword(value);
               },
@@ -46,16 +45,18 @@ class SigninFormView extends StatelessWidget {
           },
         ),
         const SizedBox(height: 8),
-        UIRememberMeButton(
-          onChanged: (value) {},
-        ),
-        const SizedBox(height: 16),
+        Placeholder(child: Text('remember button'),),
+        // UIRememberMeButton(
+        //   onChanged: (value) {},
+        // ),
+        SizedBox(height: 16),
         Consumer(
           builder: (_, WidgetRef ref, __) {
             final signinSumit = ref.read(signinSubmitProvider.notifier);
             final form = ref.watch(signinInputProvider);
 
-            return UISigninButton(
+            return TextButton(
+              child: const Text('Sign In'),
               onPressed: () {
                 signinSumit.submit(form: form);
               },
