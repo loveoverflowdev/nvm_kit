@@ -1,5 +1,4 @@
-export 'components/resources/auth.dart';
-export 'components/resources/workspace.dart';
-export 'components/resources/active_resource.dart';
-export 'components/resources/notification.dart';
-export 'components/resources/project.dart';
+export 'components/app_component.dart';
+export 'components/resource_components.dart';
+export 'components/screen_component.dart';
+export 'components/template_component.dart';
