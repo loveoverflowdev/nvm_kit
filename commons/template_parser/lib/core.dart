@@ -1,0 +1,1 @@
+export 'core/component.dart';

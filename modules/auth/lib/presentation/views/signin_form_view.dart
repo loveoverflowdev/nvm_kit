@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
 
-
 class SigninFormView extends StatelessWidget {
   const SigninFormView({super.key});
 
@@ -11,7 +10,9 @@ class SigninFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Placeholder(child: Text('Signin Form Headlines'),),
+        const Placeholder(
+          child: Text('Signin Form Headlines'),
+        ),
         const SizedBox(height: 16),
         Consumer(
           builder: (_, WidgetRef ref, __) {
@@ -45,7 +46,9 @@ class SigninFormView extends StatelessWidget {
           },
         ),
         const SizedBox(height: 8),
-        Placeholder(child: Text('remember button'),),
+        Placeholder(
+          child: Text('remember button'),
+        ),
         // UIRememberMeButton(
         //   onChanged: (value) {},
         // ),
