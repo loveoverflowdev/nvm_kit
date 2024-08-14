@@ -8,6 +8,7 @@ part of 'template_component.dart';
 
 TemplateComponent _$TemplateComponentFromJson(Map<String, dynamic> json) =>
     TemplateComponent(
+      title: json['title'] as String,
       apps: (json['apps'] as List<dynamic>)
           .map((e) => AppComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -15,5 +16,6 @@ TemplateComponent _$TemplateComponentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TemplateComponentToJson(TemplateComponent instance) =>
     <String, dynamic>{
+      'title': instance.title,
       'apps': instance.apps,
     };

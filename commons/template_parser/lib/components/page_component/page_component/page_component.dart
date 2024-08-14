@@ -2,33 +2,31 @@ import 'package:json_annotation/json_annotation.dart';
 import '../state_component/state_component.dart';
 import '../action_component/action_component.dart';
 
-part 'screen_component.g.dart';
+part 'page_component.g.dart';
 
 @JsonSerializable()
-final class ScreenComponent {
+final class PageComponent {
   final String title;
-  final String screenCode;
   final String contextName;
   final bool requiredAuth;
   final String screenType;
-  final List<StateComponent> screenStates;
-  final List<ActionComponent> screenActions;
-  final List<ScreenComponent> screenComponents;
+  final List<StateComponent> pageStates;
+  final List<ActionComponent> pageActions;
+  final List<PageComponent> pageComponents;
 
-  ScreenComponent({
+  PageComponent({
     required this.title,
-    required this.screenCode,
     required this.contextName,
     required this.requiredAuth,
     required this.screenType,
-    required this.screenStates,
-    required this.screenActions,
-    required this.screenComponents,
+    required this.pageStates,
+    required this.pageActions,
+    required this.pageComponents,
   });
 
-  factory ScreenComponent.fromJson(Map<String, dynamic> json) =>
-      _$ScreenComponentFromJson(json);
-  Map<String, dynamic> toJson() => _$ScreenComponentToJson(this);
+  factory PageComponent.fromJson(Map<String, dynamic> json) =>
+      _$PageComponentFromJson(json);
+  Map<String, dynamic> toJson() => _$PageComponentToJson(this);
 }
 
 /*

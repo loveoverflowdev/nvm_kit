@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:template_parser/core.dart';
 
-import '../screen_component.dart';
+import '../page_component.dart';
 
 part 'app_component.g.dart';
 
@@ -9,12 +9,14 @@ part 'app_component.g.dart';
 final class AppComponent implements Component {
   final String appCode;
   final String index;
-  final List<ScreenComponent> screens;
+  final String title;
+  final List<PageComponent> pages;
 
   AppComponent({
     required this.appCode,
     required this.index,
-    required this.screens,
+    required this.pages,
+    required this.title,
   });
 
   factory AppComponent.fromJson(Map<String, dynamic> json) =>

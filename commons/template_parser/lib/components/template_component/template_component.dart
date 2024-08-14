@@ -6,9 +6,11 @@ part 'template_component.g.dart';
 
 @JsonSerializable()
 final class TemplateComponent implements Component {
+  final String title;
   final List<AppComponent> apps;
 
   TemplateComponent({
+    required this.title,
     required this.apps,
   });
 
