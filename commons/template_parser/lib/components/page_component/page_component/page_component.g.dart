@@ -18,9 +18,6 @@ PageComponent _$PageComponentFromJson(Map<String, dynamic> json) =>
       pageActions: (json['pageActions'] as List<dynamic>)
           .map((e) => ActionComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pageComponents: (json['pageComponents'] as List<dynamic>)
-          .map((e) => PageComponent.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
 Map<String, dynamic> _$PageComponentToJson(PageComponent instance) =>
@@ -31,5 +28,4 @@ Map<String, dynamic> _$PageComponentToJson(PageComponent instance) =>
       'screenType': instance.screenType,
       'pageStates': instance.pageStates,
       'pageActions': instance.pageActions,
-      'pageComponents': instance.pageComponents,
     };

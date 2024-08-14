@@ -23,6 +23,9 @@ class _ActiveResourceListViewState
 
   @override
   Widget build(BuildContext context) {
+    return Placeholder(
+      child: Text('Active Resource Placeholder'),
+    );
     final activeResourceList = ref.watch(activeResourceListProvider);
     return activeResourceList.when(
       data: (data) => ListView.builder(

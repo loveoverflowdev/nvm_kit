@@ -1,11 +1,9 @@
-import 'package:flutter/widgets.dart';
+import 'package:active_resource/active_resource.dart';
+import 'package:auth/auth.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nvm/home.dart';
+import 'package:nvm/app.dart';
 import 'package:template_parser/template_parser.dart';
-import 'package:auth/auth.dart';
-import 'package:workspace/workspace.dart';
-import 'package:auth/auth.dart';
-import 'package:auth/auth.dart';
 
 import 'route_path.dart';
 
@@ -25,12 +23,28 @@ class RouterBuilder {
             title: 'Sign In',
           ),
         ),
-        GoRoute(
-          path: RoutePaths.home.name,
-          builder: (context, state) => HomePage(
-            template: template,
+        for (final app in template.apps)
+          GoRoute(
+            path: '/${app.appCode}',
+            builder: (context, state) => AppScaffold(
+              app: app,
+            ),
+            routes: [
+              for (final page in app.pages)
+                GoRoute(
+                  path: page.contextName,
+                  builder: (context, state) => Scaffold(
+                    appBar: AppBar(
+                      title: Text(page.title),
+                    ),
+                    body: ActiveResourceListView(
+                      
+                    ),
+                  )
+                ),
+            ]
           ),
-        ),
+        
       ],
     );
   }

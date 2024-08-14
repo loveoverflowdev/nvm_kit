@@ -12,7 +12,6 @@ final class PageComponent {
   final String screenType;
   final List<StateComponent> pageStates;
   final List<ActionComponent> pageActions;
-  final List<PageComponent> pageComponents;
 
   PageComponent({
     required this.title,
@@ -21,7 +20,6 @@ final class PageComponent {
     required this.screenType,
     required this.pageStates,
     required this.pageActions,
-    required this.pageComponents,
   });
 
   factory PageComponent.fromJson(Map<String, dynamic> json) =>
