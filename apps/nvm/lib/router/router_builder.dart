@@ -25,26 +25,22 @@ class RouterBuilder {
         ),
         for (final app in template.apps)
           GoRoute(
-            path: '/${app.appCode}',
-            builder: (context, state) => AppScaffold(
-              app: app,
-            ),
-            routes: [
-              for (final page in app.pages)
-                GoRoute(
-                  path: page.contextName,
-                  builder: (context, state) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(page.title),
+              path: '/${app.appCode}',
+              builder: (context, state) => AppScaffold(
+                    app: app,
+                  ),
+              routes: [
+                for (final page in app.pages)
+                  GoRoute(
+                    path: page.contextName,
+                    builder: (context, state) => Scaffold(
+                      appBar: AppBar(
+                        title: Text(page.title),
+                      ),
+                      body: const ActiveResourceListView(),
                     ),
-                    body: ActiveResourceListView(
-                      
-                    ),
-                  )
-                ),
-            ]
-          ),
-        
+                  ),
+              ]),
       ],
     );
   }

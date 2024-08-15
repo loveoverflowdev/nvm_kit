@@ -1,0 +1,552 @@
+{
+    "data": [
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [
+                        {
+                            "featureFieldName": "widgetBoardRole_01",
+                            "widgetId": "657763459693282282",
+                            "featureType": "WIDGET_BOARD_ROLE"
+                        },
+                        {
+                            "featureFieldName": "widgetBoardRole_02",
+                            "widgetId": "657763459693282282",
+                            "featureType": "WIDGET_BOARD_ROLE"
+                        }
+                    ],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": true
+            },
+            "id": "657720864086688939",
+            "resourceCode": "tasks",
+            "resourceTitle": "Task",
+            "activeFields": [
+                {
+                    "id": "657720864149603536",
+                    "order": 1,
+                    "fieldName": "task_name",
+                    "fieldTitle": "Task name",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "657720864086688939",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "657720864220905875",
+                    "order": 2,
+                    "fieldName": "task_description",
+                    "fieldTitle": "Task description",
+                    "fieldType": "PARAGRAPH",
+                    "resourceStructureId": "657720864086688939",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:21",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        },
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": false
+            },
+            "id": "657720864694865682",
+            "resourceCode": "user_stories",
+            "resourceTitle": "User Story",
+            "activeFields": [
+                {
+                    "id": "657720864699058594",
+                    "order": 1,
+                    "fieldName": "story_name",
+                    "fieldTitle": "User story name",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "657720864694865682",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "657720864699059643",
+                    "order": 2,
+                    "fieldName": "as_a",
+                    "fieldTitle": "As a",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "657720864694865682",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "657720864699056677",
+                    "order": 3,
+                    "fieldName": "so_that",
+                    "fieldTitle": "So that",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "657720864694865682",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "657720864699056132",
+                    "order": 4,
+                    "fieldName": "acceptance_criteria",
+                    "fieldTitle": "Acceptance criteria",
+                    "fieldType": "PARAGRAPH",
+                    "resourceStructureId": "657720864694865682",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:22",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        },
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": false
+            },
+            "id": "658925655257252733",
+            "resourceCode": "sale_order_source",
+            "resourceTitle": "Nguồn đơn hàng bán",
+            "activeFields": [
+                {
+                    "id": "658926150193514390",
+                    "order": 1,
+                    "fieldName": "source_name",
+                    "fieldTitle": "Tên nguồn đơn hàng",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "658925655257252733",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:22",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        },
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": false
+            },
+            "id": "658926150134794527",
+            "resourceCode": "sale_order_type",
+            "resourceTitle": "Loại đơn hàng bán",
+            "activeFields": [
+                {
+                    "id": "658926150134793505",
+                    "order": 1,
+                    "fieldName": "type_name",
+                    "fieldTitle": "Tên loại đơn hàng",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "658926150134794527",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "658926150134794268",
+                    "order": 2,
+                    "fieldName": "type_desc",
+                    "fieldTitle": "Mô tả loại đơn hàng",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "658926150134794527",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:22",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        },
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": false
+            },
+            "id": "658926150164155846",
+            "resourceCode": "sale_order_reason",
+            "resourceTitle": "Nhu cầu bán hàng",
+            "activeFields": [
+                {
+                    "id": "658926150164152511",
+                    "order": 1,
+                    "fieldName": "reason_name",
+                    "fieldTitle": "Tên nhu cầu",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "658926150164155846",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:22",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        },
+        {
+            "activeFeatures": {
+                "widgetBoardRole": {
+                    "featureFields": [
+                        {
+                            "featureFieldName": "widgetBoardRole_01",
+                            "widgetId": "657763459693282282",
+                            "featureType": "WIDGET_BOARD_ROLE"
+                        },
+                        {
+                            "featureFieldName": "widgetBoardRole_02",
+                            "widgetId": "657763459693282282",
+                            "featureType": "WIDGET_BOARD_ROLE"
+                        }
+                    ],
+                    "featureType": "WIDGET_BOARD_ROLE"
+                },
+                "widgetComment": true
+            },
+            "id": "663153245396404688",
+            "resourceCode": "sale_order",
+            "resourceTitle": "Đơn hàng bán",
+            "activeFields": [
+                {
+                    "id": "663153245400599869",
+                    "order": 1,
+                    "fieldName": "order_code",
+                    "fieldTitle": "Mã đơn hàng",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245400599916",
+                    "order": 2,
+                    "fieldName": "order_number",
+                    "fieldTitle": "Số đơn hàng",
+                    "fieldType": "INTEGER",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245404794442",
+                    "order": 3,
+                    "fieldName": "order_revenue",
+                    "fieldTitle": "Doanh thu",
+                    "fieldType": "NUMERIC",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245404793670",
+                    "order": 4,
+                    "fieldName": "order_client_email",
+                    "fieldTitle": "Email đặt hàng",
+                    "fieldType": "EMAIL",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245408988025",
+                    "order": 5,
+                    "fieldName": "order_client_url",
+                    "fieldTitle": "Url Website đặt hàng",
+                    "fieldType": "URL",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245408987357",
+                    "order": 6,
+                    "fieldName": "order_short_desc",
+                    "fieldTitle": "Mô tả ngắn đơn hàng",
+                    "fieldType": "SHORT_TEXT",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245413180861",
+                    "order": 7,
+                    "fieldName": "order_trade_document",
+                    "fieldTitle": "Văn bản giao dịch (gồm điều khoản thanh toán, giao hàng, bảo hành, cam kết chất lượng)",
+                    "fieldType": "PARAGRAPH",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245413179593",
+                    "order": 8,
+                    "fieldName": "order_date",
+                    "fieldTitle": "Ngày đặt hàng",
+                    "fieldType": "DATE",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245417377639",
+                    "order": 9,
+                    "fieldName": "order_datetime",
+                    "fieldTitle": "Thời gian đặt hàng",
+                    "fieldType": "DATETIME",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245417375749",
+                    "order": 10,
+                    "fieldName": "is_service",
+                    "fieldTitle": "Đơn hàng dịch vụ",
+                    "fieldType": "CHECKBOX_ONE",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245421570866",
+                    "order": 11,
+                    "fieldName": "order_sources",
+                    "fieldTitle": "Nguồn đơn hàng",
+                    "fieldType": "CHECKBOX_LIST_ACTIVE_RESOURCE",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245421571832",
+                    "order": 12,
+                    "fieldName": "order_type",
+                    "fieldTitle": "Loại đơn hàng",
+                    "fieldType": "SELECT_ONE_ACTIVE_RESOURCE",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245421569778",
+                    "order": 13,
+                    "fieldName": "order_reasons",
+                    "fieldTitle": "Nhu cầu bán hàng",
+                    "fieldType": "SELECT_LIST_ACTIVE_RESOURCE",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245425764864",
+                    "order": 14,
+                    "fieldName": "order_assginer",
+                    "fieldTitle": "Người thực hiện",
+                    "fieldType": "SELECT_ONE_USER",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                },
+                {
+                    "id": "663153245425765364",
+                    "order": 15,
+                    "fieldName": "order_related_users",
+                    "fieldTitle": "Danh sách người liên quan",
+                    "fieldType": "SELECT_LIST_USER",
+                    "resourceStructureId": "663153245396404688",
+                    "createdBy": "605303072528270018",
+                    "createdByUser": {
+                        "id": "605303072528270018",
+                        "fullName": "NVM Team",
+                        "email": "nvmteam@gmail.com",
+                        "phone": ""
+                    }
+                }
+            ],
+            "allowActions": [],
+            "createdBy": "605303072528270018",
+            "updatedBy": "0",
+            "createdAt": "2024-08-11 07:02:22",
+            "updatedAt": null,
+            "createdByUser": {
+                "id": "605303072528270018",
+                "fullName": "NVM Team",
+                "email": "nvmteam@gmail.com",
+                "phone": ""
+            }
+        }
+    ],
+    "limit": 1000
+}

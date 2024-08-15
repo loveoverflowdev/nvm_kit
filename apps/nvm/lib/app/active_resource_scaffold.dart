@@ -6,7 +6,7 @@ class ActiveResourceScaffold extends StatelessWidget {
   final PageComponent page;
 
   const ActiveResourceScaffold({
-    super.key, 
+    super.key,
     required this.page,
   });
 
@@ -18,9 +18,7 @@ class ActiveResourceScaffold extends StatelessWidget {
       ),
       body: const ActiveResourceListView(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
     );
