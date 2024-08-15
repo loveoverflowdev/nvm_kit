@@ -29,16 +29,18 @@ class _AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.app.title),
-      ),
-      drawer: ActiveResourceDrawer(
-        pages: widget.app.pages,
-      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          widget.activeResourceScaffoldBody,
+          Scaffold(
+            drawer: ActiveResourceDrawer(
+              pages: widget.app.pages,
+            ),
+            appBar: AppBar(
+              title: Text(widget.app.title),
+            ),
+            body: widget.activeResourceScaffoldBody,
+          ),
           // ActiveResourceScaffold(
           //   pages: widget.app.pages,
           //   body: widget.activeResourceScaffoldBody,
