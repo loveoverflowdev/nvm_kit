@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:nvm/app/active_resource_scaffold.dart';
+import 'package:nvm/app/widgets/active_resource/active_resource_scaffold.dart';
 import 'package:template_parser/template_parser.dart';
 
-import 'app_drawer.dart';
+import 'notification/notification_scaffold.dart';
+import 'preference/preference_scaffold.dart';
 
 class AppScaffold extends StatefulWidget {
   final AppComponent app;
+  final Widget activeResourceScaffoldBody;
 
   const AppScaffold({
-    super.key, 
+    super.key,
     required this.app,
+    required this.activeResourceScaffoldBody,
   });
 
   @override
@@ -28,17 +31,18 @@ class _AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(
-        pages: widget.app.pages,
-      ),
       appBar: AppBar(
         title: Text(widget.app.title),
       ),
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          ActiveResourceScaffold(page: widget.app.pages[_selectedIndex]),
-
+          ActiveResourceScaffold(
+            pages: widget.app.pages,
+            body: widget.activeResourceScaffoldBody,
+          ),
+          NotificationScaffold(),
+          PreferenceScaffold(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -60,7 +64,7 @@ class _AppScaffoldState extends State<AppScaffold> {
           ),
           NavigationDestination(
             icon: Icon(Icons.person),
-            label: 'Personal',
+            label: 'Preference',
           ),
         ],
       ),

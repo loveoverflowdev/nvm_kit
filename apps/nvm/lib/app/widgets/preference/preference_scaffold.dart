@@ -9,7 +9,9 @@ class PreferenceScaffold extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Notifications'),
       ),
-      body: Placeholder(child: Text('Preference'),),
+      body: Placeholder(
+        child: Text('Preference'),
+      ),
     );
   }
 }

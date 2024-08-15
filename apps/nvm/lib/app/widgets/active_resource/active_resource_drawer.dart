@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart';
 
-class AppDrawer extends StatelessWidget {
+class ActiveResourceDrawer extends StatelessWidget {
   final List<PageComponent> pages;
 
-  const AppDrawer({
+  const ActiveResourceDrawer({
     super.key,
     required this.pages,
   });

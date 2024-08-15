@@ -16,31 +16,56 @@ class RouterBuilder {
 
   GoRouter build() {
     return GoRouter(
+      initialLocation: '/${template.apps.first.appCode}',
       routes: [
         GoRoute(
-          path: RoutePaths.signin.name,
+          path: '/${RoutePaths.signin.name}',
           builder: (context, state) => const SigninPage(
             title: 'Sign In',
           ),
+          redirect: (context, state) {
+            return '/${template.apps.first.appCode}';
+          },
         ),
         for (final app in template.apps)
-          GoRoute(
-              path: '/${app.appCode}',
-              builder: (context, state) => AppScaffold(
-                    app: app,
-                  ),
-              routes: [
-                for (final page in app.pages)
-                  GoRoute(
-                    path: page.contextName,
-                    builder: (context, state) => Scaffold(
-                      appBar: AppBar(
-                        title: Text(page.title),
-                      ),
-                      body: const ActiveResourceListView(),
+          ShellRoute(
+            builder: (context, state, child) => AppScaffold(
+              activeResourceScaffoldBody: child,
+              app: app,
+            ),
+            routes: [
+              for (final page in app.pages)
+                GoRoute(
+                  path: '/${page.contextName}',
+                  builder: (context, state) => Scaffold(
+                    appBar: AppBar(
+                      title: Text(page.title),
                     ),
+                    body: const ActiveResourceListView(),
                   ),
-              ]),
+                ),
+            ],
+          ),
+        // for (final app in template.apps)
+        //   GoRoute(
+        //     path: '/${app.appCode}',
+        //     builder: (context, state) => AppScaffold(
+        //       app: app,
+        //     ),
+        //     routes: [
+        //       for (final page in app.pages)
+        //         GoRoute(
+        //           path: page.contextName,
+        //           builder: (context, state) => Scaffold(
+        //             appBar: AppBar(
+        //               title: Text(page.title),
+        //             ),
+        //             body: const ActiveResourceListView(),
+        //           ),
+        //         ),
+        //       // TODO: ShellRoute
+        //     ],
+        //   ),
       ],
     );
   }
