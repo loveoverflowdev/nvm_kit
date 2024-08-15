@@ -19,49 +19,39 @@ class RouterBuilder {
       initialLocation: '/',
       routes: [
         GoRoute(
-          path: '/',
-          redirect: (context, state) {
-            return '/${template.apps.first.appCode}';
-          },
-        ),
-        GoRoute(
           path: '/${RoutePaths.signin.name}',
           builder: (context, state) => const SigninPage(
             title: 'Sign In',
           ),
           redirect: (context, state) {
-            return '/${template.apps.first.appCode}';
+            return '/';
           },
         ),
-        for (final app in template.apps)
-          GoRoute(
-            path: '/${app.appCode}',
-            redirect: (context, state) {
-              print(state.fullPath);
-              debugPrint('-- redirect ${app.pages.first.contextName}');
-              return '/${app.appCode}/${app.pages.first.contextName}';
-            },
-            routes: [
-              ShellRoute(
-                builder: (context, state, child) => AppScaffold(
-                  activeResourceScaffoldBody: child,
-                  app: app,
+        GoRoute(
+          path: '/',
+          redirect: (context, state) {
+            return '/${template.app.pages.first.contextName}';
+          },
+        ),
+        ShellRoute(
+          builder: (context, state, child) => AppScaffold(
+            activeResourceScaffoldBody: child,
+            app: template.app,
+          ),
+          routes: [
+            for (final page in template.app.pages)
+              GoRoute(
+                path: '/${page.contextName}',
+                builder: (context, state) => Scaffold(
+                  appBar: AppBar(
+                    title: Text(page.title),
+                  ),
+                  body: const ActiveResourceListView(),
                 ),
-                routes: [
-                  for (final page in app.pages)
-                    GoRoute(
-                      path: page.contextName,
-                      builder: (context, state) => Scaffold(
-                        appBar: AppBar(
-                          title: Text(page.title),
-                        ),
-                        body: const ActiveResourceListView(),
-                      ),
-                    ),
-                ],
               ),
-            ],
-          )
+          ],
+        )
+
         // for (final app in template.apps)
         //   GoRoute(
         //     path: '/${app.appCode}',

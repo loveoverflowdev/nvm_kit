@@ -13,30 +13,28 @@ final class _ExampleTemplateRepository implements TemplateRepository {
   TemplateComponent getTemplate() {
     return TemplateComponent(
       title: 'Task Manager',
-      apps: [
-        AppComponent(
-          appCode: 'task_manager',
-          title: 'Task Manager',
-          pages: [
-            PageComponent(
-              contextName: 'tasks',
-              title: 'Tasks',
-              requiredAuth: true,
-              screenType: '',
-              pageStates: [],
-              pageActions: [],
-            ),
-            PageComponent(
-              contextName: 'user_stories',
-              title: 'User Stories',
-              requiredAuth: true,
-              screenType: '',
-              pageStates: [],
-              pageActions: [],
-            ),
-          ],
-        ),
-      ],
+      app: AppComponent(
+        appCode: 'task_manager',
+        title: 'Task Manager',
+        pages: [
+          PageComponent(
+            contextName: 'tasks',
+            title: 'Tasks',
+            requiredAuth: true,
+            screenType: '',
+            pageStates: [],
+            pageActions: [],
+          ),
+          PageComponent(
+            contextName: 'user_stories',
+            title: 'User Stories',
+            requiredAuth: true,
+            screenType: '',
+            pageStates: [],
+            pageActions: [],
+          ),
+        ],
+      ),
     );
   }
 }
