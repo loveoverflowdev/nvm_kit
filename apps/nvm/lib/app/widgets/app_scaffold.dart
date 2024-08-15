@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nvm/app/widgets/active_resource/active_resource_scaffold.dart';
 import 'package:template_parser/template_parser.dart';
 
-import 'notification/notification_scaffold.dart';
-import 'preference/preference_scaffold.dart';
+import '../widgets.dart';
 
 class AppScaffold extends StatefulWidget {
   final AppComponent app;
@@ -34,13 +32,17 @@ class _AppScaffoldState extends State<AppScaffold> {
       appBar: AppBar(
         title: Text(widget.app.title),
       ),
+      drawer: ActiveResourceDrawer(
+        pages: widget.app.pages,
+      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          ActiveResourceScaffold(
-            pages: widget.app.pages,
-            body: widget.activeResourceScaffoldBody,
-          ),
+          widget.activeResourceScaffoldBody,
+          // ActiveResourceScaffold(
+          //   pages: widget.app.pages,
+          //   body: widget.activeResourceScaffoldBody,
+          // ),
           NotificationScaffold(),
           PreferenceScaffold(),
         ],

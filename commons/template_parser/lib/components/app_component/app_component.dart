@@ -8,13 +8,11 @@ part 'app_component.g.dart';
 @JsonSerializable()
 final class AppComponent implements Component {
   final String appCode;
-  final String index;
   final String title;
   final List<PageComponent> pages;
 
   AppComponent({
     required this.appCode,
-    required this.index,
     required this.pages,
     required this.title,
   });

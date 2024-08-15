@@ -8,7 +8,6 @@ part of 'app_component.dart';
 
 AppComponent _$AppComponentFromJson(Map<String, dynamic> json) => AppComponent(
       appCode: json['appCode'] as String,
-      index: json['index'] as String,
       pages: (json['pages'] as List<dynamic>)
           .map((e) => PageComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -18,7 +17,6 @@ AppComponent _$AppComponentFromJson(Map<String, dynamic> json) => AppComponent(
 Map<String, dynamic> _$AppComponentToJson(AppComponent instance) =>
     <String, dynamic>{
       'appCode': instance.appCode,
-      'index': instance.index,
       'title': instance.title,
       'pages': instance.pages,
     };

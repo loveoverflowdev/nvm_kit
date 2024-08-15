@@ -12,16 +12,23 @@ final class _ExampleTemplateRepository implements TemplateRepository {
   @override
   TemplateComponent getTemplate() {
     return TemplateComponent(
-      title: 'title',
+      title: 'Task Manager',
       apps: [
         AppComponent(
-          appCode: 'tasks',
-          index: 'tasks',
-          title: 'Tasks',
+          appCode: 'task_manager',
+          title: 'Task Manager',
           pages: [
             PageComponent(
               contextName: 'tasks',
               title: 'Tasks',
+              requiredAuth: true,
+              screenType: '',
+              pageStates: [],
+              pageActions: [],
+            ),
+            PageComponent(
+              contextName: 'user_stories',
+              title: 'User Stories',
               requiredAuth: true,
               screenType: '',
               pageStates: [],

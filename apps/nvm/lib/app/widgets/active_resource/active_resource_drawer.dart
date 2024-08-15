@@ -19,7 +19,10 @@ class ActiveResourceDrawer extends StatelessWidget {
             ListTile(
               title: Text(page.title),
               onTap: () {
-                GoRouter.of(context).pushNamed(page.contextName);
+                GoRouter.of(context)
+                    .replace('/task_manager/' + page.contextName);
+
+                debugPrint('-- replace ${page.contextName}');
               },
             ),
         ],

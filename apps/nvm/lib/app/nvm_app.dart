@@ -27,7 +27,7 @@ class _NvmAppState extends State<NvmApp> {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
-        title: 'NVM',
+        title: 'Task Manager',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

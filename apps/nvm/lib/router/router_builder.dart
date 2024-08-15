@@ -16,8 +16,14 @@ class RouterBuilder {
 
   GoRouter build() {
     return GoRouter(
-      initialLocation: '/${template.apps.first.appCode}',
+      initialLocation: '/',
       routes: [
+        GoRoute(
+          path: '/',
+          redirect: (context, state) {
+            return '/${template.apps.first.appCode}';
+          },
+        ),
         GoRoute(
           path: '/${RoutePaths.signin.name}',
           builder: (context, state) => const SigninPage(
@@ -28,24 +34,34 @@ class RouterBuilder {
           },
         ),
         for (final app in template.apps)
-          ShellRoute(
-            builder: (context, state, child) => AppScaffold(
-              activeResourceScaffoldBody: child,
-              app: app,
-            ),
+          GoRoute(
+            path: '/${app.appCode}',
+            redirect: (context, state) {
+              print(state.fullPath);
+              debugPrint('-- redirect ${app.pages.first.contextName}');
+              return '/${app.appCode}/${app.pages.first.contextName}';
+            },
             routes: [
-              for (final page in app.pages)
-                GoRoute(
-                  path: '/${page.contextName}',
-                  builder: (context, state) => Scaffold(
-                    appBar: AppBar(
-                      title: Text(page.title),
-                    ),
-                    body: const ActiveResourceListView(),
-                  ),
+              ShellRoute(
+                builder: (context, state, child) => AppScaffold(
+                  activeResourceScaffoldBody: child,
+                  app: app,
                 ),
+                routes: [
+                  for (final page in app.pages)
+                    GoRoute(
+                      path: page.contextName,
+                      builder: (context, state) => Scaffold(
+                        appBar: AppBar(
+                          title: Text(page.title),
+                        ),
+                        body: const ActiveResourceListView(),
+                      ),
+                    ),
+                ],
+              ),
             ],
-          ),
+          )
         // for (final app in template.apps)
         //   GoRoute(
         //     path: '/${app.appCode}',
