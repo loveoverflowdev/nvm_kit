@@ -14,7 +14,29 @@ final class RemoteCommentRepository implements CommentRepository {
 
   @override
   TaskEither<CommentFailure, List<Comment>> getCommentList() {
-    // TODO: implement getCommentList
-    throw UnimplementedError();
+    TaskEither.tryCatch(
+      // http://172.23.124.11:8001/api/workspaces/613272411067910808/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
+      () async => _apiClient.requestJson(
+        endpoint: ApiEndpoint(
+          uriTemplate:
+              '/api/workspaces/:workspace_id/active-resource/resources/tasks',
+          requiredAuthorization: true,
+          jsonPayload: true,
+        ),
+        workspaceId: workspaceId,
+        authorization: await _tokenProvider(),
+        payload: {
+          'notificationTitle': title,
+          'notificationContent': content,
+          'actions': [
+            for (final payload in payloads) payload.toJson(),
+          ],
+        },
+        dataHandler: (json) => _mapResponse(
+          NotificationResponse.fromJson(json['data']),
+        ),
+      ),
+      (error, stackTrace) => NotificationFailure.fromError(error),
+    );
   }
 }
