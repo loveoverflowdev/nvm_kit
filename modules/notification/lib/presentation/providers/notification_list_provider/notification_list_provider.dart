@@ -12,7 +12,7 @@ class NotificationList extends _$NotificationList {
   @override
   NotificationListState build() => NotificationListState.data(List.empty());
 
-  void loadNotifications({
+  void loadNotificationList({
     required Future<String> Function() workspaceIdProvider,
   }) async {
     state = const AsyncValue.loading();

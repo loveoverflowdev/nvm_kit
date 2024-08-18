@@ -1,7 +1,7 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart'
     show RequestField;
 
-extension ProjectRequestField on RequestField {
+final class ProjectRequestField {
   static final RequestField id = RequestField.name('id');
   static final RequestField isDefault = RequestField.name('isDefault');
   static final RequestField projectName = RequestField.name('projectName');

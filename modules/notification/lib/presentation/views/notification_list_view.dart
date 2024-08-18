@@ -15,7 +15,7 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
   @override
   void initState() {
     super.initState();
-    ref.read(notificationListProvider.notifier).loadNotifications(
+    ref.read(notificationListProvider.notifier).loadNotificationList(
           workspaceIdProvider: () async => '1', // TODO: urgent
         );
   }

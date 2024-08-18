@@ -1,6 +1,6 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 
-extension NotificationRequestField on RequestField {
+final class NotificationRequestField {
   static final id = RequestField.name('id');
   static final title = RequestField.name('notificationTitle');
   static final content = RequestField.name('notificationContent');

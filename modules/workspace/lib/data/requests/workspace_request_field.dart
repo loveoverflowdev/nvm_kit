@@ -1,7 +1,7 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart'
     show RequestField;
 
-extension WorkspaceRequestField on RequestField {
+final class WorkspaceRequestField {
   static final RequestField id = RequestField.name('id');
   static final RequestField workspaceName = RequestField.name('workspaceName');
   static final RequestField namespace = RequestField.name('namespace');
