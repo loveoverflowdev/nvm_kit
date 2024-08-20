@@ -14,9 +14,9 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
   @override
   void initState() {
     super.initState();
-    // ref.watch(projectListProvider.notifier).loadProjectList(
-    //       workspaceIdProvider: () async => '',
-    //     );
+    ref.read(projectListProvider.notifier).loadProjectList(
+      workspaceIdProvider: () async => '',
+    );
   }
 
   @override
