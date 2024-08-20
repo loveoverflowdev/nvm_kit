@@ -85,6 +85,15 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
           selectedIconTheme:
               IconThemeData(color: colorScheme.onSecondaryContainer),
           indicatorColor: colorScheme.secondaryContainer),
+      navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: isLight ? neutralColor : colorScheme.surface,
+          iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+            if (states.contains(WidgetState.selected)) {
+              return IconThemeData(color: colorScheme.onSecondaryContainer);
+            }
+            return IconThemeData(color: colorScheme.onSurface);
+          }),
+          indicatorColor: colorScheme.secondaryContainer),
       appBarTheme: AppBarTheme(
           backgroundColor: isLight ? neutralColor : colorScheme.surface),
       chipTheme: ChipThemeData(

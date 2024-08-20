@@ -63,7 +63,7 @@ class RouterBuilder {
           routes: [
             GoRoute(
               path: '/',
-              builder: (_, state) => const Placeholder(),
+              builder: (_, state) => const ProjectsPage(),
               routes: [
                 GoRoute(
                   path: 'projects/:id',

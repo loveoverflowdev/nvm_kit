@@ -6,9 +6,16 @@ class ProjectsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasDrawer = Scaffold.of(context).hasDrawer;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Projects'),
+        leading: hasDrawer
+              ? IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                )
+              : null,
       ),
       body: const ProjectListView(),
     );

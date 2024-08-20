@@ -61,34 +61,39 @@ class RootLayout extends StatelessWidget {
 
   Widget buildMobile(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            const DrawerHeader(child: Text('NVM')),
-            Expanded(
-              child: ListView.builder(
-                itemCount: destinations.length,
-                itemBuilder: (context, index) {
-                  final destination = destinations[index];
-                  final selected = index == navigationIndex;
-                  return ListTile(
-                    title: Text(destination.label),
-                    leading: Icon(selected
-                        ? destination.selectedIcon
-                        : destination.unselectedIcon),
-                    selected: selected,
-                    onTap: () {
-                      onDestination(index);
-                      Navigator.pop(context);
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: Column(
+      //     children: [
+      //       const DrawerHeader(child: Text('NVM')),
+      //       Expanded(
+      //         child: ListView.builder(
+      //           itemCount: destinations.length,
+      //           itemBuilder: (context, index) {
+      //             final destination = destinations[index];
+      //             final selected = index == navigationIndex;
+      //             return ListTile(
+      //               title: Text(destination.label),
+      //               leading: Icon(selected
+      //                   ? destination.selectedIcon
+      //                   : destination.unselectedIcon),
+      //               selected: selected,
+      //               onTap: () {
+      //                 onDestination(index);
+      //                 Navigator.pop(context);
+      //               },
+      //             );
+      //           },
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: child,
+      bottomNavigationBar: NavigationBar(
+        destinations: destinations.map((e) => e.toNavigationDestination()).toList(),
+        selectedIndex: navigationIndex,
+        onDestinationSelected: onDestination,
+      ),
       floatingActionButton: buildFab(context),
     );
   }
@@ -108,7 +113,7 @@ class Destination {
   const Destination(
       {required this.label,
       required this.selectedIcon,
-      required this.unselectedIcon});
+      required this.unselectedIcon,});
 
   final String label;
   final IconData selectedIcon, unselectedIcon;
@@ -118,6 +123,14 @@ class Destination {
       icon: Icon(unselectedIcon),
       selectedIcon: Icon(selectedIcon),
       label: Text(label),
+    );
+  }
+
+  NavigationDestination toNavigationDestination() {
+    return NavigationDestination(
+      icon: Icon(unselectedIcon), 
+      selectedIcon: Icon(selectedIcon),
+      label: label,
     );
   }
 }

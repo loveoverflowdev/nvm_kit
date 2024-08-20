@@ -14,13 +14,15 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
   @override
   void initState() {
     super.initState();
-    ref.watch(projectListProvider.notifier).loadProjectList(
-          workspaceIdProvider: () async => '',
-        );
+    // ref.watch(projectListProvider.notifier).loadProjectList(
+    //       workspaceIdProvider: () async => '',
+    //     );
   }
 
   @override
   Widget build(BuildContext context) {
+    return Placeholder();
+
     final projectList = ref.watch(projectListProvider);
     return projectList.when(
       data: (data) => ListView.builder(
