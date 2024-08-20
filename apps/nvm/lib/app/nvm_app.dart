@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:nvm/router.dart';
 import 'package:nvm/template_repository.dart';
 
+import 'theme.dart';
+
 class NvmApp extends StatefulWidget {
   const NvmApp({super.key});
 
@@ -13,6 +15,7 @@ class NvmApp extends StatefulWidget {
 
 class _NvmAppState extends State<NvmApp> {
   late final GoRouter _router;
+  late final ThemeData _theme;
 
   @override
   void initState() {
@@ -21,18 +24,18 @@ class _NvmAppState extends State<NvmApp> {
     _router = RouterBuilder(
       template: template,
     ).build();
+
+    _theme = const BasilTheme().toThemeData();
   }
 
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
-        title: 'Task Manager',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        title: 'NVM',
+        theme: _theme,
         routerConfig: _router,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

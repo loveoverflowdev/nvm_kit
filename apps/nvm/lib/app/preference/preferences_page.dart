@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PreferenceScaffold extends StatelessWidget {
-  const PreferenceScaffold({super.key});
+class PreferencesPage extends StatelessWidget {
+  const PreferencesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class PreferenceScaffold extends StatelessWidget {
         title: const Text('Preferences'),
       ),
       body: Placeholder(
-        child: Text('Preference'),
+        child: Text('Preferences'),
       ),
     );
   }
