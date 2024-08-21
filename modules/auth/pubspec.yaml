@@ -21,6 +21,8 @@ dependencies:
   alchemist_api_client:
     path: ../../commons/alchemist_api_client
 
+  shared_resources:
+    path: ../shared_resources
 
 dev_dependencies:
   flutter_test:

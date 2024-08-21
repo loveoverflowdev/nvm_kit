@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/src/request_field.dart';
+import 'package:alchemist_api_client/clients/alchemist_api_client/request_field.dart';
 
 void main() {
   final RequestField fields1 = RequestField.children(

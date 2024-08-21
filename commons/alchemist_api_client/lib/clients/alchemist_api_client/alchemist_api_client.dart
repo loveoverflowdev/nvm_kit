@@ -1,52 +1,30 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-import 'alchemist_query.dart';
-import 'api_endpoint.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:http/http.dart' as http;
 
-sealed class ApiClient {
-  const ApiClient();
+import 'alchemist_api_request_failure.dart';
+import 'alchemist_query.dart';
+import 'api_endpoint.dart';
 
-  factory ApiClient.nvm({http.Client? httpClient}) = _NvmApiClient;
-
-  Future<T> requestJson<T>({
-    required ApiEndpoint endpoint,
-    String? workspaceId,
-    String? authorization,
-    AlchemistQuery? alchemistQuery,
-    Map<String, dynamic>? uriParams,
-    dynamic payload,
-    Map<String, String>? headers,
-    bool refreshTokenOnUnauthorization = true,
-    required T Function(dynamic) dataHandler,
-  });
-
-  void addOnUnauthorizationListener(VoidCallback listener);
-
-  void removeOnUnauthorizationListener(VoidCallback listener);
-}
-
-class _NvmApiClient extends ApiClient {
+final class AlchemistApiClient {
   final http.Client _httpClient;
-  final List<VoidCallback> _onUnauthorizationListeners;
 
-  _NvmApiClient({
+  AlchemistApiClient({
     http.Client? httpClient,
-  })  : _httpClient = httpClient ?? http.Client(),
-        _onUnauthorizationListeners = [];
+    required Future<String?> Function() tokenProvider,
+  })  : 
+    _httpClient = httpClient ?? http.Client();
 
-  @override
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
     String? workspaceId,
-    String? authorization,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
     dynamic payload,
     Map<String, String>? headers,
     bool refreshTokenOnUnauthorization = true,
+    String? authorization,
     required T Function(dynamic) dataHandler,
   }) async {
     final endpointParams = endpoint.parseEndpointParams(
@@ -71,9 +49,9 @@ class _NvmApiClient extends ApiClient {
 
       if (response.statusCode >= 400) {
         if (response.statusCode == 401 && refreshTokenOnUnauthorization) {
-          for (final listener in _onUnauthorizationListeners) {
-            listener.call();
-          }
+          // for (final listener in _onUnauthorizationListeners) {
+          //   listener.call();
+          // }
         }
         throw AlchemistApiRequestFailure(
           body: _responseBodyToJson(response),
@@ -95,26 +73,4 @@ class _NvmApiClient extends ApiClient {
   dynamic _responseBodyToJson(http.Response response) {
     return jsonDecode(response.body);
   }
-
-  @override
-  void addOnUnauthorizationListener(VoidCallback listener) {
-    _onUnauthorizationListeners.add(listener);
-  }
-
-  @override
-  void removeOnUnauthorizationListener(VoidCallback listener) {
-    _onUnauthorizationListeners.remove(listener);
-  }
-}
-
-class AlchemistApiRequestFailure implements Exception {
-  final Map<String, dynamic> body;
-
-  /// Http status code, except -1 for connection error
-  final int statusCode;
-
-  AlchemistApiRequestFailure({
-    required this.body,
-    required this.statusCode,
-  });
 }

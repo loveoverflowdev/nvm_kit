@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
-import '../alchemist_api_client.dart';
+import '../../alchemist_api_client.dart';
 
 class ApiEndpoint {
   static const String baseUrl = 'http://25.14.30.4:80';
