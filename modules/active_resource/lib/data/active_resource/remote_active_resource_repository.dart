@@ -8,18 +8,14 @@ import '../../domain.dart'
         ActiveResourceFailure,
         ActiveResourceProject,
         ActiveResourceRepository;
-import 'requests.dart';
-import 'responses.dart';
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
-  final Future<String?> Function() _tokenProvider;
-  final ApiClient _apiClient;
+  final ResourceApiClient _apiClient;
 
   RemoteActiveResourceRepository({
-    required final ApiClient apiClient,
+    required final ResourceApiClient apiClient,
     required Future<String?> Function() tokenProvider,
-  })  : _apiClient = apiClient,
-        _tokenProvider = tokenProvider;
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
@@ -29,37 +25,25 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   }) {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient.requestJson(
-          authorization: await _tokenProvider(),
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/active-resource/get/resources/$resourceCode/$id',
-          ),
-          alchemistQuery: AlchemistQuery(
-            requestField: requestField ??
-                RequestField.children(
-                  [
-                    ActiveFieldRequestField.id,
-                    ActiveFieldRequestField.attributes,
-                    ActiveFieldRequestField.project.addChildren([
-                      ActiveFieldRequestField.projectName,
-                      ActiveFieldRequestField.id,
-                    ]),
-                    ActiveFieldRequestField.createdByUser.addChildren([
-                      ActiveFieldRequestField.username,
-                      ActiveFieldRequestField.id,
-                    ]),
-                    ActiveFieldRequestField.labels.addChildren([
-                      ActiveFieldRequestField.labelName,
-                      ActiveFieldRequestField.id,
-                    ]),
-                  ],
-                ),
-          ),
-          dataHandler: (json) => _mapResponse(
-            ActiveResourceResponse.fromJson(json['data']),
-          ),
-        );
+        return _apiClient
+            .getActiveResource(
+              resourceCode: resourceCode,
+              id: id,
+              workspaceId: '',
+            )
+            .then(
+              (value) => _mapResponse(value),
+            );
+        // return _apiClient.requestJson(
+        //   endpoint: ApiEndpoint(
+        //     uriTemplate:
+        //         '/api/workspaces/:workspace_id/active-resource/get/resources/$resourceCode/$id',
+        //   ),
+        //   alchemistQuery: AlchemistQuery(),
+        //   dataHandler: (json) => _mapResponse(
+        //     ActiveResourceResponse.fromJson(json['data']),
+        //   ),
+        // );
       },
       (error, stackTrace) => ActiveResourceFailure.fromError(error),
     );

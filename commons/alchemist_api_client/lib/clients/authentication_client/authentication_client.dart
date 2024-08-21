@@ -1,5 +1,6 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import '../alchemist_api_client.dart';
 import 'authentication_credentials.dart';
+import 'token_storage.dart';
 
 class AuthenticationClient {
   final AlchemistApiClient _alchemistApiClient;
