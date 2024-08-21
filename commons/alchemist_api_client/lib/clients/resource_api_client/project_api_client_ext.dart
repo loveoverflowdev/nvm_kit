@@ -1,5 +1,1 @@
-import 'resource_api_client.dart';
-
-extension ProjectApiClientExt on ResourceApiClient {
-
-}
+export 'project_api_client_ext/project_api_client_ext.dart';

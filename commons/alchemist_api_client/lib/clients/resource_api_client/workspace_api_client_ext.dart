@@ -1,5 +1,1 @@
-import 'resource_api_client.dart';
-
-extension WorkspaceApiClientExt on ResourceApiClient {
-
-}
+export 'workspace_api_client_ext/workspace_api_client_ext.dart';

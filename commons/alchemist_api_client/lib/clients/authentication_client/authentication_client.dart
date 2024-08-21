@@ -1,5 +1,4 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-
 import 'authentication_credentials.dart';
 
 class AuthenticationClient {
@@ -9,16 +8,14 @@ class AuthenticationClient {
   AuthenticationClient({
     required AlchemistApiClient alchemistApiClient,
     required TokenStorage tokenStorage,
-  }) : 
-    _alchemistApiClient = alchemistApiClient, 
-    _tokenStorage = tokenStorage;
+  })  : _alchemistApiClient = alchemistApiClient,
+        _tokenStorage = tokenStorage;
 
   Future<AuthenticationCredentials> signInWithUsernameAndPassword({
     required String username,
     required String password,
-  }) {
-    return _alchemistApiClient
-        .requestJson(
+  }) async {
+    final credentials = await _alchemistApiClient.requestJson(
       endpoint: ApiEndpoint(
         uriTemplate: '/api/auth/post/authenticate',
         jsonPayload: true,
@@ -29,15 +26,16 @@ class AuthenticationClient {
       },
       dataHandler: (json) {
         final credentials = AuthenticationCredentials.fromJson(json);
-        _tokenStorage
-          .save(
-            userId: credentials.userId,
-            accessToken: credentials.accessToken, 
-            refreshToken: credentials.refreshToken,
-          );
+
         return credentials;
       },
     );
+    await _tokenStorage.save(
+      userId: credentials.userId,
+      accessToken: credentials.accessToken,
+      refreshToken: credentials.refreshToken,
+    );
+    return credentials;
   }
 
   // Future<T> requestJson<T>({
@@ -59,9 +57,8 @@ class AuthenticationClient {
   //     uriParams: uriParams,
   //     payload: payload,
   //     headers: headers,
-  //     refreshTokenOnUnauthorization: refreshTokenOnUnauthorization, 
+  //     refreshTokenOnUnauthorization: refreshTokenOnUnauthorization,
   //     dataHandler: dataHandler,
   //   );
   // }
 }
-

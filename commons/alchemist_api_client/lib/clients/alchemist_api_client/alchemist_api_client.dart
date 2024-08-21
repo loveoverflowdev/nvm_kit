@@ -13,8 +13,7 @@ final class AlchemistApiClient {
   AlchemistApiClient({
     http.Client? httpClient,
     required Future<String?> Function() tokenProvider,
-  })  : 
-    _httpClient = httpClient ?? http.Client();
+  }) : _httpClient = httpClient ?? http.Client();
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
@@ -25,9 +24,11 @@ final class AlchemistApiClient {
     Map<String, String>? headers,
     bool refreshTokenOnUnauthorization = true,
     String? authorization,
+    String? id,
     required T Function(dynamic) dataHandler,
   }) async {
     final endpointParams = endpoint.parseEndpointParams(
+      id: id,
       workspaceId: workspaceId,
       authorization: authorization,
       alchemistQuery: alchemistQuery,

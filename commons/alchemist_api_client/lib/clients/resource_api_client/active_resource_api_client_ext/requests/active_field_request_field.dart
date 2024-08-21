@@ -16,4 +16,23 @@ final class ActiveFieldRequestField {
   static final RequestField username = RequestField.name('username');
   static final RequestField labels = RequestField.name('username');
   static final RequestField labelName = RequestField.name('username');
+
+  static final RequestField all = RequestField.children(
+    [
+      ActiveFieldRequestField.id,
+      ActiveFieldRequestField.attributes,
+      ActiveFieldRequestField.project.addChildren([
+        ActiveFieldRequestField.projectName,
+        ActiveFieldRequestField.id,
+      ]),
+      ActiveFieldRequestField.createdByUser.addChildren([
+        ActiveFieldRequestField.username,
+        ActiveFieldRequestField.id,
+      ]),
+      ActiveFieldRequestField.labels.addChildren([
+        ActiveFieldRequestField.labelName,
+        ActiveFieldRequestField.id,
+      ]),
+    ],
+  );
 }

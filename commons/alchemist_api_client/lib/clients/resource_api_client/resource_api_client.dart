@@ -7,13 +7,13 @@ final class ResourceApiClient {
   ResourceApiClient({
     required AlchemistApiClient alchemistApiClient,
     required Future<String?> Function() tokenProvider,
-  }) : 
-    _alchemistApiClient = alchemistApiClient, 
-    _tokenProvider = tokenProvider;
+  })  : _alchemistApiClient = alchemistApiClient,
+        _tokenProvider = tokenProvider;
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
     String? workspaceId,
+    String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
     dynamic payload,
@@ -23,13 +23,14 @@ final class ResourceApiClient {
   }) async {
     return _alchemistApiClient.requestJson(
       authorization: await _tokenProvider(),
+      id: id,
       endpoint: endpoint,
       workspaceId: workspaceId,
       alchemistQuery: alchemistQuery,
       uriParams: uriParams,
       payload: payload,
       headers: headers,
-      refreshTokenOnUnauthorization: refreshTokenOnUnauthorization, 
+      refreshTokenOnUnauthorization: refreshTokenOnUnauthorization,
       dataHandler: dataHandler,
     );
   }

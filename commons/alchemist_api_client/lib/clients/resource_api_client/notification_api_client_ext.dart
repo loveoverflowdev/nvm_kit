@@ -1,5 +1,1 @@
-import 'resource_api_client.dart';
-
-extension NotificationApiClientExt on ResourceApiClient {
-
-}
+export 'notification_api_client_ext/notification_api_client_ext.dart';
