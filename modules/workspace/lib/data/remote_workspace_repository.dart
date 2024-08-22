@@ -3,13 +3,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:workspace/domain.dart';
 
 final class RemoteWorkspaceRepository implements WorkspaceRepository {
-  late final api.ResourceApiClient _apiClient;
+  final api.ResourceApiClient _apiClient;
 
-  RemoteWorkspaceRepository();
-
-  set apiClient(api.ResourceApiClient client) {
-    _apiClient = client;
-  }
+  RemoteWorkspaceRepository({
+    required api.ResourceApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<WorkspaceFailure, List<Workspace>> getWorkspaceList() {

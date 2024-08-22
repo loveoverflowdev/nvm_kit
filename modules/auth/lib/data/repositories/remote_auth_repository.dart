@@ -5,13 +5,11 @@ import 'package:formz/formz.dart';
 import 'package:fpdart/fpdart.dart';
 
 final class RemoteAuthRepository implements AuthRepository {
-  late final api.AuthenticationClient _apiClient;
+  final api.AuthenticationClient _apiClient;
 
-  RemoteAuthRepository();
-
-  set apiClient(api.AuthenticationClient client) {
-    _apiClient = client;
-  }
+  RemoteAuthRepository({
+    required api.AuthenticationClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<AuthFailure, AuthCredentials> signIn({

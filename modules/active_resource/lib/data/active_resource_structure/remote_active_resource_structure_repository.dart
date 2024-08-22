@@ -9,13 +9,11 @@ import '../../domain.dart'
 
 final class RemoteActiveResourceStructureRepository
     implements ActiveResourceStructureRepository {
-  late final ResourceApiClient _apiClient;
+  final ResourceApiClient _apiClient;
 
-  RemoteActiveResourceStructureRepository();
-
-  set apiClient(ResourceApiClient client) {
-    _apiClient = client;
-  }
+  RemoteActiveResourceStructureRepository({
+    required ResourceApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>

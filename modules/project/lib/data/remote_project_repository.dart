@@ -3,13 +3,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:project/domain.dart';
 
 final class RemoteProjectRepository implements ProjectRepository {
-  late final api.ResourceApiClient _apiClient;
+  final api.ResourceApiClient _apiClient;
 
-  RemoteProjectRepository();
-
-  set apiClient(api.ResourceApiClient client) {
-    _apiClient = client;
-  }
+  RemoteProjectRepository({
+    required api.ResourceApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<ProjectFailure, Project> getProject({

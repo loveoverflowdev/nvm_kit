@@ -4,13 +4,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:notification/domain.dart';
 
 class RemoteNotificationRepository implements NotificationRepository {
-  late final api.ResourceApiClient _apiClient;
+  final api.ResourceApiClient _apiClient;
 
-  RemoteNotificationRepository();
-
-  set apiClient(api.ResourceApiClient client) {
-    _apiClient = client;
-  }
+  RemoteNotificationRepository({
+    required api.ResourceApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<NotificationFailure, void> createNotification({
