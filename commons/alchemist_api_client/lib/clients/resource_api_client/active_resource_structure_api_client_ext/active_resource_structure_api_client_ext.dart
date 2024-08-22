@@ -42,7 +42,7 @@ extension ActiveResourceStructureApiClientExt on ResourceApiClient {
       ),
       id: id,
       workspaceId: workspaceId,
-      dataHandler: (json) => ActiveResourceStructureResponse.fromJson(json),
+      dataHandler: (json) => ActiveResourceStructureResponse.fromJson(json['data']),
     );
   }
 }

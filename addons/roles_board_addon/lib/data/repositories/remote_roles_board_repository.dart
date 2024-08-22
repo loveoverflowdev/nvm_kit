@@ -2,42 +2,29 @@ import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:roles_board_addon/domain.dart';
 
-import '../requests.dart';
-import '../responses.dart';
-
 final class RemoteRolesBoardRepository implements RolesBoardRepository {
-  final ApiClient _apiClient;
-  final Future<String?> Function() _tokenProvider;
+  final RolesBoardApiClient _apiClient;
 
   RemoteRolesBoardRepository({
-    required ApiClient apiClient,
-    required Future<String?> Function() tokenProvider,
-  })  : _apiClient = apiClient,
-        _tokenProvider = tokenProvider;
+    required RolesBoardApiClient apiClient,
+  })  : _apiClient = apiClient;
 
   @override
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
     required String workspaceId,
+    required String resourceCode,
+    required String resourceId,
     RequestField? requestField,
   }) {
     return TaskEither.tryCatch(
       // http://172.23.124.11:8001/api/workspaces/613272411067910808/widget/board-roles/get
-      () async => _apiClient.requestJson(
-        endpoint: ApiEndpoint(
-          uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/get',
-          requiredAuthorization: true,
-          jsonPayload: true,
-        ),
-        alchemistQuery: AlchemistQuery(
-          requestField: requestField ?? RolesBoardRequestField.all,
-        ),
-        workspaceId: workspaceId,
-        authorization: await _tokenProvider(),
-        dataHandler: (json) => (json['data'] as List)
-            .map(
-              (e) => _mapResponse(RolesBoardResponse.fromJson(e)),
-            )
-            .toList(),
+      () async => _apiClient.getRolesBoardList(
+        workspaceId: workspaceId, 
+        resourceCode: resourceCode, 
+        resourceId: resourceId,
+        requestField: requestField,
+      ).then(
+        (value) => value.map(_mapResponse).toList(),
       ),
       (error, stackTrace) => RolesBoardFailure.fromError(error),
     );

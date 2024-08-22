@@ -23,7 +23,7 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all,
       ),
-      dataHandler: (json) => ActiveResourceResponse.fromJson(json['data']),
+      dataHandler: (json) => ActiveResourceResponse.fromJson(json),
     );
   }
 

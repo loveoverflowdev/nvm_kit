@@ -1,12 +1,13 @@
 import '../../alchemist_api_client.dart';
+import '../../token_provider.dart';
 
 final class ResourceApiClient {
   final AlchemistApiClient _alchemistApiClient;
-  final Future<String?> Function() _tokenProvider;
+  final TokenProvider _tokenProvider;
 
   ResourceApiClient({
     required AlchemistApiClient alchemistApiClient,
-    required Future<String?> Function() tokenProvider,
+    required TokenProvider tokenProvider,
   })  : _alchemistApiClient = alchemistApiClient,
         _tokenProvider = tokenProvider;
 

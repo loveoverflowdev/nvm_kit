@@ -58,3 +58,4 @@ final class RolesBoardRequestField {
   ]);
   static final RequestField updatedByUser = RequestField.name('updatedByUser');
 }
+

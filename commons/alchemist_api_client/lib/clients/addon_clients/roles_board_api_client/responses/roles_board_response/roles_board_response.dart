@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:roles_board_addon/data/responses/role_response/role_response.dart';
 
 import '../progress_response.dart';
+import '../role_response.dart';
 
 part 'roles_board_response.g.dart';
 
