@@ -12,7 +12,6 @@ final class AlchemistApiClient {
 
   AlchemistApiClient({
     http.Client? httpClient,
-    required Future<String?> Function() tokenProvider,
   }) : _httpClient = httpClient ?? http.Client();
 
   Future<T> requestJson<T>({
