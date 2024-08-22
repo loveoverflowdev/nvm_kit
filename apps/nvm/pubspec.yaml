@@ -43,6 +43,13 @@ dependencies:
   active_resource:
     path: ../../modules/active_resource
 
+  # Addons
+  comment_addon:
+    path: ../../addons/comment_addon
+
+  roles_board_addon:
+    path: ../../addons/roles_board_addon
+
   # Commons
   alchemist_api_client:
     path: ../../commons/alchemist_api_client

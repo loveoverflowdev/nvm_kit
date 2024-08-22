@@ -3,20 +3,17 @@ import 'package:comment_addon/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
 final class RemoteCommentRepository implements CommentRepository {
-  late final CommentApiClient _apiClient;
+  final CommentApiClient _apiClient;
 
-  RemoteCommentRepository();
-
-  set apiClient(CommentApiClient client) {
-    _apiClient = client;
-  }
+  RemoteCommentRepository({
+    required CommentApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<CommentFailure, List<Comment>> getCommentList({
     required String workspaceId,
     required String resourceCode,
     required String resourceId,
-    RequestField? requestField,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient

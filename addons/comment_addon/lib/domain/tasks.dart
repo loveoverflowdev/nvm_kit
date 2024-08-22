@@ -10,7 +10,6 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
   required String workspaceId,
   required String resourceCode,
   required String resourceId,
-  RequestField? requestField,
 }) {
   return ReaderTaskEither(
     (repository) {
@@ -19,7 +18,6 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
             workspaceId: workspaceId,
             resourceCode: resourceCode,
             resourceId: resourceId,
-            requestField: requestField,
           )
           .run();
     },

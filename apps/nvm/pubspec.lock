@@ -62,6 +62,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  comment_addon:
+    dependency: "direct main"
+    description:
+      path: "../../addons/comment_addon"
+      relative: true
+    source: path
+    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -363,6 +370,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.5"
+  roles_board_addon:
+    dependency: "direct main"
+    description:
+      path: "../../addons/roles_board_addon"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

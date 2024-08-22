@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:workspace/presentation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers.dart';
-import '../widgets.dart';
-
 class WorkspaceListView extends ConsumerWidget {
   const WorkspaceListView({super.key});
 

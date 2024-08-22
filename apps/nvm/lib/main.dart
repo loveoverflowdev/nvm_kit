@@ -1,5 +1,5 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nvm/app.dart';
 
 import 'package:auth/auth.dart' as auth;
@@ -7,6 +7,9 @@ import 'package:workspace/workspace.dart' as workspace;
 import 'package:project/project.dart' as project;
 import 'package:notification/notification.dart' as notification;
 import 'package:active_resource/active_resource.dart' as active_resource;
+// addons
+import 'package:comment_addon/comment_addon.dart' as comment_addon;
+import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 
 void main() {
   final AlchemistApiClient alchemistApiClient = AlchemistApiClient();
@@ -17,6 +20,10 @@ void main() {
     tokenStorage: tokenStorage,
   );
   final ResourceApiClient resourceApiClient = ResourceApiClient(
+    alchemistApiClient: alchemistApiClient,
+    tokenProvider: tokenStorage.readAccessToken,
+  );
+  final CommentApiClient commentApiClient = CommentApiClient(
     alchemistApiClient: alchemistApiClient,
     tokenProvider: tokenStorage.readAccessToken,
   );
@@ -43,6 +50,16 @@ void main() {
   final active_resource.ActiveResourceRepository activeResourceRepository =
       active_resource.RemoteActiveResourceRepository(
     apiClient: resourceApiClient,
+  );
+
+  final comment_addon.CommentRepository commentRepository =
+      comment_addon.RemoteCommentRepository(
+    apiClient: commentApiClient,
+  );
+
+  final comment_addon.CommentRepository commentRepository =
+      comment_addon.RemoteCommentRepository(
+    apiClient: commentApiClient,
   );
 
   runApp(NvmApp(
