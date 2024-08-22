@@ -1,46 +1,30 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart';
 
 import 'package:notification/domain.dart';
-import 'responses.dart';
 
 class RemoteNotificationRepository implements NotificationRepository {
-  final ApiClient _apiClient;
-  final Future<String?> Function() _tokenProvider;
+  late final api.ResourceApiClient _apiClient;
 
-  RemoteNotificationRepository({
-    required ApiClient apiClient,
-    required Future<String?> Function() tokenProvider,
-  })  : _apiClient = apiClient,
-        _tokenProvider = tokenProvider;
+  RemoteNotificationRepository();
+
+  set apiClient(api.ResourceApiClient client) {
+    _apiClient = client;
+  }
 
   @override
-  TaskEither<NotificationFailure, Notification> createNotification({
+  TaskEither<NotificationFailure, void> createNotification({
     required String workspaceId,
     required String title,
     required String content,
-    required List<NotificationActionPayload> payloads,
+    required List<NotificationActionInput> inputs,
   }) =>
       TaskEither.tryCatch(
-        () async => _apiClient.requestJson(
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/notification/post/notifications',
-            requiredAuthorization: true,
-            jsonPayload: true,
-          ),
+        () async => _apiClient.createNotification(
           workspaceId: workspaceId,
-          authorization: await _tokenProvider(),
-          payload: {
-            'notificationTitle': title,
-            'notificationContent': content,
-            'actions': [
-              for (final payload in payloads) payload.toJson(),
-            ],
-          },
-          dataHandler: (json) => _mapResponse(
-            NotificationResponse.fromJson(json['data']),
-          ),
+          title: title,
+          content: content,
+          payloads: inputs.map(_mapInput).toList(),
         ),
         (error, stackTrace) => NotificationFailure.fromError(error),
       );
@@ -48,28 +32,26 @@ class RemoteNotificationRepository implements NotificationRepository {
   @override
   TaskEither<NotificationFailure, List<Notification>> getNotificationList({
     required String workspaceId,
-    RequestField? requestField,
   }) =>
       TaskEither.tryCatch(
-        () async => _apiClient.requestJson(
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/notification/get/notifications',
-            requiredAuthorization: true,
-            jsonPayload: true,
-          ),
-          dataHandler: (json) => (json['data'] as List? ?? [])
-              .map(
-                (e) => _mapResponse(
-                  NotificationResponse.fromJson(e),
+        () async =>
+            _apiClient.getNotificationList(workspaceId: workspaceId).then(
+                  (value) => value.map(_mapResponse).toList(),
                 ),
-              )
-              .toList(),
-        ),
         (error, stackTrace) => NotificationFailure.fromError(error),
       );
 
-  Notification _mapResponse(NotificationResponse response) {
+  api.NotificationActionPayload _mapInput(NotificationActionInput input) {
+    return api.NotificationActionPayload(
+      actionName: input.actionName,
+      actionType: input.actionType,
+      url: input.url,
+      actionColor: input.actionColor,
+      actionStatus: input.actionStatus,
+    );
+  }
+
+  Notification _mapResponse(api.NotificationResponse response) {
     return Notification(
       title: response.notificationTitle,
       content: response.notificationContent,
@@ -91,14 +73,4 @@ class RemoteNotificationRepository implements NotificationRepository {
           .toList(),
     );
   }
-}
-
-extension _ActionPayloadSerializable on NotificationActionPayload {
-  Map<String, dynamic> toJson() => {
-        'actionName': actionName,
-        'actionType': actionType,
-        'url': url,
-        'actionColor': actionColor,
-        'actionStatus': actionStatus,
-      };
 }

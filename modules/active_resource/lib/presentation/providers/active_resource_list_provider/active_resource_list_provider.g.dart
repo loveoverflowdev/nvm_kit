@@ -7,7 +7,7 @@ part of 'active_resource_list_provider.dart';
 // **************************************************************************
 
 String _$activeResourceListHash() =>
-    r'94367810e3223f4039eb747e20e77ab7e15a4870';
+    r'5aae335ead4d92f2e3e95b9e368e948d4c6a17e1';
 
 /// See also [ActiveResourceList].
 @ProviderFor(ActiveResourceList)

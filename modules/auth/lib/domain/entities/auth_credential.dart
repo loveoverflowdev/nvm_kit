@@ -1,9 +1,9 @@
-class AuthCredential {
+class AuthCredentials {
   final String userId;
   final String accessToken;
   final String refreshToken;
 
-  AuthCredential({
+  AuthCredentials({
     required this.accessToken,
     required this.refreshToken,
     required this.userId,

@@ -27,7 +27,6 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
           (repository) => repository
               .getProjectList(
                 workspaceId: workspaceId,
-                requestField: requestField,
               )
               .map(
                 (response) => response.toList(),
@@ -45,7 +44,6 @@ ReaderTaskEither<ProjectRepository, Exception, Project> getProjectTask({
           .getProject(
             workspaceId: workspaceId,
             projectId: projectId,
-            requestField: requestField,
           )
           .run(),
     );

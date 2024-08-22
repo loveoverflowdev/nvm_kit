@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
@@ -10,40 +10,31 @@ import '../../domain.dart'
         ActiveResourceRepository;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
-  final ResourceApiClient _apiClient;
+  late final api.ResourceApiClient _apiClient;
 
-  RemoteActiveResourceRepository({
-    required final ResourceApiClient apiClient,
-    required Future<String?> Function() tokenProvider,
-  }) : _apiClient = apiClient;
+  RemoteActiveResourceRepository();
+
+  set apiClient(api.ResourceApiClient client) {
+    _apiClient = client;
+  }
 
   @override
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
     required String resourceCode,
     required String id,
-    RequestField? requestField,
+    required String workspaceId,
   }) {
     return TaskEither.tryCatch(
-      () async {
+      () {
         return _apiClient
             .getActiveResource(
               resourceCode: resourceCode,
               id: id,
-              workspaceId: '',
+              workspaceId: workspaceId,
             )
             .then(
               (value) => _mapResponse(value),
             );
-        // return _apiClient.requestJson(
-        //   endpoint: ApiEndpoint(
-        //     uriTemplate:
-        //         '/api/workspaces/:workspace_id/active-resource/get/resources/$resourceCode/$id',
-        //   ),
-        //   alchemistQuery: AlchemistQuery(),
-        //   dataHandler: (json) => _mapResponse(
-        //     ActiveResourceResponse.fromJson(json['data']),
-        //   ),
-        // );
       },
       (error, stackTrace) => ActiveResourceFailure.fromError(error),
     );
@@ -53,14 +44,25 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
     required String resourceCode,
-    RequestField? requestField,
+    required String workspaceId,
   }) {
-    // TODO: implement getActiveResourceList
-    throw UnimplementedError();
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient
+            .getActiveResourceList(
+              resourceCode: resourceCode,
+              workspaceId: '',
+            )
+            .then(
+              (value) => value.map(_mapResponse).toList(),
+            );
+      },
+      (error, stackTrace) => ActiveResourceFailure.fromError(error),
+    );
   }
 
   ActiveResource _mapResponse(
-    ActiveResourceResponse response,
+    api.ActiveResourceResponse response,
   ) =>
       ActiveResource(
         attributes: response.attributes,

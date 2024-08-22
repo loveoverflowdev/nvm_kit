@@ -3,15 +3,8 @@ import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:workspace/domain.dart';
 
 ReaderTaskEither<WorkspaceRepository, Exception, List<Workspace>>
-    getWorkspaceListTask({
-  RequestField? requestField,
-}) =>
-        ReaderTaskEither(
-          (repository) => repository
-              .getWorkspaceList(
-                requestField: requestField,
-              )
-              .run(),
+    getWorkspaceListTask() => ReaderTaskEither(
+          (repository) => repository.getWorkspaceList().run(),
         );
 
 ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, Workspace>
@@ -22,7 +15,6 @@ ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, Workspace>
         ReaderTaskEither(
           (repository) => repository
               .getWorkspace(
-                requestField: requestField,
                 workspaceId: workspaceId,
               )
               .run(),

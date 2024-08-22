@@ -1,13 +1,12 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:notification/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
-ReaderTaskEither<NotificationRepository, NotificationFailure, Notification>
+ReaderTaskEither<NotificationRepository, NotificationFailure, void>
     createNotificationTask({
   required String workspaceId,
   required String title,
   required String content,
-  required List<NotificationActionPayload> payloads,
+  required List<NotificationActionInput> inputs,
 }) =>
         ReaderTaskEither(
           (repository) => repository
@@ -15,7 +14,7 @@ ReaderTaskEither<NotificationRepository, NotificationFailure, Notification>
                 workspaceId: workspaceId,
                 title: title,
                 content: content,
-                payloads: payloads,
+                inputs: inputs,
               )
               .run(),
         );
@@ -23,13 +22,11 @@ ReaderTaskEither<NotificationRepository, NotificationFailure, Notification>
 ReaderTaskEither<NotificationRepository, NotificationFailure,
     List<Notification>> getNotificationListTask({
   required String workspaceId,
-  RequestField? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getNotificationList(
             workspaceId: workspaceId,
-            requestField: requestField,
           )
           .run(),
     );

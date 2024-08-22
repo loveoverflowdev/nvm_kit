@@ -2,6 +2,7 @@ import 'package:notification/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../notification_repository_provider.dart';
+import '../workspace_id_provider.dart';
 
 part 'notification_list_provider.g.dart';
 
@@ -12,13 +13,20 @@ class NotificationList extends _$NotificationList {
   @override
   NotificationListState build() => NotificationListState.data(List.empty());
 
-  void loadNotificationList({
-    required Future<String> Function() workspaceIdProvider,
-  }) async {
+  void loadNotificationList() async {
+    final workspaceId = ref.watch(workspaceIdProvider);
+    if (workspaceId == null) {
+      state = NotificationListState.error(
+        'workspaceId is null',
+        StackTrace.current,
+      );
+      return;
+    }
+
     state = const AsyncValue.loading();
 
     getNotificationListTask(
-      workspaceId: await workspaceIdProvider(),
+      workspaceId: workspaceId,
     ).match(
       (failure) {
         state = NotificationListState.error(

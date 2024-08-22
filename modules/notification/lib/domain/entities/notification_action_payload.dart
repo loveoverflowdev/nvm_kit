@@ -1,11 +1,11 @@
-final class NotificationActionPayload {
+final class NotificationActionInput {
   final String actionName;
   final String actionType;
   final String url;
   final String actionColor;
   final String actionStatus;
 
-  NotificationActionPayload({
+  NotificationActionInput({
     required this.actionName,
     required this.actionType,
     required this.url,

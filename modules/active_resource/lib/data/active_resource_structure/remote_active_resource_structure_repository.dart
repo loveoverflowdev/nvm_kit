@@ -1,42 +1,38 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
-    show ActiveFieldStructure, ActiveResourceStructure, ActiveResourceStructureFailure, ActiveResourceStructureRepository;
-
-import 'requests/requests.dart';
-import 'responses.dart' show ActiveResourceStructureResponse;
+    show
+        ActiveFieldStructure,
+        ActiveResourceStructure,
+        ActiveResourceStructureFailure,
+        ActiveResourceStructureRepository;
 
 final class RemoteActiveResourceStructureRepository
     implements ActiveResourceStructureRepository {
-  final Future<String?> Function() _tokenFetcher;
-  final ApiClient _apiClient;
+  late final ResourceApiClient _apiClient;
 
-  RemoteActiveResourceStructureRepository({
-    required final ApiClient apiClient,
-    required Future<String?> Function() tokenProvider,
-  })  : _apiClient = apiClient,
-        _tokenFetcher = tokenProvider;
+  RemoteActiveResourceStructureRepository();
+
+  set apiClient(ResourceApiClient client) {
+    _apiClient = client;
+  }
 
   @override
   TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>
       getActiveResourceStructure({
     required String id,
+    required String workspaceId,
   }) {
     return TaskEither.tryCatch(
-      () async {
-        return _apiClient.requestJson(
-          authorization: await _tokenFetcher(),
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/active-resource/get/structures/$id',
-            jsonPayload: true,
-          ),
-          alchemistQuery: AlchemistQuery(
-            requestField: ActiveFieldStructureRequestField.all,
-          ),
-          dataHandler: (json) =>
-              _mapResponse(ActiveResourceStructureResponse.fromJson(json['data'])),
-        );
+      () {
+        return _apiClient
+            .getActiveResourceStructure(
+              workspaceId: workspaceId,
+              id: id,
+            )
+            .then(
+              (value) => _mapResponse(value),
+            );
       },
       (error, stackTrace) => ActiveResourceStructureFailure.fromError(
         error,
@@ -46,23 +42,18 @@ final class RemoteActiveResourceStructureRepository
 
   @override
   TaskEither<ActiveResourceStructureFailure, List<ActiveResourceStructure>>
-      getActiveResourceStructureList() {
+      getActiveResourceStructureList({
+    required String workspaceId,
+  }) {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient.requestJson(
-          authorization: await _tokenFetcher(),
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/active-resource/get/structures',
-            jsonPayload: true,
-          ),
-          alchemistQuery: AlchemistQuery(
-            requestField: ActiveFieldStructureRequestField.all,
-          ),
-          dataHandler: (json) => (json['data'] as Iterable)
-              .map((e) => _mapResponse(ActiveResourceStructureResponse.fromJson(e)),)
-              .toList(),
-        );
+        return _apiClient
+            .getActiveResourceStructureList(
+              workspaceId: workspaceId,
+            )
+            .then(
+              (value) => value.map(_mapResponse).toList(),
+            );
       },
       (error, stackTrace) => ActiveResourceStructureFailure.fromError(
         error,
@@ -70,35 +61,38 @@ final class RemoteActiveResourceStructureRepository
     );
   }
 
-  ActiveResourceStructure _mapResponse(ActiveResourceStructureResponse response) {
+  ActiveResourceStructure _mapResponse(
+      ActiveResourceStructureResponse response) {
     return ActiveResourceStructure(
-      code: response.code, 
-      id: response.id, 
-      title: response.title, 
-      fields: response.fields.map(
-        (e) => ActiveFieldStructure(
-          id: e.id,
-          key: e.key,
-          type: e.type,
-          title: e.title,
-          order: e.order,
-          placeholder: '', 
-          description: '', 
-          isRequired: e.isRequired,
-          isUnique: e.isUnique, 
-          isMultipleValued: e.isMultipleValued, 
-          searchable: e.searchable, 
-          sortable: e.sortable, 
-          filterable: e.filterable, 
-          isConcrete: e.isConcrete, 
-          showInExport: e.showInExport, 
-          showInImport: e.showInImport, 
-          createdBy: e.createdBy, 
-          updatedBy: e.updatedBy, 
-          createdAt: e.createdAt, 
-          updatedAt: e.updatedAt,
-        ),
-      ).toList(),
+      code: response.code,
+      id: response.id,
+      title: response.title,
+      fields: response.fields
+          .map(
+            (e) => ActiveFieldStructure(
+              id: e.id,
+              key: e.key,
+              type: e.type,
+              title: e.title,
+              order: e.order,
+              placeholder: '',
+              description: '',
+              isRequired: e.isRequired,
+              isUnique: e.isUnique,
+              isMultipleValued: e.isMultipleValued,
+              searchable: e.searchable,
+              sortable: e.sortable,
+              filterable: e.filterable,
+              isConcrete: e.isConcrete,
+              showInExport: e.showInExport,
+              showInImport: e.showInImport,
+              createdBy: e.createdBy,
+              updatedBy: e.updatedBy,
+              createdAt: e.createdAt,
+              updatedAt: e.updatedAt,
+            ),
+          )
+          .toList(),
     );
   }
 }

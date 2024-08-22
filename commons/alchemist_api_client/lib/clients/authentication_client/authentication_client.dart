@@ -39,6 +39,10 @@ class AuthenticationClient {
     return credentials;
   }
 
+  Future<void> signOut() async {
+    await _tokenStorage.clear();
+  }
+
   // Future<T> requestJson<T>({
   //   required ApiEndpoint endpoint,
   //   String? workspaceId,

@@ -1,44 +1,31 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart';
 import 'package:project/domain.dart';
 
-import 'requests.dart';
-import 'responses.dart';
-
 final class RemoteProjectRepository implements ProjectRepository {
-  final ApiClient _apiClient;
-  final Future<String?> Function() _tokenProvider;
+  late final api.ResourceApiClient _apiClient;
 
-  RemoteProjectRepository({
-    required ApiClient apiClient,
-    required Future<String?> Function() tokenFetcher,
-  })  : _apiClient = apiClient,
-        _tokenProvider = tokenFetcher;
+  RemoteProjectRepository();
+
+  set apiClient(api.ResourceApiClient client) {
+    _apiClient = client;
+  }
 
   @override
   TaskEither<ProjectFailure, Project> getProject({
     required String workspaceId,
     required String projectId,
-    RequestField? requestField,
   }) {
     return TaskEither.tryCatch(
-      () async {
-        return _apiClient.requestJson(
-          endpoint: ApiEndpoint(
-            uriTemplate:
-                '/api/workspaces/:workspace_id/project/get/projects/$projectId',
-            requiredAuthorization: true,
-            jsonPayload: true,
-          ),
-          alchemistQuery: AlchemistQuery(
-            requestField: requestField ?? ProjectRequestField.all,
-          ),
-          workspaceId: workspaceId,
-          authorization: await _tokenProvider(),
-          dataHandler: (json) => _mapResponse(
-            ProjectResponse.fromJson(json['data']),
-          ),
-        );
+      () {
+        return _apiClient
+            .getProject(
+              workspaceId: workspaceId,
+              projectId: projectId,
+            )
+            .then(
+              _mapResponse,
+            );
       },
       (error, stackTrace) => ProjectFailure.fromError(error),
     );
@@ -47,29 +34,16 @@ final class RemoteProjectRepository implements ProjectRepository {
   @override
   TaskEither<ProjectFailure, List<Project>> getProjectList({
     required String workspaceId,
-    RequestField? requestField,
   }) {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient.requestJson(
-          endpoint: ApiEndpoint(
-            uriTemplate: '/api/workspaces/:workspace_id/project/get/projects',
-            requiredAuthorization: true,
-            jsonPayload: true,
-          ),
-          alchemistQuery: AlchemistQuery(
-            requestField: requestField ?? ProjectRequestField.all,
-          ),
-          workspaceId: workspaceId,
-          authorization: await _tokenProvider(),
-          dataHandler: (json) => (json['data'] as List)
-              .map(
-                (json) => _mapResponse(
-                  ProjectResponse.fromJson(json['data']),
-                ),
-              )
-              .toList(),
-        );
+        return _apiClient
+            .getProjectList(
+              workspaceId: workspaceId,
+            )
+            .then(
+              (value) => value.map(_mapResponse).toList(),
+            );
       },
       (error, stackTrace) => ProjectFailure.fromError(error),
     );
@@ -87,7 +61,7 @@ final class RemoteProjectRepository implements ProjectRepository {
     throw UnimplementedError();
   }
 
-  Project _mapResponse(ProjectResponse response) {
+  Project _mapResponse(api.ProjectResponse response) {
     return Project(
       id: response.id,
       name: response.projectName,

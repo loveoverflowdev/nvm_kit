@@ -7,8 +7,5 @@ part 'project_repository_provider.g.dart';
 
 @riverpod
 ProjectRepository projectRepository(ProjectRepositoryRef ref) {
-  return RemoteProjectRepository(
-    apiClient: ApiClient.nvm(),
-    tokenFetcher: () async {},
-  );
+  return RemoteProjectRepository();
 }

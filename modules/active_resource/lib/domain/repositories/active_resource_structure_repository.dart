@@ -6,8 +6,11 @@ abstract interface class ActiveResourceStructureRepository {
   TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>
       getActiveResourceStructure({
     required String id,
+    required String workspaceId,
   });
 
   TaskEither<ActiveResourceStructureFailure, List<ActiveResourceStructure>>
-      getActiveResourceStructureList();
+      getActiveResourceStructureList({
+    required String workspaceId,
+  });
 }

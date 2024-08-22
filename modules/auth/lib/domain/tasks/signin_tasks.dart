@@ -3,7 +3,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../entities.dart';
 
-ReaderTaskEither<AuthRepository, AuthFailure, AuthCredential> signInTask({
+ReaderTaskEither<AuthRepository, AuthFailure, AuthCredentials> signInTask({
   required Username username,
   required Password password,
 }) =>

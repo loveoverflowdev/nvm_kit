@@ -5,7 +5,7 @@ import '../auth_repository_provider.dart';
 
 part 'signin_submit_provider.g.dart';
 
-typedef SigninSubmitState = AsyncValue<AuthCredential?>;
+typedef SigninSubmitState = AsyncValue<AuthCredentials?>;
 
 @riverpod
 class SigninSubmit extends _$SigninSubmit {

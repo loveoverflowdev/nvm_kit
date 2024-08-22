@@ -9,3 +9,4 @@ This repository includes various packages and Flutter applications that work tog
 ### TODO
 + Thống nhất data - key
 + board roles đang không nằm trong project
+https://github.com/rrousselGit/riverpod/discussions/1387

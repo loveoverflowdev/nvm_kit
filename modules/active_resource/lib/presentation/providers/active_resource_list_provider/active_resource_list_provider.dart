@@ -1,4 +1,5 @@
 import 'package:active_resource/domain.dart';
+import 'package:active_resource/presentation/providers/workspace_id_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../active_resource_repository_provider.dart';
@@ -15,8 +16,19 @@ class ActiveResourceList extends _$ActiveResourceList {
   void loadActiveResourceList({
     required String resourceCode,
   }) async {
+    final workspaceId = ref.watch(workspaceIdProvider);
+    if (workspaceId == null) {
+      state = ActiveResourceListState.error(
+        'workspaceId is null',
+        StackTrace.current,
+      );
+      return;
+    }
     state = const AsyncValue.loading();
-    getActiveResourceListTask(resourceCode: '').match(
+    getActiveResourceListTask(
+      resourceCode: resourceCode,
+      workspaceId: workspaceId,
+    ).match(
       (failure) {
         state = ActiveResourceListState.error(
           failure,
