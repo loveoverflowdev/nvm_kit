@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../../alchemist_api_client.dart';
 
 class ApiEndpoint {
-  static const String baseUrl = 'http://25.14.30.4:80';
+  static const String baseUrl = 'http://172.23.124.11:8001';
 
   final String method;
   final String uriTemplate;

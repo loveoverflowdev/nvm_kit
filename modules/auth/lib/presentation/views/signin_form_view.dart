@@ -9,9 +9,12 @@ class SigninFormView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.all(16),
       children: [
-        const Placeholder(
-          child: Text('Signin Form Headlines'),
+        Text(
+          'Welcome! Please Sign In',
+          style: Theme.of(context).textTheme.headlineMedium,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
         Consumer(
@@ -23,6 +26,9 @@ class SigninFormView extends StatelessWidget {
             );
             return TextField(
               // errorText: errorText,
+              decoration: InputDecoration(
+                hintText: 'Enter your username',
+              ),
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changeUsername(value);
               },
@@ -39,6 +45,9 @@ class SigninFormView extends StatelessWidget {
             );
             return TextField(
               // errorText: errorText,
+              decoration: InputDecoration(
+                hintText: 'Enter your password',
+              ),
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changePassword(value);
               },
@@ -46,23 +55,28 @@ class SigninFormView extends StatelessWidget {
           },
         ),
         const SizedBox(height: 8),
-        Placeholder(
-          child: Text('remember button'),
-        ),
+        // Placeholder(
+        //   child: Text('remember button'),
+        // ),
         // UIRememberMeButton(
         //   onChanged: (value) {},
         // ),
         SizedBox(height: 16),
         Consumer(
           builder: (_, WidgetRef ref, __) {
-            final signinSumit = ref.read(signinSubmitProvider.notifier);
+            final signinSubmit = ref.read(signinSubmitProvider.notifier);
+            final signinSubmitStatus = ref.watch(signinSubmitProvider);
             final form = ref.watch(signinInputProvider);
 
-            return TextButton(
-              child: const Text('Sign In'),
-              onPressed: () {
-                signinSumit.submit(form: form);
-              },
+            return Visibility(
+              visible: !signinSubmitStatus.isLoading,
+              replacement: CircularProgressIndicator(),
+              child: ElevatedButton(
+                child: const Text('Sign In'),
+                onPressed: () {
+                  signinSubmit.submit(form: form);
+                },
+              ),
             );
           },
         ),

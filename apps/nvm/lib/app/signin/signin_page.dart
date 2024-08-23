@@ -7,9 +7,7 @@ class SigninPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign in'),
-      ),
+      appBar: AppBar(),
       body: SigninFormView(),
     );
   }

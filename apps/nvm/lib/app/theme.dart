@@ -71,6 +71,12 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
       textTheme: textTheme,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: colorScheme.primary,
+              foregroundColor: colorScheme.onPrimary,
+            ),
+      ),
       tabBarTheme: TabBarTheme(
           labelColor: colorScheme.onSurface,
           unselectedLabelColor: colorScheme.onSurface,
