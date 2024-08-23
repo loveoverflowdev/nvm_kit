@@ -14,7 +14,6 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
           .getActiveResource(
             id: id,
             resourceCode: resourceCode,
-            workspaceId: workspaceId,
           )
           .run(),
     );
@@ -28,7 +27,6 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
       (repository) => repository
           .getActiveResourceList(
             resourceCode: resourceCode,
-            workspaceId: workspaceId,
           )
           .run(),
     );

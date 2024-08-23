@@ -4,9 +4,7 @@ import 'requests.dart';
 import 'responses.dart';
 
 extension ActiveResourceStructureApiClientExt on ResourceApiClient {
-  Future<List<ActiveResourceStructureResponse>> getActiveResourceStructureList({
-    required String workspaceId,
-  }) {
+  Future<List<ActiveResourceStructureResponse>> getActiveResourceStructureList() {
     return requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
@@ -15,7 +13,6 @@ extension ActiveResourceStructureApiClientExt on ResourceApiClient {
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
-      workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: ActiveFieldStructureRequestField.all,
       ),
@@ -28,7 +25,6 @@ extension ActiveResourceStructureApiClientExt on ResourceApiClient {
   }
 
   Future<ActiveResourceStructureResponse> getActiveResourceStructure({
-    required String workspaceId,
     required String id,
   }) {
     return requestJson(
@@ -41,7 +37,6 @@ extension ActiveResourceStructureApiClientExt on ResourceApiClient {
         requiredWorkspace: true,
       ),
       id: id,
-      workspaceId: workspaceId,
       dataHandler: (json) => ActiveResourceStructureResponse.fromJson(json['data']),
     );
   }

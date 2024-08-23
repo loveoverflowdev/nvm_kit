@@ -3,7 +3,6 @@ import 'package:fpdart/fpdart.dart';
 
 ReaderTaskEither<NotificationRepository, NotificationFailure, void>
     createNotificationTask({
-  required String workspaceId,
   required String title,
   required String content,
   required List<NotificationActionInput> inputs,
@@ -11,7 +10,6 @@ ReaderTaskEither<NotificationRepository, NotificationFailure, void>
         ReaderTaskEither(
           (repository) => repository
               .createNotification(
-                workspaceId: workspaceId,
                 title: title,
                 content: content,
                 inputs: inputs,
@@ -26,7 +24,6 @@ ReaderTaskEither<NotificationRepository, NotificationFailure,
     ReaderTaskEither(
       (repository) => repository
           .getNotificationList(
-            workspaceId: workspaceId,
           )
           .run(),
     );

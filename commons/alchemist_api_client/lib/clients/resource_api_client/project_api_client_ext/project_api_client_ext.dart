@@ -5,7 +5,6 @@ import 'responses.dart';
 
 extension ProjectApiClientExt on ResourceApiClient {
   Future<List<ProjectResponse>> getProjectList({
-    required String workspaceId,
     RequestField? requestField,
   }) async {
     return requestJson(
@@ -15,7 +14,6 @@ extension ProjectApiClientExt on ResourceApiClient {
         jsonPayload: true,
         requiredWorkspace: true,
       ),
-      workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ProjectRequestField.all,
       ),
@@ -28,7 +26,6 @@ extension ProjectApiClientExt on ResourceApiClient {
   }
 
   Future<ProjectResponse> getProject({
-    required String workspaceId,
     required String projectId,
     RequestField? requestField,
   }) async {
@@ -41,7 +38,6 @@ extension ProjectApiClientExt on ResourceApiClient {
         requireId: true,
       ),
       id: projectId,
-      workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ProjectRequestField.all,
       ),
@@ -52,7 +48,6 @@ extension ProjectApiClientExt on ResourceApiClient {
   Future<void> createProject({
     required String projectName,
     required String projectDescription,
-    required String workspaceId,
   }) {
     return requestJson(
       endpoint: ApiEndpoint(
@@ -61,7 +56,6 @@ extension ProjectApiClientExt on ResourceApiClient {
         jsonPayload: true,
         requiredWorkspace: true,
       ),
-      workspaceId: workspaceId,
       payload: {
         "projectName": projectName,
         "projectDescription": projectDescription,

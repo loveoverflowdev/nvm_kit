@@ -11,14 +11,12 @@ final class RemoteProjectRepository implements ProjectRepository {
 
   @override
   TaskEither<ProjectFailure, Project> getProject({
-    required String workspaceId,
     required String projectId,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getProject(
-              workspaceId: workspaceId,
               projectId: projectId,
             )
             .then(
@@ -30,14 +28,11 @@ final class RemoteProjectRepository implements ProjectRepository {
   }
 
   @override
-  TaskEither<ProjectFailure, List<Project>> getProjectList({
-    required String workspaceId,
-  }) {
+  TaskEither<ProjectFailure, List<Project>> getProjectList() {
     return TaskEither.tryCatch(
       () async {
         return _apiClient
             .getProjectList(
-              workspaceId: workspaceId,
             )
             .then(
               (value) => value.map(_mapResponse).toList(),
@@ -51,7 +46,6 @@ final class RemoteProjectRepository implements ProjectRepository {
   TaskEither<ProjectFailure, Project> createProject({
     required String projectName,
     required String rojectDescription,
-    required String workspaceId,
     String? icon,
   }) {
     // TODO: implement createProject

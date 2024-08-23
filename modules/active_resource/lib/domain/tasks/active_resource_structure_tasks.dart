@@ -10,7 +10,7 @@ ReaderTaskEither<ActiveResourceStructureRepository, Exception,
 }) =>
     ReaderTaskEither(
       (repository) => repository
-          .getActiveResourceStructure(id: id, workspaceId: workspaceId)
+          .getActiveResourceStructure(id: id)
           .run(),
     );
 
@@ -21,7 +21,7 @@ ReaderTaskEither<ActiveResourceStructureRepository, Exception,
     ReaderTaskEither(
       (repository) => repository
           .getActiveResourceStructureList(
-            workspaceId: workspaceId,
+            
           )
           .run(),
     );

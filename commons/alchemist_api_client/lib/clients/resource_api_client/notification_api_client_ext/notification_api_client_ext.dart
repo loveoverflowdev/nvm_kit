@@ -5,7 +5,6 @@ import 'responses.dart';
 
 extension NotificationApiClientExt on ResourceApiClient {
   Future<List<NotificationResponse>> getNotificationList({
-    required String workspaceId,
     RequestField? requestField,
   }) async {
     return requestJson(
@@ -39,7 +38,6 @@ extension NotificationApiClientExt on ResourceApiClient {
         requireId: true,
       ),
       id: notificationId,
-      workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? NotificationRequestField.all,
       ),
@@ -48,7 +46,6 @@ extension NotificationApiClientExt on ResourceApiClient {
   }
 
   Future<void> createNotification({
-    required String workspaceId,
     required String title,
     required String content,
     required List<NotificationActionPayload> payloads,
@@ -61,7 +58,6 @@ extension NotificationApiClientExt on ResourceApiClient {
         jsonPayload: true,
         requiredWorkspace: true,
       ),
-      workspaceId: workspaceId,
       payload: {
         'notificationTitle': title,
         'notificationContent': content,

@@ -1,19 +1,22 @@
 import '../../alchemist_api_client.dart';
 import '../../token_provider.dart';
+import '../../workspace_id_provider.dart';
 
 final class ResourceApiClient {
   final AlchemistApiClient _alchemistApiClient;
   final TokenProvider _tokenProvider;
+  final WorkspaceIdProvider _workspaceIdProvider;
 
   ResourceApiClient({
     required AlchemistApiClient alchemistApiClient,
     required TokenProvider tokenProvider,
+    required WorkspaceIdProvider workspaceIdProvider,
   })  : _alchemistApiClient = alchemistApiClient,
-        _tokenProvider = tokenProvider;
+        _tokenProvider = tokenProvider,
+        _workspaceIdProvider = workspaceIdProvider;
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
-    String? workspaceId,
     String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
@@ -26,7 +29,7 @@ final class ResourceApiClient {
       authorization: await _tokenProvider(),
       id: id,
       endpoint: endpoint,
-      workspaceId: workspaceId,
+      workspaceId: await _workspaceIdProvider(),
       alchemistQuery: alchemistQuery,
       uriParams: uriParams,
       payload: payload,

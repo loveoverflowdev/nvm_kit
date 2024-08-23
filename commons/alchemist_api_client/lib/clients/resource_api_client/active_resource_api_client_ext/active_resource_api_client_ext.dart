@@ -7,7 +7,6 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
   Future<ActiveResourceResponse> getActiveResource({
     required String resourceCode,
     required String id,
-    required String workspaceId,
     RequestField? requestField,
   }) {
     return requestJson(
@@ -18,7 +17,6 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
-      workspaceId: workspaceId,
       id: id,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all,
@@ -29,7 +27,6 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
 
   Future<List<ActiveResourceResponse>> getActiveResourceList({
     required String resourceCode,
-    required String workspaceId,
     RequestField? requestField,
   }) {
     return requestJson(
@@ -40,7 +37,6 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
-      workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all,
       ),

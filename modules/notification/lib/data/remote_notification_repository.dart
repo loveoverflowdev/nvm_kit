@@ -12,14 +12,12 @@ class RemoteNotificationRepository implements NotificationRepository {
 
   @override
   TaskEither<NotificationFailure, void> createNotification({
-    required String workspaceId,
     required String title,
     required String content,
     required List<NotificationActionInput> inputs,
   }) =>
       TaskEither.tryCatch(
         () async => _apiClient.createNotification(
-          workspaceId: workspaceId,
           title: title,
           content: content,
           payloads: inputs.map(_mapInput).toList(),
@@ -28,12 +26,10 @@ class RemoteNotificationRepository implements NotificationRepository {
       );
 
   @override
-  TaskEither<NotificationFailure, List<Notification>> getNotificationList({
-    required String workspaceId,
-  }) =>
+  TaskEither<NotificationFailure, List<Notification>> getNotificationList() =>
       TaskEither.tryCatch(
         () async =>
-            _apiClient.getNotificationList(workspaceId: workspaceId).then(
+            _apiClient.getNotificationList().then(
                   (value) => value.map(_mapResponse).toList(),
                 ),
         (error, stackTrace) => NotificationFailure.fromError(error),

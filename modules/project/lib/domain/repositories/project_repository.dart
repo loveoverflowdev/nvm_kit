@@ -3,12 +3,9 @@ import 'package:fpdart/fpdart.dart';
 import '../entities.dart';
 
 abstract interface class ProjectRepository {
-  TaskEither<ProjectFailure, List<Project>> getProjectList({
-    required String workspaceId,
-  });
+  TaskEither<ProjectFailure, List<Project>> getProjectList();
 
   TaskEither<ProjectFailure, Project> getProject({
-    required String workspaceId,
     required String projectId,
   });
 
@@ -16,7 +13,6 @@ abstract interface class ProjectRepository {
   TaskEither<ProjectFailure, Project> createProject({
     required String projectName,
     required String rojectDescription,
-    required String workspaceId,
     String? icon,
   });
 }

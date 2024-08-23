@@ -19,13 +19,11 @@ final class RemoteActiveResourceStructureRepository
   TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>
       getActiveResourceStructure({
     required String id,
-    required String workspaceId,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getActiveResourceStructure(
-              workspaceId: workspaceId,
               id: id,
             )
             .then(
@@ -40,14 +38,11 @@ final class RemoteActiveResourceStructureRepository
 
   @override
   TaskEither<ActiveResourceStructureFailure, List<ActiveResourceStructure>>
-      getActiveResourceStructureList({
-    required String workspaceId,
-  }) {
+      getActiveResourceStructureList() {
     return TaskEither.tryCatch(
       () async {
         return _apiClient
             .getActiveResourceStructureList(
-              workspaceId: workspaceId,
             )
             .then(
               (value) => value.map(_mapResponse).toList(),

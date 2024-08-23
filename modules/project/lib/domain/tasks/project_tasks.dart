@@ -10,7 +10,6 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
           .createProject(
             projectName: form.name.value,
             rojectDescription: form.description.value,
-            workspaceId: workspaceId,
           )
           .run(),
     );
@@ -22,7 +21,6 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
         ReaderTaskEither(
           (repository) => repository
               .getProjectList(
-                workspaceId: workspaceId,
               )
               .run(),
         );
@@ -34,7 +32,6 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, Project> getProjectTask({
     ReaderTaskEither(
       (repository) => repository
           .getProject(
-            workspaceId: workspaceId,
             projectId: projectId,
           )
           .run(),

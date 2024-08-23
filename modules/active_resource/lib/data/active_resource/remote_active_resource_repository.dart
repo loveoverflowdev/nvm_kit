@@ -20,7 +20,6 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
     required String resourceCode,
     required String id,
-    required String workspaceId,
   }) {
     return TaskEither.tryCatch(
       () {
@@ -28,7 +27,6 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
             .getActiveResource(
               resourceCode: resourceCode,
               id: id,
-              workspaceId: workspaceId,
             )
             .then(
               (value) => _mapResponse(value),
@@ -42,14 +40,12 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
     required String resourceCode,
-    required String workspaceId,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getActiveResourceList(
               resourceCode: resourceCode,
-              workspaceId: '',
             )
             .then(
               (value) => value.map(_mapResponse).toList(),
