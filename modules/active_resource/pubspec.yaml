@@ -17,6 +17,8 @@ dependencies:
   flutter_riverpod: ^2.5.1
   json_annotation: ^4.9.0
 
+  app_ui:
+    path: ../../commons/app_ui
   alchemist_api_client:
     path: ../../commons/alchemist_api_client
 

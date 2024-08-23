@@ -10,6 +10,15 @@ class SigninInput extends _$SigninInput {
     return SigninForm.pure();
   }
 
+  bool get isValid => state.username.isValid && state.password.isValid;
+
+  void makeDirty() {
+    state = state.copyWith(
+      username: Username.dirty(state.username.value),
+      password: Password.dirty(state.password.value),
+    );
+  }
+
   void changeUsername(String newValue) {
     state = state.copyWith(username: Username.dirty(newValue));
   }

@@ -12,14 +12,10 @@ class ProjectList extends _$ProjectList {
   @override
   ProjectListState build() => ProjectListState.data(List.empty());
 
-  Future<void> loadProjectList({
-    required Future<String> Function() workspaceIdProvider,
-  }) async {
+  Future<void> loadProjectList() async {
     state = const AsyncValue.loading();
 
-    getProjectListTask(
-      workspaceId: await workspaceIdProvider(),
-    ).match(
+    getProjectListTask().match(
       (failure) {
         state = ProjectListState.error(
           failure,

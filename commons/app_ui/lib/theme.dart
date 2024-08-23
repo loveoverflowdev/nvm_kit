@@ -72,10 +72,15 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
       scaffoldBackgroundColor: isLight ? neutralColor : colorScheme.background,
       textTheme: textTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: colorScheme.primary,
-              foregroundColor: colorScheme.onPrimary,
-            ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
       ),
       tabBarTheme: TabBarTheme(
           labelColor: colorScheme.onSurface,

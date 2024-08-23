@@ -6,7 +6,6 @@ import 'repositories.dart';
 
 ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
   required ProjectForm form,
-  required String workspaceId,
 }) =>
     ReaderTaskEither(
       (repository) => repository
@@ -18,14 +17,9 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
     );
 
 ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
-    getProjectListTask({
-  required String workspaceId,
-  RequestField? requestField,
-}) =>
-        ReaderTaskEither(
+    getProjectListTask() => ReaderTaskEither(
           (repository) => repository
-              .getProjectList(
-              )
+              .getProjectList()
               .map(
                 (response) => response.toList(),
               )
@@ -33,9 +27,7 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
         );
 
 ReaderTaskEither<ProjectRepository, Exception, Project> getProjectTask({
-  required String workspaceId,
   required String projectId,
-  RequestField? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository

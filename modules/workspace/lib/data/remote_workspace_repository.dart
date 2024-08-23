@@ -10,6 +10,14 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
   }) : _apiClient = apiClient;
 
   @override
+  TaskEither<WorkspaceFailure, void> selectWorkspaceId(String workspaceId) {
+    return TaskEither.tryCatch(
+      () => _apiClient.selectWorkspaceId(workspaceId),
+      (error, stackTrace) => WorkspaceFailure.fromError(error),
+    );
+  }
+
+  @override
   TaskEither<WorkspaceFailure, List<Workspace>> getWorkspaceList() {
     return TaskEither.tryCatch(
       () => _apiClient.getWorkspaceList().then(

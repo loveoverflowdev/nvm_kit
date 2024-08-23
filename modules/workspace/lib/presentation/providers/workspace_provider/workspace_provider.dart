@@ -13,7 +13,7 @@ Future<WorkspaceState> workspace(
   required String workspaceId,
 }) async {
   return getWorkspaceTask(
-    workspaceId: 'default',
+    workspaceId: workspaceId,
   ).match(
     (failure) {
       return WorkspaceState.error(
@@ -28,31 +28,3 @@ Future<WorkspaceState> workspace(
     ref.read(workspaceRepositoryProvider),
   );
 }
-
-// @riverpod
-// class Workspace extends _$Workspace {
-//   @override
-//   WorkspaceState build() => const WorkspaceState.data(null);
-
-//   void loadWorkspaces({
-//     required Future<String> Function() workspaceIdProvider,
-//   }) async {
-//     state = const AsyncValue.loading();
-
-//     getWorkspaceListTask(
-//       workspaceId: await workspaceIdProvider(),
-//     ).match(
-//       (failure) {
-//         state = WorkspaceListState.error(
-//           failure,
-//           StackTrace.current,
-//         );
-//       },
-//       (response) {
-//         state = WorkspaceListState.data(response);
-//       },
-//     ).run(
-//       ref.read(WorkspaceRepositoryProvider),
-//     );
-//   }
-// }

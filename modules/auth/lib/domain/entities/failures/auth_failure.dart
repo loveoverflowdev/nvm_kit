@@ -15,6 +15,14 @@ class AuthFailure with _$AuthFailure implements Exception {
     String? passwordError,
   }) = _InvalidParams;
 
+  @override
+  String toString() {
+    if (this is _BadRequest) {
+      return (this as _BadRequest).message;
+    }
+    return super.toString();
+  }
+
   factory AuthFailure.fromError(
     Object failure,
   ) {

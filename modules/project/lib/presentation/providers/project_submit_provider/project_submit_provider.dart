@@ -19,7 +19,6 @@ class ProjectFormSubmit extends _$ProjectFormSubmit {
 
     createProjectTask(
       form: form,
-      workspaceId: '',
     ).match(
       (failure) {
         state = ProjectFormSubmitState.error(

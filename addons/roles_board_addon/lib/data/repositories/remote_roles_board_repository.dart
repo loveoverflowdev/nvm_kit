@@ -16,7 +16,6 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
     RequestField? requestField,
   }) {
     return TaskEither.tryCatch(
-      // http://172.23.124.11:8001/api/workspaces/613272411067910808/widget/board-roles/get
       () async => _apiClient
           .getRolesBoardList(
             resourceCode: resourceCode,

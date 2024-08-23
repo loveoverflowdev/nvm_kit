@@ -1,4 +1,3 @@
-
 import '../alchemist_api_client.dart';
 import '../token_provider.dart';
 import 'requests.dart';
@@ -17,7 +16,7 @@ final class WorkspaceApiClient {
   })  : _alchemistApiClient = alchemistApiClient,
         _tokenProvider = tokenProvider,
         _workspaceStorage = workspaceStorage;
-  
+
   Future<void> selectWorkspaceId(String workspaceId) {
     return _workspaceStorage.saveWorkspaceId(workspaceId);
   }
@@ -60,7 +59,7 @@ final class WorkspaceApiClient {
       dataHandler: (json) => WorkspaceResponse.fromJson(json),
     );
   }
-  
+
   Future<T> _requestJson<T>({
     required ApiEndpoint endpoint,
     String? id,
