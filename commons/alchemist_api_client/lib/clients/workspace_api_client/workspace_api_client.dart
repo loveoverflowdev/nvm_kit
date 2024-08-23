@@ -3,16 +3,24 @@ import '../alchemist_api_client.dart';
 import '../token_provider.dart';
 import 'requests.dart';
 import 'responses.dart';
+import 'workspace_storage.dart';
 
 final class WorkspaceApiClient {
   final AlchemistApiClient _alchemistApiClient;
   final TokenProvider _tokenProvider;
+  final WorkspaceStorage _workspaceStorage;
 
   WorkspaceApiClient({
     required AlchemistApiClient alchemistApiClient,
     required TokenProvider tokenProvider,
+    required WorkspaceStorage workspaceStorage,
   })  : _alchemistApiClient = alchemistApiClient,
-        _tokenProvider = tokenProvider;
+        _tokenProvider = tokenProvider,
+        _workspaceStorage = workspaceStorage;
+  
+  Future<void> selectWorkspaceId(String workspaceId) {
+    return _workspaceStorage.saveWorkspaceId(workspaceId);
+  }
 
   Future<List<WorkspaceResponse>> getWorkspaceList({
     RequestField? requestField,

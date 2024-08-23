@@ -4,7 +4,6 @@ import '../entities.dart';
 
 abstract interface class CommentRepository {
   TaskEither<CommentFailure, List<Comment>> getCommentList({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
   });

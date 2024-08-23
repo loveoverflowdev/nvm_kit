@@ -1,4 +1,5 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:alchemist_api_client/clients/workspace_id_provider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nvm/app.dart';
 
@@ -14,18 +15,34 @@ import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 void main() {
   final AlchemistApiClient alchemistApiClient = AlchemistApiClient();
   final TokenStorage tokenStorage = TokenStorage.inMemory();
-
+  final WorkspaceStorage workspaceStorage = WorkspaceStorage.inMemory();
+  //
+  final TokenProvider tokenProvider = tokenStorage.readAccessToken;
+  final WorkspaceIdProvider workspaceIdProvider = workspaceStorage.readWorkspaceId;
+  //
   final authenticationClient = AuthenticationClient(
     alchemistApiClient: alchemistApiClient,
     tokenStorage: tokenStorage,
   );
-  final ResourceApiClient resourceApiClient = ResourceApiClient(
-    alchemistApiClient: alchemistApiClient,
-    tokenProvider: tokenStorage.readAccessToken,
+  final workspaceApiClient = WorkspaceApiClient(
+    alchemistApiClient: alchemistApiClient, 
+    tokenProvider: tokenProvider, 
+    workspaceStorage: workspaceStorage,
   );
-  final CommentApiClient commentApiClient = CommentApiClient(
+  final resourceApiClient = ResourceApiClient(
     alchemistApiClient: alchemistApiClient,
-    tokenProvider: tokenStorage.readAccessToken,
+    tokenProvider: tokenProvider,
+    workspaceIdProvider: workspaceIdProvider,
+  );
+  final commentApiClient = CommentApiClient(
+    alchemistApiClient: alchemistApiClient,
+    tokenProvider: tokenProvider,
+    workspaceIdProvider: workspaceIdProvider,
+  );
+  final rolesBoardApiClient = RolesBoardApiClient(
+    alchemistApiClient: alchemistApiClient, 
+    tokenProvider: tokenProvider, 
+    workspaceIdProvider: workspaceIdProvider,
   );
 
   final auth.AuthRepository authRepository = auth.RemoteAuthRepository(
@@ -44,7 +61,7 @@ void main() {
 
   final workspace.WorkspaceRepository workspaceRepository =
       workspace.RemoteWorkspaceRepository(
-    apiClient: resourceApiClient,
+    apiClient: workspaceApiClient,
   );
 
   final active_resource.ActiveResourceRepository activeResourceRepository =
@@ -52,15 +69,16 @@ void main() {
     apiClient: resourceApiClient,
   );
 
+  //
   final comment_addon.CommentRepository commentRepository =
       comment_addon.RemoteCommentRepository(
     apiClient: commentApiClient,
   );
-
-  final comment_addon.CommentRepository commentRepository =
-      comment_addon.RemoteCommentRepository(
-    apiClient: commentApiClient,
+  final roles_board_addon.RolesBoardRepository rolesBoardRepository =
+      roles_board_addon.RemoteRolesBoardRepository(
+    apiClient: rolesBoardApiClient,
   );
+  //
 
   runApp(NvmApp(
     authRepository: authRepository,

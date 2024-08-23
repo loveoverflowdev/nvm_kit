@@ -3,17 +3,14 @@ import 'package:fpdart/fpdart.dart';
 import 'package:roles_board_addon/domain.dart';
 
 final class RemoteRolesBoardRepository implements RolesBoardRepository {
-  late final RolesBoardApiClient _apiClient;
+  final RolesBoardApiClient _apiClient;
 
-  RemoteRolesBoardRepository();
-
-  set apiClient(RolesBoardApiClient client) {
-    _apiClient = client;
-  }
+  RemoteRolesBoardRepository({
+    required RolesBoardApiClient apiClient,
+  }) : _apiClient = apiClient;
 
   @override
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
     RequestField? requestField,
@@ -22,7 +19,6 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
       // http://172.23.124.11:8001/api/workspaces/613272411067910808/widget/board-roles/get
       () async => _apiClient
           .getRolesBoardList(
-            workspaceId: workspaceId,
             resourceCode: resourceCode,
             resourceId: resourceId,
             requestField: requestField,

@@ -1,23 +1,26 @@
 
 import '../../alchemist_api_client.dart';
 import '../../token_provider.dart';
+import '../../workspace_id_provider.dart';
 import 'requests.dart';
 import 'responses.dart';
 
 final class CommentApiClient {
   final AlchemistApiClient _alchemistApiClient;
   final TokenProvider _tokenProvider;
+  final WorkspaceIdProvider _workspaceIdProvider;
 
   CommentApiClient({
     required AlchemistApiClient alchemistApiClient,
     required TokenProvider tokenProvider,
+    required WorkspaceIdProvider workspaceIdProvider,
   }) : 
   _alchemistApiClient = alchemistApiClient, 
-  _tokenProvider = tokenProvider;
+  _tokenProvider = tokenProvider,
+  _workspaceIdProvider = workspaceIdProvider;
 
   Future<CommentResponse> getComment({
     required String commentId,
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
   }) async {
@@ -30,14 +33,12 @@ final class CommentApiClient {
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
-      workspaceId: workspaceId,
       id: commentId, 
       dataHandler: (json) => CommentResponse.fromJson(json),
     );
   }
 
   Future<List<CommentResponse>> getCommentList({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
   }) async {
@@ -49,13 +50,11 @@ final class CommentApiClient {
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
-      workspaceId: workspaceId,
       dataHandler: (json) => (json['data'] as List).map((e) => CommentResponse.fromJson(e)).toList(),
     );
   }
 
   Future<void> createComment({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
     required CommentPayload payload,
@@ -69,14 +68,12 @@ final class CommentApiClient {
         jsonPayload: true,
       ),
       payload: payload.toJson(),
-      workspaceId: workspaceId,
       dataHandler: (json) => {},
     );
   }
 
   Future<T> _requestJson<T>({
     required ApiEndpoint endpoint,
-    String? workspaceId,
     String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
@@ -89,7 +86,7 @@ final class CommentApiClient {
       authorization: await _tokenProvider(),
       id: id,
       endpoint: endpoint,
-      workspaceId: workspaceId,
+      workspaceId: await _workspaceIdProvider(),
       alchemistQuery: alchemistQuery,
       uriParams: uriParams,
       payload: payload,

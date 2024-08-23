@@ -11,14 +11,12 @@ final class RemoteCommentRepository implements CommentRepository {
 
   @override
   TaskEither<CommentFailure, List<Comment>> getCommentList({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
           .getCommentList(
-            workspaceId: workspaceId,
             resourceCode: resourceCode,
             resourceId: resourceId,
           )

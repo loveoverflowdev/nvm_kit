@@ -1,22 +1,25 @@
 import '../../alchemist_api_client.dart';
 import '../../token_provider.dart';
+import '../../workspace_id_provider.dart';
 import 'requests.dart';
 import 'responses.dart';
 
 final class RolesBoardApiClient {
   final AlchemistApiClient _alchemistApiClient;
   final TokenProvider _tokenProvider;
+  final WorkspaceIdProvider _workspaceIdProvider;
 
   RolesBoardApiClient({
     required AlchemistApiClient alchemistApiClient,
     required TokenProvider tokenProvider,
+    required WorkspaceIdProvider workspaceIdProvider,
   }) : 
   _alchemistApiClient = alchemistApiClient, 
-  _tokenProvider = tokenProvider;
+  _tokenProvider = tokenProvider,
+  _workspaceIdProvider = workspaceIdProvider;
 
 
   Future<List<RolesBoardResponse>> getRolesBoardList({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
     RequestField? requestField,
@@ -31,7 +34,6 @@ final class RolesBoardApiClient {
         alchemistQuery: AlchemistQuery(
           requestField: requestField ?? RolesBoardRequestField.all,
         ),
-        workspaceId: workspaceId,
         dataHandler: (json) => (json['data'] as List)
           .map(
             (e) => RolesBoardResponse.fromJson(e),
@@ -41,7 +43,6 @@ final class RolesBoardApiClient {
   }
 
   Future<void> createRolesBoard({
-    required String workspaceId,
     required String resourceCode,
     required String resourceId,
     required RolesBoardPayload payload,
@@ -56,14 +57,12 @@ final class RolesBoardApiClient {
         jsonPayload: true,
       ),
       payload: payload.toJson(),
-      workspaceId: workspaceId,
       dataHandler: (json) => {},
     );
   }
 
   Future<T> _requestJson<T>({
     required ApiEndpoint endpoint,
-    String? workspaceId,
     String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
@@ -76,7 +75,7 @@ final class RolesBoardApiClient {
       authorization: await _tokenProvider(),
       id: id,
       endpoint: endpoint,
-      workspaceId: workspaceId,
+      workspaceId: await _workspaceIdProvider(),
       alchemistQuery: alchemistQuery,
       uriParams: uriParams,
       payload: payload,

@@ -18,7 +18,6 @@ class CommentList extends _$CommentList {
     state = const AsyncValue.loading();
 
     getCommentListTask(
-      workspaceId: await workspaceIdProvider(),
       resourceCode: '',
       resourceId: '',
     ).match(
