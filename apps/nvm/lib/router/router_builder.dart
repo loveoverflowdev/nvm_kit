@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nvm/app.dart';
+import 'package:nvm/router/navigation_guard.dart';
 import 'package:template_parser/template_parser.dart';
 
-class RouterBuilder {
+final class RouterBuilder {
+  final NavigationGuard navigationGuard;
   final TemplateComponent template;
 
   RouterBuilder({
     required this.template,
+    required this.navigationGuard,
   });
 
   GoRouter build() {
     return GoRouter(
-      initialLocation: '/',
+      initialLocation: '/signin',
       routes: [
+        GoRoute(
+          path: '/signin',
+          builder: (context, state) => const SigninPage(),
+          redirect: (context, state) async {
+            if (await navigationGuard.hasToken) {
+              return '/workspaces';
+            }
+          },
+        ),
+        GoRoute(
+          path: '/workspaces',
+          builder: (context, state) => const WorkspacesPage(),
+          redirect: (context, state) async {
+            if (await navigationGuard.didSelectWorkspace) {
+              return '/';
+            }
+          },
+        ),
         ShellRoute(
           builder: (context, state, child) {
             int index = 0;

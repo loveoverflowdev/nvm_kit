@@ -1,5 +1,4 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-import 'package:alchemist_api_client/clients/workspace_id_provider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nvm/app.dart';
 
@@ -12,6 +11,8 @@ import 'package:active_resource/active_resource.dart' as active_resource;
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
 import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 
+import 'router.dart';
+
 void main() {
   final AlchemistApiClient alchemistApiClient = AlchemistApiClient();
   final TokenStorage tokenStorage = TokenStorage.inMemory();
@@ -19,6 +20,11 @@ void main() {
   //
   final TokenProvider tokenProvider = tokenStorage.readAccessToken;
   final WorkspaceIdProvider workspaceIdProvider = workspaceStorage.readWorkspaceId;
+  //
+  final navigationGuard = NavigationGuard(
+    workspaceIdProvider: workspaceIdProvider,
+    tokenProvider: tokenProvider,
+  );
   //
   final authenticationClient = AuthenticationClient(
     alchemistApiClient: alchemistApiClient,
@@ -81,6 +87,7 @@ void main() {
   //
 
   runApp(NvmApp(
+    navigationGuard: navigationGuard,
     authRepository: authRepository,
     notificationRepository: notificationRepository,
     projectRepository: projectRepository,

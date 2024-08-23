@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nvm/router.dart';
+import 'package:nvm/router/navigation_guard.dart';
 import 'package:nvm/template_repository.dart';
 import 'theme.dart';
 
@@ -12,6 +13,7 @@ import 'package:workspace/workspace.dart' as workspace;
 import 'package:active_resource/active_resource.dart' as active_resource;
 
 class NvmApp extends StatefulWidget {
+  final NavigationGuard navigationGuard;
   final auth.AuthRepository authRepository;
   final notification.NotificationRepository notificationRepository;
   final project.ProjectRepository projectRepository;
@@ -20,6 +22,7 @@ class NvmApp extends StatefulWidget {
 
   const NvmApp({
     super.key,
+    required this.navigationGuard,
     required this.authRepository,
     required this.notificationRepository,
     required this.projectRepository,
@@ -41,6 +44,7 @@ class _NvmAppState extends State<NvmApp> {
     final template = TemplateRepository.example().getTemplate();
     _router = RouterBuilder(
       template: template,
+      navigationGuard: widget.navigationGuard,
     ).build();
 
     _theme = const BasilTheme().toThemeData();
