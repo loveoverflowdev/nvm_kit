@@ -79,6 +79,7 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
       ),
       listTileTheme: ListTileThemeData(
         titleTextStyle: TextStyle(
+          color: colorScheme.onSurface,
           fontWeight: FontWeight.bold,
         ),
       ),

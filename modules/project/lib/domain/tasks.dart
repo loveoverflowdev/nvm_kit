@@ -1,4 +1,3 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:fpdart/fpdart.dart';
 
 import 'entities.dart';

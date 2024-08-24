@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers.dart';
+import 'package:app_ui/app_ui.dart';
 
 class ProjectListView extends ConsumerStatefulWidget {
   const ProjectListView({super.key});
@@ -14,13 +15,13 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
   @override
   void initState() {
     super.initState();
-    ref.read(projectListProvider.notifier).loadProjectList();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ref.read(projectListProvider.notifier).loadProjectList(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
-
     final projectList = ref.watch(projectListProvider);
     return projectList.when(
       data: (data) => ListView.builder(
@@ -28,13 +29,14 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
         itemBuilder: (context, index) {
           final project = data[index];
           return ListTile(
+            onTap: () {},
             title: Text(project.name),
             subtitle: Text(project.description),
           );
         },
       ),
       error: (error, stackTrace) => ErrorWidget(error),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const AppCircularLoading(),
     );
   }
 }

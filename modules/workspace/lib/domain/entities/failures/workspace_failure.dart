@@ -12,6 +12,14 @@ class WorkspaceFailure with _$WorkspaceFailure implements Exception {
   factory WorkspaceFailure.apiConnection() = _ApiConnection;
   factory WorkspaceFailure.unimplemented() = _Unimplemented;
 
+  @override
+  String toString() {
+    if (this is _BadRequest) {
+      return (this as _BadRequest).message;
+    }
+    return super.toString();
+  }
+
   factory WorkspaceFailure.fromError(
     Object failure,
   ) {

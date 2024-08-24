@@ -22,7 +22,7 @@ mixin _$ProjectFailure {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +31,7 @@ mixin _$ProjectFailure {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +40,7 @@ mixin _$ProjectFailure {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,7 +167,7 @@ class _$BadRequestImpl extends _BadRequest {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) {
     return badRequest(message);
   }
@@ -179,7 +179,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) {
     return badRequest?.call(message);
   }
@@ -191,7 +191,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -299,7 +299,7 @@ class _$UnauthorizedImpl extends _Unauthorized {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) {
     return unauthorized();
   }
@@ -311,7 +311,7 @@ class _$UnauthorizedImpl extends _Unauthorized {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) {
     return unauthorized?.call();
   }
@@ -323,7 +323,7 @@ class _$UnauthorizedImpl extends _Unauthorized {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -423,7 +423,7 @@ class _$InternalServerImpl extends _InternalServer {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) {
     return internalServer();
   }
@@ -435,7 +435,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) {
     return internalServer?.call();
   }
@@ -447,7 +447,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) {
     if (internalServer != null) {
@@ -547,7 +547,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) {
     return apiConnection();
   }
@@ -559,7 +559,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) {
     return apiConnection?.call();
   }
@@ -571,7 +571,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) {
     if (apiConnection != null) {
@@ -631,6 +631,8 @@ abstract class _$$UnimplementedImplCopyWith<$Res> {
   factory _$$UnimplementedImplCopyWith(
           _$UnimplementedImpl value, $Res Function(_$UnimplementedImpl) then) =
       __$$UnimplementedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error});
 }
 
 /// @nodoc
@@ -643,26 +645,49 @@ class __$$UnimplementedImplCopyWithImpl<$Res>
 
   /// Create a copy of ProjectFailure
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$UnimplementedImpl(
+      error: null == error ? _value.error : error,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UnimplementedImpl extends _Unimplemented {
-  _$UnimplementedImpl() : super._();
+  _$UnimplementedImpl({required this.error}) : super._();
+
+  @override
+  final Object error;
 
   @override
   String toString() {
-    return 'ProjectFailure.unimplemented()';
+    return 'ProjectFailure.unimplemented(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnimplementedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UnimplementedImpl &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  /// Create a copy of ProjectFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnimplementedImplCopyWith<_$UnimplementedImpl> get copyWith =>
+      __$$UnimplementedImplCopyWithImpl<_$UnimplementedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -671,9 +696,9 @@ class _$UnimplementedImpl extends _Unimplemented {
     required TResult Function() unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error) unimplemented,
   }) {
-    return unimplemented();
+    return unimplemented(error);
   }
 
   @override
@@ -683,9 +708,9 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult? Function()? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error)? unimplemented,
   }) {
-    return unimplemented?.call();
+    return unimplemented?.call(error);
   }
 
   @override
@@ -695,11 +720,11 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult Function()? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error)? unimplemented,
     required TResult orElse(),
   }) {
     if (unimplemented != null) {
-      return unimplemented();
+      return unimplemented(error);
     }
     return orElse();
   }
@@ -746,6 +771,14 @@ class _$UnimplementedImpl extends _Unimplemented {
 }
 
 abstract class _Unimplemented extends ProjectFailure {
-  factory _Unimplemented() = _$UnimplementedImpl;
+  factory _Unimplemented({required final Object error}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
+
+  Object get error;
+
+  /// Create a copy of ProjectFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnimplementedImplCopyWith<_$UnimplementedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

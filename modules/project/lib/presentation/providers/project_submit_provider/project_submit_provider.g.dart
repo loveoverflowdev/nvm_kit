@@ -6,7 +6,7 @@ part of 'project_submit_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectFormSubmitHash() => r'a7d84b53d9c1c4d9ae3b9bc97b2cb499f6e0962e';
+String _$projectFormSubmitHash() => r'1b8e7393a765a0e8ba2af330beb8dcd70eaea89f';
 
 /// See also [ProjectFormSubmit].
 @ProviderFor(ProjectFormSubmit)

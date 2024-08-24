@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app_ui/app_ui.dart';
 
 import '../providers.dart';
 
@@ -15,7 +16,9 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
   @override
   void initState() {
     super.initState();
-    ref.read(notificationListProvider.notifier).loadNotificationList();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ref.read(notificationListProvider.notifier).loadNotificationList(),
+    );
   }
 
   @override
@@ -37,7 +40,7 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
         },
       ),
       error: (error, stackTrace) => ErrorWidget(error),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const AppCircularLoading(),
     );
   }
 }

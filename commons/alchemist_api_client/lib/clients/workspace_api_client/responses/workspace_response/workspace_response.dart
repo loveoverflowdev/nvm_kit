@@ -9,11 +9,9 @@ class WorkspaceResponse {
   final String namespace;
   //
   late final OrganizationCapacityResponse? workspaceCapacity;
-  late final List<int>? activeMemberIds;
+  late final List<dynamic>? activeMemberIds;
   late final List<dynamic>? pendingMemberIds;
-  late final int? ownerId;
-  late final String? logo;
-  late final String? thumbnailLogo;
+  late final String? ownerId;
   late final dynamic createdAt;
   late final dynamic updatedAt;
 
@@ -21,6 +19,12 @@ class WorkspaceResponse {
     required this.id,
     required this.workspaceName,
     required this.namespace,
+    this.activeMemberIds,
+    this.pendingMemberIds,
+    this.ownerId,
+    this.createdAt,
+    this.updatedAt,
+    this.workspaceCapacity,
   });
 
   Map<String, dynamic> toJson() => _$WorkspaceResponseToJson(this);
@@ -30,22 +34,22 @@ class WorkspaceResponse {
 
 @JsonSerializable()
 class OrganizationCapacityResponse {
-  final int member;
-  final int project;
-  final int timeline;
-  final int milestone;
-  final int tag;
-  final int epic;
-  final int task;
+  final int? member;
+  final int? project;
+  final int? timeline;
+  final int? milestone;
+  final int? tag;
+  final int? epic;
+  final int? task;
 
   OrganizationCapacityResponse({
-    required this.member,
-    required this.project,
-    required this.timeline,
-    required this.milestone,
-    required this.tag,
-    required this.epic,
-    required this.task,
+    this.member,
+    this.project,
+    this.timeline,
+    this.milestone,
+    this.tag,
+    this.epic,
+    this.task,
   });
 
   Map<String, dynamic> toJson() => _$OrganizationCapacityResponseToJson(this);

@@ -17,13 +17,8 @@ ReaderTaskEither<NotificationRepository, NotificationFailure, void>
               .run(),
         );
 
-ReaderTaskEither<NotificationRepository, NotificationFailure,
-    List<Notification>> getNotificationListTask({
-  required String workspaceId,
-}) =>
-    ReaderTaskEither(
-      (repository) => repository
-          .getNotificationList(
-          )
-          .run(),
-    );
+ReaderTaskEither<NotificationRepository,
+        NotificationFailure, List<Notification>>
+    getNotificationListTask() => ReaderTaskEither(
+          (repository) => repository.getNotificationList().run(),
+        );

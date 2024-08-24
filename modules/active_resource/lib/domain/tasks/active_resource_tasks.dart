@@ -21,7 +21,6 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     List<ActiveResource>> getActiveResourceListTask({
   required String resourceCode,
-  required String workspaceId,
 }) =>
     ReaderTaskEither(
       (repository) => repository

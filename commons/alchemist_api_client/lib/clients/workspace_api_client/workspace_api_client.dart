@@ -26,7 +26,7 @@ final class WorkspaceApiClient {
   }) async {
     return _requestJson(
       endpoint: ApiEndpoint(
-        uriTemplate: '/api/workspaces/get/workspaces',
+        uriTemplate: '/api/workspace/get/workspaces',
         requiredAuthorization: true,
         jsonPayload: true,
       ),
@@ -47,7 +47,7 @@ final class WorkspaceApiClient {
   }) async {
     return _requestJson(
       endpoint: ApiEndpoint(
-        uriTemplate: '/api/workspaces/get/workspaces/:workspace_id',
+        uriTemplate: '/api/workspace/get/workspaces/:workspace_id',
         requiredAuthorization: true,
         jsonPayload: true,
         requiredWorkspace: true,

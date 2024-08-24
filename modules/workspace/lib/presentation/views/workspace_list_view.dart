@@ -15,13 +15,31 @@ class _WorkspaceListViewState extends ConsumerState<WorkspaceListView> {
   @override
   void initState() {
     super.initState();
-    ref.read(workspaceListProvider.notifier).loadWorkspaces();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(workspaceListProvider.notifier).loadWorkspaceList();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final workspaceSelecing = ref.read(workspaceSelectingProvider.notifier);
     final workspaceList = ref.watch(workspaceListProvider);
+    ref.listen(workspaceSelectingProvider, (previous, current) {
+      current.when(
+        data: (workspace) {
+          if (workspace != null) {
+            showScaffoldMessage(
+              context,
+              "Open workspace '${workspace.name}'",
+            );
+          }
+        },
+        error: (error, _) {
+          showScaffoldMessage(context, error.toString());
+        },
+        loading: () => {},
+      );
+    });
     return workspaceList.when(
       data: (workspaceList) => ListView.builder(
         itemCount: workspaceList.length,
@@ -29,7 +47,7 @@ class _WorkspaceListViewState extends ConsumerState<WorkspaceListView> {
           final workspace = workspaceList[index];
           return WorkspaceTile(
             onTap: (workspace) {
-              workspaceSelecing.selectWorkspaceId(workspace.id);
+              workspaceSelecing.selectWorkspace(workspace);
             },
             workspace: workspace,
           );

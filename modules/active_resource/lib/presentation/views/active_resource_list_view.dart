@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app_ui/app_ui.dart';
 
 import '../providers.dart' show activeResourceListProvider;
 
@@ -16,9 +17,9 @@ class _ActiveResourceListViewState
   @override
   void initState() {
     super.initState();
-    ref.read(activeResourceListProvider.notifier).loadActiveResourceList(
-          resourceCode: 'resourceCode', // TODO: urgent
-        );
+    // ref.read(activeResourceListProvider.notifier).loadActiveResourceList(
+    //       resourceCode: 'resourceCode', // TODO: urgent
+    //     );
   }
 
   @override
@@ -40,7 +41,7 @@ class _ActiveResourceListViewState
         },
       ),
       error: (error, stackTrace) => Text('error: $error'),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const AppCircularLoading(),
     );
   }
 }

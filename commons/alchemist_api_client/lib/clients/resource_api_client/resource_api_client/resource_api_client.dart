@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../../alchemist_api_client.dart';
 import '../../token_provider.dart';
 import '../../workspace_id_provider.dart';
@@ -25,11 +27,15 @@ final class ResourceApiClient {
     bool refreshTokenOnUnauthorization = true,
     required T Function(dynamic) dataHandler,
   }) async {
+    final workspaceId = await _workspaceIdProvider();
+    final token = await _tokenProvider();
+    debugPrint('requestJson workspaceId: ${workspaceId ?? ''}');
+    debugPrint('requestJson token: ${token ?? ''}');
     return _alchemistApiClient.requestJson(
-      authorization: await _tokenProvider(),
+      authorization: token,
       id: id,
       endpoint: endpoint,
-      workspaceId: await _workspaceIdProvider(),
+      workspaceId: workspaceId,
       alchemistQuery: alchemistQuery,
       uriParams: uriParams,
       payload: payload,

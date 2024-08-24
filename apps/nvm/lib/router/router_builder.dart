@@ -94,11 +94,11 @@ final class RouterBuilder {
                 ),
                 GoRoute(
                   path: 'notifications',
-                  builder: (_, state) => const Placeholder(),
+                  builder: (_, state) => const NotificationsPage(),
                 ),
                 GoRoute(
                   path: 'preferences',
-                  builder: (_, state) => const Placeholder(),
+                  builder: (_, state) => const PreferencesPage(),
                 ),
               ],
             ),

@@ -11,7 +11,6 @@ extension ProjectApiClientExt on ResourceApiClient {
       endpoint: ApiEndpoint(
         uriTemplate: '/api/workspaces/:workspace_id/project/get/projects',
         requiredAuthorization: true,
-        jsonPayload: true,
         requiredWorkspace: true,
       ),
       alchemistQuery: AlchemistQuery(

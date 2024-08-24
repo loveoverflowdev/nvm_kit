@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 
 abstract class WorkspaceStorage {
   WorkspaceStorage();
@@ -14,10 +15,14 @@ class _InMemoryWorkspaceStorage extends WorkspaceStorage {
   String? _workspaceId;
 
   @override
-  Future<String?> readWorkspaceId() async => _workspaceId;
+  Future<String?> readWorkspaceId() async {
+    debugPrint('readWorkspaceId: $_workspaceId');
+    return _workspaceId;
+  }
 
   @override
   Future<void> saveWorkspaceId(String workspaceId) async {
+    debugPrint('savedWorkspaceId: $workspaceId');
     _workspaceId = workspaceId;
   }
 

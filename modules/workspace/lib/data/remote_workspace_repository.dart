@@ -49,6 +49,10 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
 
   Workspace _mapResponse(api.WorkspaceResponse response) {
     return Workspace(
+      id: response.id,
+      // ownerId: response.ownerId,
+      // createdAt: response.createdAt,
+      // updatedAt: response.updatedAt,
       name: response.workspaceName,
       namespace: response.namespace,
     );
