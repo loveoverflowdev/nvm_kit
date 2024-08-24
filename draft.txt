@@ -1,3 +1,11 @@
+### TODO
++ Thống nhất data - key
++ board roles đang không nằm trong project
++ Cho phép lấy structure thông qua code
++ Return all attributes
+https://github.com/rrousselGit/riverpod/discussions/1387
+
+
 {
     "data": [
         {

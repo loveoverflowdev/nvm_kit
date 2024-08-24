@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
+import 'package:template_parser/template_parser.dart' as template;
 
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceListView extends ConsumerStatefulWidget {
+  final template.ActiveResourceTileComponent tileComponent;
   final String resourceCode;
 
   const ActiveResourceListView({
     super.key,
     required this.resourceCode,
+    required this.tileComponent,
   });
 
   @override
@@ -22,17 +25,15 @@ class _ActiveResourceListViewState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        ref
-            .read(
-              activeResourceListProvider.notifier,
-            )
-            .loadActiveResourceList(
-              resourceCode: widget.resourceCode,
-            );
-      },
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(
+            activeResourceListProvider.notifier,
+          )
+          .loadActiveResourceList(
+            resourceCode: widget.resourceCode,
+          );
+    });
   }
 
   @override
@@ -43,9 +44,14 @@ class _ActiveResourceListViewState
         itemCount: data.length,
         itemBuilder: (context, index) {
           final activeResource = data[index];
+          final attributes = activeResource.attributes;
+
           return ListTile(
             title: Text(
-              activeResource.attributes.toString(),
+              attributes[widget.tileComponent.titleKey],
+            ),
+            subtitle: Text(
+              attributes[widget.tileComponent.subtitleKey],
             ),
           );
         },

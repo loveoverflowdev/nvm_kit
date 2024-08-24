@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/project.dart' as project;
 import 'package:active_resource/active_resource.dart' as active_resource;
+import 'package:template_parser/template_parser.dart' as template;
 
 class ProjectPage extends StatelessWidget {
   final String id;
@@ -32,9 +33,19 @@ class ProjectPage extends StatelessWidget {
               children: [
                 active_resource.ActiveResourceListView(
                   resourceCode: 'user_stories',
+                  tileComponent: template.ActiveResourceTileComponent(
+                    id: '',
+                    titleKey: 'task_name',
+                    subtitleKey: 'task_description',
+                  ),
                 ),
                 active_resource.ActiveResourceListView(
                   resourceCode: 'tasks',
+                  tileComponent: template.ActiveResourceTileComponent(
+                    id: '',
+                    titleKey: 'as_a',
+                    subtitleKey: 'i_want',
+                  ),
                 ),
               ],
             ),

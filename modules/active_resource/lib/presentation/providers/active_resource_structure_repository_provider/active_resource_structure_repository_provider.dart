@@ -5,6 +5,7 @@ part 'active_resource_structure_repository_provider.g.dart';
 
 @riverpod
 ActiveResourceStructureRepository activeResourceStructureRepository(
-    ActiveResourceStructureRepositoryRef ref) {
+  ActiveResourceStructureRepositoryRef ref,
+) {
   throw UnimplementedError();
 }
