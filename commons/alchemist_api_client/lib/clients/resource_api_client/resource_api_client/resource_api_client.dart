@@ -29,8 +29,8 @@ final class ResourceApiClient {
   }) async {
     final workspaceId = await _workspaceIdProvider();
     final token = await _tokenProvider();
-    debugPrint('requestJson workspaceId: ${workspaceId ?? ''}');
-    debugPrint('requestJson token: ${token ?? ''}');
+    debugPrint('requestJson - workspaceId: ${workspaceId ?? ''}');
+    debugPrint('requestJson - token: ${token ?? ''}');
     return _alchemistApiClient.requestJson(
       authorization: token,
       id: id,

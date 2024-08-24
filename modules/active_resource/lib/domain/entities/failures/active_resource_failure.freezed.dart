@@ -19,28 +19,29 @@ mixin _$ActiveResourceFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,11 +139,6 @@ class _$BadRequestImpl extends _BadRequest {
   final String message;
 
   @override
-  String toString() {
-    return 'ActiveResourceFailure.badRequest(message: $message)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -165,10 +161,11 @@ class _$BadRequestImpl extends _BadRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) {
     return badRequest(message);
   }
@@ -177,10 +174,10 @@ class _$BadRequestImpl extends _BadRequest {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) {
     return badRequest?.call(message);
   }
@@ -189,10 +186,10 @@ class _$BadRequestImpl extends _BadRequest {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -260,6 +257,8 @@ abstract class _$$UnauthorizedImplCopyWith<$Res> {
   factory _$$UnauthorizedImplCopyWith(
           _$UnauthorizedImpl value, $Res Function(_$UnauthorizedImpl) then) =
       __$$UnauthorizedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error});
 }
 
 /// @nodoc
@@ -272,63 +271,82 @@ class __$$UnauthorizedImplCopyWithImpl<$Res>
 
   /// Create a copy of ActiveResourceFailure
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$UnauthorizedImpl(
+      error: null == error ? _value.error : error,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UnauthorizedImpl extends _Unauthorized {
-  _$UnauthorizedImpl() : super._();
+  _$UnauthorizedImpl({required this.error}) : super._();
 
   @override
-  String toString() {
-    return 'ActiveResourceFailure.unauthorized()';
-  }
+  final Object error;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnauthorizedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UnauthorizedImpl &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  /// Create a copy of ActiveResourceFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
+      __$$UnauthorizedImplCopyWithImpl<_$UnauthorizedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) {
-    return unauthorized();
+    return unauthorized(error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) {
-    return unauthorized?.call();
+    return unauthorized?.call(error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
-      return unauthorized();
+      return unauthorized(error);
     }
     return orElse();
   }
@@ -375,8 +393,16 @@ class _$UnauthorizedImpl extends _Unauthorized {
 }
 
 abstract class _Unauthorized extends ActiveResourceFailure {
-  factory _Unauthorized() = _$UnauthorizedImpl;
+  factory _Unauthorized({required final Object error}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
+
+  Object get error;
+
+  /// Create a copy of ActiveResourceFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -404,11 +430,6 @@ class _$InternalServerImpl extends _InternalServer {
   _$InternalServerImpl() : super._();
 
   @override
-  String toString() {
-    return 'ActiveResourceFailure.internalServer()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InternalServerImpl);
@@ -421,10 +442,11 @@ class _$InternalServerImpl extends _InternalServer {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) {
     return internalServer();
   }
@@ -433,10 +455,10 @@ class _$InternalServerImpl extends _InternalServer {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) {
     return internalServer?.call();
   }
@@ -445,10 +467,10 @@ class _$InternalServerImpl extends _InternalServer {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) {
     if (internalServer != null) {
@@ -528,11 +550,6 @@ class _$ApiConnectionImpl extends _ApiConnection {
   _$ApiConnectionImpl() : super._();
 
   @override
-  String toString() {
-    return 'ActiveResourceFailure.apiConnection()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ApiConnectionImpl);
@@ -545,10 +562,11 @@ class _$ApiConnectionImpl extends _ApiConnection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) {
     return apiConnection();
   }
@@ -557,10 +575,10 @@ class _$ApiConnectionImpl extends _ApiConnection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) {
     return apiConnection?.call();
   }
@@ -569,10 +587,10 @@ class _$ApiConnectionImpl extends _ApiConnection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) {
     if (apiConnection != null) {
@@ -632,6 +650,8 @@ abstract class _$$UnimplementedImplCopyWith<$Res> {
   factory _$$UnimplementedImplCopyWith(
           _$UnimplementedImpl value, $Res Function(_$UnimplementedImpl) then) =
       __$$UnimplementedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
 }
 
 /// @nodoc
@@ -644,63 +664,92 @@ class __$$UnimplementedImplCopyWithImpl<$Res>
 
   /// Create a copy of ActiveResourceFailure
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$UnimplementedImpl(
+      error: null == error ? _value.error : error,
+      stackTrace: null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UnimplementedImpl extends _Unimplemented {
-  _$UnimplementedImpl() : super._();
+  _$UnimplementedImpl({required this.error, required this.stackTrace})
+      : super._();
 
   @override
-  String toString() {
-    return 'ActiveResourceFailure.unimplemented()';
-  }
+  final Object error;
+  @override
+  final StackTrace stackTrace;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnimplementedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UnimplementedImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  /// Create a copy of ActiveResourceFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnimplementedImplCopyWith<_$UnimplementedImpl> get copyWith =>
+      __$$UnimplementedImplCopyWithImpl<_$UnimplementedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) badRequest,
-    required TResult Function() unauthorized,
+    required TResult Function(Object error) unauthorized,
     required TResult Function() internalServer,
     required TResult Function() apiConnection,
-    required TResult Function() unimplemented,
+    required TResult Function(Object error, StackTrace stackTrace)
+        unimplemented,
   }) {
-    return unimplemented();
+    return unimplemented(error, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? badRequest,
-    TResult? Function()? unauthorized,
+    TResult? Function(Object error)? unauthorized,
     TResult? Function()? internalServer,
     TResult? Function()? apiConnection,
-    TResult? Function()? unimplemented,
+    TResult? Function(Object error, StackTrace stackTrace)? unimplemented,
   }) {
-    return unimplemented?.call();
+    return unimplemented?.call(error, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? badRequest,
-    TResult Function()? unauthorized,
+    TResult Function(Object error)? unauthorized,
     TResult Function()? internalServer,
     TResult Function()? apiConnection,
-    TResult Function()? unimplemented,
+    TResult Function(Object error, StackTrace stackTrace)? unimplemented,
     required TResult orElse(),
   }) {
     if (unimplemented != null) {
-      return unimplemented();
+      return unimplemented(error, stackTrace);
     }
     return orElse();
   }
@@ -747,6 +796,17 @@ class _$UnimplementedImpl extends _Unimplemented {
 }
 
 abstract class _Unimplemented extends ActiveResourceFailure {
-  factory _Unimplemented() = _$UnimplementedImpl;
+  factory _Unimplemented(
+      {required final Object error,
+      required final StackTrace stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
+
+  Object get error;
+  StackTrace get stackTrace;
+
+  /// Create a copy of ActiveResourceFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnimplementedImplCopyWith<_$UnimplementedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

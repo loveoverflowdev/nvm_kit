@@ -7,7 +7,7 @@ part of 'active_resource_repository_provider.dart';
 // **************************************************************************
 
 String _$activeResourceRepositoryHash() =>
-    r'77236e12fecd9178bfc6416dab81c9ff56549339';
+    r'691bdf5521d594f4b09de72a892f3c4599695d08';
 
 /// See also [activeResourceRepository].
 @ProviderFor(activeResourceRepository)

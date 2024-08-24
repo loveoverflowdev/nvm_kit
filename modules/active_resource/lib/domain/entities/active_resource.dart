@@ -1,44 +1,18 @@
 class ActiveResource {
   final String id;
   final Map<String, dynamic> attributes;
-  final ActiveResourceProject? project;
+  final String? projectId;
   final ActiveResourceCreator? creator;
 
   ActiveResource({
     String? id,
     Map<String, dynamic>? attributes,
-    ActiveResourceProject? project,
+    String? projectId,
     ActiveResourceCreator? creator,
   })  : id = id ?? '',
         attributes = attributes ?? {},
-        project = project,
+        projectId = projectId,
         creator = creator;
-}
-
-class ActiveResourceProject {
-  final String id;
-  final bool isDefault;
-  final String name;
-  final String description;
-  final String icon;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-
-  ActiveResourceProject({
-    String? id,
-    bool? isDefault,
-    String? name,
-    String? description,
-    String? icon,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  })  : id = id ?? '',
-        isDefault = isDefault ?? false,
-        name = name ?? '',
-        description = description ?? '',
-        icon = icon ?? '',
-        createdAt = createdAt,
-        updatedAt = updatedAt;
 }
 
 class ActiveResourceCreator {

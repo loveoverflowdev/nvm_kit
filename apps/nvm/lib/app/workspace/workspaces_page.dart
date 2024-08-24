@@ -11,7 +11,7 @@ class WorkspacesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Workspaces'),
+        title: const Text('Select a workspace'),
       ),
       body: Consumer(
         child: const workspace.WorkspaceListView(),

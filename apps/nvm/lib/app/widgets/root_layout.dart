@@ -90,7 +90,8 @@ class RootLayout extends StatelessWidget {
       // ),
       body: child,
       bottomNavigationBar: NavigationBar(
-        destinations: destinations.map((e) => e.toNavigationDestination()).toList(),
+        destinations:
+            destinations.map((e) => e.toNavigationDestination()).toList(),
         selectedIndex: navigationIndex,
         onDestinationSelected: onDestination,
       ),
@@ -103,17 +104,18 @@ class RootLayout extends StatelessWidget {
     if (router.routerDelegate.currentConfiguration.fullPath != '/') return null;
     return FloatingActionButton(
       elevation: elevated ? null : 0,
-      child: const Icon(Icons.edit_outlined),
+      child: const Icon(Icons.add),
       onPressed: () {},
     );
   }
 }
 
 class Destination {
-  const Destination(
-      {required this.label,
-      required this.selectedIcon,
-      required this.unselectedIcon,});
+  const Destination({
+    required this.label,
+    required this.selectedIcon,
+    required this.unselectedIcon,
+  });
 
   final String label;
   final IconData selectedIcon, unselectedIcon;
@@ -128,7 +130,7 @@ class Destination {
 
   NavigationDestination toNavigationDestination() {
     return NavigationDestination(
-      icon: Icon(unselectedIcon), 
+      icon: Icon(unselectedIcon),
       selectedIcon: Icon(selectedIcon),
       label: label,
     );

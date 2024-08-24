@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../active_resource_creator_response/active_resource_creator_response.dart';
-import '../active_resource_project_response/active_resource_project_response.dart';
 
 part 'active_resource_response.g.dart';
 
@@ -9,20 +8,21 @@ part 'active_resource_response.g.dart';
 final class ActiveResourceResponse {
   final String id;
   final Map<String, dynamic> attributes;
-  final ActiveResourceProjectResponse project;
+  final String? projectId;
 
   @JsonKey(name: 'createdByUser')
-  final ActiveResourceCreatorResponse creator;
+  final ActiveResourceCreatorResponse? creator;
 
   ActiveResourceResponse({
     required this.id,
     required this.attributes,
-    required this.project,
-    required this.creator,
+    this.projectId,
+    this.creator,
   });
 
-  factory ActiveResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ActiveResourceResponseFromJson(json);
+  factory ActiveResourceResponse.fromJson(Map<String, dynamic> json) {
+    return _$ActiveResourceResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$ActiveResourceResponseToJson(this);
 }

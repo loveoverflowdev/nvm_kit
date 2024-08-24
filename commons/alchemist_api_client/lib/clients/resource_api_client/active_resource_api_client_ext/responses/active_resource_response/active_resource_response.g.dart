@@ -11,10 +11,11 @@ ActiveResourceResponse _$ActiveResourceResponseFromJson(
     ActiveResourceResponse(
       id: json['id'] as String,
       attributes: json['attributes'] as Map<String, dynamic>,
-      project: ActiveResourceProjectResponse.fromJson(
-          json['project'] as Map<String, dynamic>),
-      creator: ActiveResourceCreatorResponse.fromJson(
-          json['createdByUser'] as Map<String, dynamic>),
+      projectId: json['projectId'] as String?,
+      creator: json['createdByUser'] == null
+          ? null
+          : ActiveResourceCreatorResponse.fromJson(
+              json['createdByUser'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActiveResourceResponseToJson(
@@ -22,6 +23,6 @@ Map<String, dynamic> _$ActiveResourceResponseToJson(
     <String, dynamic>{
       'id': instance.id,
       'attributes': instance.attributes,
-      'project': instance.project,
+      'projectId': instance.projectId,
       'createdByUser': instance.creator,
     };

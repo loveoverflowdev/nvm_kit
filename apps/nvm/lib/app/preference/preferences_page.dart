@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PreferencesPage extends StatelessWidget {
+  // final String userId;
   const PreferencesPage({super.key});
 
   @override
@@ -9,8 +10,11 @@ class PreferencesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Preferences'),
       ),
-      body: Placeholder(
-        child: Text('Preferences'),
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          ListTile(),
+        ],
       ),
     );
   }

@@ -137,11 +137,6 @@ class _$BadRequestImpl extends _BadRequest {
   final String message;
 
   @override
-  String toString() {
-    return 'ProjectFailure.badRequest(message: $message)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -279,11 +274,6 @@ class _$UnauthorizedImpl extends _Unauthorized {
   _$UnauthorizedImpl() : super._();
 
   @override
-  String toString() {
-    return 'ProjectFailure.unauthorized()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$UnauthorizedImpl);
@@ -403,11 +393,6 @@ class _$InternalServerImpl extends _InternalServer {
   _$InternalServerImpl() : super._();
 
   @override
-  String toString() {
-    return 'ProjectFailure.internalServer()';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InternalServerImpl);
@@ -525,11 +510,6 @@ class __$$ApiConnectionImplCopyWithImpl<$Res>
 
 class _$ApiConnectionImpl extends _ApiConnection {
   _$ApiConnectionImpl() : super._();
-
-  @override
-  String toString() {
-    return 'ProjectFailure.apiConnection()';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -663,11 +643,6 @@ class _$UnimplementedImpl extends _Unimplemented {
 
   @override
   final Object error;
-
-  @override
-  String toString() {
-    return 'ProjectFailure.unimplemented(error: $error)';
-  }
 
   @override
   bool operator ==(Object other) {

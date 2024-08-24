@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'request_field.dart';
 
 class AlchemistQuery {
@@ -79,7 +81,6 @@ class AlchemistQuery {
       result['sort'] = orderBy.keys.first;
       result['direction'] = orderBy.values.first;
     }
-
     return result;
   }
 }

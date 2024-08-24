@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project/project.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -11,13 +12,17 @@ class ProjectsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Projects'),
         leading: hasDrawer
-              ? IconButton(
-                  icon: const Icon(Icons.menu),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                )
-              : null,
+            ? IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              )
+            : null,
       ),
-      body: const ProjectListView(),
+      body: ProjectListView(
+        onProjectPressed: (project) {
+          context.push('/projects/${project.id}');
+        },
+      ),
     );
   }
 }

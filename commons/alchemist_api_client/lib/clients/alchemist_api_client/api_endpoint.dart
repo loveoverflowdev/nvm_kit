@@ -93,10 +93,8 @@ class ApiEndpoint {
       headers.addAll(_buildBearerAuthroizationHeader(authorization));
     }
 
-    if (jsonPayload!) {
-      headers[HttpHeaders.contentTypeHeader] = ContentType.json.value;
-      headers[HttpHeaders.acceptHeader] = ContentType.json.value;
-    }
+    headers[HttpHeaders.contentTypeHeader] = ContentType.json.value;
+    headers[HttpHeaders.acceptHeader] = ContentType.json.value;
 
     return EndpointParams(
       uri: _buildUri(uriParams),
@@ -113,7 +111,8 @@ class ApiEndpoint {
     params.forEach((key, value) {
       if (!uri.contains(':$key')) {
         throw Exception(
-            'param :$key is not present in uriTemplate ($uriTemplate)');
+          'param :$key is not present in uriTemplate ($uriTemplate)',
+        );
       }
 
       uri = uri.replaceAll(':$key', value.toString());
@@ -129,17 +128,15 @@ class ApiEndpoint {
   String _buildRequestBody(dynamic payload, AlchemistQuery? alchemistQuery) {
     Map body = {};
 
-    if (jsonPayload! && alchemistQuery != null) {
+    if (alchemistQuery != null) {
       body.addAll(alchemistQuery.serialize());
     }
 
     if (jsonPayload!) {
       body.addAll(_parseJsonPayload(payload));
-
-      return jsonEncode(body);
     }
 
-    return body.toString();
+    return jsonEncode(body);
   }
 
   bool _isValidJsonPayload(dynamic payload) {

@@ -15,6 +15,7 @@ class WorkspaceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () => onTap(workspace),
+      leading: const Icon(Icons.workspaces),
       title: Text(workspace.name),
       subtitle: Text(workspace.namespace),
     );

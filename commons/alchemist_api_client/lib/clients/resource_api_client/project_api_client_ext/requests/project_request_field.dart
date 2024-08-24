@@ -12,8 +12,6 @@ final class ProjectRequestField {
   static final RequestField createdAt = RequestField.name('createdAt');
   static final RequestField updatedAt = RequestField.name('updatedAt');
 
-  static final RequestField workspaceId = RequestField.name('workspaceId');
-
   static final RequestField all = RequestField.children([
     id,
     isDefault,
@@ -23,6 +21,5 @@ final class ProjectRequestField {
     teamIds,
     createdAt,
     updatedAt,
-    workspaceId,
   ]);
 }

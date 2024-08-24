@@ -19,7 +19,8 @@ void main() {
   final WorkspaceStorage workspaceStorage = WorkspaceStorage.inMemory();
   //
   final TokenProvider tokenProvider = tokenStorage.readAccessToken;
-  final WorkspaceIdProvider workspaceIdProvider = workspaceStorage.readWorkspaceId;
+  final WorkspaceIdProvider workspaceIdProvider =
+      workspaceStorage.readWorkspaceId;
   //
   final navigationGuard = NavigationGuard(
     workspaceIdProvider: workspaceIdProvider,
@@ -31,8 +32,8 @@ void main() {
     tokenStorage: tokenStorage,
   );
   final workspaceApiClient = WorkspaceApiClient(
-    alchemistApiClient: alchemistApiClient, 
-    tokenProvider: tokenProvider, 
+    alchemistApiClient: alchemistApiClient,
+    tokenProvider: tokenProvider,
     workspaceStorage: workspaceStorage,
   );
   final resourceApiClient = ResourceApiClient(
@@ -46,8 +47,8 @@ void main() {
     workspaceIdProvider: workspaceIdProvider,
   );
   final rolesBoardApiClient = RolesBoardApiClient(
-    alchemistApiClient: alchemistApiClient, 
-    tokenProvider: tokenProvider, 
+    alchemistApiClient: alchemistApiClient,
+    tokenProvider: tokenProvider,
     workspaceIdProvider: workspaceIdProvider,
   );
 

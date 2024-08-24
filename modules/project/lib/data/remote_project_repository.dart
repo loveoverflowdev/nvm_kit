@@ -31,10 +31,7 @@ final class RemoteProjectRepository implements ProjectRepository {
   TaskEither<ProjectFailure, List<Project>> getProjectList() {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient
-            .getProjectList(
-            )
-            .then(
+        return _apiClient.getProjectList().then(
               (value) => value.map(_mapResponse).toList(),
             );
       },
@@ -59,8 +56,8 @@ final class RemoteProjectRepository implements ProjectRepository {
       name: response.projectName,
       description: response.projectDescription,
       teamIds: response.teamIds,
-      createdAt: null, // response.createdAt, TODO: Update soon
-      updatedAt: null, // response.updatedAt,
+      createdAt: response.createdAt, // TODO: Update soon
+      updatedAt: response.updatedAt,
     );
   }
 }

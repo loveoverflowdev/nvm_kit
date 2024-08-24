@@ -22,7 +22,7 @@ class ActiveResourceList extends _$ActiveResourceList {
       (failure) {
         state = ActiveResourceListState.error(
           failure,
-          StackTrace.current,
+          failure.stackTrace ?? StackTrace.current,
         );
       },
       (result) {

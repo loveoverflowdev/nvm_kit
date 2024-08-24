@@ -71,7 +71,7 @@ class SigninFormView extends StatelessWidget {
 
             return Visibility(
               visible: !signinSubmitStatus.isLoading,
-              replacement: const AppCircularLoading(),
+              replacement: const AppCircularLoadingWidget(),
               child: ElevatedButton(
                 child: const Text('Sign In'),
                 onPressed: () {

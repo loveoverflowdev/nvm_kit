@@ -5,7 +5,12 @@ import 'package:app_ui/app_ui.dart';
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceListView extends ConsumerStatefulWidget {
-  const ActiveResourceListView({super.key});
+  final String resourceCode;
+
+  const ActiveResourceListView({
+    super.key,
+    required this.resourceCode,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -17,16 +22,21 @@ class _ActiveResourceListViewState
   @override
   void initState() {
     super.initState();
-    // ref.read(activeResourceListProvider.notifier).loadActiveResourceList(
-    //       resourceCode: 'resourceCode', // TODO: urgent
-    //     );
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        ref
+            .read(
+              activeResourceListProvider.notifier,
+            )
+            .loadActiveResourceList(
+              resourceCode: widget.resourceCode,
+            );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(
-      child: Text('Active Resource Placeholder'),
-    );
     final activeResourceList = ref.watch(activeResourceListProvider);
     return activeResourceList.when(
       data: (data) => ListView.builder(
@@ -40,8 +50,10 @@ class _ActiveResourceListViewState
           );
         },
       ),
-      error: (error, stackTrace) => Text('error: $error'),
-      loading: () => const AppCircularLoading(),
+      error: (error, stackTrace) => Text(
+        'error: $error\nstackTrace: $stackTrace',
+      ),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }

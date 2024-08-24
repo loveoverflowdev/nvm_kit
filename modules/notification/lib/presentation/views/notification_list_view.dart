@@ -25,22 +25,27 @@ class _NotificationListViewState extends ConsumerState<NotificationListView> {
   Widget build(BuildContext context) {
     final notificationList = ref.watch(notificationListProvider);
     return notificationList.when(
-      data: (data) => ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          final notification = data[index];
-          return ListTile(
-            title: Text(
-              notification.title,
-            ),
-            subtitle: Text(
-              notification.content,
-            ),
-          );
-        },
+      data: (data) => Visibility(
+        visible: data.isNotEmpty,
+        replacement: const AppEmptyWidget(),
+        child: ListView.separated(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            final notification = data[index];
+            return ListTile(
+              title: Text(
+                notification.title,
+              ),
+              subtitle: Text(
+                notification.content,
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(),
+        ),
       ),
       error: (error, stackTrace) => ErrorWidget(error),
-      loading: () => const AppCircularLoading(),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }

@@ -38,7 +38,9 @@ final class AlchemistApiClient {
 
     final uri = Uri.parse('${endpointParams.baseUrl}${endpointParams.uri}');
 
-    debugPrint(uri.toString());
+    debugPrint('Uri: $uri');
+    debugPrint('Params: $uriParams');
+    debugPrint('Body: ${endpointParams.body}');
 
     try {
       final response = await _httpClient.post(

@@ -41,7 +41,7 @@ class _WorkspaceListViewState extends ConsumerState<WorkspaceListView> {
       );
     });
     return workspaceList.when(
-      data: (workspaceList) => ListView.builder(
+      data: (workspaceList) => ListView.separated(
         itemCount: workspaceList.length,
         itemBuilder: (context, index) {
           final workspace = workspaceList[index];
@@ -52,9 +52,10 @@ class _WorkspaceListViewState extends ConsumerState<WorkspaceListView> {
             workspace: workspace,
           );
         },
+        separatorBuilder: (context, index) => const Divider(),
       ),
       error: (error, _) => ErrorWidget(error),
-      loading: () => const AppCircularLoading(),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }

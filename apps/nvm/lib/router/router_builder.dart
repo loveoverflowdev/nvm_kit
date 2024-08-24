@@ -14,6 +14,7 @@ final class RouterBuilder {
   });
 
   GoRouter build() {
+    // template.app.pages.sort((a, b) => a.order.compareTo(b.order));
     return GoRouter(
       initialLocation: '/signin',
       routes: [
