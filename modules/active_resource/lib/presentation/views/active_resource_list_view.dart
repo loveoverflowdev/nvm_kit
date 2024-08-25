@@ -23,36 +23,27 @@ class ActiveResourceListView extends ConsumerStatefulWidget {
 class _ActiveResourceListViewState
     extends ConsumerState<ActiveResourceListView> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(
-            activeResourceListProvider.notifier,
-          )
-          .loadActiveResourceList(
-            resourceCode: widget.resourceCode,
-          );
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final activeResourceList = ref.watch(activeResourceListProvider);
+    final activeResourceList = ref.watch(activeResourceListProvider(
+      resourceCode: widget.resourceCode,
+    ));
     return activeResourceList.when(
       data: (data) => ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
           final activeResource = data[index];
           final attributes = activeResource.attributes;
-
+          print('----------');
+          print(attributes.toString());
+          print(widget.tileComponent.toJson());
+          print('----------');
           return ListTile(
             title: Text(
               attributes[widget.tileComponent.titleKey],
             ),
-            subtitle: Text(
-              attributes[widget.tileComponent.subtitleKey],
-            ),
+            // subtitle: Text(
+            //   attributes[widget.tileComponent.subtitleKey],
+            // ),
           );
         },
       ),

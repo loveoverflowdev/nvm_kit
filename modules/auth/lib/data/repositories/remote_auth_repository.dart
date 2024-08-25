@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart' as api
+import 'package:nvm_api_client/nvm_api_client.dart' as api
     show AuthenticationClient, AuthenticationCredentials;
 import 'package:auth/domain.dart';
 import 'package:formz/formz.dart';

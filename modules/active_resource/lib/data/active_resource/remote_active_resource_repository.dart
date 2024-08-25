@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
@@ -19,6 +19,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
     required String resourceCode,
     required String id,
+    String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
@@ -26,6 +27,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
             .getActiveResource(
               resourceCode: resourceCode,
               id: id,
+              requestField: requestField,
             )
             .then(
               (value) => _mapResponse(value),
@@ -39,12 +41,14 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
     required String resourceCode,
+    String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getActiveResourceList(
               resourceCode: resourceCode,
+              requestField: requestField,
             )
             .then(
               (value) => value.map(_mapResponse).toList(),

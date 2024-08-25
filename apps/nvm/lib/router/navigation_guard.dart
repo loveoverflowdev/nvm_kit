@@ -7,13 +7,14 @@ class NavigationGuard {
   NavigationGuard({
     required WorkspaceIdProvider workspaceIdProvider,
     required TokenProvider tokenProvider,
-  }) : _workspaceIdProvider = workspaceIdProvider, _tokenProvider = tokenProvider;
+  })  : _workspaceIdProvider = workspaceIdProvider,
+        _tokenProvider = tokenProvider;
 
   Future<bool> get hasToken => _tokenProvider().then(
-    (token) => token?.isNotEmpty == true,
-  );
+        (token) => token?.isNotEmpty == true,
+      );
 
   Future<bool> get didSelectWorkspace => _workspaceIdProvider().then(
-    (workspaceId) => workspaceId?.isNotEmpty == true,
-  );
+        (workspaceId) => workspaceId?.isNotEmpty == true,
+      );
 }

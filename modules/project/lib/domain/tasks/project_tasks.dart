@@ -17,10 +17,12 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
 ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
     getProjectListTask({
   required String workspaceId,
+  String? requestField,
 }) =>
         ReaderTaskEither(
           (repository) => repository
               .getProjectList(
+                requestField: requestField,
               )
               .run(),
         );
@@ -28,11 +30,13 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
 ReaderTaskEither<ProjectRepository, ProjectFailure, Project> getProjectTask({
   required String workspaceId,
   required String projectId,
+  String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getProject(
             projectId: projectId,
+            requestField: requestField,
           )
           .run(),
     );

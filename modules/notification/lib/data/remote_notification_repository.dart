@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart';
 
 import 'package:notification/domain.dart';
@@ -28,10 +28,9 @@ class RemoteNotificationRepository implements NotificationRepository {
   @override
   TaskEither<NotificationFailure, List<Notification>> getNotificationList() =>
       TaskEither.tryCatch(
-        () async =>
-            _apiClient.getNotificationList().then(
-                  (value) => value.map(_mapResponse).toList(),
-                ),
+        () async => _apiClient.getNotificationList().then(
+              (value) => value.map(_mapResponse).toList(),
+            ),
         (error, stackTrace) => NotificationFailure.fromError(error),
       );
 

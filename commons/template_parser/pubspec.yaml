@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation: ^4.9.0
+  alchemist_query:
+    path: '../alchemist_query'
 
 dev_dependencies:
   flutter_test:

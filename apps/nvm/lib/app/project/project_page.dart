@@ -23,8 +23,8 @@ class ProjectPage extends StatelessWidget {
               title: Text(project.name),
               bottom: const TabBar(
                 tabs: [
-                  Tab(text: 'All Recipes'),
-                  Tab(text: 'Favorites'),
+                  Tab(text: 'User Stories'),
+                  Tab(text: 'Tasks'),
                 ],
               ),
             ),
@@ -35,16 +35,16 @@ class ProjectPage extends StatelessWidget {
                   resourceCode: 'user_stories',
                   tileComponent: template.ActiveResourceTileComponent(
                     id: '',
-                    titleKey: 'task_name',
-                    subtitleKey: 'task_description',
+                    titleKey: 'as_a',
+                    subtitleKey: 'i_want',
                   ),
                 ),
                 active_resource.ActiveResourceListView(
                   resourceCode: 'tasks',
                   tileComponent: template.ActiveResourceTileComponent(
                     id: '',
-                    titleKey: 'as_a',
-                    subtitleKey: 'i_want',
+                    titleKey: 'task_name',
+                    subtitleKey: 'task_description',
                   ),
                 ),
               ],

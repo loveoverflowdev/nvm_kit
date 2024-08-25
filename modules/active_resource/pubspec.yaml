@@ -21,8 +21,8 @@ dependencies:
     path: ../../commons/app_ui
   template_parser:
     path: ../../commons/template_parser
-  alchemist_api_client:
-    path: ../../commons/alchemist_api_client
+  nvm_api_client:
+    path: ../../commons/nvm_api_client
 
 dev_dependencies:
   flutter_test:

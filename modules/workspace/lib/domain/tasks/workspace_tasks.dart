@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:workspace/domain.dart';
 
 ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, void>
@@ -11,14 +10,21 @@ ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, void>
         );
 
 ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, List<Workspace>>
-    getWorkspaceListTask() => ReaderTaskEither(
-          (repository) => repository.getWorkspaceList().run(),
+    getWorkspaceListTask({
+  String? requestField,
+}) =>
+        ReaderTaskEither(
+          (repository) => repository
+              .getWorkspaceList(
+                requestField: requestField,
+              )
+              .run(),
         );
 
 ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, Workspace>
     getWorkspaceTask({
   required String workspaceId,
-  RequestField? requestField,
+  String? requestField,
 }) =>
         ReaderTaskEither(
           (repository) => repository

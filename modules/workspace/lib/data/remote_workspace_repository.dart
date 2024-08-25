@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart' as api;
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart';
 import 'package:workspace/domain.dart';
 
@@ -18,7 +18,9 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
   }
 
   @override
-  TaskEither<WorkspaceFailure, List<Workspace>> getWorkspaceList() {
+  TaskEither<WorkspaceFailure, List<Workspace>> getWorkspaceList({
+    String? requestField,
+  }) {
     return TaskEither.tryCatch(
       () => _apiClient.getWorkspaceList().then(
             (value) => value
@@ -34,6 +36,7 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
   @override
   TaskEither<WorkspaceFailure, Workspace> getWorkspace({
     required String workspaceId,
+    String? requestField,
   }) {
     return TaskEither.tryCatch(
       () => _apiClient

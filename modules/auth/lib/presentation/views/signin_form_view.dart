@@ -45,6 +45,7 @@ class SigninFormView extends StatelessWidget {
               ),
             );
             return TextField(
+              obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
                 errorText: errorText,

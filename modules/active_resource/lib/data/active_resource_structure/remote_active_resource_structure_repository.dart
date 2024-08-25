@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
     show
@@ -9,10 +9,10 @@ import '../../domain.dart'
 
 final class RemoteActiveResourceStructureRepository
     implements ActiveResourceStructureRepository {
-  final ResourceApiClient _apiClient;
+  final api.ResourceApiClient _apiClient;
 
   RemoteActiveResourceStructureRepository({
-    required ResourceApiClient apiClient,
+    required api.ResourceApiClient apiClient,
   }) : _apiClient = apiClient;
 
   @override
@@ -41,10 +41,7 @@ final class RemoteActiveResourceStructureRepository
       getActiveResourceStructureList() {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient
-            .getActiveResourceStructureList(
-            )
-            .then(
+        return _apiClient.getActiveResourceStructureList().then(
               (value) => value.map(_mapResponse).toList(),
             );
       },
@@ -55,7 +52,8 @@ final class RemoteActiveResourceStructureRepository
   }
 
   ActiveResourceStructure _mapResponse(
-      ActiveResourceStructureResponse response) {
+    api.ActiveResourceStructureResponse response,
+  ) {
     return ActiveResourceStructure(
       code: response.code,
       id: response.id,

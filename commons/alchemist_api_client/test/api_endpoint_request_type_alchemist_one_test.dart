@@ -1,4 +1,3 @@
-import 'package:alchemist_api_client/clients/alchemist_api_client/request_field.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:alchemist_api_client/alchemist_api_client.dart';
@@ -68,12 +67,13 @@ void main() {
     expect(
         () => apiEndpoint.parseEndpointParams(
               alchemistQuery: AlchemistQuery(
-                requestField: RequestField.children(
-                  [
-                    RequestField.name('title'),
-                    RequestField.name('description'),
-                  ],
-                ),
+                requestField: 'title,description',
+                // requestField: RequestField.children(
+                //   [
+                //     RequestField.name('title'),
+                //     RequestField.name('description'),
+                //   ],
+                // ),
               ),
             ),
         isNot(throwsA(anything)));
