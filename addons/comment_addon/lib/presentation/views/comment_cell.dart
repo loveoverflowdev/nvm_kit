@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:app_ui/app_ui.dart';
 
 class CommentCell extends StatelessWidget {
   final String authorName;
@@ -14,6 +15,19 @@ class CommentCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+      child: Column(
+        children: [
+          Text(
+            authorName, 
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          Flexible(
+            child: Text(content),
+          ),
+        ],
+      ),
+    );
   }
 }

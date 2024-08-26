@@ -21,18 +21,6 @@ Future<List<ActiveResource>> activeResourceList(
       .then(
         (value) => value.fold((failure) => throw failure, (data) => data),
       );
-  // return ref
-  //     .read(activeResourceRepositoryProvider)
-  //     .getProject(projectId: projectId)
-  //     .run()
-  //     .then(
-  //   (project) {
-  //     return project.fold(
-  //       (failure) => throw failure,
-  //       (data) => data,
-  //     );
-  //   },
-  // );
 }
 
 // @riverpod

@@ -6,7 +6,7 @@ part of 'comment_repository_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commentRepositoryHash() => r'c43b1648856c5d3a05b2c2438e8ecaecd5b651b0';
+String _$commentRepositoryHash() => r'c42ce15e6789ea247773891e048a0bd6fb8af1e1';
 
 /// See also [commentRepository].
 @ProviderFor(commentRepository)

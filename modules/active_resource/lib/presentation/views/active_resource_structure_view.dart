@@ -26,7 +26,7 @@ class ActiveResourceStructureView extends ConsumerWidget {
     );
     return structure.when(
       data: (data) => builder(context, data),
-      error: (error, _) => ErrorWidget(error),
+      error: (error, _) => AppErrorWidget(error),
       loading: () => const AppCircularLoadingWidget(),
     );
   }
