@@ -117,3 +117,24 @@ ApiEndpoint getUser({
       uriTemplate: '/api/user/get/users/$id',
       requiredAuthorization: true,
     );
+
+// Addons
+ApiEndpoint getCommentList({
+  required String resourceCode,
+  required String resourceId,
+}) => ApiEndpoint(
+  uriTemplate: '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/get/comments',
+);
+
+ApiEndpoint createComment({
+  required String resourceCode,
+  required String resourceId,
+}) => ApiEndpoint(
+  uriTemplate:
+      '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/post/comments',
+  requiredWorkspace: true,
+  requiredAuthorization: true,
+  jsonPayload: true,
+);
+
+

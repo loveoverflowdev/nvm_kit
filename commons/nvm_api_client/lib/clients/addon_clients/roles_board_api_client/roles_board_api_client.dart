@@ -20,7 +20,7 @@ final class RolesBoardApiClient {
   Future<List<RolesBoardResponse>> getRolesBoardList({
     required String resourceCode,
     required String resourceId,
-    String? requestFields,
+    String? requestField,
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
@@ -30,7 +30,7 @@ final class RolesBoardApiClient {
         jsonPayload: true,
       ),
       alchemistQuery: AlchemistQuery(
-        requestField: requestFields ?? RolesBoardRequestField.all.build(),
+        requestField: requestField ?? RolesBoardRequestField.all.build(),
       ),
       dataHandler: (json) => (json['data'] as List)
           .map(
@@ -70,7 +70,6 @@ final class RolesBoardApiClient {
   }) async {
     return _alchemistApiClient.requestJson(
       authorization: await _tokenProvider(),
-      id: id,
       endpoint: endpoint,
       workspaceId: await _workspaceIdProvider(),
       alchemistQuery: alchemistQuery,

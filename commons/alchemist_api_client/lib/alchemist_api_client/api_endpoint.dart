@@ -23,7 +23,6 @@ class ApiEndpoint {
   });
 
   EndpointParams parseEndpointParams({
-    String? id,
     String? workspaceId,
     String? authorization,
     AlchemistQuery? alchemistQuery,

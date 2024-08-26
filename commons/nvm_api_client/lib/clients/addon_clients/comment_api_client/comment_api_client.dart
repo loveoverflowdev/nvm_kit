@@ -86,7 +86,6 @@ final class CommentApiClient {
   }) async {
     return _alchemistApiClient.requestJson(
       authorization: await _tokenProvider(),
-      id: id,
       endpoint: endpoint,
       workspaceId: await _workspaceIdProvider(),
       alchemistQuery: alchemistQuery,

@@ -25,7 +25,6 @@ extension NotificationApiClientExt on ResourceApiClient {
   }) async {
     return requestJson(
       endpoint: endpoints.getOneNotification(notificationId: notificationId),
-      id: notificationId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? NotificationRequestField.all.build(),
       ),

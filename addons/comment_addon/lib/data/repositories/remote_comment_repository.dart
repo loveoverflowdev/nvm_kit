@@ -1,12 +1,12 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:comment_addon/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
 final class RemoteCommentRepository implements CommentRepository {
-  final CommentApiClient _apiClient;
+  final api.CommentApiClient _apiClient;
 
   RemoteCommentRepository({
-    required CommentApiClient apiClient,
+    required api.CommentApiClient apiClient,
   }) : _apiClient = apiClient;
 
   @override
@@ -27,7 +27,29 @@ final class RemoteCommentRepository implements CommentRepository {
     );
   }
 
-  Comment _mapResponse(CommentResponse response) {
+  @override
+  TaskEither<CommentFailure, void> createComment({
+    required CommentPayload payload,
+    required String resourceCode,
+    required String resourceId,
+  }) {
+    return TaskEither.tryCatch(
+      () async {
+        _apiClient.createComment(
+          resourceCode: resourceCode, 
+          resourceId: resourceId, 
+          payload: api.CommentPayload(
+            topic: payload.topic, 
+            title: payload.title, 
+            content: payload.content,
+          ),
+        );
+      }, 
+      (error, stackTrace) => CommentFailure.fromError(error),
+    );
+  }
+
+  Comment _mapResponse(api.CommentResponse response) {
     return Comment(
       id: response.id,
       topic: response.topic,

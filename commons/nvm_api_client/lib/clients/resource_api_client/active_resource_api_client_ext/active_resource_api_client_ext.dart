@@ -15,7 +15,6 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
         resourceCode: resourceCode,
         id: id,
       ),
-      id: id,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all.build(),
       ),

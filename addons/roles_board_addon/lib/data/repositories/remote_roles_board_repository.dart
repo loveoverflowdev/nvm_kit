@@ -1,19 +1,19 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:nvm_api_client/nvm_api_client.dart' as api; 
 import 'package:roles_board_addon/domain.dart';
 
 final class RemoteRolesBoardRepository implements RolesBoardRepository {
-  final RolesBoardApiClient _apiClient;
+  final api.RolesBoardApiClient _apiClient;
 
   RemoteRolesBoardRepository({
-    required RolesBoardApiClient apiClient,
+    required api.RolesBoardApiClient apiClient,
   }) : _apiClient = apiClient;
 
   @override
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
     required String resourceCode,
     required String resourceId,
-    RequestField? requestField,
+    String? requestField,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
@@ -29,7 +29,7 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
     );
   }
 
-  RolesBoard _mapResponse(RolesBoardResponse response) {
+  RolesBoard _mapResponse(api.RolesBoardResponse response) {
     return RolesBoard(
       id: response.id,
       boardName: response.boardName,

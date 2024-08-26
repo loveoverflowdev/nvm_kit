@@ -43,12 +43,7 @@ final class WorkspaceApiClient {
     String? requestField,
   }) async {
     return _requestJson(
-      endpoint: ApiEndpoint(
-        uriTemplate: '/api/workspace/get/workspaces/:workspace_id',
-        requiredAuthorization: true,
-        jsonPayload: true,
-        requiredWorkspace: true,
-      ),
+      endpoint: endpoints.getOneWorkspace(id: workspaceId),
       workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? WorkspaceRequestField.all.build(),
@@ -70,7 +65,6 @@ final class WorkspaceApiClient {
   }) async {
     return _alchemistApiClient.requestJson(
       authorization: await _tokenProvider(),
-      id: id,
       workspaceId: workspaceId,
       endpoint: endpoint,
       alchemistQuery: alchemistQuery,

@@ -25,7 +25,6 @@ extension ActiveResourceStructureApiClientExt on ResourceApiClient {
   }) {
     return requestJson(
       endpoint: endpoints.getOneActiveResourceStructure(id: id),
-      id: id,
       dataHandler: (json) =>
           ActiveResourceStructureResponse.fromJson(json['data']),
     );

@@ -23,11 +23,9 @@ final class AlchemistApiClient {
     Map<String, String>? headers,
     bool refreshTokenOnUnauthorization = true,
     String? authorization,
-    String? id,
     required T Function(dynamic) dataHandler,
   }) async {
     final endpointParams = endpoint.parseEndpointParams(
-      id: id,
       workspaceId: workspaceId,
       authorization: authorization,
       alchemistQuery: alchemistQuery,

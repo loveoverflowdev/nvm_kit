@@ -30,7 +30,6 @@ final class UserApiClient {
 
   Future<T> _requestJson<T>({
     required ApiEndpoint endpoint,
-    String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
     dynamic payload,
@@ -41,7 +40,6 @@ final class UserApiClient {
   }) async {
     return _alchemistApiClient.requestJson(
       authorization: await _tokenProvider(),
-      id: id,
       workspaceId: workspaceId,
       endpoint: endpoint,
       alchemistQuery: alchemistQuery,

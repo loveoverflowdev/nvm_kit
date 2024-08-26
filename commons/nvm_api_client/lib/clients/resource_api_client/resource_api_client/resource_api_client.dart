@@ -19,7 +19,6 @@ final class ResourceApiClient {
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
-    String? id,
     AlchemistQuery? alchemistQuery,
     Map<String, dynamic>? uriParams,
     dynamic payload,
@@ -33,7 +32,6 @@ final class ResourceApiClient {
     debugPrint('requestJson - token: ${token ?? ''}');
     return _alchemistApiClient.requestJson(
       authorization: token,
-      id: id,
       endpoint: endpoint,
       workspaceId: workspaceId,
       alchemistQuery: alchemistQuery,
