@@ -1,23 +1,36 @@
 name: user
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
-  sdk: ^3.5.1
+  sdk: '>=3.2.5 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  freezed_annotation: ^2.4.4
+  fpdart: ^1.1.0
+  riverpod_annotation: ^2.3.5
+  flutter_riverpod: ^2.5.1
+  json_annotation: ^4.9.0
+
+  app_ui:
+    path: ../../commons/app_ui
   nvm_api_client:
     path: ../../commons/nvm_api_client
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^3.0.0
+
+  freezed: ^2.5.3
+  json_serializable: ^6.8.0
+  riverpod_generator: ^2.4.2
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

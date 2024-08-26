@@ -6,14 +6,25 @@ part 'comment_failure.freezed.dart';
 @freezed
 class CommentFailure with _$CommentFailure implements Exception {
   CommentFailure._();
-  factory CommentFailure.badRequest({required String message}) = _BadRequest;
-  factory CommentFailure.unauthorized() = _Unauthorized;
-  factory CommentFailure.internalServer() = _InternalServer;
-  factory CommentFailure.apiConnection() = _ApiConnection;
-  factory CommentFailure.unimplemented() = _Unimplemented;
+  factory CommentFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
+  factory CommentFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
+  factory CommentFailure.internalServer({
+    StackTrace? stackTrace,
+  }) = _InternalServer;
+  factory CommentFailure.apiConnection({
+    StackTrace? stackTrace,
+  }) = _ApiConnection;
+  factory CommentFailure.unimplemented({
+    StackTrace? stackTrace,
+  }) = _Unimplemented;
 
   factory CommentFailure.fromError(
     Object failure,
+    {
+      StackTrace? stackTrace,
+    }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {

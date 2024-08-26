@@ -9,11 +9,18 @@ part 'project_failure.freezed.dart';
 class ProjectFailure with _$ProjectFailure implements Exception {
   ProjectFailure._();
   factory ProjectFailure.badRequest({required String message}) = _BadRequest;
-  factory ProjectFailure.unauthorized() = _Unauthorized;
-  factory ProjectFailure.internalServer() = _InternalServer;
-  factory ProjectFailure.apiConnection() = _ApiConnection;
+  factory ProjectFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
+  factory ProjectFailure.internalServer({
+    StackTrace? stackTrace,
+  }) = _InternalServer;
+  factory ProjectFailure.apiConnection({
+    StackTrace? stackTrace,
+  }) = _ApiConnection;
   factory ProjectFailure.unimplemented({
     required Object error,
+    StackTrace? stackTrace,
   }) = _Unimplemented;
 
   @override
@@ -25,7 +32,9 @@ class ProjectFailure with _$ProjectFailure implements Exception {
   }
 
   factory ProjectFailure.fromError(
-    Object failure,
+    Object failure, {
+      StackTrace? stackTrace,
+    }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {

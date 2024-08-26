@@ -24,7 +24,7 @@ final class RemoteProjectRepository implements ProjectRepository {
               _mapResponse,
             );
       },
-      (error, stackTrace) => ProjectFailure.fromError(error),
+      (error, stackTrace) => ProjectFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
@@ -38,7 +38,7 @@ final class RemoteProjectRepository implements ProjectRepository {
               (value) => value.map(_mapResponse).toList(),
             );
       },
-      (error, stackTrace) => ProjectFailure.fromError(error),
+      (error, stackTrace) => ProjectFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

@@ -1,22 +1,22 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'auth_failure.freezed.dart';
+part 'failures.freezed.dart';
 
 @freezed
-class AuthFailure with _$AuthFailure implements Exception {
-  AuthFailure._();
-  factory AuthFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
-  factory AuthFailure.internalServer({
+class UserFailure with _$UserFailure implements Exception {
+  UserFailure._();
+  factory UserFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
+  factory UserFailure.internalServer({
     StackTrace? stackTrace,
   }) = _InternalServer;
-  factory AuthFailure.apiConnection({
+  factory UserFailure.apiConnection({
     StackTrace? stackTrace,
   }) = _ApiConnection;
-  factory AuthFailure.unimplemented({
+  factory UserFailure.unimplemented({
     StackTrace? stackTrace,
   }) = _Unimplemented;
-  factory AuthFailure.invalidParams({
+  factory UserFailure.invalidParams({
     String? usernameError,
     String? passwordError,
     StackTrace? stackTrace,
@@ -30,21 +30,21 @@ class AuthFailure with _$AuthFailure implements Exception {
     return super.toString();
   }
 
-  factory AuthFailure.fromError(
+  factory UserFailure.fromError(
     Object failure, {
       StackTrace? stackTrace,
     }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
-        400 => AuthFailure.badRequest(
+        400 => UserFailure.badRequest(
             message: failure.body['message'],
           ),
-        500 => AuthFailure.internalServer(),
-        -1 => AuthFailure.internalServer(),
-        _ => AuthFailure.unimplemented(),
+        500 => UserFailure.internalServer(),
+        -1 => UserFailure.internalServer(),
+        _ => UserFailure.unimplemented(),
       };
     }
-    return AuthFailure.unimplemented();
+    return UserFailure.unimplemented();
   }
 }

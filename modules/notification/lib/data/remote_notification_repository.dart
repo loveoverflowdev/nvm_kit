@@ -22,7 +22,7 @@ class RemoteNotificationRepository implements NotificationRepository {
           content: content,
           payloads: inputs.map(_mapInput).toList(),
         ),
-        (error, stackTrace) => NotificationFailure.fromError(error),
+        (error, stackTrace) => NotificationFailure.fromError(error, stackTrace: stackTrace),
       );
 
   @override
@@ -31,7 +31,7 @@ class RemoteNotificationRepository implements NotificationRepository {
         () async => _apiClient.getNotificationList().then(
               (value) => value.map(_mapResponse).toList(),
             ),
-        (error, stackTrace) => NotificationFailure.fromError(error),
+        (error, stackTrace) => NotificationFailure.fromError(error, stackTrace: stackTrace),
       );
 
   api.NotificationActionPayload _mapInput(NotificationActionInput input) {

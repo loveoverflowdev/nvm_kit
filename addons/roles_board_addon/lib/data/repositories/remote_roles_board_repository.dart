@@ -25,7 +25,7 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
           .then(
             (value) => value.map(_mapResponse).toList(),
           ),
-      (error, stackTrace) => RolesBoardFailure.fromError(error),
+      (error, stackTrace) => RolesBoardFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

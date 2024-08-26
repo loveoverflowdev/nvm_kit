@@ -7,10 +7,18 @@ part 'workspace_failure.freezed.dart';
 class WorkspaceFailure with _$WorkspaceFailure implements Exception {
   WorkspaceFailure._();
   factory WorkspaceFailure.badRequest({required String message}) = _BadRequest;
-  factory WorkspaceFailure.unauthorized() = _Unauthorized;
-  factory WorkspaceFailure.internalServer() = _InternalServer;
-  factory WorkspaceFailure.apiConnection() = _ApiConnection;
-  factory WorkspaceFailure.unimplemented() = _Unimplemented;
+  factory WorkspaceFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
+  factory WorkspaceFailure.internalServer({
+    StackTrace? stackTrace,
+  }) = _InternalServer;
+  factory WorkspaceFailure.apiConnection({
+    StackTrace? stackTrace,
+  }) = _ApiConnection;
+  factory WorkspaceFailure.unimplemented({
+    StackTrace? stackTrace,
+  }) = _Unimplemented;
 
   @override
   String toString() {
@@ -21,7 +29,9 @@ class WorkspaceFailure with _$WorkspaceFailure implements Exception {
   }
 
   factory WorkspaceFailure.fromError(
-    Object failure,
+    Object failure, {
+      StackTrace? stackTrace,
+    }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {

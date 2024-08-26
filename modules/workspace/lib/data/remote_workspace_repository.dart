@@ -13,7 +13,7 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
   TaskEither<WorkspaceFailure, void> selectWorkspaceId(String workspaceId) {
     return TaskEither.tryCatch(
       () => _apiClient.selectWorkspaceId(workspaceId),
-      (error, stackTrace) => WorkspaceFailure.fromError(error),
+      (error, stackTrace) => WorkspaceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
@@ -29,7 +29,7 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
                 )
                 .toList(),
           ),
-      (error, stackTrace) => WorkspaceFailure.fromError(error),
+      (error, stackTrace) => WorkspaceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
@@ -46,7 +46,7 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
           .then(
             _mapResponse,
           ),
-      (error, stackTrace) => WorkspaceFailure.fromError(error),
+      (error, stackTrace) => WorkspaceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

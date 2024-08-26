@@ -8,15 +8,25 @@ class ActiveResourceStructureFailure
     with _$ActiveResourceStructureFailure
     implements Exception {
   ActiveResourceStructureFailure._();
-  factory ActiveResourceStructureFailure.badRequest({required String message}) =
+  factory ActiveResourceStructureFailure.badRequest({required String message, StackTrace? stackTrace,}) =
       _BadRequest;
-  factory ActiveResourceStructureFailure.unauthorized() = _Unauthorized;
-  factory ActiveResourceStructureFailure.internalServer() = _InternalServer;
-  factory ActiveResourceStructureFailure.apiConnection() = _ApiConnection;
-  factory ActiveResourceStructureFailure.unimplemented() = _Unimplemented;
+  factory ActiveResourceStructureFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
+  factory ActiveResourceStructureFailure.internalServer({
+    StackTrace? stackTrace,
+  }) = _InternalServer;
+  factory ActiveResourceStructureFailure.apiConnection({
+    StackTrace? stackTrace,
+  }) = _ApiConnection;
+  factory ActiveResourceStructureFailure.unimplemented({
+    StackTrace? stackTrace,
+  }) = _Unimplemented;
 
   factory ActiveResourceStructureFailure.fromError(
-    Object failure,
+    Object failure, {
+      StackTrace? stackTrace,
+    }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {

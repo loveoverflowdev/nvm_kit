@@ -6,15 +6,25 @@ part 'notification_failure.freezed.dart';
 @freezed
 class NotificationFailure with _$NotificationFailure implements Exception {
   NotificationFailure._();
-  factory NotificationFailure.badRequest({required String message}) =
+  factory NotificationFailure.badRequest({required String message, StackTrace? stackTrace,}) =
       _BadRequest;
-  factory NotificationFailure.unauthorized() = _Unauthorized;
-  factory NotificationFailure.internalServer() = _InternalServer;
-  factory NotificationFailure.apiConnection() = _ApiConnection;
-  factory NotificationFailure.unimplemented() = _Unimplemented;
+  factory NotificationFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
+  factory NotificationFailure.internalServer({
+    StackTrace? stackTrace,
+  }) = _InternalServer;
+  factory NotificationFailure.apiConnection({
+    StackTrace? stackTrace,
+  }) = _ApiConnection;
+  factory NotificationFailure.unimplemented({
+    StackTrace? stackTrace,
+  }) = _Unimplemented;
 
   factory NotificationFailure.fromError(
-    Object failure,
+    Object failure, {
+      StackTrace? stackTrace,
+    }
   ) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {

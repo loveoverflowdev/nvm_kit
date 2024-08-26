@@ -7,7 +7,7 @@ part of 'active_resource_list_provider.dart';
 // **************************************************************************
 
 String _$activeResourceListHash() =>
-    r'c65d65125149970ac63b374232caf1a4e3f843e8';
+    r'63110dcd8efd779f050f969a7d7ac9db0eb83286';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,17 +30,25 @@ class _SystemHash {
   }
 }
 
-/// See also [activeResourceList].
-@ProviderFor(activeResourceList)
+abstract class _$ActiveResourceList
+    extends BuildlessAutoDisposeNotifier<ActiveResourceListState> {
+  late final String resourceCode;
+
+  ActiveResourceListState build({
+    required String resourceCode,
+  });
+}
+
+/// See also [ActiveResourceList].
+@ProviderFor(ActiveResourceList)
 const activeResourceListProvider = ActiveResourceListFamily();
 
-/// See also [activeResourceList].
-class ActiveResourceListFamily
-    extends Family<AsyncValue<List<ActiveResource>>> {
-  /// See also [activeResourceList].
+/// See also [ActiveResourceList].
+class ActiveResourceListFamily extends Family<ActiveResourceListState> {
+  /// See also [ActiveResourceList].
   const ActiveResourceListFamily();
 
-  /// See also [activeResourceList].
+  /// See also [ActiveResourceList].
   ActiveResourceListProvider call({
     required String resourceCode,
   }) {
@@ -73,17 +81,14 @@ class ActiveResourceListFamily
   String? get name => r'activeResourceListProvider';
 }
 
-/// See also [activeResourceList].
-class ActiveResourceListProvider
-    extends AutoDisposeFutureProvider<List<ActiveResource>> {
-  /// See also [activeResourceList].
+/// See also [ActiveResourceList].
+class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
+    ActiveResourceList, ActiveResourceListState> {
+  /// See also [ActiveResourceList].
   ActiveResourceListProvider({
     required String resourceCode,
   }) : this._internal(
-          (ref) => activeResourceList(
-            ref as ActiveResourceListRef,
-            resourceCode: resourceCode,
-          ),
+          () => ActiveResourceList()..resourceCode = resourceCode,
           from: activeResourceListProvider,
           name: r'activeResourceListProvider',
           debugGetCreateSourceHash:
@@ -109,14 +114,20 @@ class ActiveResourceListProvider
   final String resourceCode;
 
   @override
-  Override overrideWith(
-    FutureOr<List<ActiveResource>> Function(ActiveResourceListRef provider)
-        create,
+  ActiveResourceListState runNotifierBuild(
+    covariant ActiveResourceList notifier,
   ) {
+    return notifier.build(
+      resourceCode: resourceCode,
+    );
+  }
+
+  @override
+  Override overrideWith(ActiveResourceList Function() create) {
     return ProviderOverride(
       origin: this,
       override: ActiveResourceListProvider._internal(
-        (ref) => create(ref as ActiveResourceListRef),
+        () => create()..resourceCode = resourceCode,
         from: from,
         name: null,
         dependencies: null,
@@ -128,7 +139,8 @@ class ActiveResourceListProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<ActiveResource>> createElement() {
+  AutoDisposeNotifierProviderElement<ActiveResourceList,
+      ActiveResourceListState> createElement() {
     return _ActiveResourceListProviderElement(this);
   }
 
@@ -148,14 +160,14 @@ class ActiveResourceListProvider
 }
 
 mixin ActiveResourceListRef
-    on AutoDisposeFutureProviderRef<List<ActiveResource>> {
+    on AutoDisposeNotifierProviderRef<ActiveResourceListState> {
   /// The parameter `resourceCode` of this provider.
   String get resourceCode;
 }
 
 class _ActiveResourceListProviderElement
-    extends AutoDisposeFutureProviderElement<List<ActiveResource>>
-    with ActiveResourceListRef {
+    extends AutoDisposeNotifierProviderElement<ActiveResourceList,
+        ActiveResourceListState> with ActiveResourceListRef {
   _ActiveResourceListProviderElement(super.provider);
 
   @override
