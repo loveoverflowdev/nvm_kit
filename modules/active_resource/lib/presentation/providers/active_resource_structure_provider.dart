@@ -1,1 +1,0 @@
-export 'active_resource_structure_provider/active_resource_structure_provider.dart';

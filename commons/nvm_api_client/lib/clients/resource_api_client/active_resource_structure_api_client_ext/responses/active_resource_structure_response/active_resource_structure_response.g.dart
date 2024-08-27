@@ -6,9 +6,9 @@ part of 'active_resource_structure_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActiveResourceStructureResponse _$ActiveResourceStructureResponseFromJson(
+ActiveStructureResponse _$ActiveStructureResponseFromJson(
         Map<String, dynamic> json) =>
-    ActiveResourceStructureResponse(
+    ActiveStructureResponse(
       id: json['id'] as String,
       code: json['code'] as String,
       title: json['title'] as String,
@@ -18,8 +18,8 @@ ActiveResourceStructureResponse _$ActiveResourceStructureResponseFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$ActiveResourceStructureResponseToJson(
-        ActiveResourceStructureResponse instance) =>
+Map<String, dynamic> _$ActiveStructureResponseToJson(
+        ActiveStructureResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'code': instance.code,

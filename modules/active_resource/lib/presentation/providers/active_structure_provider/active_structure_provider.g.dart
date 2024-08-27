@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_structure_provider.dart';
+part of 'active_structure_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeResourceStructureHash() =>
-    r'03236ac8ea8f7e49a5965246a5aa0063eaed16d8';
+String _$activeStructureHash() => r'29a4766db66de863cab52526c0afc8ff46cf6669';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,28 +29,27 @@ class _SystemHash {
   }
 }
 
-/// See also [activeResourceStructure].
-@ProviderFor(activeResourceStructure)
-const activeResourceStructureProvider = ActiveResourceStructureFamily();
+/// See also [activeStructure].
+@ProviderFor(activeStructure)
+const activeStructureProvider = ActiveStructureFamily();
 
-/// See also [activeResourceStructure].
-class ActiveResourceStructureFamily
-    extends Family<AsyncValue<ActiveStructure>> {
-  /// See also [activeResourceStructure].
-  const ActiveResourceStructureFamily();
+/// See also [activeStructure].
+class ActiveStructureFamily extends Family<AsyncValue<ActiveStructure>> {
+  /// See also [activeStructure].
+  const ActiveStructureFamily();
 
-  /// See also [activeResourceStructure].
-  ActiveResourceStructureProvider call({
+  /// See also [activeStructure].
+  ActiveStructureProvider call({
     required String resourceStructureId,
   }) {
-    return ActiveResourceStructureProvider(
+    return ActiveStructureProvider(
       resourceStructureId: resourceStructureId,
     );
   }
 
   @override
-  ActiveResourceStructureProvider getProviderOverride(
-    covariant ActiveResourceStructureProvider provider,
+  ActiveStructureProvider getProviderOverride(
+    covariant ActiveStructureProvider provider,
   ) {
     return call(
       resourceStructureId: provider.resourceStructureId,
@@ -70,33 +68,33 @@ class ActiveResourceStructureFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'activeResourceStructureProvider';
+  String? get name => r'activeStructureProvider';
 }
 
-/// See also [activeResourceStructure].
-class ActiveResourceStructureProvider
+/// See also [activeStructure].
+class ActiveStructureProvider
     extends AutoDisposeFutureProvider<ActiveStructure> {
-  /// See also [activeResourceStructure].
-  ActiveResourceStructureProvider({
+  /// See also [activeStructure].
+  ActiveStructureProvider({
     required String resourceStructureId,
   }) : this._internal(
-          (ref) => activeResourceStructure(
-            ref as ActiveResourceStructureRef,
+          (ref) => activeStructure(
+            ref as ActiveStructureRef,
             resourceStructureId: resourceStructureId,
           ),
-          from: activeResourceStructureProvider,
-          name: r'activeResourceStructureProvider',
+          from: activeStructureProvider,
+          name: r'activeStructureProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$activeResourceStructureHash,
-          dependencies: ActiveResourceStructureFamily._dependencies,
+                  : _$activeStructureHash,
+          dependencies: ActiveStructureFamily._dependencies,
           allTransitiveDependencies:
-              ActiveResourceStructureFamily._allTransitiveDependencies,
+              ActiveStructureFamily._allTransitiveDependencies,
           resourceStructureId: resourceStructureId,
         );
 
-  ActiveResourceStructureProvider._internal(
+  ActiveStructureProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -110,13 +108,12 @@ class ActiveResourceStructureProvider
 
   @override
   Override overrideWith(
-    FutureOr<ActiveStructure> Function(ActiveResourceStructureRef provider)
-        create,
+    FutureOr<ActiveStructure> Function(ActiveStructureRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: ActiveResourceStructureProvider._internal(
-        (ref) => create(ref as ActiveResourceStructureRef),
+      override: ActiveStructureProvider._internal(
+        (ref) => create(ref as ActiveStructureRef),
         from: from,
         name: null,
         dependencies: null,
@@ -129,12 +126,12 @@ class ActiveResourceStructureProvider
 
   @override
   AutoDisposeFutureProviderElement<ActiveStructure> createElement() {
-    return _ActiveResourceStructureProviderElement(this);
+    return _ActiveStructureProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ActiveResourceStructureProvider &&
+    return other is ActiveStructureProvider &&
         other.resourceStructureId == resourceStructureId;
   }
 
@@ -147,20 +144,19 @@ class ActiveResourceStructureProvider
   }
 }
 
-mixin ActiveResourceStructureRef
-    on AutoDisposeFutureProviderRef<ActiveStructure> {
+mixin ActiveStructureRef on AutoDisposeFutureProviderRef<ActiveStructure> {
   /// The parameter `resourceStructureId` of this provider.
   String get resourceStructureId;
 }
 
-class _ActiveResourceStructureProviderElement
+class _ActiveStructureProviderElement
     extends AutoDisposeFutureProviderElement<ActiveStructure>
-    with ActiveResourceStructureRef {
-  _ActiveResourceStructureProviderElement(super.provider);
+    with ActiveStructureRef {
+  _ActiveStructureProviderElement(super.provider);
 
   @override
   String get resourceStructureId =>
-      (origin as ActiveResourceStructureProvider).resourceStructureId;
+      (origin as ActiveStructureProvider).resourceStructureId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

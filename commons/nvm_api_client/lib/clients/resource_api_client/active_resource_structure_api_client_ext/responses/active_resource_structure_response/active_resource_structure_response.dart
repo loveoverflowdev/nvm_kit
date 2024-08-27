@@ -5,22 +5,21 @@ import '../active_field_structure_response/active_field_structure_response.dart'
 part 'active_resource_structure_response.g.dart';
 
 @JsonSerializable()
-final class ActiveResourceStructureResponse {
+final class ActiveStructureResponse {
   final String id;
   final String code;
   final String title;
   final List<ActiveFieldStructureResponse> fields;
 
-  ActiveResourceStructureResponse({
+  ActiveStructureResponse({
     required this.id,
     required this.code,
     required this.title,
     required this.fields,
   });
 
-  factory ActiveResourceStructureResponse.fromJson(Map<String, dynamic> json) =>
-      _$ActiveResourceStructureResponseFromJson(json);
+  factory ActiveStructureResponse.fromJson(Map<String, dynamic> json) =>
+      _$ActiveStructureResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ActiveResourceStructureResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveStructureResponseToJson(this);
 }

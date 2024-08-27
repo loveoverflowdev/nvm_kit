@@ -4,29 +4,27 @@ import '../resource_api_client.dart';
 import 'requests.dart';
 import 'responses.dart';
 
-extension ActiveResourceStructureApiClientExt on ResourceApiClient {
-  Future<List<ActiveResourceStructureResponse>>
-      getActiveResourceStructureList() {
+extension ActiveStructureApiClientExt on ResourceApiClient {
+  Future<List<ActiveStructureResponse>> getActiveStructureList() {
     return requestJson(
-      endpoint: endpoints.getActiveResourceStructureList(),
+      endpoint: endpoints.getActiveStructureList(),
       alchemistQuery: AlchemistQuery(
         requestField: ActiveFieldStructureRequestField.all.build(),
       ),
       dataHandler: (json) => (json['data'] as Iterable)
           .map(
-            (e) => ActiveResourceStructureResponse.fromJson(e),
+            (e) => ActiveStructureResponse.fromJson(e),
           )
           .toList(),
     );
   }
 
-  Future<ActiveResourceStructureResponse> getActiveResourceStructure({
+  Future<ActiveStructureResponse> getActiveStructure({
     required String id,
   }) {
     return requestJson(
-      endpoint: endpoints.getOneActiveResourceStructure(id: id),
-      dataHandler: (json) =>
-          ActiveResourceStructureResponse.fromJson(json['data']),
+      endpoint: endpoints.getOneActiveStructure(id: id),
+      dataHandler: (json) => ActiveStructureResponse.fromJson(json['data']),
     );
   }
 }

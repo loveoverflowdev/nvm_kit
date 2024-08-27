@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'active_resource_structure_failure.dart';
+part of 'active_structure_failure.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ActiveResourceStructureFailure {
+mixin _$ActiveStructureFailure {
   StackTrace? get stackTrace => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -75,36 +75,34 @@ mixin _$ActiveResourceStructureFailure {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ActiveResourceStructureFailureCopyWith<ActiveResourceStructureFailure>
-      get copyWith => throw _privateConstructorUsedError;
+  $ActiveStructureFailureCopyWith<ActiveStructureFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActiveResourceStructureFailureCopyWith<$Res> {
-  factory $ActiveResourceStructureFailureCopyWith(
-          ActiveResourceStructureFailure value,
-          $Res Function(ActiveResourceStructureFailure) then) =
-      _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-          ActiveResourceStructureFailure>;
+abstract class $ActiveStructureFailureCopyWith<$Res> {
+  factory $ActiveStructureFailureCopyWith(ActiveStructureFailure value,
+          $Res Function(ActiveStructureFailure) then) =
+      _$ActiveStructureFailureCopyWithImpl<$Res, ActiveStructureFailure>;
   @useResult
   $Res call({StackTrace? stackTrace});
 }
 
 /// @nodoc
-class _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-        $Val extends ActiveResourceStructureFailure>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
-  _$ActiveResourceStructureFailureCopyWithImpl(this._value, this._then);
+class _$ActiveStructureFailureCopyWithImpl<$Res,
+        $Val extends ActiveStructureFailure>
+    implements $ActiveStructureFailureCopyWith<$Res> {
+  _$ActiveStructureFailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -122,7 +120,7 @@ class _$ActiveResourceStructureFailureCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$BadRequestImplCopyWith<$Res>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
+    implements $ActiveStructureFailureCopyWith<$Res> {
   factory _$$BadRequestImplCopyWith(
           _$BadRequestImpl value, $Res Function(_$BadRequestImpl) then) =
       __$$BadRequestImplCopyWithImpl<$Res>;
@@ -133,13 +131,13 @@ abstract class _$$BadRequestImplCopyWith<$Res>
 
 /// @nodoc
 class __$$BadRequestImplCopyWithImpl<$Res>
-    extends _$ActiveResourceStructureFailureCopyWithImpl<$Res, _$BadRequestImpl>
+    extends _$ActiveStructureFailureCopyWithImpl<$Res, _$BadRequestImpl>
     implements _$$BadRequestImplCopyWith<$Res> {
   __$$BadRequestImplCopyWithImpl(
       _$BadRequestImpl _value, $Res Function(_$BadRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -172,7 +170,7 @@ class _$BadRequestImpl extends _BadRequest {
 
   @override
   String toString() {
-    return 'ActiveResourceStructureFailure.badRequest(message: $message, stackTrace: $stackTrace)';
+    return 'ActiveStructureFailure.badRequest(message: $message, stackTrace: $stackTrace)';
   }
 
   @override
@@ -188,7 +186,7 @@ class _$BadRequestImpl extends _BadRequest {
   @override
   int get hashCode => Object.hash(runtimeType, message, stackTrace);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -278,7 +276,7 @@ class _$BadRequestImpl extends _BadRequest {
   }
 }
 
-abstract class _BadRequest extends ActiveResourceStructureFailure {
+abstract class _BadRequest extends ActiveStructureFailure {
   factory _BadRequest(
       {required final String message,
       final StackTrace? stackTrace}) = _$BadRequestImpl;
@@ -288,7 +286,7 @@ abstract class _BadRequest extends ActiveResourceStructureFailure {
   @override
   StackTrace? get stackTrace;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -298,7 +296,7 @@ abstract class _BadRequest extends ActiveResourceStructureFailure {
 
 /// @nodoc
 abstract class _$$UnauthorizedImplCopyWith<$Res>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
+    implements $ActiveStructureFailureCopyWith<$Res> {
   factory _$$UnauthorizedImplCopyWith(
           _$UnauthorizedImpl value, $Res Function(_$UnauthorizedImpl) then) =
       __$$UnauthorizedImplCopyWithImpl<$Res>;
@@ -309,13 +307,13 @@ abstract class _$$UnauthorizedImplCopyWith<$Res>
 
 /// @nodoc
 class __$$UnauthorizedImplCopyWithImpl<$Res>
-    extends _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-        _$UnauthorizedImpl> implements _$$UnauthorizedImplCopyWith<$Res> {
+    extends _$ActiveStructureFailureCopyWithImpl<$Res, _$UnauthorizedImpl>
+    implements _$$UnauthorizedImplCopyWith<$Res> {
   __$$UnauthorizedImplCopyWithImpl(
       _$UnauthorizedImpl _value, $Res Function(_$UnauthorizedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -341,7 +339,7 @@ class _$UnauthorizedImpl extends _Unauthorized {
 
   @override
   String toString() {
-    return 'ActiveResourceStructureFailure.unauthorized(stackTrace: $stackTrace)';
+    return 'ActiveStructureFailure.unauthorized(stackTrace: $stackTrace)';
   }
 
   @override
@@ -356,7 +354,7 @@ class _$UnauthorizedImpl extends _Unauthorized {
   @override
   int get hashCode => Object.hash(runtimeType, stackTrace);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -446,14 +444,14 @@ class _$UnauthorizedImpl extends _Unauthorized {
   }
 }
 
-abstract class _Unauthorized extends ActiveResourceStructureFailure {
+abstract class _Unauthorized extends ActiveStructureFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
   @override
   StackTrace? get stackTrace;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -463,7 +461,7 @@ abstract class _Unauthorized extends ActiveResourceStructureFailure {
 
 /// @nodoc
 abstract class _$$InternalServerImplCopyWith<$Res>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
+    implements $ActiveStructureFailureCopyWith<$Res> {
   factory _$$InternalServerImplCopyWith(_$InternalServerImpl value,
           $Res Function(_$InternalServerImpl) then) =
       __$$InternalServerImplCopyWithImpl<$Res>;
@@ -474,13 +472,13 @@ abstract class _$$InternalServerImplCopyWith<$Res>
 
 /// @nodoc
 class __$$InternalServerImplCopyWithImpl<$Res>
-    extends _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-        _$InternalServerImpl> implements _$$InternalServerImplCopyWith<$Res> {
+    extends _$ActiveStructureFailureCopyWithImpl<$Res, _$InternalServerImpl>
+    implements _$$InternalServerImplCopyWith<$Res> {
   __$$InternalServerImplCopyWithImpl(
       _$InternalServerImpl _value, $Res Function(_$InternalServerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -506,7 +504,7 @@ class _$InternalServerImpl extends _InternalServer {
 
   @override
   String toString() {
-    return 'ActiveResourceStructureFailure.internalServer(stackTrace: $stackTrace)';
+    return 'ActiveStructureFailure.internalServer(stackTrace: $stackTrace)';
   }
 
   @override
@@ -521,7 +519,7 @@ class _$InternalServerImpl extends _InternalServer {
   @override
   int get hashCode => Object.hash(runtimeType, stackTrace);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -612,7 +610,7 @@ class _$InternalServerImpl extends _InternalServer {
   }
 }
 
-abstract class _InternalServer extends ActiveResourceStructureFailure {
+abstract class _InternalServer extends ActiveStructureFailure {
   factory _InternalServer({final StackTrace? stackTrace}) =
       _$InternalServerImpl;
   _InternalServer._() : super._();
@@ -620,7 +618,7 @@ abstract class _InternalServer extends ActiveResourceStructureFailure {
   @override
   StackTrace? get stackTrace;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -630,7 +628,7 @@ abstract class _InternalServer extends ActiveResourceStructureFailure {
 
 /// @nodoc
 abstract class _$$ApiConnectionImplCopyWith<$Res>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
+    implements $ActiveStructureFailureCopyWith<$Res> {
   factory _$$ApiConnectionImplCopyWith(
           _$ApiConnectionImpl value, $Res Function(_$ApiConnectionImpl) then) =
       __$$ApiConnectionImplCopyWithImpl<$Res>;
@@ -641,13 +639,13 @@ abstract class _$$ApiConnectionImplCopyWith<$Res>
 
 /// @nodoc
 class __$$ApiConnectionImplCopyWithImpl<$Res>
-    extends _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-        _$ApiConnectionImpl> implements _$$ApiConnectionImplCopyWith<$Res> {
+    extends _$ActiveStructureFailureCopyWithImpl<$Res, _$ApiConnectionImpl>
+    implements _$$ApiConnectionImplCopyWith<$Res> {
   __$$ApiConnectionImplCopyWithImpl(
       _$ApiConnectionImpl _value, $Res Function(_$ApiConnectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -673,7 +671,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
 
   @override
   String toString() {
-    return 'ActiveResourceStructureFailure.apiConnection(stackTrace: $stackTrace)';
+    return 'ActiveStructureFailure.apiConnection(stackTrace: $stackTrace)';
   }
 
   @override
@@ -688,7 +686,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
   @override
   int get hashCode => Object.hash(runtimeType, stackTrace);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -778,14 +776,14 @@ class _$ApiConnectionImpl extends _ApiConnection {
   }
 }
 
-abstract class _ApiConnection extends ActiveResourceStructureFailure {
+abstract class _ApiConnection extends ActiveStructureFailure {
   factory _ApiConnection({final StackTrace? stackTrace}) = _$ApiConnectionImpl;
   _ApiConnection._() : super._();
 
   @override
   StackTrace? get stackTrace;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -795,7 +793,7 @@ abstract class _ApiConnection extends ActiveResourceStructureFailure {
 
 /// @nodoc
 abstract class _$$UnimplementedImplCopyWith<$Res>
-    implements $ActiveResourceStructureFailureCopyWith<$Res> {
+    implements $ActiveStructureFailureCopyWith<$Res> {
   factory _$$UnimplementedImplCopyWith(
           _$UnimplementedImpl value, $Res Function(_$UnimplementedImpl) then) =
       __$$UnimplementedImplCopyWithImpl<$Res>;
@@ -806,13 +804,13 @@ abstract class _$$UnimplementedImplCopyWith<$Res>
 
 /// @nodoc
 class __$$UnimplementedImplCopyWithImpl<$Res>
-    extends _$ActiveResourceStructureFailureCopyWithImpl<$Res,
-        _$UnimplementedImpl> implements _$$UnimplementedImplCopyWith<$Res> {
+    extends _$ActiveStructureFailureCopyWithImpl<$Res, _$UnimplementedImpl>
+    implements _$$UnimplementedImplCopyWith<$Res> {
   __$$UnimplementedImplCopyWithImpl(
       _$UnimplementedImpl _value, $Res Function(_$UnimplementedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -838,7 +836,7 @@ class _$UnimplementedImpl extends _Unimplemented {
 
   @override
   String toString() {
-    return 'ActiveResourceStructureFailure.unimplemented(stackTrace: $stackTrace)';
+    return 'ActiveStructureFailure.unimplemented(stackTrace: $stackTrace)';
   }
 
   @override
@@ -853,7 +851,7 @@ class _$UnimplementedImpl extends _Unimplemented {
   @override
   int get hashCode => Object.hash(runtimeType, stackTrace);
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -943,14 +941,14 @@ class _$UnimplementedImpl extends _Unimplemented {
   }
 }
 
-abstract class _Unimplemented extends ActiveResourceStructureFailure {
+abstract class _Unimplemented extends ActiveStructureFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
   @override
   StackTrace? get stackTrace;
 
-  /// Create a copy of ActiveResourceStructureFailure
+  /// Create a copy of ActiveStructureFailure
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

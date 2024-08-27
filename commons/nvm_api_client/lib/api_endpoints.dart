@@ -41,7 +41,7 @@ ApiEndpoint getActiveResourceList({
       requiredWorkspace: true,
     );
 
-ApiEndpoint getOneActiveResourceStructure({
+ApiEndpoint getOneActiveStructure({
   required String id,
 }) =>
     ApiEndpoint(
@@ -52,7 +52,7 @@ ApiEndpoint getOneActiveResourceStructure({
       requiredWorkspace: true,
     );
 
-ApiEndpoint getActiveResourceStructureList() => ApiEndpoint(
+ApiEndpoint getActiveStructureList() => ApiEndpoint(
       uriTemplate:
           '/api/workspaces/:workspace_id/active-resource/get/structures',
       jsonPayload: true,

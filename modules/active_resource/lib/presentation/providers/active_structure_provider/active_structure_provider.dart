@@ -1,17 +1,17 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:active_resource/domain.dart';
-import '../active_resource_structure_repository_provider.dart';
+import '../active_structure_repository_provider.dart';
 
-part 'active_resource_structure_provider.g.dart';
+part 'active_structure_provider.g.dart';
 
 @riverpod
-Future<ActiveStructure> activeResourceStructure(
-  ActiveResourceStructureRef ref, {
+Future<ActiveStructure> activeStructure(
+  ActiveStructureRef ref, {
   required String resourceStructureId,
 }) {
   return ref
-      .read(activeResourceStructureRepositoryProvider)
-      .getActiveResourceStructure(id: resourceStructureId)
+      .read(activeStructureRepositoryProvider)
+      .getActiveStructure(id: resourceStructureId)
       .run()
       .then(
     (project) {

@@ -6,58 +6,57 @@ import '../../domain.dart'
     show
         ActiveField,
         ActiveStructure,
-        ActiveResourceStructureFailure,
-        ActiveResourceStructureRepository;
+        ActiveStructureFailure,
+        ActiveStructureRepository;
 
-final class CachedActiveResourceStructureRepository
-    implements ActiveResourceStructureRepository {
+final class CachedActiveStructureRepository
+    implements ActiveStructureRepository {
   final api.ResourceApiClient _apiClient;
   final Directory _directory;
 
-  CachedActiveResourceStructureRepository({
+  CachedActiveStructureRepository({
     required api.ResourceApiClient apiClient,
     required Directory directory,
   })  : _apiClient = apiClient,
         _directory = directory;
 
   @override
-  TaskEither<ActiveResourceStructureFailure, ActiveStructure>
-      getActiveResourceStructure({
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructure({
     required String id,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
-            .getActiveResourceStructure(
+            .getActiveStructure(
               id: id,
             )
             .then(
               (value) => _mapResponse(value),
             );
       },
-      (error, stackTrace) => ActiveResourceStructureFailure.fromError(
+      (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
       ),
     );
   }
 
   @override
-  TaskEither<ActiveResourceStructureFailure, List<ActiveStructure>>
-      getActiveResourceStructureList() {
+  TaskEither<ActiveStructureFailure, List<ActiveStructure>>
+      getActiveStructureList() {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient.getActiveResourceStructureList().then(
+        return _apiClient.getActiveStructureList().then(
               (value) => value.map(_mapResponse).toList(),
             );
       },
-      (error, stackTrace) => ActiveResourceStructureFailure.fromError(
+      (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
       ),
     );
   }
 
   ActiveStructure _mapResponse(
-    api.ActiveResourceStructureResponse response,
+    api.ActiveStructureResponse response,
   ) {
     return ActiveStructure(
       code: response.code,

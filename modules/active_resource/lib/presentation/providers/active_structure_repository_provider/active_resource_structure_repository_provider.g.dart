@@ -6,23 +6,23 @@ part of 'active_resource_structure_repository_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeResourceStructureRepositoryHash() =>
-    r'68a5b767c6c7d9cab9abbf58949ca4542a2239b8';
+String _$activeStructureRepositoryHash() =>
+    r'c8ab999dad507f72464a4a7a163bfd3260f0e087';
 
-/// See also [activeResourceStructureRepository].
-@ProviderFor(activeResourceStructureRepository)
-final activeResourceStructureRepositoryProvider =
-    AutoDisposeProvider<ActiveResourceStructureRepository>.internal(
-  activeResourceStructureRepository,
-  name: r'activeResourceStructureRepositoryProvider',
+/// See also [activeStructureRepository].
+@ProviderFor(activeStructureRepository)
+final activeStructureRepositoryProvider =
+    AutoDisposeProvider<ActiveStructureRepository>.internal(
+  activeStructureRepository,
+  name: r'activeStructureRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$activeResourceStructureRepositoryHash,
+      : _$activeStructureRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ActiveResourceStructureRepositoryRef
-    = AutoDisposeProviderRef<ActiveResourceStructureRepository>;
+typedef ActiveStructureRepositoryRef
+    = AutoDisposeProviderRef<ActiveStructureRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
