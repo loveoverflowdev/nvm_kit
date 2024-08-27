@@ -33,7 +33,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
               (value) => _mapResponse(value),
             );
       },
-      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace),
+      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
@@ -54,7 +54,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
               (value) => value.map(_mapResponse).toList(),
             );
       },
-      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace),
+      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

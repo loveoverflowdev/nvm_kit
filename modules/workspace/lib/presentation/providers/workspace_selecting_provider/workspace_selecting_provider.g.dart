@@ -7,7 +7,7 @@ part of 'workspace_selecting_provider.dart';
 // **************************************************************************
 
 String _$workspaceSelectingHash() =>
-    r'3e846ef0bf94cf7035d7774f68a9e9a47d39e231';
+    r'd93123ff03ebed1e929056b99ba2cdeaafb17860';
 
 /// See also [WorkspaceSelecting].
 @ProviderFor(WorkspaceSelecting)
