@@ -5,14 +5,14 @@ import 'repositories.dart';
 
 ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
     getCommentListTask({
-  required String resourceCode,
+  required String activeStructureCode,
   required String resourceId,
 }) {
   return ReaderTaskEither(
     (repository) {
       return repository
           .getCommentList(
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             resourceId: resourceId,
           )
           .run();

@@ -1,4 +1,4 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:nvm_api_client/nvm_api_client.dart';
 
 class NavigationGuard {
   final WorkspaceIdProvider _workspaceIdProvider;

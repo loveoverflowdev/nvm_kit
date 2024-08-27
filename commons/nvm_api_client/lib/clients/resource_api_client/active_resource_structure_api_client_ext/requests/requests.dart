@@ -4,8 +4,8 @@ abstract class ActiveFieldStructureRequestField {
   static final RequestField all = RequestField.children(
     [
       RequestField.name('id'),
-      RequestField.name('resourceCode'),
-      RequestField.name('resourceTitle'),
+      RequestField.name('activeStructureCode'),
+      RequestField.name('activeStructureTitle'),
       RequestField.name('updatedBy'),
       RequestField.name('createdAt'),
       RequestField.name('updatedAt'),

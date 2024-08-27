@@ -5,8 +5,7 @@ import '../active_resource_structure_repository_provider.dart';
 
 part 'active_resource_structure_list_provider.g.dart';
 
-typedef ActiveResourceStructureListState
-    = AsyncValue<List<ActiveResourceStructure>>;
+typedef ActiveResourceStructureListState = AsyncValue<List<ActiveStructure>>;
 
 @riverpod
 class ActiveResourceStructureList extends _$ActiveResourceStructureList {
@@ -15,7 +14,7 @@ class ActiveResourceStructureList extends _$ActiveResourceStructureList {
       ActiveResourceStructureListState.data(List.empty());
 
   void loadActiveResourceStructureList({
-    required String resourceCode,
+    required String activeStructureCode,
   }) async {
     state = const AsyncValue.loading();
 

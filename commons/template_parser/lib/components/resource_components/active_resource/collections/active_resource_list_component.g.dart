@@ -11,10 +11,11 @@ ActiveResourceListComponent _$ActiveResourceListComponentFromJson(
     ActiveResourceListComponent(
       tile: ActiveResourceTileComponent.fromJson(
           json['tile'] as Map<String, dynamic>),
-    );
+    )..type = json['type'] as String;
 
 Map<String, dynamic> _$ActiveResourceListComponentToJson(
         ActiveResourceListComponent instance) =>
     <String, dynamic>{
+      'type': instance.type,
       'tile': instance.tile,
     };

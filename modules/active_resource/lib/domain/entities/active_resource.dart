@@ -1,16 +1,16 @@
 class ActiveResource {
   final String id;
-  final Map<String, dynamic> attributes;
+  final Map<String, dynamic> liveAttributes;
   final String? projectId;
   final ActiveResourceCreator? creator;
 
   ActiveResource({
     String? id,
-    Map<String, dynamic>? attributes,
+    Map<String, dynamic>? liveAttributes,
     String? projectId,
     ActiveResourceCreator? creator,
   })  : id = id ?? '',
-        attributes = attributes ?? {},
+        liveAttributes = liveAttributes ?? {},
         projectId = projectId,
         creator = creator;
 }

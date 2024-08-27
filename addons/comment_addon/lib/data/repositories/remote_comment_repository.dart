@@ -11,41 +11,43 @@ final class RemoteCommentRepository implements CommentRepository {
 
   @override
   TaskEither<CommentFailure, List<Comment>> getCommentList({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
           .getCommentList(
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             resourceId: resourceId,
           )
           .then(
             (value) => value.map(_mapResponse).toList(),
           ),
-      (error, stackTrace) => CommentFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) =>
+          CommentFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
   @override
   TaskEither<CommentFailure, void> createComment({
     required CommentPayload payload,
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) {
     return TaskEither.tryCatch(
       () async {
         _apiClient.createComment(
-          resourceCode: resourceCode, 
-          resourceId: resourceId, 
+          activeStructureCode: activeStructureCode,
+          resourceId: resourceId,
           payload: api.CommentPayload(
-            topic: payload.topic, 
-            title: payload.title, 
+            topic: payload.topic,
+            title: payload.title,
             content: payload.content,
           ),
         );
-      }, 
-      (error, stackTrace) => CommentFailure.fromError(error, stackTrace: stackTrace),
+      },
+      (error, stackTrace) =>
+          CommentFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

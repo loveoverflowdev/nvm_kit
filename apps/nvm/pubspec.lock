@@ -15,6 +15,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  alchemist_query:
+    dependency: transitive
+    description:
+      path: "../../commons/alchemist_query"
+      relative: true
+    source: path
+    version: "0.0.1"
   app_ui:
     dependency: "direct main"
     description:
@@ -287,6 +294,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../../modules/notification"
+      relative: true
+    source: path
+    version: "0.0.1"
+  nvm_api_client:
+    dependency: "direct main"
+    description:
+      path: "../../commons/nvm_api_client"
       relative: true
     source: path
     version: "0.0.1"

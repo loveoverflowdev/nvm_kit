@@ -2,7 +2,8 @@ import 'package:alchemist_query/alchemist_query.dart';
 
 final class ActiveFieldRequestField {
   static final RequestField id = RequestField.name('id');
-  static final RequestField attributes = RequestField.name('attributes');
+  static final RequestField liveAttributes =
+      RequestField.name('liveAttributes');
   static final RequestField projectId = RequestField.name('projectId');
 
   static final RequestField icon = RequestField.name('icon');
@@ -15,7 +16,7 @@ final class ActiveFieldRequestField {
   static final RequestField all = RequestField.children(
     [
       id,
-      attributes,
+      liveAttributes,
       RequestField.name('createdByUser').addChildren([
         username,
         id,

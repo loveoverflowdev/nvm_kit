@@ -21,7 +21,7 @@ final class CommentApiClient {
 
   Future<CommentResponse> getComment({
     required String commentId,
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) async {
     // endpoints.getCo
@@ -29,7 +29,7 @@ final class CommentApiClient {
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/get/comments/:id',
+            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments/:id',
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
@@ -39,14 +39,14 @@ final class CommentApiClient {
   }
 
   Future<List<CommentResponse>> getCommentList({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/get/comments',
+            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
@@ -57,14 +57,14 @@ final class CommentApiClient {
   }
 
   Future<void> createComment({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
     required CommentPayload payload,
   }) async {
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/post/comments',
+            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
         requiredWorkspace: true,
         requiredAuthorization: true,
         jsonPayload: true,

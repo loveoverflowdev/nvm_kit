@@ -1,15 +1,18 @@
-
 import 'package:fpdart/fpdart.dart';
 import 'package:roles_board_addon/domain.dart';
 
-ReaderTaskEither<RolesBoardRepository, RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
-  required String resourceCode,
+ReaderTaskEither<RolesBoardRepository, RolesBoardFailure, List<RolesBoard>>
+    getRolesBoardList({
+  required String activeStructureCode,
   required String resourceId,
   String? requestField,
-}) => ReaderTaskEither(
-  (repository) => repository.getRolesBoardList(
-    resourceCode: resourceCode,
-    resourceId: resourceId,
-    requestField: requestField,
-  ).run(),
-);
+}) =>
+        ReaderTaskEither(
+          (repository) => repository
+              .getRolesBoardList(
+                activeStructureCode: activeStructureCode,
+                resourceId: resourceId,
+                requestField: requestField,
+              )
+              .run(),
+        );

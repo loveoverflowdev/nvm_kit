@@ -11,10 +11,11 @@ WorkspaceListComponent _$WorkspaceListComponentFromJson(
     WorkspaceListComponent(
       tile:
           WorkspaceTileComponent.fromJson(json['tile'] as Map<String, dynamic>),
-    );
+    )..type = json['type'] as String;
 
 Map<String, dynamic> _$WorkspaceListComponentToJson(
         WorkspaceListComponent instance) =>
     <String, dynamic>{
+      'type': instance.type,
       'tile': instance.tile,
     };

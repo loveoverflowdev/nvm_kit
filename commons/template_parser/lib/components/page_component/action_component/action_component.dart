@@ -8,12 +8,12 @@ final class ActionComponent implements Component {
   final String actionCode;
   final String actionType; // goto
   // Nếu action không có quyền thì sẽ thông báo
-  final Map<String, dynamic> attributes;
+  final Map<String, dynamic> liveAttributes;
 
   ActionComponent({
     required this.actionCode,
     required this.actionType,
-    required this.attributes,
+    required this.liveAttributes,
   });
 
   factory ActionComponent.fromJson(Map<String, dynamic> json) =>

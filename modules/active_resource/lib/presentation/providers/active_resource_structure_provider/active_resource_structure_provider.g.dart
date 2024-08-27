@@ -36,7 +36,7 @@ const activeResourceStructureProvider = ActiveResourceStructureFamily();
 
 /// See also [activeResourceStructure].
 class ActiveResourceStructureFamily
-    extends Family<AsyncValue<ActiveResourceStructure>> {
+    extends Family<AsyncValue<ActiveStructure>> {
   /// See also [activeResourceStructure].
   const ActiveResourceStructureFamily();
 
@@ -75,7 +75,7 @@ class ActiveResourceStructureFamily
 
 /// See also [activeResourceStructure].
 class ActiveResourceStructureProvider
-    extends AutoDisposeFutureProvider<ActiveResourceStructure> {
+    extends AutoDisposeFutureProvider<ActiveStructure> {
   /// See also [activeResourceStructure].
   ActiveResourceStructureProvider({
     required String resourceStructureId,
@@ -110,8 +110,7 @@ class ActiveResourceStructureProvider
 
   @override
   Override overrideWith(
-    FutureOr<ActiveResourceStructure> Function(
-            ActiveResourceStructureRef provider)
+    FutureOr<ActiveStructure> Function(ActiveResourceStructureRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -129,7 +128,7 @@ class ActiveResourceStructureProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<ActiveResourceStructure> createElement() {
+  AutoDisposeFutureProviderElement<ActiveStructure> createElement() {
     return _ActiveResourceStructureProviderElement(this);
   }
 
@@ -149,13 +148,13 @@ class ActiveResourceStructureProvider
 }
 
 mixin ActiveResourceStructureRef
-    on AutoDisposeFutureProviderRef<ActiveResourceStructure> {
+    on AutoDisposeFutureProviderRef<ActiveStructure> {
   /// The parameter `resourceStructureId` of this provider.
   String get resourceStructureId;
 }
 
 class _ActiveResourceStructureProviderElement
-    extends AutoDisposeFutureProviderElement<ActiveResourceStructure>
+    extends AutoDisposeFutureProviderElement<ActiveStructure>
     with ActiveResourceStructureRef {
   _ActiveResourceStructureProviderElement(super.provider);
 

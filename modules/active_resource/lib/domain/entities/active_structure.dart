@@ -1,10 +1,10 @@
-final class ActiveResourceStructure {
+final class ActiveStructure {
   final String id;
   final String code;
   final String title;
-  final List<ActiveFieldStructure> fields;
+  final List<ActiveField> fields;
 
-  ActiveResourceStructure({
+  ActiveStructure({
     required this.id,
     required this.code,
     required this.title,
@@ -12,7 +12,7 @@ final class ActiveResourceStructure {
   });
 }
 
-final class ActiveFieldStructure {
+final class ActiveField {
   final String id;
   final String key;
   final String title;
@@ -34,7 +34,7 @@ final class ActiveFieldStructure {
   final dynamic createdAt;
   final dynamic updatedAt;
 
-  ActiveFieldStructure({
+  ActiveField({
     required this.id,
     required this.key,
     required this.title,

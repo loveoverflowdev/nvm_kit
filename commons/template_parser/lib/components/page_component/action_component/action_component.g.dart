@@ -10,12 +10,12 @@ ActionComponent _$ActionComponentFromJson(Map<String, dynamic> json) =>
     ActionComponent(
       actionCode: json['actionCode'] as String,
       actionType: json['actionType'] as String,
-      attributes: json['attributes'] as Map<String, dynamic>,
+      liveAttributes: json['liveAttributes'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$ActionComponentToJson(ActionComponent instance) =>
     <String, dynamic>{
       'actionCode': instance.actionCode,
       'actionType': instance.actionType,
-      'attributes': instance.attributes,
+      'liveAttributes': instance.liveAttributes,
     };

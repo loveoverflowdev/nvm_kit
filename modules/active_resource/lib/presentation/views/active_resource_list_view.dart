@@ -7,11 +7,11 @@ import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceListView extends ConsumerStatefulWidget {
   final template.ActiveResourceTileComponent tileComponent;
-  final String resourceCode;
+  final String activeStructureCode;
 
   const ActiveResourceListView({
     super.key,
-    required this.resourceCode,
+    required this.activeStructureCode,
     required this.tileComponent,
   });
 
@@ -25,24 +25,24 @@ class _ActiveResourceListViewState
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(activeResourceListProvider(
-      resourceCode: widget.resourceCode,
+      activeStructureCode: widget.activeStructureCode,
     ));
     return activeResourceList.when(
       data: (data) => ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
           final activeResource = data[index];
-          final attributes = activeResource.attributes;
+          final liveAttributes = activeResource.liveAttributes;
           print('----------');
-          print(attributes.toString());
+          print(liveAttributes.toString());
           print(widget.tileComponent.toJson());
           print('----------');
           return ListTile(
             title: Text(
-              attributes[widget.tileComponent.titleKey],
+              liveAttributes[widget.tileComponent.titleKey],
             ),
             // subtitle: Text(
-            //   attributes[widget.tileComponent.subtitleKey],
+            //   liveAttributes[widget.tileComponent.subtitleKey],
             // ),
           );
         },

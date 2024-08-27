@@ -21,22 +21,22 @@ ApiEndpoint getWorkspaceList() => ApiEndpoint(
     );
 
 ApiEndpoint getOneActiveResource({
-  required String resourceCode,
+  required String activeStructureCode,
   required String id,
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/resources/$resourceCode/$id',
+          '/api/workspaces/:workspace_id/active-resource/get/resources/$activeStructureCode/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
 
 ApiEndpoint getActiveResourceList({
-  required String resourceCode,
+  required String activeStructureCode,
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/resources/$resourceCode',
+          '/api/workspaces/:workspace_id/active-resource/get/resources/$activeStructureCode',
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
@@ -120,21 +120,22 @@ ApiEndpoint getUser({
 
 // Addons
 ApiEndpoint getCommentList({
-  required String resourceCode,
+  required String activeStructureCode,
   required String resourceId,
-}) => ApiEndpoint(
-  uriTemplate: '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/get/comments',
-);
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
+    );
 
 ApiEndpoint createComment({
-  required String resourceCode,
+  required String activeStructureCode,
   required String resourceId,
-}) => ApiEndpoint(
-  uriTemplate:
-      '/api/workspaces/:workspace_id/active-resource/resources/$resourceCode/$resourceId/features/widget-comment/post/comments',
-  requiredWorkspace: true,
-  requiredAuthorization: true,
-  jsonPayload: true,
-);
-
-
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
+      requiredWorkspace: true,
+      requiredAuthorization: true,
+      jsonPayload: true,
+    );

@@ -1,22 +1,27 @@
+import 'dart:io';
+
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
     show
-        ActiveFieldStructure,
-        ActiveResourceStructure,
+        ActiveField,
+        ActiveStructure,
         ActiveResourceStructureFailure,
         ActiveResourceStructureRepository;
 
-final class RemoteActiveResourceStructureRepository
+final class CachedActiveResourceStructureRepository
     implements ActiveResourceStructureRepository {
   final api.ResourceApiClient _apiClient;
+  final Directory _directory;
 
-  RemoteActiveResourceStructureRepository({
+  CachedActiveResourceStructureRepository({
     required api.ResourceApiClient apiClient,
-  }) : _apiClient = apiClient;
+    required Directory directory,
+  })  : _apiClient = apiClient,
+        _directory = directory;
 
   @override
-  TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>
+  TaskEither<ActiveResourceStructureFailure, ActiveStructure>
       getActiveResourceStructure({
     required String id,
   }) {
@@ -37,7 +42,7 @@ final class RemoteActiveResourceStructureRepository
   }
 
   @override
-  TaskEither<ActiveResourceStructureFailure, List<ActiveResourceStructure>>
+  TaskEither<ActiveResourceStructureFailure, List<ActiveStructure>>
       getActiveResourceStructureList() {
     return TaskEither.tryCatch(
       () async {
@@ -51,16 +56,16 @@ final class RemoteActiveResourceStructureRepository
     );
   }
 
-  ActiveResourceStructure _mapResponse(
+  ActiveStructure _mapResponse(
     api.ActiveResourceStructureResponse response,
   ) {
-    return ActiveResourceStructure(
+    return ActiveStructure(
       code: response.code,
       id: response.id,
       title: response.title,
       fields: response.fields
           .map(
-            (e) => ActiveFieldStructure(
+            (e) => ActiveField(
               id: e.id,
               key: e.key,
               type: e.type,

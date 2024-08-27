@@ -32,10 +32,10 @@ class _SystemHash {
 
 abstract class _$ActiveResourceList
     extends BuildlessAutoDisposeNotifier<ActiveResourceListState> {
-  late final String resourceCode;
+  late final String activeStructureCode;
 
   ActiveResourceListState build({
-    required String resourceCode,
+    required String activeStructureCode,
   });
 }
 
@@ -50,10 +50,10 @@ class ActiveResourceListFamily extends Family<ActiveResourceListState> {
 
   /// See also [ActiveResourceList].
   ActiveResourceListProvider call({
-    required String resourceCode,
+    required String activeStructureCode,
   }) {
     return ActiveResourceListProvider(
-      resourceCode: resourceCode,
+      activeStructureCode: activeStructureCode,
     );
   }
 
@@ -62,7 +62,7 @@ class ActiveResourceListFamily extends Family<ActiveResourceListState> {
     covariant ActiveResourceListProvider provider,
   ) {
     return call(
-      resourceCode: provider.resourceCode,
+      activeStructureCode: provider.activeStructureCode,
     );
   }
 
@@ -86,9 +86,9 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
     ActiveResourceList, ActiveResourceListState> {
   /// See also [ActiveResourceList].
   ActiveResourceListProvider({
-    required String resourceCode,
+    required String activeStructureCode,
   }) : this._internal(
-          () => ActiveResourceList()..resourceCode = resourceCode,
+          () => ActiveResourceList()..activeStructureCode = activeStructureCode,
           from: activeResourceListProvider,
           name: r'activeResourceListProvider',
           debugGetCreateSourceHash:
@@ -98,7 +98,7 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
           dependencies: ActiveResourceListFamily._dependencies,
           allTransitiveDependencies:
               ActiveResourceListFamily._allTransitiveDependencies,
-          resourceCode: resourceCode,
+          activeStructureCode: activeStructureCode,
         );
 
   ActiveResourceListProvider._internal(
@@ -108,17 +108,17 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.resourceCode,
+    required this.activeStructureCode,
   }) : super.internal();
 
-  final String resourceCode;
+  final String activeStructureCode;
 
   @override
   ActiveResourceListState runNotifierBuild(
     covariant ActiveResourceList notifier,
   ) {
     return notifier.build(
-      resourceCode: resourceCode,
+      activeStructureCode: activeStructureCode,
     );
   }
 
@@ -127,13 +127,13 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: ActiveResourceListProvider._internal(
-        () => create()..resourceCode = resourceCode,
+        () => create()..activeStructureCode = activeStructureCode,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        resourceCode: resourceCode,
+        activeStructureCode: activeStructureCode,
       ),
     );
   }
@@ -147,13 +147,13 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
   @override
   bool operator ==(Object other) {
     return other is ActiveResourceListProvider &&
-        other.resourceCode == resourceCode;
+        other.activeStructureCode == activeStructureCode;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, resourceCode.hashCode);
+    hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -161,8 +161,8 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
 
 mixin ActiveResourceListRef
     on AutoDisposeNotifierProviderRef<ActiveResourceListState> {
-  /// The parameter `resourceCode` of this provider.
-  String get resourceCode;
+  /// The parameter `activeStructureCode` of this provider.
+  String get activeStructureCode;
 }
 
 class _ActiveResourceListProviderElement
@@ -171,8 +171,8 @@ class _ActiveResourceListProviderElement
   _ActiveResourceListProviderElement(super.provider);
 
   @override
-  String get resourceCode =>
-      (origin as ActiveResourceListProvider).resourceCode;
+  String get activeStructureCode =>
+      (origin as ActiveResourceListProvider).activeStructureCode;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

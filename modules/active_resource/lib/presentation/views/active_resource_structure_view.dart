@@ -10,7 +10,7 @@ class ActiveResourceStructureView extends ConsumerWidget {
 
   final Widget Function(
     BuildContext context,
-    ActiveResourceStructure structure,
+    ActiveStructure structure,
   ) builder;
 
   const ActiveResourceStructureView({

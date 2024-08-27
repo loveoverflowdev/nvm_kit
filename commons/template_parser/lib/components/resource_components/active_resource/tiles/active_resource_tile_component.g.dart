@@ -9,15 +9,16 @@ part of 'active_resource_tile_component.dart';
 ActiveResourceTileComponent _$ActiveResourceTileComponentFromJson(
         Map<String, dynamic> json) =>
     ActiveResourceTileComponent(
-      id: json['id'] as String,
+      activeStructureId: json['activeStructureId'] as String,
       titleKey: json['titleKey'] as String,
       subtitleKey: json['subtitleKey'] as String?,
-    );
+    )..type = json['type'] as String;
 
 Map<String, dynamic> _$ActiveResourceTileComponentToJson(
         ActiveResourceTileComponent instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'type': instance.type,
+      'activeStructureId': instance.activeStructureId,
       'titleKey': instance.titleKey,
       'subtitleKey': instance.subtitleKey,
     };

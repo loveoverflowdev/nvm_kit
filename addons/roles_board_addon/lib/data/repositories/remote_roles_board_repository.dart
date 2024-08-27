@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:nvm_api_client/nvm_api_client.dart' as api; 
+import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:roles_board_addon/domain.dart';
 
 final class RemoteRolesBoardRepository implements RolesBoardRepository {
@@ -11,21 +11,22 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
 
   @override
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
           .getRolesBoardList(
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             resourceId: resourceId,
             requestField: requestField,
           )
           .then(
             (value) => value.map(_mapResponse).toList(),
           ),
-      (error, stackTrace) => RolesBoardFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) =>
+          RolesBoardFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 

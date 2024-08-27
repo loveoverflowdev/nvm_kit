@@ -40,11 +40,11 @@ class CommentListFamily extends Family<AsyncValue<List<Comment>>> {
 
   /// See also [commentList].
   CommentListProvider call({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) {
     return CommentListProvider(
-      resourceCode: resourceCode,
+      activeStructureCode: activeStructureCode,
       resourceId: resourceId,
     );
   }
@@ -54,7 +54,7 @@ class CommentListFamily extends Family<AsyncValue<List<Comment>>> {
     covariant CommentListProvider provider,
   ) {
     return call(
-      resourceCode: provider.resourceCode,
+      activeStructureCode: provider.activeStructureCode,
       resourceId: provider.resourceId,
     );
   }
@@ -78,12 +78,12 @@ class CommentListFamily extends Family<AsyncValue<List<Comment>>> {
 class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
   /// See also [commentList].
   CommentListProvider({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
   }) : this._internal(
           (ref) => commentList(
             ref as CommentListRef,
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             resourceId: resourceId,
           ),
           from: commentListProvider,
@@ -95,7 +95,7 @@ class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
           dependencies: CommentListFamily._dependencies,
           allTransitiveDependencies:
               CommentListFamily._allTransitiveDependencies,
-          resourceCode: resourceCode,
+          activeStructureCode: activeStructureCode,
           resourceId: resourceId,
         );
 
@@ -106,11 +106,11 @@ class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.resourceCode,
+    required this.activeStructureCode,
     required this.resourceId,
   }) : super.internal();
 
-  final String resourceCode;
+  final String activeStructureCode;
   final String resourceId;
 
   @override
@@ -126,7 +126,7 @@ class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        resourceCode: resourceCode,
+        activeStructureCode: activeStructureCode,
         resourceId: resourceId,
       ),
     );
@@ -140,14 +140,14 @@ class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
   @override
   bool operator ==(Object other) {
     return other is CommentListProvider &&
-        other.resourceCode == resourceCode &&
+        other.activeStructureCode == activeStructureCode &&
         other.resourceId == resourceId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, resourceCode.hashCode);
+    hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
     hash = _SystemHash.combine(hash, resourceId.hashCode);
 
     return _SystemHash.finish(hash);
@@ -155,8 +155,8 @@ class CommentListProvider extends AutoDisposeFutureProvider<List<Comment>> {
 }
 
 mixin CommentListRef on AutoDisposeFutureProviderRef<List<Comment>> {
-  /// The parameter `resourceCode` of this provider.
-  String get resourceCode;
+  /// The parameter `activeStructureCode` of this provider.
+  String get activeStructureCode;
 
   /// The parameter `resourceId` of this provider.
   String get resourceId;
@@ -168,7 +168,8 @@ class _CommentListProviderElement
   _CommentListProviderElement(super.provider);
 
   @override
-  String get resourceCode => (origin as CommentListProvider).resourceCode;
+  String get activeStructureCode =>
+      (origin as CommentListProvider).activeStructureCode;
   @override
   String get resourceId => (origin as CommentListProvider).resourceId;
 }

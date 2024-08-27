@@ -6,13 +6,13 @@ import 'responses.dart';
 
 extension ActiveResourceApiClientExt on ResourceApiClient {
   Future<ActiveResourceResponse> getActiveResource({
-    required String resourceCode,
+    required String activeStructureCode,
     required String id,
     String? requestField,
   }) {
     return requestJson(
       endpoint: endpoints.getOneActiveResource(
-        resourceCode: resourceCode,
+        activeStructureCode: activeStructureCode,
         id: id,
       ),
       alchemistQuery: AlchemistQuery(
@@ -23,12 +23,13 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
   }
 
   Future<List<ActiveResourceResponse>> getActiveResourceList({
-    required String resourceCode,
+    required String activeStructureCode,
     String? requestField,
   }) {
     // {{domain}}/api/workspaces/{{workspace}}/active-resource/get/resources/tasks
     return requestJson(
-      endpoint: endpoints.getActiveResourceList(resourceCode: resourceCode),
+      endpoint: endpoints.getActiveResourceList(
+          activeStructureCode: activeStructureCode),
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all.build(),
       ),

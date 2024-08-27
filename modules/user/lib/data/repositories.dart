@@ -14,18 +14,17 @@ final class RemoteUserRepository implements UserRepository {
     required String userId,
     String? requestField,
   }) {
-    return TaskEither.tryCatch(
-      () {
-        return _apiClient
-            .getUser(
-              userId: userId,
-            )
-            .then(
-              _mapResponse,
-            );
-      },
-      (error, stackTrace) => UserFailure.fromError(error, stackTrace: stackTrace)
-    );
+    return TaskEither.tryCatch(() {
+      return _apiClient
+          .getUser(
+            userId: userId,
+          )
+          .then(
+            _mapResponse,
+          );
+    },
+        (error, stackTrace) =>
+            UserFailure.fromError(error, stackTrace: stackTrace));
   }
 
   User _mapResponse(api.UserResponse response) {
@@ -37,10 +36,10 @@ final class RemoteUserRepository implements UserRepository {
       phone: response.phone,
       createdAt: response.createdAt,
       updatedAt: response.updatedAt,
-      avatarUrl: response.avatar, 
-      phoneCountryCode: response.phoneCountryCode, 
-      thumbnailAvatarUrl: response.thumbnailAvatarUrl, 
-      emailVerifiedAt: response.emailVerifiedAt, 
+      avatarUrl: response.avatar,
+      phoneCountryCode: response.phoneCountryCode,
+      thumbnailAvatarUrl: response.thumbnailAvatarUrl,
+      emailVerifiedAt: response.emailVerifiedAt,
       phoneVerifiedAt: response.phoneVerifiedAt,
     );
   }

@@ -6,7 +6,7 @@ import '../repositories.dart' show ActiveResourceRepository;
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     ActiveResource> getActiveResourceTask({
   required String id,
-  required String resourceCode,
+  required String activeStructureCode,
   required String workspaceId,
   String? requestField,
 }) =>
@@ -14,7 +14,7 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
       (repository) => repository
           .getActiveResource(
             id: id,
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             requestField: requestField,
           )
           .run(),
@@ -22,13 +22,13 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     List<ActiveResource>> getActiveResourceListTask({
-  required String resourceCode,
+  required String activeStructureCode,
   String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getActiveResourceList(
-            resourceCode: resourceCode,
+            activeStructureCode: activeStructureCode,
             requestField: requestField,
           )
           .run(),

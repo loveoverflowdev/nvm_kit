@@ -7,7 +7,7 @@ part 'active_resource_response.g.dart';
 @JsonSerializable()
 final class ActiveResourceResponse {
   final String id;
-  final Map<String, dynamic> attributes;
+  final Map<String, dynamic> liveAttributes;
   final String? projectId;
 
   @JsonKey(name: 'createdByUser')
@@ -15,7 +15,7 @@ final class ActiveResourceResponse {
 
   ActiveResourceResponse({
     required this.id,
-    required this.attributes,
+    required this.liveAttributes,
     this.projectId,
     this.creator,
   });

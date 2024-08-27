@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:nvm/app.dart';
 
 import 'package:auth/auth.dart' as auth;
+import 'package:nvm_api_client/nvm_api_client.dart';
 import 'package:workspace/workspace.dart' as workspace;
 import 'package:project/project.dart' as project;
 import 'package:notification/notification.dart' as notification;

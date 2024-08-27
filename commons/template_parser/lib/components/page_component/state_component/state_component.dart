@@ -5,11 +5,11 @@ part 'state_component.g.dart';
 @JsonSerializable()
 final class StateComponent {
   final String stateCode;
-  final Map<String, dynamic> attributes;
+  final Map<String, dynamic> liveAttributes;
 
   StateComponent({
     required this.stateCode,
-    required this.attributes,
+    required this.liveAttributes,
   });
 
   factory StateComponent.fromJson(Map<String, dynamic> json) =>

@@ -8,11 +8,11 @@ part 'comment_list_provider.g.dart';
 @riverpod
 Future<List<Comment>> commentList(
   CommentListRef ref, {
-  required String resourceCode,
+  required String activeStructureCode,
   required String resourceId,
 }) {
   return getCommentListTask(
-    resourceCode: resourceCode,
+    activeStructureCode: activeStructureCode,
     resourceId: resourceId,
   )
       .run(
@@ -35,7 +35,7 @@ Future<List<Comment>> commentList(
 //     state = const AsyncValue.loading();
 
 //     getCommentListTask(
-//       resourceCode: '',
+//       activeStructureCode: '',
 //       resourceId: '',
 //     ).match(
 //       (failure) {

@@ -18,7 +18,7 @@ final class RolesBoardApiClient {
         _workspaceIdProvider = workspaceIdProvider;
 
   Future<List<RolesBoardResponse>> getRolesBoardList({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
     String? requestField,
   }) async {
@@ -41,7 +41,7 @@ final class RolesBoardApiClient {
   }
 
   Future<void> createRolesBoard({
-    required String resourceCode,
+    required String activeStructureCode,
     required String resourceId,
     required RolesBoardPayload payload,
   }) async {

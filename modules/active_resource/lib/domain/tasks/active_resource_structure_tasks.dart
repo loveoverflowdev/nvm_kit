@@ -3,16 +3,16 @@ import 'package:fpdart/fpdart.dart' show ReaderTaskEither;
 import '../entities.dart';
 import '../repositories.dart';
 
-ReaderTaskEither<ActiveResourceStructureRepository, Exception,
-    ActiveResourceStructure> getActiveResourceStructureTask({
+ReaderTaskEither<ActiveResourceStructureRepository, Exception, ActiveStructure>
+    getActiveResourceStructureTask({
   required String id,
 }) =>
-    ReaderTaskEither(
-      (repository) => repository.getActiveResourceStructure(id: id).run(),
-    );
+        ReaderTaskEither(
+          (repository) => repository.getActiveResourceStructure(id: id).run(),
+        );
 
 ReaderTaskEither<ActiveResourceStructureRepository, Exception,
-        List<ActiveResourceStructure>>
+        List<ActiveStructure>>
     getActiveResourceStructureListTask() => ReaderTaskEither(
           (repository) => repository.getActiveResourceStructureList().run(),
         );

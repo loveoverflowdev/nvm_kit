@@ -5,7 +5,7 @@ import '../active_resource_structure_repository_provider.dart';
 part 'active_resource_structure_provider.g.dart';
 
 @riverpod
-Future<ActiveResourceStructure> activeResourceStructure(
+Future<ActiveStructure> activeResourceStructure(
   ActiveResourceStructureRef ref, {
   required String resourceStructureId,
 }) {

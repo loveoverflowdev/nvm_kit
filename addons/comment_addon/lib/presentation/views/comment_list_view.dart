@@ -1,4 +1,5 @@
-import 'package:app_ui/app_ui.dart' show AppErrorWidget, AppCircularLoadingWidget;
+import 'package:app_ui/app_ui.dart'
+    show AppErrorWidget, AppCircularLoadingWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,14 +7,19 @@ import '../providers.dart' show commentListProvider;
 import 'comment_cell.dart';
 
 class CommentListView extends ConsumerWidget {
-  final String resourceCode;
+  final String activeStructureCode;
   final String resourceId;
 
-  const CommentListView({super.key, required this.resourceCode, required this.resourceId,});
+  const CommentListView({
+    super.key,
+    required this.activeStructureCode,
+    required this.resourceId,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final commentList = ref.watch(commentListProvider(resourceCode: resourceCode, resourceId: resourceId));
+    final commentList = ref.watch(commentListProvider(
+        activeStructureCode: activeStructureCode, resourceId: resourceId));
     return commentList.when(
       data: (data) => ListView.builder(
         itemBuilder: (context, index) {
@@ -24,8 +30,9 @@ class CommentListView extends ConsumerWidget {
             topic: '',
           );
         },
-      ), 
-      error: (error, stackTrace) => AppErrorWidget(error, stackTrace: stackTrace), 
+      ),
+      error: (error, stackTrace) =>
+          AppErrorWidget(error, stackTrace: stackTrace),
       loading: () => AppCircularLoadingWidget(),
     );
   }

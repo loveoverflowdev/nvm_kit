@@ -3,11 +3,11 @@ import 'package:fpdart/fpdart.dart';
 import '../entities.dart';
 
 abstract interface class ActiveResourceStructureRepository {
-  TaskEither<ActiveResourceStructureFailure, ActiveResourceStructure>
+  TaskEither<ActiveResourceStructureFailure, ActiveStructure>
       getActiveResourceStructure({
     required String id,
   });
 
-  TaskEither<ActiveResourceStructureFailure, List<ActiveResourceStructure>>
+  TaskEither<ActiveResourceStructureFailure, List<ActiveStructure>>
       getActiveResourceStructureList();
 }

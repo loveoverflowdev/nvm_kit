@@ -17,7 +17,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
   @override
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
-    required String resourceCode,
+    required String activeStructureCode,
     required String id,
     String? requestField,
   }) {
@@ -25,7 +25,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       () {
         return _apiClient
             .getActiveResource(
-              resourceCode: resourceCode,
+              activeStructureCode: activeStructureCode,
               id: id,
               requestField: requestField,
             )
@@ -33,28 +33,30 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
               (value) => _mapResponse(value),
             );
       },
-      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) =>
+          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
   @override
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
-    required String resourceCode,
+    required String activeStructureCode,
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getActiveResourceList(
-              resourceCode: resourceCode,
+              activeStructureCode: activeStructureCode,
               requestField: requestField,
             )
             .then(
               (value) => value.map(_mapResponse).toList(),
             );
       },
-      (error, stackTrace) => ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) =>
+          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
     );
   }
 
@@ -62,7 +64,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
     api.ActiveResourceResponse response,
   ) =>
       ActiveResource(
-        attributes: response.attributes,
+        liveAttributes: response.liveAttributes,
         projectId: response.projectId,
         creator: ActiveResourceCreator(
           avatarUrl: response.creator?.avatarUrl,
@@ -82,7 +84,7 @@ ActiveResourceBlock _convertActiveResponseToBlock(
   ActiveResourceResponse response,
 ) =>
     ActiveResourceBlock(
-      attributes: response.attributes,
+      liveAttributes: response.liveAttributes,
       project: ActiveResourceProjectBlock(
         id: response.project.id,
         name: response.project.name,

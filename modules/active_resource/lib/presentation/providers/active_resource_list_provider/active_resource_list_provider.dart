@@ -8,10 +8,10 @@ part 'active_resource_list_provider.g.dart';
 // @riverpod
 // Future<List<ActiveResource>> activeResourceList(
 //   ActiveResourceListRef ref, {
-//   required String resourceCode,
+//   required String activeStructureCode,
 // }) {
 //   return getActiveResourceListTask(
-//     resourceCode: resourceCode,
+//     activeStructureCode: activeStructureCode,
 //   )
 //       .run(
 //         ref.read(activeResourceRepositoryProvider),
@@ -27,15 +27,16 @@ typedef ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 class ActiveResourceList extends _$ActiveResourceList {
   @override
   ActiveResourceListState build({
-    required String resourceCode,
-  }) => ActiveResourceListState.data(List.empty());
+    required String activeStructureCode,
+  }) =>
+      ActiveResourceListState.data(List.empty());
 
   void loadActiveResourceList({
-    required String resourceCode,
+    required String activeStructureCode,
   }) async {
     state = const AsyncValue.loading();
     getActiveResourceListTask(
-      resourceCode: resourceCode,
+      activeStructureCode: activeStructureCode,
     ).match(
       (failure) {
         state = ActiveResourceListState.error(

@@ -32,17 +32,17 @@ class ProjectPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 active_resource.ActiveResourceListView(
-                  resourceCode: 'user_stories',
+                  activeStructureCode: 'user_stories',
                   tileComponent: template.ActiveResourceTileComponent(
-                    id: '',
+                    activeStructureId: '',
                     titleKey: 'as_a',
                     subtitleKey: 'i_want',
                   ),
                 ),
                 active_resource.ActiveResourceListView(
-                  resourceCode: 'tasks',
+                  activeStructureCode: 'tasks',
                   tileComponent: template.ActiveResourceTileComponent(
-                    id: '',
+                    activeStructureId: '',
                     titleKey: 'task_name',
                     subtitleKey: 'task_description',
                   ),

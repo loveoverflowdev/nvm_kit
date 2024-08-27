@@ -7,13 +7,13 @@ part 'active_resource_tile_component.g.dart';
 class ActiveResourceTileComponent extends ResourceComponent {
   @override
   late final String type;
-  late final String id;
+  late final String activeStructureId;
   late final String titleKey;
   late final String? subtitleKey;
   // TODO: urgent: GenericTagListComponent
 
   ActiveResourceTileComponent({
-    required this.id,
+    required this.activeStructureId,
     required this.titleKey,
     this.subtitleKey,
   }) {
@@ -21,7 +21,8 @@ class ActiveResourceTileComponent extends ResourceComponent {
   }
 
   @override
-  factory ActiveResourceTileComponent.fromJson(Map<String, dynamic> json) => _$ActiveResourceTileComponentFromJson(json);
+  factory ActiveResourceTileComponent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveResourceTileComponentFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ActiveResourceTileComponentToJson(this);
