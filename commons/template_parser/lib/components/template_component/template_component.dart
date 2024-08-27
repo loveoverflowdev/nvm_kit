@@ -7,11 +7,11 @@ part 'template_component.g.dart';
 @JsonSerializable()
 final class TemplateComponent implements Component {
   final String title;
-  final AppComponent app;
+  final List<AppComponent> apps;
 
   TemplateComponent({
     required this.title,
-    required this.app,
+    required this.apps,
   });
 
   factory TemplateComponent.fromJson(Map<String, dynamic> json) =>

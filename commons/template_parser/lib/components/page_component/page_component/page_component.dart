@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../state_component/state_component.dart';
+import '../../resource_components.dart';
 import '../action_component/action_component.dart';
 
 part 'page_component.g.dart';
@@ -8,18 +8,17 @@ part 'page_component.g.dart';
 final class PageComponent {
   final String title;
   final String contextName;
-  final bool requiredAuth;
   final String screenType;
-  final List<StateComponent> pageStates;
+  // final List<StateComponent> pageStates;
   final List<ActionComponent> pageActions;
+  final List<ResourceComponent> pageResources;
 
   PageComponent({
     required this.title,
     required this.contextName,
-    required this.requiredAuth,
     required this.screenType,
-    required this.pageStates,
     required this.pageActions,
+    required this.pageResources,
   });
 
   factory PageComponent.fromJson(Map<String, dynamic> json) =>

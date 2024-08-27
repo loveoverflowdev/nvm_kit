@@ -6,12 +6,13 @@ part 'action_component.g.dart';
 @JsonSerializable()
 final class ActionComponent implements Component {
   final String actionCode;
-  final String functionCode; // goto
+  final String actionType; // goto
+  // Nếu action không có quyền thì sẽ thông báo
   final Map<String, dynamic> attributes;
 
   ActionComponent({
     required this.actionCode,
-    required this.functionCode,
+    required this.actionType,
     required this.attributes,
   });
 
