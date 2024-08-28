@@ -8,7 +8,10 @@ class ApiEndpoint {
 
   final String method;
   final String uriTemplate;
+
+  @Deprecated('No Longer used and refactor in the future')
   RequestType? requestType;
+  
   bool? requiredWorkspace;
   bool? requiredAuthorization;
   bool? jsonPayload;

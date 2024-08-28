@@ -11,9 +11,9 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     String? requestField,
   }) {
     return requestJson(
-      endpoint: endpoints.getOneActiveResource(
+      endpoint: endpoints.getActiveResourceById(
+        id,
         activeStructureCode: activeStructureCode,
-        id: id,
       ),
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all.build(),

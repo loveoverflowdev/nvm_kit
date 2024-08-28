@@ -26,7 +26,7 @@ extension ProjectApiClientExt on ResourceApiClient {
     String? requestField,
   }) async {
     return requestJson(
-      endpoint: endpoints.getOneProject(id: projectId),
+      endpoint: endpoints.getByProjectId(projectId),
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ProjectRequestField.all.build(),
       ),

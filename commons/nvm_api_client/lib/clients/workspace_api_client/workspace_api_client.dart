@@ -43,7 +43,7 @@ final class WorkspaceApiClient {
     String? requestField,
   }) async {
     return _requestJson(
-      endpoint: endpoints.getOneWorkspace(id: workspaceId),
+      endpoint: endpoints.getWorkspaceById(workspaceId),
       workspaceId: workspaceId,
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? WorkspaceRequestField.all.build(),

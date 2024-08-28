@@ -1,60 +1,65 @@
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
-import 'package:fpdart/fpdart.dart' show Either, TaskEither;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
     show
         ActiveField,
         ActiveStructure,
         ActiveStructureFailure,
         ActiveStructureRepository;
-import 'active_structure_storage.dart';
 
-final class CachedActiveStructureRepository
+final class RemoteActiveStructureRepository
     implements ActiveStructureRepository {
-  
-  final ActiveStructureRepository _activeStructureRepository;
-  final CachedActiveStructureStorage _storage;
+  final api.ResourceApiClient _apiClient;
 
-  CachedActiveStructureRepository({
-    required ActiveStructureRepository activeStructureRepository,
-    required CachedActiveStructureStorage storage,
-  })  : _activeStructureRepository = activeStructureRepository,
-        _storage = storage;
+  RemoteActiveStructureRepository({
+    required api.ResourceApiClient apiClient,
+  })  : _apiClient = apiClient;
 
   @override
   TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(String code) {
     return TaskEither.tryCatch(
-      ()  {
-        return _storage.readActiveStructureByCode(code);
+      () async {
+        return _apiClient
+            .getActiveStructureByCode(
+              code,
+            )
+            .then(
+              (value) => _mapResponse(value),
+            );
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
       ),
-    ).flatMap<ActiveStructure>(
-      (cachedResult) => 
-        cachedResult != null
-          ? TaskEither.right(cachedResult)
-          : _activeStructureRepository.getActiveStructureByCode(code)
+    );
+  }
+
+  @override
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureById(String id) {
+    return TaskEither.tryCatch(
+      () async {
+        return _apiClient
+            .getActiveStructureById(
+              id,
+            )
+            .then(
+              (value) => _mapResponse(value),
+            );
+      },
+      (error, stackTrace) => ActiveStructureFailure.fromError(
+        error,
+      ),
     );
   }
 
   @override
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
       getActiveStructureList() {
-        await SharedPreferences.getInstance();
     return TaskEither.tryCatch(
       () async {
-        final activeStructureList =
-            await _apiClient.getActiveStructureList().then(
+       return await _apiClient.getActiveStructureList().then(
                   (value) => value.map(_mapResponse).toList(),
                 );
-        for (final activeStructure in activeStructureList) {
-          await _storage.writeActiveStructure(
-            activeStructure,
-          );
-        }
 
-        return activeStructureList;
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
@@ -85,3 +90,4 @@ final class CachedActiveStructureRepository
     );
   }
 }
+

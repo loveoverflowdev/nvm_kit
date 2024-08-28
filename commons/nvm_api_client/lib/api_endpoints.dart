@@ -5,9 +5,7 @@ ApiEndpoint signin() => ApiEndpoint(
       jsonPayload: true,
     );
 
-ApiEndpoint getOneWorkspace({
-  required String id,
-}) =>
+ApiEndpoint getWorkspaceById(String id) =>
     ApiEndpoint(
       uriTemplate: '/api/workspace/get/workspaces/$id',
       requiredAuthorization: true,
@@ -20,9 +18,8 @@ ApiEndpoint getWorkspaceList() => ApiEndpoint(
       jsonPayload: true,
     );
 
-ApiEndpoint getOneActiveResource({
+ApiEndpoint getActiveResourceById(String id, {
   required String activeStructureCode,
-  required String id,
 }) =>
     ApiEndpoint(
       uriTemplate:
@@ -41,9 +38,7 @@ ApiEndpoint getActiveResourceList({
       requiredWorkspace: true,
     );
 
-ApiEndpoint getOneActiveStructure({
-  required String id,
-}) =>
+ApiEndpoint getActiveStructureById(String id) =>
     ApiEndpoint(
       uriTemplate:
           '/api/workspaces/:workspace_id/active-resource/get/structures/$id',
@@ -68,12 +63,10 @@ ApiEndpoint getNotificationList() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getOneNotification({
-  required String notificationId,
-}) =>
+ApiEndpoint getNotificationById(String id) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/notification/get/notifications/$notificationId',
+          '/api/workspaces/:workspace_id/notification/get/notifications/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
       jsonPayload: true,
@@ -93,9 +86,7 @@ ApiEndpoint getProjectList() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getOneProject({
-  required String id,
-}) =>
+ApiEndpoint getByProjectId(String id) =>
     ApiEndpoint(
       uriTemplate: '/api/workspaces/:workspace_id/project/get/projects/$id',
       requiredAuthorization: true,
@@ -110,9 +101,7 @@ ApiEndpoint createProject() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getUser({
-  required String id,
-}) =>
+ApiEndpoint getUserById(String id) =>
     ApiEndpoint(
       uriTemplate: '/api/user/get/users/$id',
       requiredAuthorization: true,

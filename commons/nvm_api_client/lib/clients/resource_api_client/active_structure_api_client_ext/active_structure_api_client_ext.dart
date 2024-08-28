@@ -19,12 +19,28 @@ extension ActiveStructureApiClientExt on ResourceApiClient {
     );
   }
 
-  Future<ActiveStructureResponse> getActiveStructure({
-    required String id,
-  }) {
+  Future<ActiveStructureResponse> getActiveStructureById(String id) {
     return requestJson(
-      endpoint: endpoints.getOneActiveStructure(id: id),
+      endpoint: endpoints.getActiveStructureById(id),
       dataHandler: (json) => ActiveStructureResponse.fromJson(json['data']),
+    );
+  }
+
+  Future<ActiveStructureResponse> getActiveStructureByCode(String code) {
+    return requestJson(
+      endpoint: endpoints.getActiveStructureList(),
+      alchemistQuery: AlchemistQuery(
+        filtering: {
+          'activeStructureCode': code
+        } 
+      ),
+      dataHandler: (json) {
+        final structures = json['data'] as List;
+        if (structures.isEmpty) {
+          throw Exception('ActiveStructure width the code $code not found');
+        }
+        return ActiveStructureResponse.fromJson(structures[0]);
+      },
     );
   }
 }

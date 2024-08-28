@@ -11,7 +11,7 @@ Future<ActiveStructure> activeStructure(
 }) {
   return ref
       .read(activeStructureRepositoryProvider)
-      .getActiveStructure(id: resourceStructureId)
+      .getActiveStructureById(id: resourceStructureId)
       .run()
       .then(
     (project) {
