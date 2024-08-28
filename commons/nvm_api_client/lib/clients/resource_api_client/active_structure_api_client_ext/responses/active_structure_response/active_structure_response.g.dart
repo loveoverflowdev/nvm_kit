@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_structure_response.dart';
+part of 'active_structure_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -13,8 +13,7 @@ ActiveStructureResponse _$ActiveStructureResponseFromJson(
       code: json['code'] as String,
       title: json['title'] as String,
       fields: (json['fields'] as List<dynamic>)
-          .map((e) =>
-              ActiveFieldStructureResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActiveFieldResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

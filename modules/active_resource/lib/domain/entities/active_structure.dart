@@ -1,3 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'active_structure.g.dart';
+
+@JsonSerializable()
 final class ActiveStructure {
   final String id;
   final String code;
@@ -10,8 +15,14 @@ final class ActiveStructure {
     required this.title,
     required this.fields,
   });
+
+  Map<String, dynamic> toJson() => _$ActiveStructureToJson(this);
+
+  factory ActiveStructure.fromJson(Map<String, dynamic> json) =>
+      _$ActiveStructureFromJson(json);
 }
 
+@JsonSerializable()
 final class ActiveField {
   final String id;
   final String key;
@@ -20,19 +31,19 @@ final class ActiveField {
   final dynamic type;
   final String placeholder;
   final String description;
-  final bool isRequired;
-  final bool isUnique;
-  final bool isMultipleValued;
-  final bool searchable;
-  final bool sortable;
-  final bool filterable;
-  final bool isConcrete;
-  final bool showInExport;
-  final bool showInImport;
-  final dynamic createdBy;
-  final dynamic updatedBy;
-  final dynamic createdAt;
-  final dynamic updatedAt;
+  // final bool isRequired;
+  // final bool isUnique;
+  // final bool isMultipleValued;
+  // final bool searchable;
+  // final bool sortable;
+  // final bool filterable;
+  // final bool isConcrete;
+  // final bool showInExport;
+  // final bool showInImport;
+  // final dynamic createdBy;
+  // final dynamic updatedBy;
+  // final dynamic createdAt;
+  // final dynamic updatedAt;
 
   ActiveField({
     required this.id,
@@ -42,18 +53,23 @@ final class ActiveField {
     required this.type,
     required this.placeholder,
     required this.description,
-    required this.isRequired,
-    required this.isUnique,
-    required this.isMultipleValued,
-    required this.searchable,
-    required this.sortable,
-    required this.filterable,
-    required this.isConcrete,
-    required this.showInExport,
-    required this.showInImport,
-    required this.createdBy,
-    required this.updatedBy,
-    required this.createdAt,
-    required this.updatedAt,
+    // required this.isRequired,
+    // required this.isUnique,
+    // required this.isMultipleValued,
+    // required this.searchable,
+    // required this.sortable,
+    // required this.filterable,
+    // required this.isConcrete,
+    // required this.showInExport,
+    // required this.showInImport,
+    // required this.createdBy,
+    // required this.updatedBy,
+    // required this.createdAt,
+    // required this.updatedAt,
   });
+
+  Map<String, dynamic> toJson() => _$ActiveFieldToJson(this);
+
+  factory ActiveField.fromJson(Map<String, dynamic> json) =>
+      _$ActiveFieldFromJson(json);
 }

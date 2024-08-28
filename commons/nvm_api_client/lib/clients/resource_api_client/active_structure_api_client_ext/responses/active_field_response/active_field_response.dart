@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'active_field_structure_response.g.dart';
+part 'active_field_response.g.dart';
 
 @JsonSerializable()
-final class ActiveFieldStructureResponse {
+final class ActiveFieldResponse {
   final String id;
 
   @JsonKey(name: 'fieldName')
@@ -37,7 +37,7 @@ final class ActiveFieldStructureResponse {
   final dynamic createdAt;
   final dynamic updatedAt;
 
-  ActiveFieldStructureResponse({
+  ActiveFieldResponse({
     required this.id,
     required this.key,
     required this.title,
@@ -60,7 +60,7 @@ final class ActiveFieldStructureResponse {
     required this.updatedAt,
   });
 
-  factory ActiveFieldStructureResponse.fromJson(Map<String, dynamic> json) =>
+  factory ActiveFieldResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveFieldStructureResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ActiveFieldStructureResponseToJson(this);

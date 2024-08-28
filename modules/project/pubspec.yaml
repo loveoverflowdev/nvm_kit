@@ -16,7 +16,6 @@ dependencies:
   fpdart: ^1.1.0
   riverpod_annotation: ^2.3.5
   flutter_riverpod: ^2.5.1
-  json_annotation: ^4.9.0
 
   app_ui:
     path: ../../commons/app_ui
@@ -29,7 +28,6 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
   freezed: ^2.5.3
-  json_serializable: ^6.8.0
   riverpod_generator: ^2.4.2
   build_runner: ^2.4.6
 

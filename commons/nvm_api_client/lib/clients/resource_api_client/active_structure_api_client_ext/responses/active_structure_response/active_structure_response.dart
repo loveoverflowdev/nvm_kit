@@ -1,15 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../active_field_structure_response/active_field_structure_response.dart';
+import '../active_field_response/active_field_response.dart';
 
-part 'active_resource_structure_response.g.dart';
+part 'active_structure_response.g.dart';
 
 @JsonSerializable()
 final class ActiveStructureResponse {
   final String id;
   final String code;
   final String title;
-  final List<ActiveFieldStructureResponse> fields;
+  final List<ActiveFieldResponse> fields;
 
   ActiveStructureResponse({
     required this.id,

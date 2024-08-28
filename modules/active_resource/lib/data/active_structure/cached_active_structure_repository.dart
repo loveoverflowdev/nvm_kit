@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
@@ -8,31 +6,53 @@ import '../../domain.dart'
         ActiveStructure,
         ActiveStructureFailure,
         ActiveStructureRepository;
+import 'cached_active_structure_storage.dart';
 
 final class CachedActiveStructureRepository
     implements ActiveStructureRepository {
   final api.ResourceApiClient _apiClient;
-  final Directory _directory;
+  final CachedActiveStructureStorage _storage;
 
   CachedActiveStructureRepository({
     required api.ResourceApiClient apiClient,
-    required Directory directory,
+    required CachedActiveStructureStorage storage,
   })  : _apiClient = apiClient,
-        _directory = directory;
+        _storage = storage;
+
+  @override
+  TaskEither<ActiveStructureFailure, String?> readActiveStructureId({
+    required String code,
+  }) {
+    return TaskEither.tryCatch(
+      () {
+        return _storage.readActiveStructureId(code: code);
+      },
+      (error, stackTrace) => ActiveStructureFailure.fromError(
+        error,
+      ),
+    );
+  }
 
   @override
   TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructure({
     required String id,
   }) {
     return TaskEither.tryCatch(
-      () {
-        return _apiClient
+      () async {
+        final activeStructure = await _apiClient
             .getActiveStructure(
               id: id,
             )
             .then(
               (value) => _mapResponse(value),
             );
+
+        await _storage.writeActiveStructure(
+          code: activeStructure.code,
+          activeStructure: activeStructure,
+        );
+
+        return activeStructure;
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
@@ -45,9 +65,18 @@ final class CachedActiveStructureRepository
       getActiveStructureList() {
     return TaskEither.tryCatch(
       () async {
-        return _apiClient.getActiveStructureList().then(
-              (value) => value.map(_mapResponse).toList(),
-            );
+        final activeStructureList =
+            await _apiClient.getActiveStructureList().then(
+                  (value) => value.map(_mapResponse).toList(),
+                );
+        for (final structure in activeStructureList) {
+          await _storage.writeActiveStructure(
+            code: structure.code,
+            activeStructure: structure,
+          );
+        }
+
+        return activeStructureList;
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
@@ -72,19 +101,6 @@ final class CachedActiveStructureRepository
               order: e.order,
               placeholder: '',
               description: '',
-              isRequired: e.isRequired,
-              isUnique: e.isUnique,
-              isMultipleValued: e.isMultipleValued,
-              searchable: e.searchable,
-              sortable: e.sortable,
-              filterable: e.filterable,
-              isConcrete: e.isConcrete,
-              showInExport: e.showInExport,
-              showInImport: e.showInImport,
-              createdBy: e.createdBy,
-              updatedBy: e.updatedBy,
-              createdAt: e.createdAt,
-              updatedAt: e.updatedAt,
             ),
           )
           .toList(),

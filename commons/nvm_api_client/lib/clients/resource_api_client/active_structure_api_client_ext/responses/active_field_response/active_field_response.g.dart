@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_field_structure_response.dart';
+part of 'active_field_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActiveFieldStructureResponse _$ActiveFieldStructureResponseFromJson(
+ActiveFieldResponse _$ActiveFieldStructureResponseFromJson(
         Map<String, dynamic> json) =>
-    ActiveFieldStructureResponse(
+    ActiveFieldResponse(
       id: json['id'] as String,
       key: json['fieldName'] as String,
       title: json['fieldTitle'] as String,
@@ -32,7 +32,7 @@ ActiveFieldStructureResponse _$ActiveFieldStructureResponseFromJson(
     );
 
 Map<String, dynamic> _$ActiveFieldStructureResponseToJson(
-        ActiveFieldStructureResponse instance) =>
+        ActiveFieldResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'fieldName': instance.key,
