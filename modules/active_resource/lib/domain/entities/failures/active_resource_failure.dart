@@ -5,7 +5,6 @@ part 'active_resource_failure.freezed.dart';
 
 @freezed
 class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
-  ActiveResourceFailure._();
   factory ActiveResourceFailure.badRequest({required String message, StackTrace? stackTrace,}) =
       _BadRequest;
   factory ActiveResourceFailure.unauthorized({
@@ -23,6 +22,14 @@ class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
     StackTrace? stackTrace,
   }) = _Unimplemented;
 
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (_, stackTrace) => stackTrace, 
+    unauthorized: (_, stackTrace) => stackTrace, 
+  );
+
   @override
   String toString() {
     if (this is _BadRequest) {
@@ -30,9 +37,6 @@ class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
     }
     return super.toString();
   }
-
-  StackTrace? get stackTrace =>
-      (this is _Unimplemented ? (this as _Unimplemented).stackTrace : null);
 
   factory ActiveResourceFailure.fromError(
     Object failure,

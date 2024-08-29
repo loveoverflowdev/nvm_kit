@@ -1,9 +1,7 @@
-import 'package:nvm_api_client/nvm_api_client.dart' as api;
-import 'package:fpdart/fpdart.dart' show Either, TaskEither;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fpdart/fpdart.dart' show TaskEither;
+
 import '../../domain.dart'
     show
-        ActiveField,
         ActiveStructure,
         ActiveStructureFailure,
         ActiveStructureRepository;
@@ -34,54 +32,40 @@ final class CachedActiveStructureRepository
       (cachedResult) => 
         cachedResult != null
           ? TaskEither.right(cachedResult)
-          : _activeStructureRepository.getActiveStructureByCode(code)
+          : _activeStructureRepository.getActiveStructureByCode(code).map(
+            (activeStructure) {
+              // TODO: sync it
+              _storage.writeActiveStructure(activeStructure);
+              return activeStructure;
+            },
+          )
     );
   }
 
   @override
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
       getActiveStructureList() {
-        await SharedPreferences.getInstance();
     return TaskEither.tryCatch(
       () async {
-        final activeStructureList =
-            await _apiClient.getActiveStructureList().then(
-                  (value) => value.map(_mapResponse).toList(),
-                );
-        for (final activeStructure in activeStructureList) {
-          await _storage.writeActiveStructure(
-            activeStructure,
-          );
-        }
-
-        return activeStructureList;
+        return _storage.readActiveStructureList();
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
       ),
-    );
-  }
-
-  ActiveStructure _mapResponse(
-    api.ActiveStructureResponse response,
-  ) {
-    return ActiveStructure(
-      code: response.code,
-      id: response.id,
-      title: response.title,
-      fields: response.fields
-          .map(
-            (e) => ActiveField(
-              id: e.id,
-              key: e.key,
-              type: e.type,
-              title: e.title,
-              order: e.order,
-              placeholder: '',
-              description: '',
-            ),
-          )
-          .toList(),
+    ).flatMap(
+      (cachedResult) => cachedResult.isEmpty
+          ? _activeStructureRepository
+            .getActiveStructureList()
+            .map(
+              (activeStructureList) {
+                // TODO: sync it
+                for (final activeStructure in activeStructureList) {
+                  _storage.writeActiveStructure(activeStructure);
+                }
+                return activeStructureList;
+              },
+            )
+          : TaskEither.right(cachedResult),
     );
   }
 }

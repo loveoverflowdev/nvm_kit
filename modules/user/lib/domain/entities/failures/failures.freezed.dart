@@ -27,6 +27,8 @@ mixin _$UserFailure {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$UserFailure {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +52,7 @@ mixin _$UserFailure {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$UserFailure {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +73,7 @@ mixin _$UserFailure {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +83,7 @@ mixin _$UserFailure {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -205,6 +212,8 @@ class _$BadRequestImpl extends _BadRequest {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) {
     return badRequest(message, stackTrace);
   }
@@ -219,6 +228,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) {
     return badRequest?.call(message, stackTrace);
   }
@@ -233,6 +243,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -249,6 +260,7 @@ class _$BadRequestImpl extends _BadRequest {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return badRequest(this);
   }
@@ -261,6 +273,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return badRequest?.call(this);
   }
@@ -273,6 +286,7 @@ class _$BadRequestImpl extends _BadRequest {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -375,6 +389,8 @@ class _$InternalServerImpl extends _InternalServer {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) {
     return internalServer(stackTrace);
   }
@@ -389,6 +405,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) {
     return internalServer?.call(stackTrace);
   }
@@ -403,6 +420,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) {
     if (internalServer != null) {
@@ -419,6 +437,7 @@ class _$InternalServerImpl extends _InternalServer {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return internalServer(this);
   }
@@ -431,6 +450,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return internalServer?.call(this);
   }
@@ -443,6 +463,7 @@ class _$InternalServerImpl extends _InternalServer {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (internalServer != null) {
@@ -542,6 +563,8 @@ class _$ApiConnectionImpl extends _ApiConnection {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) {
     return apiConnection(stackTrace);
   }
@@ -556,6 +579,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) {
     return apiConnection?.call(stackTrace);
   }
@@ -570,6 +594,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) {
     if (apiConnection != null) {
@@ -586,6 +611,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return apiConnection(this);
   }
@@ -598,6 +624,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return apiConnection?.call(this);
   }
@@ -610,6 +637,7 @@ class _$ApiConnectionImpl extends _ApiConnection {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (apiConnection != null) {
@@ -708,6 +736,8 @@ class _$UnimplementedImpl extends _Unimplemented {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) {
     return unimplemented(stackTrace);
   }
@@ -722,6 +752,7 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) {
     return unimplemented?.call(stackTrace);
   }
@@ -736,6 +767,7 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) {
     if (unimplemented != null) {
@@ -752,6 +784,7 @@ class _$UnimplementedImpl extends _Unimplemented {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return unimplemented(this);
   }
@@ -764,6 +797,7 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return unimplemented?.call(this);
   }
@@ -776,6 +810,7 @@ class _$UnimplementedImpl extends _Unimplemented {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (unimplemented != null) {
@@ -895,6 +930,8 @@ class _$InvalidParamsImpl extends _InvalidParams {
     required TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)
         invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
   }) {
     return invalidParams(usernameError, passwordError, stackTrace);
   }
@@ -909,6 +946,7 @@ class _$InvalidParamsImpl extends _InvalidParams {
     TResult? Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
   }) {
     return invalidParams?.call(usernameError, passwordError, stackTrace);
   }
@@ -923,6 +961,7 @@ class _$InvalidParamsImpl extends _InvalidParams {
     TResult Function(String? usernameError, String? passwordError,
             StackTrace? stackTrace)?
         invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
     required TResult orElse(),
   }) {
     if (invalidParams != null) {
@@ -939,6 +978,7 @@ class _$InvalidParamsImpl extends _InvalidParams {
     required TResult Function(_ApiConnection value) apiConnection,
     required TResult Function(_Unimplemented value) unimplemented,
     required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
   }) {
     return invalidParams(this);
   }
@@ -951,6 +991,7 @@ class _$InvalidParamsImpl extends _InvalidParams {
     TResult? Function(_ApiConnection value)? apiConnection,
     TResult? Function(_Unimplemented value)? unimplemented,
     TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
   }) {
     return invalidParams?.call(this);
   }
@@ -963,6 +1004,7 @@ class _$InvalidParamsImpl extends _InvalidParams {
     TResult Function(_ApiConnection value)? apiConnection,
     TResult Function(_Unimplemented value)? unimplemented,
     TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
     required TResult orElse(),
   }) {
     if (invalidParams != null) {
@@ -989,5 +1031,187 @@ abstract class _InvalidParams extends UserFailure {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InvalidParamsImplCopyWith<_$InvalidParamsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UnauthorizedImplCopyWith<$Res>
+    implements $UserFailureCopyWith<$Res> {
+  factory _$$UnauthorizedImplCopyWith(
+          _$UnauthorizedImpl value, $Res Function(_$UnauthorizedImpl) then) =
+      __$$UnauthorizedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object error, StackTrace? stackTrace});
+}
+
+/// @nodoc
+class __$$UnauthorizedImplCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res, _$UnauthorizedImpl>
+    implements _$$UnauthorizedImplCopyWith<$Res> {
+  __$$UnauthorizedImplCopyWithImpl(
+      _$UnauthorizedImpl _value, $Res Function(_$UnauthorizedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(_$UnauthorizedImpl(
+      error: null == error ? _value.error : error,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UnauthorizedImpl extends _Unauthorized {
+  _$UnauthorizedImpl({required this.error, this.stackTrace}) : super._();
+
+  @override
+  final Object error;
+  @override
+  final StackTrace? stackTrace;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UnauthorizedImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
+      __$$UnauthorizedImplCopyWithImpl<_$UnauthorizedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message, StackTrace? stackTrace)
+        badRequest,
+    required TResult Function(StackTrace? stackTrace) internalServer,
+    required TResult Function(StackTrace? stackTrace) apiConnection,
+    required TResult Function(StackTrace? stackTrace) unimplemented,
+    required TResult Function(String? usernameError, String? passwordError,
+            StackTrace? stackTrace)
+        invalidParams,
+    required TResult Function(Object error, StackTrace? stackTrace)
+        unauthorized,
+  }) {
+    return unauthorized(error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message, StackTrace? stackTrace)? badRequest,
+    TResult? Function(StackTrace? stackTrace)? internalServer,
+    TResult? Function(StackTrace? stackTrace)? apiConnection,
+    TResult? Function(StackTrace? stackTrace)? unimplemented,
+    TResult? Function(String? usernameError, String? passwordError,
+            StackTrace? stackTrace)?
+        invalidParams,
+    TResult? Function(Object error, StackTrace? stackTrace)? unauthorized,
+  }) {
+    return unauthorized?.call(error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message, StackTrace? stackTrace)? badRequest,
+    TResult Function(StackTrace? stackTrace)? internalServer,
+    TResult Function(StackTrace? stackTrace)? apiConnection,
+    TResult Function(StackTrace? stackTrace)? unimplemented,
+    TResult Function(String? usernameError, String? passwordError,
+            StackTrace? stackTrace)?
+        invalidParams,
+    TResult Function(Object error, StackTrace? stackTrace)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_BadRequest value) badRequest,
+    required TResult Function(_InternalServer value) internalServer,
+    required TResult Function(_ApiConnection value) apiConnection,
+    required TResult Function(_Unimplemented value) unimplemented,
+    required TResult Function(_InvalidParams value) invalidParams,
+    required TResult Function(_Unauthorized value) unauthorized,
+  }) {
+    return unauthorized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_BadRequest value)? badRequest,
+    TResult? Function(_InternalServer value)? internalServer,
+    TResult? Function(_ApiConnection value)? apiConnection,
+    TResult? Function(_Unimplemented value)? unimplemented,
+    TResult? Function(_InvalidParams value)? invalidParams,
+    TResult? Function(_Unauthorized value)? unauthorized,
+  }) {
+    return unauthorized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BadRequest value)? badRequest,
+    TResult Function(_InternalServer value)? internalServer,
+    TResult Function(_ApiConnection value)? apiConnection,
+    TResult Function(_Unimplemented value)? unimplemented,
+    TResult Function(_InvalidParams value)? invalidParams,
+    TResult Function(_Unauthorized value)? unauthorized,
+    required TResult orElse(),
+  }) {
+    if (unauthorized != null) {
+      return unauthorized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unauthorized extends UserFailure {
+  factory _Unauthorized(
+      {required final Object error,
+      final StackTrace? stackTrace}) = _$UnauthorizedImpl;
+  _Unauthorized._() : super._();
+
+  Object get error;
+  @override
+  StackTrace? get stackTrace;
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnauthorizedImplCopyWith<_$UnauthorizedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -21,6 +21,10 @@ class UserFailure with _$UserFailure implements Exception {
     String? passwordError,
     StackTrace? stackTrace,
   }) = _InvalidParams;
+  factory UserFailure.unauthorized({
+    required Object error,
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
 
   @override
   String toString() {
@@ -29,6 +33,15 @@ class UserFailure with _$UserFailure implements Exception {
     }
     return super.toString();
   }
+
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (stackTrace) => stackTrace, 
+    unauthorized: (_, stackTrace) => stackTrace, 
+    invalidParams: (_, __, stackTrace) => stackTrace, 
+  );
 
   factory UserFailure.fromError(
     Object failure, {

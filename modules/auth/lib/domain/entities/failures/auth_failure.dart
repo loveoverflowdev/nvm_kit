@@ -22,6 +22,7 @@ class AuthFailure with _$AuthFailure implements Exception {
     StackTrace? stackTrace,
   }) = _InvalidParams;
 
+  
   @override
   String toString() {
     if (this is _BadRequest) {
@@ -29,6 +30,14 @@ class AuthFailure with _$AuthFailure implements Exception {
     }
     return super.toString();
   }
+
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (stackTrace) => stackTrace, 
+    invalidParams: (_, __, stackTrace) => stackTrace, 
+  );
 
   factory AuthFailure.fromError(
     Object failure, {

@@ -7,11 +7,11 @@ part 'active_structure_provider.g.dart';
 @riverpod
 Future<ActiveStructure> activeStructure(
   ActiveStructureRef ref, {
-  required String resourceStructureId,
+  required String activeStructureCode,
 }) {
   return ref
       .read(activeStructureRepositoryProvider)
-      .getActiveStructureById(id: resourceStructureId)
+      .getActiveStructureByCode(activeStructureCode)
       .run()
       .then(
     (project) {

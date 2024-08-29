@@ -43,66 +43,46 @@ abstract class ResourceComponent implements Component {
   ResourceComponent();
 
   String get type {
-    if (this is ActiveResourceListComponent) {
-      return ResourceType.activeResourceList.code;
-    }
-    if (this is ActiveResourceTileComponent) {
-      return ResourceType.activeResourceTile.code;
-    }
-    if (this is NotificationListComponent) {
-      return ResourceType.notificationList.code;
-    }
-    if (this is NotificationTileComponent) {
-      return ResourceType.notificationTile.code;
-    }
-    if (this is ProjectListComponent) {
-      return ResourceType.projectList.code;
-    }
-    if (this is ProjectTileComponent) {
-      return ResourceType.projectTile.code;
-    }
-    if (this is WorkspaceListComponent) {
-      return ResourceType.workspaceList.code;
-    }
-    if (this is WorkspaceTileComponent) {
-      return ResourceType.workspaceTile.code;
-    }
-    if (this is SigninFormComponent) {
-      return ResourceType.signinForm.code;
-    }
-    if (this is RegisterFormComponent) {
-      return ResourceType.registerForm.code;
-    }
-    return ResourceType.undefined.code;
+    final typeMapping = {
+      ActiveResourceListComponent: ResourceType.activeResourceList.code,
+      ActiveResourceTileComponent: ResourceType.activeResourceTile.code,
+      NotificationListComponent: ResourceType.notificationList.code,
+      NotificationTileComponent: ResourceType.notificationTile.code,
+      ProjectListComponent: ResourceType.projectList.code,
+      ProjectTileComponent: ResourceType.projectTile.code,
+      WorkspaceListComponent: ResourceType.workspaceList.code,
+      WorkspaceTileComponent: ResourceType.workspaceTile.code,
+      SigninFormComponent: ResourceType.signinForm.code,
+      RegisterFormComponent: ResourceType.registerForm.code,
+    };
+
+    return typeMapping[this.runtimeType] ?? ResourceType.undefined.code;
   }
 
   Map<String, dynamic> toJson();
 
   factory ResourceComponent.fromJson(Map<String, dynamic> json) {
     final resourceType = ResourceType.fromCode(json['type']);
-    switch (resourceType) {
-      case ResourceType.activeResourceList:
-        return ActiveResourceListComponent.fromJson(json);
-      case ResourceType.activeResourceTile:
-        return ActiveResourceTileComponent.fromJson(json);
-      case ResourceType.notificationList:
-        return NotificationListComponent.fromJson(json);
-      case ResourceType.notificationTile:
-        return NotificationTileComponent.fromJson(json);
-      case ResourceType.projectList:
-        return ProjectListComponent.fromJson(json);
-      case ResourceType.projectTile:
-        return ProjectTileComponent.fromJson(json);
-      case ResourceType.workspaceList:
-        return WorkspaceListComponent.fromJson(json);
-      case ResourceType.workspaceTile:
-        return WorkspaceTileComponent.fromJson(json);
-      case ResourceType.signinForm:
-        return SigninFormComponent.fromJson(json);
-      case ResourceType.registerForm:
-        return RegisterFormComponent.fromJson(json);
-      case ResourceType.undefined:
-        throw UnsupportedError('An unsupport resource type was passed');
+  
+    final factoryMapping = {
+      ResourceType.activeResourceList: (json) => ActiveResourceListComponent.fromJson(json),
+      ResourceType.activeResourceTile: (json) => ActiveResourceTileComponent.fromJson(json),
+      ResourceType.notificationList: (json) => NotificationListComponent.fromJson(json),
+      ResourceType.notificationTile: (json) => NotificationTileComponent.fromJson(json),
+      ResourceType.projectList: (json) => ProjectListComponent.fromJson(json),
+      ResourceType.projectTile: (json) => ProjectTileComponent.fromJson(json),
+      ResourceType.workspaceList: (json) => WorkspaceListComponent.fromJson(json),
+      ResourceType.workspaceTile: (json) => WorkspaceTileComponent.fromJson(json),
+      ResourceType.signinForm: (json) => SigninFormComponent.fromJson(json),
+      ResourceType.registerForm: (json) => RegisterFormComponent.fromJson(json),
+    };
+
+    final factoryFunction = factoryMapping[resourceType];
+
+    if (factoryFunction != null) {
+      return factoryFunction(json);
+    } else {
+      throw UnsupportedError('An unsupported resource type was passed');
     }
   }
 }

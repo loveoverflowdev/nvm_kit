@@ -6,7 +6,10 @@ part 'workspace_failure.freezed.dart';
 @freezed
 class WorkspaceFailure with _$WorkspaceFailure implements Exception {
   WorkspaceFailure._();
-  factory WorkspaceFailure.badRequest({required String message}) = _BadRequest;
+  factory WorkspaceFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory WorkspaceFailure.unauthorized({
     StackTrace? stackTrace,
   }) = _Unauthorized;
@@ -27,6 +30,15 @@ class WorkspaceFailure with _$WorkspaceFailure implements Exception {
     }
     return super.toString();
   }
+
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (stackTrace) => stackTrace, 
+    unauthorized: (stackTrace) => stackTrace, 
+    
+  );
 
   factory WorkspaceFailure.fromError(
     Object failure, {

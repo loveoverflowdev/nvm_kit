@@ -7,7 +7,7 @@ part of 'active_structure_list_provider.dart';
 // **************************************************************************
 
 String _$activeStructureListHash() =>
-    r'c83608a9a3e8a1983a39c81f17ec76b607f72f4a';
+    r'a909af30cfc510933c6dea2ee268e0ee2e9abb30';
 
 /// See also [ActiveStructureList].
 @ProviderFor(ActiveStructureList)

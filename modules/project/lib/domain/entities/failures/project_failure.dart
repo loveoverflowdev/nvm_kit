@@ -8,7 +8,10 @@ part 'project_failure.freezed.dart';
 @freezed
 class ProjectFailure with _$ProjectFailure implements Exception {
   ProjectFailure._();
-  factory ProjectFailure.badRequest({required String message}) = _BadRequest;
+  factory ProjectFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory ProjectFailure.unauthorized({
     StackTrace? stackTrace,
   }) = _Unauthorized;
@@ -23,6 +26,14 @@ class ProjectFailure with _$ProjectFailure implements Exception {
     StackTrace? stackTrace,
   }) = _Unimplemented;
 
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (_, stackTrace) => stackTrace, 
+    unauthorized: (stackTrace) => stackTrace, 
+  );
+  
   @override
   String toString() {
     if (this is _BadRequest) {

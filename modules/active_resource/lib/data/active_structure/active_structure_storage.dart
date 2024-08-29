@@ -41,7 +41,7 @@ final class CachedActiveStructureStorage implements ActiveStructureStorage {
           ActiveStructure.fromJson(jsonDecode(activeStructureString));
       results.add(activeStructure);
     }
-    return results;
+    return Future.value(results);
   }
 
   @override

@@ -42,4 +42,12 @@ class ActiveStructureFailure
     }
     return ActiveStructureFailure.unimplemented();
   }
+
+  StackTrace? get stackTrace => when(
+    badRequest: (_, stackTrace) => stackTrace,
+    internalServer: (stackTrace) => stackTrace,
+    apiConnection: (stackTrace) => stackTrace,
+    unimplemented: (stackTrace) => stackTrace,
+    unauthorized: (stackTrace) => stackTrace,
+  );
 }

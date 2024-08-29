@@ -9,13 +9,13 @@ import '../repositories.dart';
 //           (repository) => repository.getActiveStructureById(id).run(),
 //         );
 
-ReaderTaskEither<ActiveStructureRepository, Exception, ActiveStructure>
+ReaderTaskEither<ActiveStructureRepository, ActiveStructureFailure, ActiveStructure>
     getActiveStructureByCodeTask(String id) =>
         ReaderTaskEither(
           (repository) => repository.getActiveStructureByCode(id).run(),
         );
 
-ReaderTaskEither<ActiveStructureRepository, Exception, List<ActiveStructure>>
+ReaderTaskEither<ActiveStructureRepository, ActiveStructureFailure, List<ActiveStructure>>
     getActiveStructureListTask() => ReaderTaskEither(
           (repository) => repository.getActiveStructureList().run(),
         );

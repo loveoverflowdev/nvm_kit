@@ -6,7 +6,7 @@ part of 'active_structure_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeStructureHash() => r'29a4766db66de863cab52526c0afc8ff46cf6669';
+String _$activeStructureHash() => r'0601efd7e92247a4b9e9065c96f7a44c53e00a2a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -40,10 +40,10 @@ class ActiveStructureFamily extends Family<AsyncValue<ActiveStructure>> {
 
   /// See also [activeStructure].
   ActiveStructureProvider call({
-    required String resourceStructureId,
+    required String activeStructureCode,
   }) {
     return ActiveStructureProvider(
-      resourceStructureId: resourceStructureId,
+      activeStructureCode: activeStructureCode,
     );
   }
 
@@ -52,7 +52,7 @@ class ActiveStructureFamily extends Family<AsyncValue<ActiveStructure>> {
     covariant ActiveStructureProvider provider,
   ) {
     return call(
-      resourceStructureId: provider.resourceStructureId,
+      activeStructureCode: provider.activeStructureCode,
     );
   }
 
@@ -76,11 +76,11 @@ class ActiveStructureProvider
     extends AutoDisposeFutureProvider<ActiveStructure> {
   /// See also [activeStructure].
   ActiveStructureProvider({
-    required String resourceStructureId,
+    required String activeStructureCode,
   }) : this._internal(
           (ref) => activeStructure(
             ref as ActiveStructureRef,
-            resourceStructureId: resourceStructureId,
+            activeStructureCode: activeStructureCode,
           ),
           from: activeStructureProvider,
           name: r'activeStructureProvider',
@@ -91,7 +91,7 @@ class ActiveStructureProvider
           dependencies: ActiveStructureFamily._dependencies,
           allTransitiveDependencies:
               ActiveStructureFamily._allTransitiveDependencies,
-          resourceStructureId: resourceStructureId,
+          activeStructureCode: activeStructureCode,
         );
 
   ActiveStructureProvider._internal(
@@ -101,10 +101,10 @@ class ActiveStructureProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.resourceStructureId,
+    required this.activeStructureCode,
   }) : super.internal();
 
-  final String resourceStructureId;
+  final String activeStructureCode;
 
   @override
   Override overrideWith(
@@ -119,7 +119,7 @@ class ActiveStructureProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        resourceStructureId: resourceStructureId,
+        activeStructureCode: activeStructureCode,
       ),
     );
   }
@@ -132,21 +132,21 @@ class ActiveStructureProvider
   @override
   bool operator ==(Object other) {
     return other is ActiveStructureProvider &&
-        other.resourceStructureId == resourceStructureId;
+        other.activeStructureCode == activeStructureCode;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, resourceStructureId.hashCode);
+    hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin ActiveStructureRef on AutoDisposeFutureProviderRef<ActiveStructure> {
-  /// The parameter `resourceStructureId` of this provider.
-  String get resourceStructureId;
+  /// The parameter `activeStructureCode` of this provider.
+  String get activeStructureCode;
 }
 
 class _ActiveStructureProviderElement
@@ -155,8 +155,8 @@ class _ActiveStructureProviderElement
   _ActiveStructureProviderElement(super.provider);
 
   @override
-  String get resourceStructureId =>
-      (origin as ActiveStructureProvider).resourceStructureId;
+  String get activeStructureCode =>
+      (origin as ActiveStructureProvider).activeStructureCode;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

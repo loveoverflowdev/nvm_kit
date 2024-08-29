@@ -13,16 +13,14 @@ class ActiveStructureList extends _$ActiveStructureList {
   ActiveStructureListState build() =>
       ActiveStructureListState.data(List.empty());
 
-  void loadActiveStructureList({
-    required String activeStructureCode,
-  }) async {
+  void loadActiveStructureList() async {
     state = const AsyncValue.loading();
 
     getActiveStructureListTask().match(
       (failure) {
         state = ActiveStructureListState.error(
           failure,
-          StackTrace.current,
+          failure.stackTrace ?? StackTrace.current,
         );
       },
       (result) {
