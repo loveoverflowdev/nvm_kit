@@ -41,7 +41,7 @@ class ProjectPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 for (final page in pages)
-                  active_resource.ActiveResourceListView(
+                  active_resource.ActiveResourceCollectionView(
                     collectionComponent: page.collection,
                   ),
                 // active_resource.ActiveResourceListView(

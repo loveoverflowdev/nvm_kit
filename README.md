@@ -12,3 +12,6 @@ resourceTitle => activeStructureTitle
 attributes => liveAttributes
 
 widget phi cấu trúc
+
+Collection View refactor
+

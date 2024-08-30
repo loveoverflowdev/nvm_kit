@@ -6,54 +6,48 @@ import 'package:template_parser/template_parser.dart' as template;
 
 import '../providers.dart' show activeResourceListProvider;
 
-class ActiveResourceListView extends ConsumerStatefulWidget {
+class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final template.ActiveCollectionComponent collectionComponent;
 
-  const ActiveResourceListView({
+  const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
   });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ActiveResourceListViewState();
+      _ActiveResourceCollectionViewState();
 }
 
-class _ActiveResourceListViewState
-    extends ConsumerState<ActiveResourceListView> {
-
+class _ActiveResourceCollectionViewState
+    extends ConsumerState<ActiveResourceCollectionView> {
   String get _activeStructureCode =>
       widget.collectionComponent.tile.activeStructureCode;
-  
-  template.ActiveTileComponent get _activeTile => widget.collectionComponent.tile;
+
+  template.ActiveTileComponent get _activeTile =>
+      widget.collectionComponent.tile;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
-    
-    return RequestField.children(
-      [
-        RequestField.name('id'),
-        RequestField(
-          name: 'liveAttributes',
-          children: [
-          RequestField.name(tile.titleKey),
-          if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
-        ]),
-      ]
-    ).build();
+    return RequestField.children([
+      RequestField.name('id'),
+      RequestField(name: 'liveAttributes', children: [
+        RequestField.name(tile.titleKey),
+        if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
+      ]),
+    ]).build();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        ref.read(activeResourceListProvider(
-          activeStructureCode: _activeStructureCode,
-        ).notifier).loadActiveResourceList(
-          requestField: _parseRequestField(_activeTile)
-        );
-      }
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(activeResourceListProvider(
+            activeStructureCode: _activeStructureCode,
+          ).notifier)
+          .loadActiveResourceList(
+              requestField: _parseRequestField(_activeTile));
+    });
   }
 
   @override
@@ -68,8 +62,6 @@ class _ActiveResourceListViewState
         itemBuilder: (context, index) {
           final activeResource = data[index];
           final liveAttributes = activeResource.liveAttributes;
-          print('--- ' + liveAttributes.toString());
-          print('--- ' + tileComponent.toJson().toString());
           return ListTile(
             title: Text(
               liveAttributes[tileComponent.titleKey],
