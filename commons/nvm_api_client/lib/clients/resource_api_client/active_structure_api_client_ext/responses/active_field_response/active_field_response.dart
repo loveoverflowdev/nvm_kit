@@ -61,7 +61,7 @@ final class ActiveFieldResponse {
   });
 
   factory ActiveFieldResponse.fromJson(Map<String, dynamic> json) =>
-      _$ActiveFieldStructureResponseFromJson(json);
+      _$ActiveFieldResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ActiveFieldStructureResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveFieldResponseToJson(this);
 }

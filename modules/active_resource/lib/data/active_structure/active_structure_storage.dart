@@ -14,7 +14,7 @@ abstract interface class ActiveStructureStorage {
 
 final class CachedActiveStructureStorage implements ActiveStructureStorage {
   final SharedPreferences _sharedPreferences;
-  static String _activeStructureNamspaceKey = 'active_structure@';
+  static const String _activeStructureNamspaceKey = 'active_structure@';
 
   CachedActiveStructureStorage({
     required SharedPreferences sharedPreferences,
@@ -34,7 +34,9 @@ final class CachedActiveStructureStorage implements ActiveStructureStorage {
   @override
   Future<List<ActiveStructure>> readActiveStructureList() {
     final results = <ActiveStructure>[];
-    final keys = _sharedPreferences.getKeys().where((key) => key.startsWith(_activeStructureNamspaceKey));
+    final keys = _sharedPreferences
+        .getKeys()
+        .where((key) => key.startsWith(_activeStructureNamspaceKey));
     for (final key in keys) {
       final activeStructureString = _sharedPreferences.getString(key)!;
       final activeStructure =
@@ -47,8 +49,12 @@ final class CachedActiveStructureStorage implements ActiveStructureStorage {
   @override
   Future<bool> writeActiveStructure(ActiveStructure activeStructure) async {
     final activeStructureString = jsonEncode(activeStructure.toJson());
-    final r1 = await _sharedPreferences.setString(_activeStructureNamspaceKey + activeStructure.code, activeStructureString);
-    final r2 = await _sharedPreferences.setString(_activeStructureNamspaceKey + activeStructure.id, activeStructureString);
+    final r1 = await _sharedPreferences.setString(
+        _activeStructureNamspaceKey + activeStructure.code,
+        activeStructureString);
+    final r2 = await _sharedPreferences.setString(
+        _activeStructureNamspaceKey + activeStructure.id,
+        activeStructureString);
     return r1 && r2;
   }
 }

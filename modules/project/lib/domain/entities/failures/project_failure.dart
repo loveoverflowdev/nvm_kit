@@ -26,6 +26,7 @@ class ProjectFailure with _$ProjectFailure implements Exception {
     StackTrace? stackTrace,
   }) = _Unimplemented;
 
+  @override
   StackTrace? get stackTrace => when(
         badRequest: (_, stackTrace) => stackTrace,
         internalServer: (stackTrace) => stackTrace,

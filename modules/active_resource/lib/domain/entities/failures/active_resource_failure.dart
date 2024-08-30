@@ -5,8 +5,12 @@ part 'active_resource_failure.freezed.dart';
 
 @freezed
 class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
-  factory ActiveResourceFailure.badRequest({required String message, StackTrace? stackTrace,}) =
-      _BadRequest;
+  ActiveResourceFailure._();
+
+  factory ActiveResourceFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory ActiveResourceFailure.unauthorized({
     required Object error,
     StackTrace? stackTrace,
@@ -22,13 +26,14 @@ class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
     StackTrace? stackTrace,
   }) = _Unimplemented;
 
+  @override
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (_, stackTrace) => stackTrace, 
-    unauthorized: (_, stackTrace) => stackTrace, 
-  );
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (_, stackTrace) => stackTrace,
+        unauthorized: (_, stackTrace) => stackTrace,
+      );
 
   @override
   String toString() {
@@ -39,11 +44,9 @@ class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
   }
 
   factory ActiveResourceFailure.fromError(
-    Object failure,
-    {
-      StackTrace? stackTrace,
-    }
-  ) {
+    Object failure, {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => ActiveResourceFailure.badRequest(

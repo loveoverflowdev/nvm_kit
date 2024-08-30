@@ -6,8 +6,7 @@ part of 'active_field_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActiveFieldResponse _$ActiveFieldStructureResponseFromJson(
-        Map<String, dynamic> json) =>
+ActiveFieldResponse _$ActiveFieldResponseFromJson(Map<String, dynamic> json) =>
     ActiveFieldResponse(
       id: json['id'] as String,
       key: json['fieldName'] as String,
@@ -31,7 +30,7 @@ ActiveFieldResponse _$ActiveFieldStructureResponseFromJson(
       updatedAt: json['updatedAt'],
     );
 
-Map<String, dynamic> _$ActiveFieldStructureResponseToJson(
+Map<String, dynamic> _$ActiveFieldResponseToJson(
         ActiveFieldResponse instance) =>
     <String, dynamic>{
       'id': instance.id,

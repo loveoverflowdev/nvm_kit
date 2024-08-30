@@ -14,6 +14,9 @@ ActiveStructure _$ActiveStructureFromJson(Map<String, dynamic> json) =>
       fields: (json['fields'] as List<dynamic>)
           .map((e) => ActiveField.fromJson(e as Map<String, dynamic>))
           .toList(),
+      supportedAddonTypes: (json['supportedAddonTypes'] as List<dynamic>)
+          .map((e) => $enumDecode(_$AddonTypeEnumMap, e))
+          .toList(),
     );
 
 Map<String, dynamic> _$ActiveStructureToJson(ActiveStructure instance) =>
@@ -22,7 +25,15 @@ Map<String, dynamic> _$ActiveStructureToJson(ActiveStructure instance) =>
       'code': instance.code,
       'title': instance.title,
       'fields': instance.fields,
+      'supportedAddonTypes': instance.supportedAddonTypes
+          .map((e) => _$AddonTypeEnumMap[e]!)
+          .toList(),
     };
+
+const _$AddonTypeEnumMap = {
+  AddonType.comment: 'comment',
+  AddonType.rolesBoard: 'rolesBoard',
+};
 
 ActiveField _$ActiveFieldFromJson(Map<String, dynamic> json) => ActiveField(
       id: json['id'] as String,

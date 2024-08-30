@@ -283,6 +283,7 @@ abstract class _BadRequest extends CommentFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of CommentFailure
@@ -447,6 +448,7 @@ abstract class _Unauthorized extends CommentFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -615,6 +617,7 @@ abstract class _InternalServer extends CommentFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of CommentFailure
@@ -780,6 +783,7 @@ abstract class _ApiConnection extends CommentFailure {
   _ApiConnection._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of CommentFailure
@@ -944,6 +948,7 @@ abstract class _Unimplemented extends CommentFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 

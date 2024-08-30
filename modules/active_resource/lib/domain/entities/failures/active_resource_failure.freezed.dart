@@ -162,8 +162,8 @@ class __$$BadRequestImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BadRequestImpl implements _BadRequest {
-  _$BadRequestImpl({required this.message, this.stackTrace});
+class _$BadRequestImpl extends _BadRequest {
+  _$BadRequestImpl({required this.message, this.stackTrace}) : super._();
 
   @override
   final String message;
@@ -275,12 +275,14 @@ class _$BadRequestImpl implements _BadRequest {
   }
 }
 
-abstract class _BadRequest implements ActiveResourceFailure {
+abstract class _BadRequest extends ActiveResourceFailure {
   factory _BadRequest(
       {required final String message,
       final StackTrace? stackTrace}) = _$BadRequestImpl;
+  _BadRequest._() : super._();
 
   String get message;
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -331,8 +333,8 @@ class __$$UnauthorizedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnauthorizedImpl implements _Unauthorized {
-  _$UnauthorizedImpl({required this.error, this.stackTrace});
+class _$UnauthorizedImpl extends _Unauthorized {
+  _$UnauthorizedImpl({required this.error, this.stackTrace}) : super._();
 
   @override
   final Object error;
@@ -445,12 +447,14 @@ class _$UnauthorizedImpl implements _Unauthorized {
   }
 }
 
-abstract class _Unauthorized implements ActiveResourceFailure {
+abstract class _Unauthorized extends ActiveResourceFailure {
   factory _Unauthorized(
       {required final Object error,
       final StackTrace? stackTrace}) = _$UnauthorizedImpl;
+  _Unauthorized._() : super._();
 
   Object get error;
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -499,8 +503,8 @@ class __$$InternalServerImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InternalServerImpl implements _InternalServer {
-  _$InternalServerImpl({this.stackTrace});
+class _$InternalServerImpl extends _InternalServer {
+  _$InternalServerImpl({this.stackTrace}) : super._();
 
   @override
   final StackTrace? stackTrace;
@@ -610,10 +614,12 @@ class _$InternalServerImpl implements _InternalServer {
   }
 }
 
-abstract class _InternalServer implements ActiveResourceFailure {
+abstract class _InternalServer extends ActiveResourceFailure {
   factory _InternalServer({final StackTrace? stackTrace}) =
       _$InternalServerImpl;
+  _InternalServer._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -662,8 +668,8 @@ class __$$ApiConnectionImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApiConnectionImpl implements _ApiConnection {
-  _$ApiConnectionImpl({this.stackTrace});
+class _$ApiConnectionImpl extends _ApiConnection {
+  _$ApiConnectionImpl({this.stackTrace}) : super._();
 
   @override
   final StackTrace? stackTrace;
@@ -772,9 +778,11 @@ class _$ApiConnectionImpl implements _ApiConnection {
   }
 }
 
-abstract class _ApiConnection implements ActiveResourceFailure {
+abstract class _ApiConnection extends ActiveResourceFailure {
   factory _ApiConnection({final StackTrace? stackTrace}) = _$ApiConnectionImpl;
+  _ApiConnection._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -825,8 +833,8 @@ class __$$UnimplementedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnimplementedImpl implements _Unimplemented {
-  _$UnimplementedImpl({required this.error, this.stackTrace});
+class _$UnimplementedImpl extends _Unimplemented {
+  _$UnimplementedImpl({required this.error, this.stackTrace}) : super._();
 
   @override
   final Object error;
@@ -939,12 +947,14 @@ class _$UnimplementedImpl implements _Unimplemented {
   }
 }
 
-abstract class _Unimplemented implements ActiveResourceFailure {
+abstract class _Unimplemented extends ActiveResourceFailure {
   factory _Unimplemented(
       {required final Object error,
       final StackTrace? stackTrace}) = _$UnimplementedImpl;
+  _Unimplemented._() : super._();
 
   Object get error;
+  @override
   @override
   StackTrace? get stackTrace;
 

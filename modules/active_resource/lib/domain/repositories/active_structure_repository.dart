@@ -7,5 +7,6 @@ abstract class ActiveStructureRepository {
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
       getActiveStructureList();
 
-  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(String code);
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
+      String code);
 }

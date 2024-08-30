@@ -5,7 +5,8 @@ import '../../domain.dart'
         ActiveField,
         ActiveStructure,
         ActiveStructureFailure,
-        ActiveStructureRepository;
+        ActiveStructureRepository,
+        AddonType;
 
 final class RemoteActiveStructureRepository
     implements ActiveStructureRepository {
@@ -13,10 +14,11 @@ final class RemoteActiveStructureRepository
 
   RemoteActiveStructureRepository({
     required api.ResourceApiClient apiClient,
-  })  : _apiClient = apiClient;
+  }) : _apiClient = apiClient;
 
   @override
-  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(String code) {
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
+      String code) {
     return TaskEither.tryCatch(
       () async {
         return _apiClient
@@ -34,32 +36,13 @@ final class RemoteActiveStructureRepository
   }
 
   @override
-  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureById(String id) {
-    return TaskEither.tryCatch(
-      () async {
-        return _apiClient
-            .getActiveStructureById(
-              id,
-            )
-            .then(
-              (value) => _mapResponse(value),
-            );
-      },
-      (error, stackTrace) => ActiveStructureFailure.fromError(
-        error,
-      ),
-    );
-  }
-
-  @override
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
       getActiveStructureList() {
     return TaskEither.tryCatch(
       () async {
-       return await _apiClient.getActiveStructureList().then(
-                  (value) => value.map(_mapResponse).toList(),
-                );
-
+        return await _apiClient.getActiveStructureList().then(
+              (value) => value.map(_mapResponse).toList(),
+            );
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
@@ -74,6 +57,14 @@ final class RemoteActiveStructureRepository
       code: response.code,
       id: response.id,
       title: response.title,
+      supportedAddonTypes: response.supportedAddonTypes
+          .map(
+            (e) => switch (e) {
+              api.AddonType.comment => AddonType.comment,
+              api.AddonType.rolesBoard => AddonType.rolesBoard,
+            },
+          )
+          .toList(),
       fields: response.fields
           .map(
             (e) => ActiveField(
@@ -90,4 +81,3 @@ final class RemoteActiveStructureRepository
     );
   }
 }
-

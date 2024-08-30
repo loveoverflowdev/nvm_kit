@@ -10,18 +10,28 @@ ActiveStructureResponse _$ActiveStructureResponseFromJson(
         Map<String, dynamic> json) =>
     ActiveStructureResponse(
       id: json['id'] as String,
-      code: json['code'] as String,
-      title: json['title'] as String,
+      code: json['activeStructureCode'] as String,
+      title: json['activeStructureTitle'] as String,
       fields: (json['fields'] as List<dynamic>)
           .map((e) => ActiveFieldResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
+      supportedAddonTypes: _supportedAddonTypesFromJson(
+          json['activeFeatures'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActiveStructureResponseToJson(
         ActiveStructureResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'code': instance.code,
-      'title': instance.title,
+      'activeStructureCode': instance.code,
+      'activeStructureTitle': instance.title,
       'fields': instance.fields,
+      'activeFeatures': instance.supportedAddonTypes
+          .map((e) => _$AddonTypeEnumMap[e]!)
+          .toList(),
     };
+
+const _$AddonTypeEnumMap = {
+  AddonType.comment: 'comment',
+  AddonType.rolesBoard: 'rolesBoard',
+};

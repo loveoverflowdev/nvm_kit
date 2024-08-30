@@ -280,6 +280,7 @@ abstract class _BadRequest extends ProjectFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ProjectFailure
@@ -440,6 +441,7 @@ abstract class _Unauthorized extends ProjectFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -604,6 +606,7 @@ abstract class _InternalServer extends ProjectFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ProjectFailure
@@ -764,6 +767,7 @@ abstract class _ApiConnection extends ProjectFailure {
   factory _ApiConnection({final StackTrace? stackTrace}) = _$ApiConnectionImpl;
   _ApiConnection._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -934,6 +938,7 @@ abstract class _Unimplemented extends ProjectFailure {
   _Unimplemented._() : super._();
 
   Object get error;
+  @override
   @override
   StackTrace? get stackTrace;
 

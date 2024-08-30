@@ -23,8 +23,10 @@ final class RemoteCommentRepository implements CommentRepository {
           .then(
             (value) => value.map(_mapResponse).toList(),
           ),
-      (error, stackTrace) =>
-          CommentFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) => CommentFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 
@@ -46,8 +48,10 @@ final class RemoteCommentRepository implements CommentRepository {
           ),
         );
       },
-      (error, stackTrace) =>
-          CommentFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) => CommentFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 

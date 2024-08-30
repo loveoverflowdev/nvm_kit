@@ -31,20 +31,19 @@ class WorkspaceFailure with _$WorkspaceFailure implements Exception {
     return super.toString();
   }
 
+  @override
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (stackTrace) => stackTrace, 
-    unauthorized: (stackTrace) => stackTrace, 
-    
-  );
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (stackTrace) => stackTrace,
+        unauthorized: (stackTrace) => stackTrace,
+      );
 
   factory WorkspaceFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => WorkspaceFailure.badRequest(

@@ -43,11 +43,12 @@ class ActiveStructureFailure
     return ActiveStructureFailure.unimplemented();
   }
 
+  @override
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (stackTrace) => stackTrace,
-    unauthorized: (stackTrace) => stackTrace,
-  );
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (stackTrace) => stackTrace,
+        unauthorized: (stackTrace) => stackTrace,
+      );
 }

@@ -2,18 +2,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'active_structure.g.dart';
 
+enum AddonType { comment, rolesBoard }
+
 @JsonSerializable()
 final class ActiveStructure {
   final String id;
   final String code;
   final String title;
   final List<ActiveField> fields;
+  final List<AddonType> supportedAddonTypes;
 
   ActiveStructure({
     required this.id,
     required this.code,
     required this.title,
     required this.fields,
+    required this.supportedAddonTypes,
   });
 
   Map<String, dynamic> toJson() => _$ActiveStructureToJson(this);

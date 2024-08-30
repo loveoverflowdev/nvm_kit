@@ -6,7 +6,10 @@ part 'roles_board_failure.freezed.dart';
 @freezed
 class RolesBoardFailure with _$RolesBoardFailure implements Exception {
   RolesBoardFailure._();
-  factory RolesBoardFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
+  factory RolesBoardFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory RolesBoardFailure.unauthorized({
     StackTrace? stackTrace,
   }) = _Unauthorized;
@@ -22,9 +25,8 @@ class RolesBoardFailure with _$RolesBoardFailure implements Exception {
 
   factory RolesBoardFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => RolesBoardFailure.badRequest(

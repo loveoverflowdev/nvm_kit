@@ -6,7 +6,10 @@ part 'auth_failure.freezed.dart';
 @freezed
 class AuthFailure with _$AuthFailure implements Exception {
   AuthFailure._();
-  factory AuthFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
+  factory AuthFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory AuthFailure.internalServer({
     StackTrace? stackTrace,
   }) = _InternalServer;
@@ -22,7 +25,6 @@ class AuthFailure with _$AuthFailure implements Exception {
     StackTrace? stackTrace,
   }) = _InvalidParams;
 
-  
   @override
   String toString() {
     if (this is _BadRequest) {
@@ -31,19 +33,19 @@ class AuthFailure with _$AuthFailure implements Exception {
     return super.toString();
   }
 
+  @override
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (stackTrace) => stackTrace, 
-    invalidParams: (_, __, stackTrace) => stackTrace, 
-  );
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (stackTrace) => stackTrace,
+        invalidParams: (_, __, stackTrace) => stackTrace,
+      );
 
   factory AuthFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => AuthFailure.badRequest(

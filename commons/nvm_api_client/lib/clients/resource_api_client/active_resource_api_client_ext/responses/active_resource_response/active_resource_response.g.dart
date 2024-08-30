@@ -10,7 +10,7 @@ ActiveResourceResponse _$ActiveResourceResponseFromJson(
         Map<String, dynamic> json) =>
     ActiveResourceResponse(
       id: json['id'] as String,
-      liveAttributes: json['liveAttributes'] as Map<String, dynamic>,
+      liveAttributes: json['liveAttributes'] as Map<String, dynamic>?,
       projectId: json['projectId'] as String?,
       creator: json['createdByUser'] == null
           ? null

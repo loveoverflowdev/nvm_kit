@@ -10,3 +10,5 @@ fieldId => activeFieldId
 resourceCode => activeStructureCode 
 resourceTitle => activeStructureTitle
 attributes => liveAttributes
+
+widget phi cấu trúc

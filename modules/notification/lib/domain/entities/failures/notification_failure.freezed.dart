@@ -283,6 +283,7 @@ abstract class _BadRequest extends NotificationFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of NotificationFailure
@@ -447,6 +448,7 @@ abstract class _Unauthorized extends NotificationFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -615,6 +617,7 @@ abstract class _InternalServer extends NotificationFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of NotificationFailure
@@ -780,6 +783,7 @@ abstract class _ApiConnection extends NotificationFailure {
   _ApiConnection._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of NotificationFailure
@@ -944,6 +948,7 @@ abstract class _Unimplemented extends NotificationFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 

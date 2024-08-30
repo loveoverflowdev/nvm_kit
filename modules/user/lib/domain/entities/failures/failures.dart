@@ -6,7 +6,10 @@ part 'failures.freezed.dart';
 @freezed
 class UserFailure with _$UserFailure implements Exception {
   UserFailure._();
-  factory UserFailure.badRequest({required String message, StackTrace? stackTrace,}) = _BadRequest;
+  factory UserFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory UserFailure.internalServer({
     StackTrace? stackTrace,
   }) = _InternalServer;
@@ -34,20 +37,20 @@ class UserFailure with _$UserFailure implements Exception {
     return super.toString();
   }
 
+  @override
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (stackTrace) => stackTrace, 
-    unauthorized: (_, stackTrace) => stackTrace, 
-    invalidParams: (_, __, stackTrace) => stackTrace, 
-  );
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (stackTrace) => stackTrace,
+        unauthorized: (_, stackTrace) => stackTrace,
+        invalidParams: (_, __, stackTrace) => stackTrace,
+      );
 
   factory UserFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => UserFailure.badRequest(

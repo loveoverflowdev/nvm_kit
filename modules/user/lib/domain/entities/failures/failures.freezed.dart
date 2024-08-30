@@ -304,6 +304,7 @@ abstract class _BadRequest extends UserFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of UserFailure
@@ -479,6 +480,7 @@ abstract class _InternalServer extends UserFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of UserFailure
@@ -652,6 +654,7 @@ abstract class _ApiConnection extends UserFailure {
   _ApiConnection._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of UserFailure
@@ -824,6 +827,7 @@ abstract class _Unimplemented extends UserFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -1024,6 +1028,7 @@ abstract class _InvalidParams extends UserFailure {
   String? get usernameError;
   String? get passwordError;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of UserFailure
@@ -1205,6 +1210,7 @@ abstract class _Unauthorized extends UserFailure {
   _Unauthorized._() : super._();
 
   Object get error;
+  @override
   @override
   StackTrace? get stackTrace;
 

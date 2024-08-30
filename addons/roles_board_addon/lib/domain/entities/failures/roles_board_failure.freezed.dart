@@ -283,6 +283,7 @@ abstract class _BadRequest extends RolesBoardFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of RolesBoardFailure
@@ -447,6 +448,7 @@ abstract class _Unauthorized extends RolesBoardFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -615,6 +617,7 @@ abstract class _InternalServer extends RolesBoardFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of RolesBoardFailure
@@ -780,6 +783,7 @@ abstract class _ApiConnection extends RolesBoardFailure {
   _ApiConnection._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of RolesBoardFailure
@@ -944,6 +948,7 @@ abstract class _Unimplemented extends RolesBoardFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 

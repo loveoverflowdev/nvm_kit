@@ -278,6 +278,7 @@ abstract class _BadRequest extends WorkspaceFailure {
 
   String get message;
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of WorkspaceFailure
@@ -437,6 +438,7 @@ abstract class _Unauthorized extends WorkspaceFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
@@ -600,6 +602,7 @@ abstract class _InternalServer extends WorkspaceFailure {
   _InternalServer._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of WorkspaceFailure
@@ -760,6 +763,7 @@ abstract class _ApiConnection extends WorkspaceFailure {
   _ApiConnection._() : super._();
 
   @override
+  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of WorkspaceFailure
@@ -919,6 +923,7 @@ abstract class _Unimplemented extends WorkspaceFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
+  @override
   @override
   StackTrace? get stackTrace;
 
