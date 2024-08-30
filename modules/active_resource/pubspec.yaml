@@ -24,6 +24,8 @@ dependencies:
     path: ../../commons/template_parser
   nvm_api_client:
     path: ../../commons/nvm_api_client
+  alchemist_query:
+    path: ../../commons/alchemist_query
 
 dev_dependencies:
   flutter_test:

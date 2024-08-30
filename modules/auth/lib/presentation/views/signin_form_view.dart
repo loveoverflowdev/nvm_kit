@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
 
 import '../providers.dart';
+import 'password_text_field.dart';
 
 class SigninFormView extends StatelessWidget {
   const SigninFormView({super.key});
@@ -44,12 +45,9 @@ class SigninFormView extends StatelessWidget {
                 (form) => form.password.displayError?.message,
               ),
             );
-            return TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Enter your password',
-                errorText: errorText,
-              ),
+            return PasswordTextField(
+              hintText: 'Enter your password',
+              errorText: errorText,
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changePassword(value);
               },

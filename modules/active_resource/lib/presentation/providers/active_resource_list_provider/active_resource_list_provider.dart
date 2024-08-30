@@ -16,10 +16,13 @@ class ActiveResourceList extends _$ActiveResourceList {
   }) =>
       ActiveResourceListState.data(List.empty());
 
-  void loadActiveResourceList() async {
+  void loadActiveResourceList({
+    String? requestField,
+  }) async {
     state = const AsyncValue.loading();
     getActiveResourceListTask(
       activeStructureCode: activeStructureCode,
+      requestField: requestField,
     ).match(
       (failure) {
         state = ActiveResourceListState.error(

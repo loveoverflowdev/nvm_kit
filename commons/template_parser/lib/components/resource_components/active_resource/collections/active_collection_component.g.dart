@@ -9,7 +9,7 @@ part of 'active_collection_component.dart';
 ActiveCollectionComponent _$ActiveCollectionComponentFromJson(
         Map<String, dynamic> json) =>
     ActiveCollectionComponent(
-      tile: ActiveResourceTileComponent.fromJson(
+      tile: ActiveTileComponent.fromJson(
           json['tile'] as Map<String, dynamic>),
     );
 

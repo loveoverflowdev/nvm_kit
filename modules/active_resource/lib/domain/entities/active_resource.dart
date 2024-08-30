@@ -5,11 +5,11 @@ class ActiveResource {
   final ActiveResourceCreator? creator;
 
   ActiveResource({
-    String? id,
+    required String id,
     Map<String, dynamic>? liveAttributes,
     String? projectId,
     ActiveResourceCreator? creator,
-  })  : id = id ?? '',
+  })  : id = id,
         liveAttributes = liveAttributes ?? {},
         projectId = projectId,
         creator = creator;

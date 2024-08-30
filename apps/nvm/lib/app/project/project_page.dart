@@ -40,24 +40,19 @@ class ProjectPage extends StatelessWidget {
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                active_resource.ActiveResourceListView(
-                  collectionComponent: template.ActiveCollectionComponent(
-                    tile: template.ActiveResourceTileComponent(
-                      activeStructureCode: 'user',
-                      titleKey: 'as_a',
-                      subtitleKey: 'i_want',
-                    ),
+                for (final page in pages)
+                  active_resource.ActiveResourceListView(
+                    collectionComponent: page.collection,
                   ),
-                ),
-                active_resource.ActiveResourceListView(
-                  collectionComponent: template.ActiveCollectionComponent(
-                    tile: template.ActiveResourceTileComponent(
-                      activeStructureCode: '',
-                      titleKey: 'task_name',
-                      subtitleKey: 'task_description',
-                    ),
-                  ),
-                ),
+                // active_resource.ActiveResourceListView(
+                //   collectionComponent: template.ActiveCollectionComponent(
+                //     tile: template.ActiveResourceTileComponent(
+                //       activeStructureCode: '',
+                //       titleKey: 'task_name',
+                //       subtitleKey: 'task_description',
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -4,20 +4,20 @@ import 'package:template_parser/core.dart';
 part 'active_tile_component.g.dart';
 
 @JsonSerializable()
-class ActiveResourceTileComponent implements Component {
+class ActiveTileComponent implements Component {
   late final String activeStructureCode;
   late final String titleKey;
   late final String? subtitleKey;
   // TODO: urgent: GenericTagListComponent
 
-  ActiveResourceTileComponent({
+  ActiveTileComponent({
     required this.activeStructureCode,
     required this.titleKey,
     this.subtitleKey,
   });
 
   @override
-  factory ActiveResourceTileComponent.fromJson(Map<String, dynamic> json) =>
+  factory ActiveTileComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveResourceTileComponentFromJson(json);
 
   @override

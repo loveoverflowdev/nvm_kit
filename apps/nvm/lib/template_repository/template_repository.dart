@@ -24,10 +24,10 @@ final class _ExampleTemplateRepository implements TemplateRepository {
               screenType: '',
               pageActions: [],
               collection: ActiveCollectionComponent(
-                tile: ActiveResourceTileComponent(
+                tile: ActiveTileComponent(
                   activeStructureCode: 'tasks',
-                  titleKey: '',
-                  subtitleKey: '',
+                  titleKey: 'task_name',
+                  subtitleKey: 'task_description',
                 ),
               ),
             ),
@@ -37,8 +37,8 @@ final class _ExampleTemplateRepository implements TemplateRepository {
               screenType: '',
               pageActions: [],
               collection: ActiveCollectionComponent(
-                tile: ActiveResourceTileComponent(
-                  activeStructureCode: 'tasks',
+                tile: ActiveTileComponent(
+                  activeStructureCode: 'user_stories',
                   titleKey: 'i_want',
                   subtitleKey: 'as_a',
                 ),

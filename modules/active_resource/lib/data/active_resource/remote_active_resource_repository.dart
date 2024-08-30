@@ -64,6 +64,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
     api.ActiveResourceResponse response,
   ) =>
       ActiveResource(
+        id: response.id,
         liveAttributes: response.liveAttributes,
         projectId: response.projectId,
         creator: ActiveResourceCreator(

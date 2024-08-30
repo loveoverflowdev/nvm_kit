@@ -1,3 +1,4 @@
+import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
@@ -23,6 +24,23 @@ class _ActiveResourceListViewState
 
   String get _activeStructureCode =>
       widget.collectionComponent.tile.activeStructureCode;
+  
+  template.ActiveTileComponent get _activeTile => widget.collectionComponent.tile;
+
+  String _parseRequestField(template.ActiveTileComponent tile) {
+    
+    return RequestField.children(
+      [
+        RequestField.name('id'),
+        RequestField(
+          name: 'liveAttributes',
+          children: [
+          RequestField.name(tile.titleKey),
+          if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
+        ]),
+      ]
+    ).build();
+  }
 
   @override
   void initState() {
@@ -31,7 +49,9 @@ class _ActiveResourceListViewState
       (_) {
         ref.read(activeResourceListProvider(
           activeStructureCode: _activeStructureCode,
-        ).notifier).loadActiveResourceList();
+        ).notifier).loadActiveResourceList(
+          requestField: _parseRequestField(_activeTile)
+        );
       }
     );
   }
@@ -48,6 +68,8 @@ class _ActiveResourceListViewState
         itemBuilder: (context, index) {
           final activeResource = data[index];
           final liveAttributes = activeResource.liveAttributes;
+          print('--- ' + liveAttributes.toString());
+          print('--- ' + tileComponent.toJson().toString());
           return ListTile(
             title: Text(
               liveAttributes[tileComponent.titleKey],

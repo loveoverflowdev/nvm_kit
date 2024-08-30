@@ -7,7 +7,7 @@ part 'active_collection_component.g.dart';
 
 @JsonSerializable()
 class ActiveCollectionComponent implements Component {
-  final ActiveResourceTileComponent tile;
+  final ActiveTileComponent tile;
 
   ActiveCollectionComponent({
     required this.tile,
