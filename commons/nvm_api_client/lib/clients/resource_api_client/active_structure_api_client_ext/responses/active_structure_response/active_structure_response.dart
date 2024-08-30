@@ -7,8 +7,13 @@ part 'active_structure_response.g.dart';
 @JsonSerializable()
 final class ActiveStructureResponse {
   final String id;
+
+  @JsonKey(name: 'activeStructureCode')
   final String code;
+
+  @JsonKey(name: 'activeStructureTitle')
   final String title;
+  
   final List<ActiveFieldResponse> fields;
 
   ActiveStructureResponse({
