@@ -1,1 +1,1 @@
-export 'tiles/active_resource_tile_component.dart';
+export 'tiles/active_tile_component.dart';

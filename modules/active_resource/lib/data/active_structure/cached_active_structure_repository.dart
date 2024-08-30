@@ -1,15 +1,11 @@
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
-    show
-        ActiveStructure,
-        ActiveStructureFailure,
-        ActiveStructureRepository;
+    show ActiveStructure, ActiveStructureFailure, ActiveStructureRepository;
 import 'active_structure_storage.dart';
 
 final class CachedActiveStructureRepository
     implements ActiveStructureRepository {
-  
   final ActiveStructureRepository _activeStructureRepository;
   final CachedActiveStructureStorage _storage;
 
@@ -20,26 +16,24 @@ final class CachedActiveStructureRepository
         _storage = storage;
 
   @override
-  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(String code) {
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
+      String code) {
     return TaskEither.tryCatch(
-      ()  {
+      () {
         return _storage.readActiveStructureByCode(code);
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
       ),
-    ).flatMap<ActiveStructure>(
-      (cachedResult) => 
-        cachedResult != null
-          ? TaskEither.right(cachedResult)
-          : _activeStructureRepository.getActiveStructureByCode(code).map(
+    ).flatMap<ActiveStructure>((cachedResult) => cachedResult != null
+        ? TaskEither.right(cachedResult)
+        : _activeStructureRepository.getActiveStructureByCode(code).map(
             (activeStructure) {
               // TODO: sync it
               _storage.writeActiveStructure(activeStructure);
               return activeStructure;
             },
-          )
-    );
+          ));
   }
 
   @override
@@ -54,9 +48,7 @@ final class CachedActiveStructureRepository
       ),
     ).flatMap(
       (cachedResult) => cachedResult.isEmpty
-          ? _activeStructureRepository
-            .getActiveStructureList()
-            .map(
+          ? _activeStructureRepository.getActiveStructureList().map(
               (activeStructureList) {
                 // TODO: sync it
                 for (final activeStructure in activeStructureList) {

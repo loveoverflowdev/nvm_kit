@@ -18,25 +18,31 @@ final class _ExampleTemplateRepository implements TemplateRepository {
           appCode: 'task_manager',
           title: 'Task Manager',
           pages: [
-            PageComponent(
+            ActivePageComponent(
               contextName: 'tasks',
               title: 'Tasks',
               screenType: '',
               pageActions: [],
-              pageResources: [
-                ActiveResourceListComponent(
-                  tile: ActiveResourceTileComponent(
-                    activeStructureId: '',
-                  ),
+              collection: ActiveCollectionComponent(
+                tile: ActiveResourceTileComponent(
+                  activeStructureCode: 'tasks',
+                  titleKey: '',
+                  subtitleKey: '',
                 ),
-              ],
+              ),
             ),
-            PageComponent(
+            ActivePageComponent(
               contextName: 'user_stories',
               title: 'User Stories',
               screenType: '',
               pageActions: [],
-              pageResources: [],
+              collection: ActiveCollectionComponent(
+                tile: ActiveResourceTileComponent(
+                  activeStructureCode: 'tasks',
+                  titleKey: 'i_want',
+                  subtitleKey: 'as_a',
+                ),
+              ),
             ),
           ],
         )

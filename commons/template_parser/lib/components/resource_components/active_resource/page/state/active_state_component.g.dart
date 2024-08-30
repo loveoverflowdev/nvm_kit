@@ -1,18 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'state_component.dart';
+part of 'active_state_component.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-StateComponent _$StateComponentFromJson(Map<String, dynamic> json) =>
-    StateComponent(
+ActiveStateComponent _$ActiveStateComponentFromJson(
+        Map<String, dynamic> json) =>
+    ActiveStateComponent(
       stateCode: json['stateCode'] as String,
       liveAttributes: json['liveAttributes'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$StateComponentToJson(StateComponent instance) =>
+Map<String, dynamic> _$ActiveStateComponentToJson(
+        ActiveStateComponent instance) =>
     <String, dynamic>{
       'stateCode': instance.stateCode,
       'liveAttributes': instance.liveAttributes,

@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'action_component.dart';
+part of 'active_action_component.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActionComponent _$ActionComponentFromJson(Map<String, dynamic> json) =>
-    ActionComponent(
+ActiveActionComponent _$ActiveActionComponentFromJson(
+        Map<String, dynamic> json) =>
+    ActiveActionComponent(
       actionCode: json['actionCode'] as String,
       actionType: json['actionType'] as String,
       liveAttributes: json['liveAttributes'] as Map<String, dynamic>,
     );
 
-Map<String, dynamic> _$ActionComponentToJson(ActionComponent instance) =>
+Map<String, dynamic> _$ActiveActionComponentToJson(
+        ActiveActionComponent instance) =>
     <String, dynamic>{
       'actionCode': instance.actionCode,
       'actionType': instance.actionType,

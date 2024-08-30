@@ -9,7 +9,7 @@ part 'app_component.g.dart';
 final class AppComponent implements Component {
   final String appCode;
   final String title;
-  final List<PageComponent> pages;
+  final List<ActivePageComponent> pages;
 
   AppComponent({
     required this.appCode,

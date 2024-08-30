@@ -27,13 +27,13 @@ class ProjectFailure with _$ProjectFailure implements Exception {
   }) = _Unimplemented;
 
   StackTrace? get stackTrace => when(
-    badRequest: (_, stackTrace) => stackTrace,
-    internalServer: (stackTrace) => stackTrace,
-    apiConnection: (stackTrace) => stackTrace,
-    unimplemented: (_, stackTrace) => stackTrace, 
-    unauthorized: (stackTrace) => stackTrace, 
-  );
-  
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (_, stackTrace) => stackTrace,
+        unauthorized: (stackTrace) => stackTrace,
+      );
+
   @override
   String toString() {
     if (this is _BadRequest) {
@@ -44,9 +44,8 @@ class ProjectFailure with _$ProjectFailure implements Exception {
 
   factory ProjectFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => ProjectFailure.badRequest(

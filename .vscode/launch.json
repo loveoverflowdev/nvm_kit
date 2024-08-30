@@ -1,0 +1,288 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "comment_addon",
+            "cwd": "addons\\comment_addon",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "comment_addon (profile mode)",
+            "cwd": "addons\\comment_addon",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "comment_addon (release mode)",
+            "cwd": "addons\\comment_addon",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "roles_board_addon",
+            "cwd": "addons\\roles_board_addon",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "roles_board_addon (profile mode)",
+            "cwd": "addons\\roles_board_addon",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "roles_board_addon (release mode)",
+            "cwd": "addons\\roles_board_addon",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "nvm",
+            "cwd": "apps\\nvm",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "nvm (profile mode)",
+            "cwd": "apps\\nvm",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "nvm (release mode)",
+            "cwd": "apps\\nvm",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "alchemist_api_client",
+            "cwd": "commons\\alchemist_api_client",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "alchemist_api_client (profile mode)",
+            "cwd": "commons\\alchemist_api_client",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "alchemist_api_client (release mode)",
+            "cwd": "commons\\alchemist_api_client",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "alchemist_query",
+            "cwd": "commons\\alchemist_query",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "alchemist_query (profile mode)",
+            "cwd": "commons\\alchemist_query",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "alchemist_query (release mode)",
+            "cwd": "commons\\alchemist_query",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "app_ui",
+            "cwd": "commons\\app_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app_ui (profile mode)",
+            "cwd": "commons\\app_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app_ui (release mode)",
+            "cwd": "commons\\app_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "nvm_api_client",
+            "cwd": "commons\\nvm_api_client",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "nvm_api_client (profile mode)",
+            "cwd": "commons\\nvm_api_client",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "nvm_api_client (release mode)",
+            "cwd": "commons\\nvm_api_client",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "template_parser",
+            "cwd": "commons\\template_parser",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "template_parser (profile mode)",
+            "cwd": "commons\\template_parser",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "template_parser (release mode)",
+            "cwd": "commons\\template_parser",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "active_resource",
+            "cwd": "modules\\active_resource",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "active_resource (profile mode)",
+            "cwd": "modules\\active_resource",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "active_resource (release mode)",
+            "cwd": "modules\\active_resource",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "auth",
+            "cwd": "modules\\auth",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "auth (profile mode)",
+            "cwd": "modules\\auth",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "auth (release mode)",
+            "cwd": "modules\\auth",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "notification",
+            "cwd": "modules\\notification",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "notification (profile mode)",
+            "cwd": "modules\\notification",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "notification (release mode)",
+            "cwd": "modules\\notification",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "project",
+            "cwd": "modules\\project",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "project (profile mode)",
+            "cwd": "modules\\project",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "project (release mode)",
+            "cwd": "modules\\project",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "user",
+            "cwd": "modules\\user",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "user (profile mode)",
+            "cwd": "modules\\user",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "user (release mode)",
+            "cwd": "modules\\user",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "workspace",
+            "cwd": "modules\\workspace",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "workspace (profile mode)",
+            "cwd": "modules\\workspace",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "workspace (release mode)",
+            "cwd": "modules\\workspace",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

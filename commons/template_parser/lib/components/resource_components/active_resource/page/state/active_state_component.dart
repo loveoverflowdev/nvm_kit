@@ -1,21 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'state_component.g.dart';
+part 'active_state_component.g.dart';
 
 @JsonSerializable()
-final class StateComponent {
+final class ActiveStateComponent {
   final String stateCode;
   final Map<String, dynamic> liveAttributes;
 
-  StateComponent({
+  ActiveStateComponent({
     required this.stateCode,
     required this.liveAttributes,
   });
 
-  factory StateComponent.fromJson(Map<String, dynamic> json) =>
-      _$StateComponentFromJson(json);
+  factory ActiveStateComponent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveStateComponentFromJson(json);
 
-  Map<String, dynamic> toJson() => _$StateComponentToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveStateComponentToJson(this);
 }
 
 /*

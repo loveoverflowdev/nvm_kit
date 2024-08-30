@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_tile_component.dart';
+part of 'active_tile_component.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -9,16 +9,15 @@ part of 'active_resource_tile_component.dart';
 ActiveResourceTileComponent _$ActiveResourceTileComponentFromJson(
         Map<String, dynamic> json) =>
     ActiveResourceTileComponent(
-      activeStructureId: json['activeStructureId'] as String,
+      activeStructureCode: json['activeStructureCode'] as String,
       titleKey: json['titleKey'] as String,
       subtitleKey: json['subtitleKey'] as String?,
-    )..type = json['type'] as String;
+    );
 
 Map<String, dynamic> _$ActiveResourceTileComponentToJson(
         ActiveResourceTileComponent instance) =>
     <String, dynamic>{
-      'type': instance.type,
-      'activeStructureId': instance.activeStructureId,
+      'activeStructureCode': instance.activeStructureCode,
       'titleKey': instance.titleKey,
       'subtitleKey': instance.subtitleKey,
     };

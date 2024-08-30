@@ -1,12 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../../resource_components.dart';
+import 'package:template_parser/core.dart';
 
 part 'notification_tile_component.g.dart';
 
 @JsonSerializable()
-class NotificationTileComponent extends ResourceComponent {
-  @override
-  late final String type;
+class NotificationTileComponent implements Component {
   final String id;
   final String titleKey;
   final String? subtitleKey;
@@ -16,9 +14,7 @@ class NotificationTileComponent extends ResourceComponent {
     required this.id,
     required this.titleKey,
     this.subtitleKey,
-  }) {
-    type = super.type;
-  }
+  });
 
   @override
   factory NotificationTileComponent.fromJson(Map<String, dynamic> json) =>

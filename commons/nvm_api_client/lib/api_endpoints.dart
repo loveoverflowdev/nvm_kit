@@ -5,25 +5,23 @@ ApiEndpoint signin() => ApiEndpoint(
       jsonPayload: true,
     );
 
-ApiEndpoint getWorkspaceById(String id) =>
-    ApiEndpoint(
+ApiEndpoint getWorkspaceById(String id) => ApiEndpoint(
       uriTemplate: '/api/workspace/get/workspaces/$id',
       requiredAuthorization: true,
-      jsonPayload: true,
     );
 
 ApiEndpoint getWorkspaceList() => ApiEndpoint(
       uriTemplate: '/api/workspace/get/workspaces',
       requiredAuthorization: true,
-      jsonPayload: true,
     );
 
-ApiEndpoint getActiveResourceById(String id, {
+ApiEndpoint getActiveResourceById(
+  String id, {
   required String activeStructureCode,
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/resources/$activeStructureCode/$id',
+          '/api/workspaces/:workspace_id/active-module/get/resources/$activeStructureCode/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
@@ -33,24 +31,20 @@ ApiEndpoint getActiveResourceList({
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/resources/$activeStructureCode',
+          '/api/workspaces/:workspace_id/active-module/get/resources/$activeStructureCode',
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
 
-ApiEndpoint getActiveStructureById(String id) =>
-    ApiEndpoint(
+ApiEndpoint getActiveStructureById(String id) => ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/structures/$id',
-      jsonPayload: true,
+          '/api/workspaces/:workspace_id/active-module/get/structures/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
 
 ApiEndpoint getActiveStructureList() => ApiEndpoint(
-      uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/get/structures',
-      jsonPayload: true,
+      uriTemplate: '/api/workspaces/:workspace_id/active-module/get/structures',
       requiredWorkspace: true,
       requiredAuthorization: true,
     );
@@ -63,13 +57,11 @@ ApiEndpoint getNotificationList() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getNotificationById(String id) =>
-    ApiEndpoint(
+ApiEndpoint getNotificationById(String id) => ApiEndpoint(
       uriTemplate:
           '/api/workspaces/:workspace_id/notification/get/notifications/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
-      jsonPayload: true,
     );
 
 ApiEndpoint createNotification() => ApiEndpoint(
@@ -86,11 +78,9 @@ ApiEndpoint getProjectList() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getByProjectId(String id) =>
-    ApiEndpoint(
+ApiEndpoint getByProjectId(String id) => ApiEndpoint(
       uriTemplate: '/api/workspaces/:workspace_id/project/get/projects/$id',
       requiredAuthorization: true,
-      jsonPayload: true,
       requiredWorkspace: true,
     );
 
@@ -101,8 +91,7 @@ ApiEndpoint createProject() => ApiEndpoint(
       requiredWorkspace: true,
     );
 
-ApiEndpoint getUserById(String id) =>
-    ApiEndpoint(
+ApiEndpoint getUserById(String id) => ApiEndpoint(
       uriTemplate: '/api/user/get/users/$id',
       requiredAuthorization: true,
     );
@@ -114,7 +103,7 @@ ApiEndpoint getCommentList({
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
+          '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
     );
 
 ApiEndpoint createComment({

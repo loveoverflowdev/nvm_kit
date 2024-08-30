@@ -1,13 +1,10 @@
-import '../../../resource_components.dart';
+import 'package:meta/meta.dart';
+import 'package:template_parser/core.dart';
 
-class SigninFormComponent extends ResourceComponent {
-  @override
-  late final String type;
+@experimental
+class SigninFormComponent implements Component {
+  SigninFormComponent();
 
-  SigninFormComponent() {
-    type = super.type;
-  }
-  
   @override
   Map<String, dynamic> toJson() {
     // TODO: implement toJson

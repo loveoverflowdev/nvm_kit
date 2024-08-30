@@ -1,13 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../resource_components.dart';
+import 'package:meta/meta.dart';
+import 'package:template_parser/core.dart';
 
 part 'workspace_tile_component.g.dart';
 
 @JsonSerializable()
-class WorkspaceTileComponent extends ResourceComponent {
-  @override
-  late final String type;
+@experimental
+class WorkspaceTileComponent implements Component {
   final String id;
   final String titleKey;
   final String? subtitleKey;
@@ -17,9 +16,7 @@ class WorkspaceTileComponent extends ResourceComponent {
     required this.id,
     required this.titleKey,
     this.subtitleKey,
-  }) {
-    type = super.type;
-  }
+  });
 
   @override
   factory WorkspaceTileComponent.fromJson(Map<String, dynamic> json) =>

@@ -9,7 +9,7 @@ part of 'app_component.dart';
 AppComponent _$AppComponentFromJson(Map<String, dynamic> json) => AppComponent(
       appCode: json['appCode'] as String,
       pages: (json['pages'] as List<dynamic>)
-          .map((e) => PageComponent.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActivePageComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
       title: json['title'] as String,
     );

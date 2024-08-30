@@ -23,7 +23,7 @@ class ProjectFormSubmit extends _$ProjectFormSubmit {
       (failure) {
         state = ProjectFormSubmitState.error(
           failure,
-          StackTrace.current,
+          failure.stackTrace ?? StackTrace.current,
         );
       },
       (response) {

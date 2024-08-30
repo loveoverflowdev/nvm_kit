@@ -1,29 +1,29 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../resource_components.dart';
-import '../action_component/action_component.dart';
+import '../../../../resource_components.dart';
+import '../action/active_action_component.dart';
 
-part 'page_component.g.dart';
+part 'active_page_component.g.dart';
 
 @JsonSerializable()
-final class PageComponent {
+final class ActivePageComponent {
   final String title;
   final String contextName;
   final String screenType;
   // final List<StateComponent> pageStates;
-  final List<ActionComponent> pageActions;
-  final List<ResourceComponent> pageResources;
+  final List<ActiveActionComponent> pageActions;
+  final ActiveCollectionComponent collection;
 
-  PageComponent({
+  ActivePageComponent({
     required this.title,
     required this.contextName,
     required this.screenType,
     required this.pageActions,
-    required this.pageResources,
+    required this.collection,
   });
 
-  factory PageComponent.fromJson(Map<String, dynamic> json) =>
-      _$PageComponentFromJson(json);
-  Map<String, dynamic> toJson() => _$PageComponentToJson(this);
+  factory ActivePageComponent.fromJson(Map<String, dynamic> json) =>
+      _$ActivePageComponentFromJson(json);
+  Map<String, dynamic> toJson() => _$ActivePageComponentToJson(this);
 }
 
 /*

@@ -8,17 +8,8 @@ part of 'project_tile_component.dart';
 
 ProjectTileComponent _$ProjectTileComponentFromJson(
         Map<String, dynamic> json) =>
-    ProjectTileComponent(
-      id: json['id'] as String,
-      titleKey: json['titleKey'] as String,
-      subtitleKey: json['subtitleKey'] as String?,
-    )..type = json['type'] as String;
+    ProjectTileComponent();
 
 Map<String, dynamic> _$ProjectTileComponentToJson(
         ProjectTileComponent instance) =>
-    <String, dynamic>{
-      'type': instance.type,
-      'id': instance.id,
-      'titleKey': instance.titleKey,
-      'subtitleKey': instance.subtitleKey,
-    };
+    <String, dynamic>{};

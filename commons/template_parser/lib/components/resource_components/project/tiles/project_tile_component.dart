@@ -1,25 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../resource_components.dart';
+import 'package:meta/meta.dart';
+import 'package:template_parser/core.dart';
 
 part 'project_tile_component.g.dart';
 
 @JsonSerializable()
-class ProjectTileComponent extends ResourceComponent {
-  @override
-  late final String type;
-  final String id;
-  final String titleKey;
-  final String? subtitleKey;
-  // TODO: urgent: GenericTagListComponent
-
-  ProjectTileComponent({
-    required this.id,
-    required this.titleKey,
-    this.subtitleKey,
-  }) {
-    type = super.type;
-  }
+@experimental
+class ProjectTileComponent implements Component {
+  ProjectTileComponent();
 
   @override
   factory ProjectTileComponent.fromJson(Map<String, dynamic> json) =>

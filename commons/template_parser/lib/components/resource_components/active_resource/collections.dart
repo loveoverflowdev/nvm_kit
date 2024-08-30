@@ -1,1 +1,1 @@
-export 'collections/active_resource_list_component.dart';
+export 'collections/active_collection_component.dart';

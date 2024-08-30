@@ -33,7 +33,7 @@ class CommentListView extends ConsumerWidget {
       ),
       error: (error, stackTrace) =>
           AppErrorWidget(error, stackTrace: stackTrace),
-      loading: () => AppCircularLoadingWidget(),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }

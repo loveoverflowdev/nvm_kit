@@ -4,11 +4,14 @@ import 'package:active_resource/active_resource.dart' as active_resource;
 import 'package:template_parser/template_parser.dart' as template;
 
 class ProjectPage extends StatelessWidget {
+  final List<template.ActivePageComponent> pages;
+
   final String id;
 
   const ProjectPage({
     super.key,
     required this.id,
+    required this.pages,
   });
 
   @override
@@ -16,15 +19,21 @@ class ProjectPage extends StatelessWidget {
     return project.ProjectView(
       projectId: id,
       builder: (context, project) {
+        print('--- ' + project.toString());
         return DefaultTabController(
-          length: 2,
+          length: pages.length,
           child: Scaffold(
             appBar: AppBar(
-              title: Text(project.name),
-              bottom: const TabBar(
+              title: Text(
+                project.name,
+                style: const TextStyle(color: Colors.black),
+              ),
+              bottom: TabBar(
                 tabs: [
-                  Tab(text: 'User Stories'),
-                  Tab(text: 'Tasks'),
+                  for (final page in pages)
+                    Tab(
+                      text: page.title,
+                    ),
                 ],
               ),
             ),
@@ -33,18 +42,22 @@ class ProjectPage extends StatelessWidget {
               children: [
                 active_resource.ActiveResourceListView(
                   activeStructureCode: 'user_stories',
-                  tileComponent: template.ActiveResourceTileComponent(
-                    activeStructureId: '',
-                    titleKey: 'as_a',
-                    subtitleKey: 'i_want',
+                  listComponent: template.ActiveCollectionComponent(
+                    tile: template.ActiveResourceTileComponent(
+                      activeStructureCode: '',
+                      titleKey: 'as_a',
+                      subtitleKey: 'i_want',
+                    ),
                   ),
                 ),
                 active_resource.ActiveResourceListView(
                   activeStructureCode: 'tasks',
-                  tileComponent: template.ActiveResourceTileComponent(
-                    activeStructureId: '',
-                    titleKey: 'task_name',
-                    subtitleKey: 'task_description',
+                  listComponent: template.ActiveCollectionComponent(
+                    tile: template.ActiveResourceTileComponent(
+                      activeStructureCode: '',
+                      titleKey: 'task_name',
+                      subtitleKey: 'task_description',
+                    ),
                   ),
                 ),
               ],

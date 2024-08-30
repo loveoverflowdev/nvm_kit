@@ -6,13 +6,13 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceListView extends ConsumerStatefulWidget {
-  final template.ActiveResourceTileComponent tileComponent;
+  final template.ActiveCollectionComponent listComponent;
   final String activeStructureCode;
 
   const ActiveResourceListView({
     super.key,
     required this.activeStructureCode,
-    required this.tileComponent,
+    required this.listComponent,
   });
 
   @override
@@ -23,32 +23,35 @@ class ActiveResourceListView extends ConsumerStatefulWidget {
 class _ActiveResourceListViewState
     extends ConsumerState<ActiveResourceListView> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(activeResourceListProvider(
       activeStructureCode: widget.activeStructureCode,
     ));
+    final tileComponent = widget.listComponent.tile;
     return activeResourceList.when(
       data: (data) => ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
           final activeResource = data[index];
           final liveAttributes = activeResource.liveAttributes;
-          print('----------');
-          print(liveAttributes.toString());
-          print(widget.tileComponent.toJson());
-          print('----------');
           return ListTile(
             title: Text(
-              liveAttributes[widget.tileComponent.titleKey],
+              liveAttributes[tileComponent.titleKey],
             ),
-            // subtitle: Text(
-            //   liveAttributes[widget.tileComponent.subtitleKey],
-            // ),
+            subtitle: Text(
+              liveAttributes[tileComponent.subtitleKey],
+            ),
           );
         },
       ),
-      error: (error, stackTrace) => Text(
-        'error: $error\nstackTrace: $stackTrace',
+      error: (error, stackTrace) => AppErrorWidget(
+        error,
+        stackTrace: stackTrace,
       ),
       loading: () => const AppCircularLoadingWidget(),
     );

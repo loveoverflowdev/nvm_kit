@@ -19,7 +19,7 @@ class ProjectList extends _$ProjectList {
       (failure) {
         state = ProjectListState.error(
           failure,
-          StackTrace.current,
+          failure.stackTrace ?? StackTrace.current,
         );
       },
       (response) {

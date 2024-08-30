@@ -30,7 +30,9 @@ extension ProjectApiClientExt on ResourceApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ProjectRequestField.all.build(),
       ),
-      dataHandler: (json) => ProjectResponse.fromJson(json),
+      dataHandler: (json) {
+        return ProjectResponse.fromJson(json['data']);
+      },
     );
   }
 

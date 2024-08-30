@@ -20,7 +20,10 @@ class ProjectView extends ConsumerWidget {
     final project = ref.watch(projectProvider(projectId: projectId));
     return project.when(
       data: (data) => builder(context, data),
-      error: (error, _) => ErrorWidget(error),
+      error: (error, stackTrace) => AppErrorWidget(
+        error,
+        stackTrace: stackTrace,
+      ),
       loading: () => const AppCircularLoadingWidget(),
     );
   }

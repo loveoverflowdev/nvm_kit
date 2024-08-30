@@ -1,21 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_list_component.dart';
+part of 'active_collection_component.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActiveResourceListComponent _$ActiveResourceListComponentFromJson(
+ActiveCollectionComponent _$ActiveCollectionComponentFromJson(
         Map<String, dynamic> json) =>
-    ActiveResourceListComponent(
+    ActiveCollectionComponent(
       tile: ActiveResourceTileComponent.fromJson(
           json['tile'] as Map<String, dynamic>),
-    )..type = json['type'] as String;
+    );
 
-Map<String, dynamic> _$ActiveResourceListComponentToJson(
-        ActiveResourceListComponent instance) =>
+Map<String, dynamic> _$ActiveCollectionComponentToJson(
+        ActiveCollectionComponent instance) =>
     <String, dynamic>{
-      'type': instance.type,
       'tile': instance.tile,
     };

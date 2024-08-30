@@ -91,6 +91,7 @@ final class RouterBuilder {
                   path: 'projects/:id',
                   builder: (_, state) => ProjectPage(
                     id: state.pathParameters['id']!,
+                    pages: template.apps.first.pages,
                   ),
                 ),
                 GoRoute(
