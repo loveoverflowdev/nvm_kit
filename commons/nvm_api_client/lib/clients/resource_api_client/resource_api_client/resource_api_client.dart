@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import '../../token_provider.dart';
 import '../../workspace_id_provider.dart';

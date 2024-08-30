@@ -19,7 +19,8 @@ class CommentListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final commentList = ref.watch(commentListProvider(
-        activeStructureCode: activeStructureCode, resourceId: resourceId));
+      activeStructureCode: activeStructureCode, resourceId: resourceId,
+    ));
     return commentList.when(
       data: (data) => ListView.builder(
         itemBuilder: (context, index) {

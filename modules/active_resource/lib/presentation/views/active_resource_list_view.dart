@@ -6,13 +6,11 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceListView extends ConsumerStatefulWidget {
-  final template.ActiveCollectionComponent listComponent;
-  final String activeStructureCode;
+  final template.ActiveCollectionComponent collectionComponent;
 
   const ActiveResourceListView({
     super.key,
-    required this.activeStructureCode,
-    required this.listComponent,
+    required this.collectionComponent,
   });
 
   @override
@@ -22,17 +20,28 @@ class ActiveResourceListView extends ConsumerStatefulWidget {
 
 class _ActiveResourceListViewState
     extends ConsumerState<ActiveResourceListView> {
+
+  String get _activeStructureCode =>
+      widget.collectionComponent.tile.activeStructureCode;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        ref.read(activeResourceListProvider(
+          activeStructureCode: _activeStructureCode,
+        ).notifier).loadActiveResourceList();
+      }
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(activeResourceListProvider(
-      activeStructureCode: widget.activeStructureCode,
+      activeStructureCode: _activeStructureCode,
     ));
-    final tileComponent = widget.listComponent.tile;
+    final tileComponent = widget.collectionComponent.tile;
     return activeResourceList.when(
       data: (data) => ListView.builder(
         itemCount: data.length,

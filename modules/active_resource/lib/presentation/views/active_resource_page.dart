@@ -13,8 +13,7 @@ class ActiveResourcePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActiveResourceListView(
-      activeStructureCode: activeStructureCode,
-      listComponent: listComponent,
+      collectionComponent: pageComponent.collection,
     );
   }
 }
