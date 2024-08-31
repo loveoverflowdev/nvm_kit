@@ -12,6 +12,7 @@ final class ActivePageComponent {
   // final List<StateComponent> pageStates;
   final List<ActiveActionComponent> pageActions;
   final ActiveCollectionComponent collection;
+  final ActiveDetailComponent detail;
 
   ActivePageComponent({
     required this.title,
@@ -19,6 +20,7 @@ final class ActivePageComponent {
     required this.screenType,
     required this.pageActions,
     required this.collection,
+    required this.detail,
   });
 
   factory ActivePageComponent.fromJson(Map<String, dynamic> json) =>

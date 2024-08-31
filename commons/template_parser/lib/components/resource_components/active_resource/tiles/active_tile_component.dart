@@ -18,8 +18,7 @@ class ActiveTileComponent implements Component {
 
   @override
   factory ActiveTileComponent.fromJson(Map<String, dynamic> json) =>
-      _$ActiveResourceTileComponentFromJson(json);
+      _$ActiveTileComponentFromJson(json);
 
-  @override
-  Map<String, dynamic> toJson() => _$ActiveResourceTileComponentToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveTileComponentToJson(this);
 }

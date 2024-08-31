@@ -16,6 +16,8 @@ ActivePageComponent _$ActivePageComponentFromJson(Map<String, dynamic> json) =>
           .toList(),
       collection: ActiveCollectionComponent.fromJson(
           json['collection'] as Map<String, dynamic>),
+      detail: ActiveDetailComponent.fromJson(
+          json['detail'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActivePageComponentToJson(
@@ -26,4 +28,5 @@ Map<String, dynamic> _$ActivePageComponentToJson(
       'screenType': instance.screenType,
       'pageActions': instance.pageActions,
       'collection': instance.collection,
+      'detail': instance.detail,
     };
