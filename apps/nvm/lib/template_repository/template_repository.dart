@@ -30,6 +30,11 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   subtitleKey: 'task_description',
                 ),
               ),
+              detail: ActiveDetailComponent(
+                activeStructureCode: activeStructureCode, 
+                titleKey: titleKey, 
+                extraKeys: extraKeys,
+              ),
             ),
             ActivePageComponent(
               contextName: 'user_stories',
