@@ -16,9 +16,8 @@ dependencies:
   riverpod_annotation: ^2.3.5
   flutter_riverpod: ^2.5.1
   json_annotation: ^4.9.0
+  formz: ^0.7.0
 
-  nvm_kit:
-    path: ../../commons/nvm_kit
   nvm_api_client:
     path: ../../commons/nvm_api_client
   app_ui:

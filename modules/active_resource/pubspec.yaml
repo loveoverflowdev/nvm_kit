@@ -26,6 +26,8 @@ dependencies:
     path: ../../commons/nvm_api_client
   alchemist_query:
     path: ../../commons/alchemist_query
+  comment_addon:
+    path: ../../addons/comment_addon
 
 dev_dependencies:
   flutter_test:

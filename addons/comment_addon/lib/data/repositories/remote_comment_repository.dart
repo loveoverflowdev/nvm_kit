@@ -43,8 +43,8 @@ final class RemoteCommentRepository implements CommentRepository {
           resourceId: resourceId,
           payload: api.CommentPayload(
             topic: payload.topic,
-            title: payload.title,
-            content: payload.content,
+            title: '',
+            content: payload.content.value,
           ),
         );
       },

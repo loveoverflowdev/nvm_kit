@@ -15,3 +15,4 @@ widget phi cấu trúc
 
 Collection View refactor
 
+Manage feature instead of view

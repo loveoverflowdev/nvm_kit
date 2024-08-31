@@ -19,3 +19,22 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
     },
   );
 }
+
+ReaderTaskEither<CommentRepository, CommentFailure, void>
+    createCommentTask({
+  required String activeStructureCode,
+  required String resourceId,
+  required CommentPayload payload,
+}) {
+  return ReaderTaskEither(
+    (repository) {
+      return repository
+          .createComment(
+            activeStructureCode: activeStructureCode,
+            resourceId: resourceId,
+            payload: payload,
+          )
+          .run();
+    },
+  );
+}
