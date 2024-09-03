@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:template_parser/core.dart';
 
-import '../tiles.dart';
+import '../../tiles.dart';
+import '../view_component.dart';
 
 part 'active_collection_component.g.dart';
 
 @JsonSerializable()
-class ActiveCollectionComponent implements Component {
+class ActiveCollectionComponent extends ViewComponent {
   final ActiveTileComponent tile;
 
   ActiveCollectionComponent({

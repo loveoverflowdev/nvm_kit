@@ -11,6 +11,8 @@ ActiveTileComponent _$ActiveTileComponentFromJson(Map<String, dynamic> json) =>
       activeStructureCode: json['activeStructureCode'] as String,
       titleKey: json['titleKey'] as String,
       subtitleKey: json['subtitleKey'] as String?,
+      extraKeys:
+          (json['extraKeys'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$ActiveTileComponentToJson(
@@ -19,4 +21,5 @@ Map<String, dynamic> _$ActiveTileComponentToJson(
       'activeStructureCode': instance.activeStructureCode,
       'titleKey': instance.titleKey,
       'subtitleKey': instance.subtitleKey,
+      'extraKeys': instance.extraKeys,
     };

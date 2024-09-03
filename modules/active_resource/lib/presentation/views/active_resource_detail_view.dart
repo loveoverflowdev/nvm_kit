@@ -6,8 +6,9 @@ class ActiveResourceDetailView extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
 
-  const ActiveResourceDetailView({super.key, 
-    required this.activeStructureCode, 
+  const ActiveResourceDetailView({
+    super.key,
+    required this.activeStructureCode,
     required this.resourceId,
   });
 
@@ -18,7 +19,6 @@ class ActiveResourceDetailView extends ConsumerStatefulWidget {
 
 class _ActiveResourceDetailViewState
     extends ConsumerState<ActiveResourceDetailView> {
-
   @override
   void initState() {
     super.initState();

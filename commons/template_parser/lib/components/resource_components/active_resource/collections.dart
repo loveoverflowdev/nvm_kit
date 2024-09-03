@@ -1,1 +1,1 @@
-export 'collections/active_collection_component.dart';
+export 'view_types/collections/active_collection_component.dart';

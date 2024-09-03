@@ -1,1 +1,1 @@
-export 'details/active_detail_component.dart';
+export 'view_types/details/active_detail_component.dart';
