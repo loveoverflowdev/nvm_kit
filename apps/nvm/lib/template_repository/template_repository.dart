@@ -21,27 +21,18 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             ActivePageComponent(
               contextName: 'tasks',
               title: 'Tasks',
-              screenType: '',
-              pageActions: [],
-              collection: ActiveCollectionComponent(
+              view: ActiveCollectionComponent(
                 tile: ActiveTileComponent(
                   activeStructureCode: 'tasks',
                   titleKey: 'task_name',
                   subtitleKey: 'task_description',
                 ),
               ),
-              detail: ActiveDetailComponent(
-                activeStructureCode: activeStructureCode, 
-                titleKey: titleKey, 
-                extraKeys: extraKeys,
-              ),
             ),
             ActivePageComponent(
               contextName: 'user_stories',
               title: 'User Stories',
-              screenType: '',
-              pageActions: [],
-              collection: ActiveCollectionComponent(
+              view: ActiveCollectionComponent(
                 tile: ActiveTileComponent(
                   activeStructureCode: 'user_stories',
                   titleKey: 'i_want',
@@ -49,8 +40,19 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 ),
               ),
             ),
+            ActivePageComponent(
+              contextName: 'task_detail',
+              view: ActiveDetailComponent(
+                tile: ActiveTileComponent(
+                  activeStructureCode: 'tasks',
+                  titleKey: 'task_name',
+                  subtitleKey: 'task_description',
+                  // TODO:
+                ),
+              ),
+            ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -42,7 +42,7 @@ class ProjectPage extends StatelessWidget {
               children: [
                 for (final page in pages)
                   active_resource.ActiveResourceCollectionView(
-                    collectionComponent: page.collection,
+                    collectionComponent: page.view,
                   ),
                 // active_resource.ActiveResourceListView(
                 //   collectionComponent: template.ActiveCollectionComponent(

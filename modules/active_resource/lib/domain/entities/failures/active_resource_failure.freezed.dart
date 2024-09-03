@@ -283,7 +283,6 @@ abstract class _BadRequest extends ActiveResourceFailure {
 
   String get message;
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveResourceFailure
@@ -455,7 +454,6 @@ abstract class _Unauthorized extends ActiveResourceFailure {
 
   Object get error;
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveResourceFailure
@@ -620,7 +618,6 @@ abstract class _InternalServer extends ActiveResourceFailure {
   _InternalServer._() : super._();
 
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveResourceFailure
@@ -782,7 +779,6 @@ abstract class _ApiConnection extends ActiveResourceFailure {
   factory _ApiConnection({final StackTrace? stackTrace}) = _$ApiConnectionImpl;
   _ApiConnection._() : super._();
 
-  @override
   @override
   StackTrace? get stackTrace;
 
@@ -954,7 +950,6 @@ abstract class _Unimplemented extends ActiveResourceFailure {
   _Unimplemented._() : super._();
 
   Object get error;
-  @override
   @override
   StackTrace? get stackTrace;
 

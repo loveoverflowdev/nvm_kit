@@ -5,17 +5,15 @@ part 'active_page_component.g.dart';
 
 @JsonSerializable()
 final class ActivePageComponent {
-  final String title;
+  final String? title;
   final String contextName;
-  final String screenType;
   // final List<StateComponent> pageStates;
-  final ActiveCollectionComponent collection;
+  final ActiveCollectionComponent view;
 
   ActivePageComponent({
-    required this.title,
+    this.title,
     required this.contextName,
-    required this.screenType,
-    required this.collection,
+    required this.view,
   });
 
   factory ActivePageComponent.fromJson(Map<String, dynamic> json) =>

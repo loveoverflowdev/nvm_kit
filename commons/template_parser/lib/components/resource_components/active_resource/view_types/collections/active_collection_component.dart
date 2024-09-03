@@ -1,13 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:template_parser/core.dart';
 
 import '../../tiles.dart';
-import '../view_component.dart';
+import '../active_view_component.dart';
 
 part 'active_collection_component.g.dart';
 
 @JsonSerializable()
-class ActiveCollectionComponent extends ViewComponent {
+class ActiveCollectionComponent extends ActiveViewComponent {
+  @override
+  // ignore: overridden_fields
+  late final String type = super.type;
+
   final ActiveTileComponent tile;
 
   ActiveCollectionComponent({
@@ -18,5 +21,10 @@ class ActiveCollectionComponent extends ViewComponent {
   factory ActiveCollectionComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveCollectionComponentFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ActiveCollectionComponentToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveCollectionComponentToJson(this)
+    ..addAll(
+      {
+        'type': type,
+      },
+    );
 }

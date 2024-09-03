@@ -10,8 +10,7 @@ ActivePageComponent _$ActivePageComponentFromJson(Map<String, dynamic> json) =>
     ActivePageComponent(
       title: json['title'] as String,
       contextName: json['contextName'] as String,
-      screenType: json['screenType'] as String,
-      collection: ActiveCollectionComponent.fromJson(
+      view: ActiveCollectionComponent.fromJson(
           json['collection'] as Map<String, dynamic>),
     );
 
@@ -20,6 +19,5 @@ Map<String, dynamic> _$ActivePageComponentToJson(
     <String, dynamic>{
       'title': instance.title,
       'contextName': instance.contextName,
-      'screenType': instance.screenType,
-      'collection': instance.collection,
+      'collection': instance.view,
     };

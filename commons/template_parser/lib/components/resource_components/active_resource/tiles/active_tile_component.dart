@@ -16,7 +16,7 @@ class ActiveTileComponent implements Component {
     required this.activeStructureCode,
     required this.titleKey,
     this.subtitleKey,
-    required this.extraKeys,
+    this.extraKeys = const [],
   });
 
   @override

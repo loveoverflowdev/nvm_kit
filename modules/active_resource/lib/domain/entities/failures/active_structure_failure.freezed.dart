@@ -284,7 +284,6 @@ abstract class _BadRequest extends ActiveStructureFailure {
 
   String get message;
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveStructureFailure
@@ -449,7 +448,6 @@ abstract class _Unauthorized extends ActiveStructureFailure {
   factory _Unauthorized({final StackTrace? stackTrace}) = _$UnauthorizedImpl;
   _Unauthorized._() : super._();
 
-  @override
   @override
   StackTrace? get stackTrace;
 
@@ -618,7 +616,6 @@ abstract class _InternalServer extends ActiveStructureFailure {
   _InternalServer._() : super._();
 
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveStructureFailure
@@ -784,7 +781,6 @@ abstract class _ApiConnection extends ActiveStructureFailure {
   _ApiConnection._() : super._();
 
   @override
-  @override
   StackTrace? get stackTrace;
 
   /// Create a copy of ActiveStructureFailure
@@ -949,7 +945,6 @@ abstract class _Unimplemented extends ActiveStructureFailure {
   factory _Unimplemented({final StackTrace? stackTrace}) = _$UnimplementedImpl;
   _Unimplemented._() : super._();
 
-  @override
   @override
   StackTrace? get stackTrace;
 
