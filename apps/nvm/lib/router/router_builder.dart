@@ -126,11 +126,10 @@ final class RouterBuilder {
                   // },
                   routes: [
                     StatefulShellRoute.indexedStack(
-                      
                       builder: (context, state, child) {
                         int index = 0;
                         final location = state.fullPath ?? '';
-                        for (int i = 0; i < app.pages.length; i++) {
+                        for (int i = 0; i < app.collectionTypePages.length; i++) {
                           if (location
                               .contains('@${app.pages[i].contextName}')) {
                             index = i;
@@ -140,7 +139,7 @@ final class RouterBuilder {
                         final String projectId = state.pathParameters['project_id']!;
                         final String? resourceId = (state.extra as Map?)?['resource_id'];
                         final destinations = [
-                          for (final page in app.pages)
+                          for (final page in app.collectionTypePages)
                             TabBarDestination(
                               label: page.title ?? '',
                             ),
@@ -148,7 +147,7 @@ final class RouterBuilder {
                         return TabBarLayout(
                           navigationIndex: index,
                           onDestination: (int value) {
-                            final page = app.pages[value];
+                            final page = app.collectionTypePages[value];
                             final path = '/projects/$projectId/@${page.contextName}';
                             context.go(
                               path,
