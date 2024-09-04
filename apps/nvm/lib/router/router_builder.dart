@@ -9,6 +9,9 @@ final class RouterBuilder {
   final NavigationGuard navigationGuard;
   final TemplateComponent template;
 
+  final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>();
+
   RouterBuilder({
     required this.template,
     required this.navigationGuard,
@@ -42,6 +45,7 @@ final class RouterBuilder {
           routes: [],
         ),
         ShellRoute(
+          navigatorKey: _rootNavigatorKey,
           builder: (context, state, child) {
             int index = 0;
             final location = state.matchedLocation;
@@ -98,11 +102,34 @@ final class RouterBuilder {
                   //   id: state.pathParameters['id']!,
                   //   pages: template.apps.first.pages,
                   // ),
+                  redirect: (context, state) {
+                    final location = state.fullPath ?? '';
+                    if (!location.contains('@')) {
+                      final projectId = state.pathParameters['project_id']!;
+                      final path = '/projects/$projectId/@${app.pages.first.contextName}';
+                      return path;
+                    }
+                    return null;
+                  },
+                  // builder:(context, state) {
+                  //   // final page = app.pages.first;
+                  //   // final String projectId = state.pathParameters['project_id']!;
+                  //   // final String? resourceId = (state.extra as Map?)?['resource_id'];
+                  //   // WidgetsBinding.instance.addPostFrameCallback((_) {
+                  //   //   context.go('/projects/$projectId/@${page.contextName}', 
+                  //   //     extra: {
+                  //   //       'resource_id': resourceId,
+                  //   //     },
+                  //   //   );
+                  //   // });
+                  //   // return const SizedBox.shrink();
+                  // },
                   routes: [
-                    ShellRoute(
+                    StatefulShellRoute.indexedStack(
+                      
                       builder: (context, state, child) {
                         int index = 0;
-                        final location = state.matchedLocation;
+                        final location = state.fullPath ?? '';
                         for (int i = 0; i < app.pages.length; i++) {
                           if (location
                               .contains('@${app.pages[i].contextName}')) {
@@ -111,36 +138,54 @@ final class RouterBuilder {
                           }
                         }
                         final String projectId = state.pathParameters['project_id']!;
-                        final String? resourceId = state.pathParameters['resource_id'];
+                        final String? resourceId = (state.extra as Map?)?['resource_id'];
+                        final destinations = [
+                          for (final page in app.pages)
+                            TabBarDestination(
+                              label: page.title ?? '',
+                            ),
+                        ];
                         return TabBarLayout(
                           navigationIndex: index,
                           onDestination: (int value) {
-                            for (final page in app.pages) {
-                              context.go(
-                                  '/projects/$projectId/@${page.contextName}' + (resourceId == null ? '' : '/$resourceId'),
-                                );
-                            }
+                            final page = app.pages[value];
+                            final path = '/projects/$projectId/@${page.contextName}';
+                            context.go(
+                              path,
+                              extra: {
+                                'resource_id': resourceId,
+                              },
+                            );
                           },
-                          destinations: [
-                            for (final page in app.pages)
-                              TabBarDestination(
-                                label: page.title ?? '',
-                              ),
-                          ],
+                          destinations: destinations,
                           child: child,
                         );
-                      },
-                      routes: [
+                      }, 
+                      branches: [
                         for (final page in app.pages)
-                          GoRoute(
-                            path: '@${page.contextName}/:resource_id',
-                            builder: (_, state) =>
-                                active_resource.ActiveResourcePage(
-                              pageComponent: page,
-                              resourceId: state.pathParameters['resource_id'],
-                            ),
+                          StatefulShellBranch(
+                            routes: [
+                              GoRoute(
+                                path: '@${page.contextName}',
+                                builder: (context, state) {
+                                  return Placeholder(
+                                    child: Column(
+                                      children: [
+                                        Text('@' + page.contextName),
+                                        Text(page.title ?? ''),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                // builder: (_, state) =>
+                                //     active_resource.ActiveResourcePage(
+                                //   pageComponent: page,
+                                //   resourceId: (state.extra as Map?)?['resource_id'],
+                                // ),
+                              ),
+                            ]
                           ),
-                      ],
+                      ], 
                     ),
                   ],
                 ),

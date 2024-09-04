@@ -11,6 +11,10 @@ final class AppComponent implements Component {
   final String title;
   final List<ActivePageComponent> pages;
 
+  final List<ActivePageComponent> collectionTypePages => pages.where(
+    (e) => e.view is ActiveCollectionTypeViewComponent,
+  )
+
   AppComponent({
     required this.appCode,
     required this.pages,

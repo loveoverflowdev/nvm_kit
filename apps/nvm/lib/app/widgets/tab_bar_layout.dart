@@ -38,6 +38,7 @@ class TabBarLayout extends StatelessWidget {
         child: Column(
           children: [
             TabBar(
+              isScrollable: true,
               onTap: onDestination,
               tabs: destinations
                   .map(
@@ -46,10 +47,7 @@ class TabBarLayout extends StatelessWidget {
                   .toList(),
             ),
             Expanded(
-              child: TabBarView(
-                children:
-                    destinations.map((d) => Scaffold(body: child)).toList(),
-              ),
+              child: child,
             ),
           ],
         ),
@@ -64,6 +62,7 @@ class TabBarLayout extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
+            isScrollable: true,
             onTap: onDestination,
             tabs: destinations
                 .map(
@@ -74,10 +73,8 @@ class TabBarLayout extends StatelessWidget {
                 .toList(),
           ),
         ),
-        body: TabBarView(
-          children: destinations.map((d) => Scaffold(body: child)).toList(),
-        ),
-        floatingActionButton: buildFab(context),
+        body: child,
+        // floatingActionButton: buildFab(context),
       ),
     );
   }
