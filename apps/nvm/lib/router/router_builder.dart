@@ -27,6 +27,7 @@ final class RouterBuilder {
             if (await navigationGuard.hasToken) {
               return '/workspaces';
             }
+            return null;
           },
         ),
         GoRoute(
@@ -92,7 +93,7 @@ final class RouterBuilder {
               builder: (_, state) => const ProjectsPage(),
               routes: [
                 GoRoute(
-                  path: 'projects/:id',
+                  path: 'projects/:project_id',
                   // builder: (_, state) => ProjectPage(
                   //   id: state.pathParameters['id']!,
                   //   pages: template.apps.first.pages,
@@ -109,13 +110,15 @@ final class RouterBuilder {
                             break;
                           }
                         }
-                        final projectId = state.pathParameters['id']!;
+                        final String projectId = state.pathParameters['project_id']!;
+                        final String? resourceId = state.pathParameters['resource_id'];
                         return TabBarLayout(
                           navigationIndex: index,
                           onDestination: (int value) {
                             for (final page in app.pages) {
                               context.go(
-                                  '/projects/$projectId/@${page.contextName}');
+                                  '/projects/$projectId/@${page.contextName}' + (resourceId == null ? '' : '/$resourceId'),
+                                );
                             }
                           },
                           destinations: [
@@ -130,10 +133,11 @@ final class RouterBuilder {
                       routes: [
                         for (final page in app.pages)
                           GoRoute(
-                            path: '@${page.contextName}',
+                            path: '@${page.contextName}/:resource_id',
                             builder: (_, state) =>
                                 active_resource.ActiveResourcePage(
                               pageComponent: page,
+                              resourceId: state.pathParameters['resource_id'],
                             ),
                           ),
                       ],

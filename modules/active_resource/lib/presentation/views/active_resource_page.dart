@@ -4,10 +4,12 @@ import 'package:template_parser/template_parser.dart' as template;
 
 class ActiveResourcePage extends StatelessWidget {
   final template.ActivePageComponent pageComponent;
+  final String? resourceId;
 
   const ActiveResourcePage({
     super.key,
     required this.pageComponent,
+    required this.resourceId,
   });
 
   @override
@@ -20,7 +22,7 @@ class ActiveResourcePage extends StatelessWidget {
     } else if (pageComponent.view is template.ActiveDetailComponent) {
       return ActiveResourceDetailView(
         detailComponent: pageComponent.view as template.ActiveDetailComponent,
-        resourceId: resourceId,
+        resourceId: resourceId!,
       );
     } else if (pageComponent.view is template.ActiveFormComponent) {
       return ActiveResourceFormView(

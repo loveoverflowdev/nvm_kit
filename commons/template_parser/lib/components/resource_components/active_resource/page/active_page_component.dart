@@ -8,6 +8,8 @@ final class ActivePageComponent {
   final String? title;
   final String contextName;
   // final List<StateComponent> pageStates;
+
+  @ActiveViewComponentConverter()
   final ActiveViewComponent view;
 
   ActivePageComponent({
