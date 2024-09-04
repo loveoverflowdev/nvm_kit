@@ -13,7 +13,7 @@ class RootLayout extends StatelessWidget {
   final Widget child;
   final int navigationIndex;
   final ValueChanged<int> onDestination;
-  final List<Destination> destinations;
+  final List<RootDestination> destinations;
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +110,8 @@ class RootLayout extends StatelessWidget {
   }
 }
 
-class Destination {
-  const Destination({
+class RootDestination {
+  const RootDestination({
     required this.label,
     required this.selectedIcon,
     required this.unselectedIcon,

@@ -8,7 +8,7 @@ final class ActivePageComponent {
   final String? title;
   final String contextName;
   // final List<StateComponent> pageStates;
-  final ActiveCollectionComponent view;
+  final ActiveViewComponent view;
 
   ActivePageComponent({
     this.title,

@@ -12,9 +12,11 @@ class ActiveCollectionComponent extends ActiveViewComponent {
   late final String type = super.type;
 
   final ActiveTileComponent tile;
+  final String? detailContextName;
 
   ActiveCollectionComponent({
     required this.tile,
+    required this.detailContextName,
   });
 
   @override

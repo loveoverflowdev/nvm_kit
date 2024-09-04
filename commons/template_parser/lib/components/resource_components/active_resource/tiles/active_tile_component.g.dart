@@ -11,8 +11,10 @@ ActiveTileComponent _$ActiveTileComponentFromJson(Map<String, dynamic> json) =>
       activeStructureCode: json['activeStructureCode'] as String,
       titleKey: json['titleKey'] as String,
       subtitleKey: json['subtitleKey'] as String?,
-      extraKeys:
-          (json['extraKeys'] as List<dynamic>).map((e) => e as String).toList(),
+      extraKeys: (json['extraKeys'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$ActiveTileComponentToJson(

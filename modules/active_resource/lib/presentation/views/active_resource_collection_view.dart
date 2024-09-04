@@ -5,7 +5,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 import '../providers.dart' show activeResourceListProvider;
-import 'active_resource_detail_view.dart';
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final template.ActiveCollectionComponent collectionComponent;
@@ -51,24 +50,26 @@ class _ActiveResourceCollectionViewState
     });
   }
 
-  void _routeToDetail(BuildContext context, {
-    required String activeStructureCode,
-    required String resourceId,
-  }) {
-    Navigator.push(context, 
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: Text('Active Resource Detail'),
-          ),
-          body: ActiveResourceDetailView(
-            activeStructureCode: activeStructureCode,
-            resourceId: resourceId,
-          ),
-        ),
-      ),
-    );
-  }
+  // void _routeToDetail(
+  //   BuildContext context, {
+  //   required String activeStructureCode,
+  //   required String resourceId,
+  // }) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => Scaffold(
+  //         appBar: AppBar(
+  //           title: Text('Active Resource Detail'),
+  //         ),
+  //         body: ActiveResourceDetailView(
+  //           activeStructureCode: activeStructureCode,
+  //           resourceId: resourceId,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +84,11 @@ class _ActiveResourceCollectionViewState
           final activeResource = data[index];
           final liveAttributes = activeResource.liveAttributes;
           return ListTile(
-            onTap: () => _routeToDetail(
-              context,
-              activeStructureCode: _activeStructureCode,
-              resourceId: activeResource.id,
-            ),
+            // onTap: () => _routeToDetail(
+            //   context,
+            //   activeStructureCode: _activeStructureCode,
+            //   resourceId: activeResource.id,
+            // ),
             title: Text(
               liveAttributes[tileComponent.titleKey],
             ),

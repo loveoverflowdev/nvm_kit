@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nvm/app.dart';
 import 'package:nvm/router/navigation_guard.dart';
 import 'package:template_parser/template_parser.dart';
+import 'package:active_resource/active_resource.dart' as active_resource;
 
 final class RouterBuilder {
   final NavigationGuard navigationGuard;
@@ -15,6 +16,7 @@ final class RouterBuilder {
 
   GoRouter build() {
     // template.app.pages.sort((a, b) => a.order.compareTo(b.order));
+    final app = template.apps.first;
     return GoRouter(
       initialLocation: '/signin',
       routes: [
@@ -34,7 +36,9 @@ final class RouterBuilder {
             if (await navigationGuard.didSelectWorkspace) {
               return '/';
             }
+            return null;
           },
+          routes: [],
         ),
         ShellRoute(
           builder: (context, state, child) {
@@ -49,17 +53,17 @@ final class RouterBuilder {
             }
             return RootLayout(
               destinations: const [
-                Destination(
+                RootDestination(
                   label: 'Project',
                   selectedIcon: Icons.work,
                   unselectedIcon: Icons.work_outlined,
                 ),
-                Destination(
+                RootDestination(
                   label: 'Notification',
                   selectedIcon: Icons.notifications,
                   unselectedIcon: Icons.notifications_outlined,
                 ),
-                Destination(
+                RootDestination(
                   label: 'Preference',
                   selectedIcon: Icons.settings,
                   unselectedIcon: Icons.settings_outlined,
@@ -89,10 +93,52 @@ final class RouterBuilder {
               routes: [
                 GoRoute(
                   path: 'projects/:id',
-                  builder: (_, state) => ProjectPage(
-                    id: state.pathParameters['id']!,
-                    pages: template.apps.first.pages,
-                  ),
+                  // builder: (_, state) => ProjectPage(
+                  //   id: state.pathParameters['id']!,
+                  //   pages: template.apps.first.pages,
+                  // ),
+                  routes: [
+                    ShellRoute(
+                      builder: (context, state, child) {
+                        int index = 0;
+                        final location = state.matchedLocation;
+                        for (int i = 0; i < app.pages.length; i++) {
+                          if (location
+                              .contains('@${app.pages[i].contextName}')) {
+                            index = i;
+                            break;
+                          }
+                        }
+                        final projectId = state.pathParameters['id']!;
+                        return TabBarLayout(
+                          navigationIndex: index,
+                          onDestination: (int value) {
+                            for (final page in app.pages) {
+                              context.go(
+                                  '/projects/$projectId/@${page.contextName}');
+                            }
+                          },
+                          destinations: [
+                            for (final page in app.pages)
+                              TabBarDestination(
+                                label: page.title ?? '',
+                              ),
+                          ],
+                          child: child,
+                        );
+                      },
+                      routes: [
+                        for (final page in app.pages)
+                          GoRoute(
+                            path: '@${page.contextName}',
+                            builder: (_, state) =>
+                                active_resource.ActiveResourcePage(
+                              pageComponent: page,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: 'notifications',
@@ -109,66 +155,4 @@ final class RouterBuilder {
       ],
     );
   }
-
-  // GoRouter build() {
-  //   return GoRouter(
-  //     initialLocation: '/${RoutePaths.signin.name}',
-  //     routes: [
-  //       GoRoute(
-  //         path: '/${RoutePaths.signin.name}',
-  //         builder: (context, state) => const SigninPage(
-  //           title: 'Sign In',
-  //         ),
-  //         // redirect: (context, state) {
-  //         //   return '/';
-  //         // },
-  //       ),
-  //       // GoRoute(
-  //       //   path: '/',
-  //       //   redirect: (context, state) {
-  //       //     return '/${template.app.pages.first.contextName}';
-  //       //   },
-  //       // ),
-  //       ShellRoute(
-  //         builder: (context, state, child) => AppScaffold(
-  //           activeResourceScaffoldBody: child,
-  //           app: template.app,
-  //         ),
-  //         routes: [
-  //           for (final page in template.app.pages)
-  //             GoRoute(
-  //               path: '/${page.contextName}',
-  //               builder: (context, state) => Scaffold(
-  //                 appBar: AppBar(
-  //                   title: Text(page.title),
-  //                 ),
-  //                 body: const ActiveResourceListView(),
-  //               ),
-  //             ),
-  //         ],
-  //       )
-
-  //       // for (final app in template.apps)
-  //       //   GoRoute(
-  //       //     path: '/${app.appCode}',
-  //       //     builder: (context, state) => AppScaffold(
-  //       //       app: app,
-  //       //     ),
-  //       //     routes: [
-  //       //       for (final page in app.pages)
-  //       //         GoRoute(
-  //       //           path: page.contextName,
-  //       //           builder: (context, state) => Scaffold(
-  //       //             appBar: AppBar(
-  //       //               title: Text(page.title),
-  //       //             ),
-  //       //             body: const ActiveResourceListView(),
-  //       //           ),
-  //       //         ),
-  //       //       // TODO: ShellRoute
-  //       //     ],
-  //       //   ),
-  //     ],
-  //   );
-  // }
 }

@@ -22,21 +22,11 @@ final class _ExampleTemplateRepository implements TemplateRepository {
               contextName: 'tasks',
               title: 'Tasks',
               view: ActiveCollectionComponent(
+                detailContextName: 'task_detail',
                 tile: ActiveTileComponent(
                   activeStructureCode: 'tasks',
                   titleKey: 'task_name',
                   subtitleKey: 'task_description',
-                ),
-              ),
-            ),
-            ActivePageComponent(
-              contextName: 'user_stories',
-              title: 'User Stories',
-              view: ActiveCollectionComponent(
-                tile: ActiveTileComponent(
-                  activeStructureCode: 'user_stories',
-                  titleKey: 'i_want',
-                  subtitleKey: 'as_a',
                 ),
               ),
             ),
@@ -47,6 +37,30 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   activeStructureCode: 'tasks',
                   titleKey: 'task_name',
                   subtitleKey: 'task_description',
+                  // TODO:
+                ),
+              ),
+            ),
+            ActivePageComponent(
+              contextName: 'user_stories',
+              title: 'User Stories',
+              view: ActiveCollectionComponent(
+                detailContextName: 'user_story_detail',
+                tile: ActiveTileComponent(
+                  activeStructureCode: 'user_stories',
+                  titleKey: 'i_want',
+                  subtitleKey: 'as_a',
+                ),
+              ),
+            ),
+            ActivePageComponent(
+              contextName: 'user_story_detail',
+              view: ActiveDetailComponent(
+                tile: ActiveTileComponent(
+                  activeStructureCode: 'user_stories',
+                  titleKey: 'i_want',
+                  subtitleKey: 'as_a',
+                  extraKeys: [],
                   // TODO:
                 ),
               ),

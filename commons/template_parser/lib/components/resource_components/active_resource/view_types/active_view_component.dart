@@ -1,6 +1,7 @@
 import 'package:template_parser/core.dart';
 import '../view_types.dart';
 
+@JsonConvert
 abstract class ActiveViewComponent implements Component {
   late final String type = switch (runtimeType) {
     const (ActiveCollectionComponent) => 'ActiveCollectionComponent',
@@ -15,6 +16,15 @@ abstract class ActiveViewComponent implements Component {
       'ActiveCollectionComponent' => ActiveCollectionComponent.fromJson(json),
       'ActiveDetailComponent' => ActiveDetailComponent.fromJson(json),
       'ActiveFormComponent' => ActiveFormComponent.fromJson(json),
+      _ => throw UnimplementedError(),
+    };
+  }
+
+  Map<String, dynamic> toJson() {
+    return switch (type) {
+      'ActiveCollectionComponent' => toJson(),
+      'ActiveDetailComponent' => toJson(),
+      'ActiveFormComponent' => toJson(),
       _ => throw UnimplementedError(),
     };
   }
