@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 class ActiveResourcePage extends StatelessWidget {
+  final void Function(String?)? onViewDetail;
   final template.ActivePageComponent pageComponent;
   final String? resourceId;
 
   const ActiveResourcePage({
     super.key,
     required this.pageComponent,
+    required this.onViewDetail,
     required this.resourceId,
   });
 
@@ -17,7 +19,8 @@ class ActiveResourcePage extends StatelessWidget {
     if (pageComponent.view is template.ActiveCollectionComponent) {
       return ActiveResourceCollectionView(
         collectionComponent:
-            pageComponent.view as template.ActiveCollectionComponent,
+            pageComponent.view as template.ActiveCollectionComponent, 
+        onViewDetail: onViewDetail,
       );
     } else if (pageComponent.view is template.ActiveDetailComponent) {
       return ActiveResourceDetailView(

@@ -165,22 +165,34 @@ final class RouterBuilder {
                           StatefulShellBranch(
                             routes: [
                               GoRoute(
+                                name: '@${page.contextName}',
                                 path: '@${page.contextName}',
+                                // builder: (context, state) {
+                                //   return Placeholder(
+                                //     child: Column(
+                                //       children: [
+                                //         Text('@' + page.contextName),
+                                //         Text(page.title ?? ''),
+                                //       ],
+                                //     ),
+                                //   );
+                                // },
                                 builder: (context, state) {
-                                  return Placeholder(
-                                    child: Column(
-                                      children: [
-                                        Text('@' + page.contextName),
-                                        Text(page.title ?? ''),
-                                      ],
-                                    ),
+                                 
+                                  return active_resource.ActiveResourcePage(
+                                    pageComponent: page,
+                                    resourceId: (state.extra as Map?)?['resource_id'], 
+                                    onViewDetail: (String? detailContextName) {
+                                      if (detailContextName != null) return;
+
+                                       final String projectId = state.pathParameters['project_id']!;
+                                      final path = '/projects/$projectId/@${detailContextName}';
+                                      context.push(path, extra: {
+                                        
+                                      });
+                                    },
                                   );
                                 },
-                                // builder: (_, state) =>
-                                //     active_resource.ActiveResourcePage(
-                                //   pageComponent: page,
-                                //   resourceId: (state.extra as Map?)?['resource_id'],
-                                // ),
                               ),
                             ]
                           ),

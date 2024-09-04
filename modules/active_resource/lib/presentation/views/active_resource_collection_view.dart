@@ -7,11 +7,13 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
+  final void Function(String? detailContextName)? onViewDetail;
   final template.ActiveCollectionComponent collectionComponent;
 
   const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
+    required this.onViewDetail,
   });
 
   @override
@@ -26,6 +28,9 @@ class _ActiveResourceCollectionViewState
 
   template.ActiveTileComponent get _activeTile =>
       widget.collectionComponent.tile;
+  
+  String? get detailContextName => widget.collectionComponent.detailContextName;
+
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -84,6 +89,9 @@ class _ActiveResourceCollectionViewState
           final activeResource = data[index];
           final liveAttributes = activeResource.liveAttributes;
           return ListTile(
+            onTap: () {
+              widget.onViewDetail?.call(detailContextName);
+            },
             // onTap: () => _routeToDetail(
             //   context,
             //   activeStructureCode: _activeStructureCode,
