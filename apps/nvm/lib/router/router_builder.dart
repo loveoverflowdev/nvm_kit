@@ -178,17 +178,16 @@ final class RouterBuilder {
                                 //   );
                                 // },
                                 builder: (context, state) {
-                                 
                                   return active_resource.ActiveResourcePage(
                                     pageComponent: page,
                                     resourceId: (state.extra as Map?)?['resource_id'], 
-                                    onViewDetail: (String? detailContextName) {
-                                      if (detailContextName != null) return;
+                                    onViewDetail: (String? detailContextName, String resourceId) {
+                                      if (detailContextName == null) return;
 
-                                       final String projectId = state.pathParameters['project_id']!;
-                                      final path = '/projects/$projectId/@${detailContextName}';
+                                      final String projectId = state.pathParameters['project_id']!;
+                                      final path = '/projects/$projectId/@$detailContextName';
                                       context.push(path, extra: {
-                                        
+                                        'resource_id': resourceId,
                                       });
                                     },
                                   );

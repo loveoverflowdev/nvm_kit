@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 class ActiveResourcePage extends StatelessWidget {
-  final void Function(String?)? onViewDetail;
+  final void Function(String?, String)? onViewDetail;
   final template.ActivePageComponent pageComponent;
   final String? resourceId;
 

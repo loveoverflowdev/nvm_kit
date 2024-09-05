@@ -7,7 +7,7 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
-  final void Function(String? detailContextName)? onViewDetail;
+  final void Function(String? detailContextName, String resourceId)? onViewDetail;
   final template.ActiveCollectionComponent collectionComponent;
 
   const ActiveResourceCollectionView({
@@ -55,27 +55,6 @@ class _ActiveResourceCollectionViewState
     });
   }
 
-  // void _routeToDetail(
-  //   BuildContext context, {
-  //   required String activeStructureCode,
-  //   required String resourceId,
-  // }) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => Scaffold(
-  //         appBar: AppBar(
-  //           title: Text('Active Resource Detail'),
-  //         ),
-  //         body: ActiveResourceDetailView(
-  //           activeStructureCode: activeStructureCode,
-  //           resourceId: resourceId,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(activeResourceListProvider(
@@ -90,13 +69,8 @@ class _ActiveResourceCollectionViewState
           final liveAttributes = activeResource.liveAttributes;
           return ListTile(
             onTap: () {
-              widget.onViewDetail?.call(detailContextName);
+              widget.onViewDetail?.call(detailContextName, activeResource.id);
             },
-            // onTap: () => _routeToDetail(
-            //   context,
-            //   activeStructureCode: _activeStructureCode,
-            //   resourceId: activeResource.id,
-            // ),
             title: Text(
               liveAttributes[tileComponent.titleKey],
             ),
