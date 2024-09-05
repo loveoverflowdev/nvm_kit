@@ -15,19 +15,17 @@ class CommentCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-      child: Column(
-        children: [
-          Text(
-            authorName, 
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          Flexible(
-            child: Text(content),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          authorName,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+        Flexible(
+          child: Text(content),
+        ),
+      ],
     );
   }
 }

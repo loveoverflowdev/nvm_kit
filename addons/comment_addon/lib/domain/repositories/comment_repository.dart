@@ -5,6 +5,8 @@ abstract interface class CommentRepository {
   TaskEither<CommentFailure, List<Comment>> getCommentList({
     required String activeStructureCode,
     required String resourceId,
+    required int limit,
+    String? requestField,
   });
 
   TaskEither<CommentFailure, void> createComment({

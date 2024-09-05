@@ -1,18 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../commented_user_response.dart';
+
 part 'comment_response.g.dart';
 
 @JsonSerializable()
 class CommentResponse {
-  final String id;
-  final String topic;
-  final String subjectType;
-  final String commentType;
-  final String subjectId;
-  final String commentTitle;
+  final String? id;
+  final String? topic;
+  final String? subjectType;
+  final String? commentType;
+  final String? subjectId;
+  final String? commentTitle;
   final String commentContent;
-  final String createdBy;
-  final String createdByUser;
+  final CommentedUserResponse? createdByUser;
 
   CommentResponse({
     required this.id,
@@ -22,12 +23,12 @@ class CommentResponse {
     required this.subjectId,
     required this.commentTitle,
     required this.commentContent,
-    required this.createdBy,
     required this.createdByUser,
   });
 
-  factory CommentResponse.fromJson(Map<String, dynamic> json) =>
-      _$CommentResponseFromJson(json);
+  factory CommentResponse.fromJson(Map<String, dynamic> json) {
+    return _$CommentResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
 }

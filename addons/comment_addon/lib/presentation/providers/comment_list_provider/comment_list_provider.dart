@@ -13,14 +13,18 @@ class CommentList extends _$CommentList {
   CommentListState build({
     required String activeStructureCode,
     required String resourceId,
-  }) => const CommentListState.data([]);
+  }) =>
+      const CommentListState.data([]);
 
-  void loadCommentList() async {
+  void loadCommentList({
+    required int limit,
+  }) async {
     state = const AsyncValue.loading();
 
     getCommentListTask(
-      activeStructureCode: activeStructureCode, 
+      activeStructureCode: activeStructureCode,
       resourceId: resourceId,
+      limit: limit,
     ).match(
       (failure) {
         state = CommentListState.error(

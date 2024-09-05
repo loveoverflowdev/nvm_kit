@@ -8,7 +8,6 @@ const String _refreshTokenKey = '${_keyPrefix}refresh_token';
 const String _userIdKey = '${_keyPrefix}user_id';
 
 final class PersistentTokenStorage implements TokenStorage {
-  
   // Helper method to get SharedPreferences instance
   Future<SharedPreferences> _prefs() async {
     return SharedPreferences.getInstance();

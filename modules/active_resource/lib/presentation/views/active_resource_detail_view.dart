@@ -92,7 +92,7 @@ class _ActiveResourceDetailViewState
                             child: Text(
                                 data.liveAttributes[_activeTile.subtitleKey]),
                           ),
-                        Divider(),
+                        const Divider(),
                         for (final key in _activeTile.extraKeys)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
@@ -106,7 +106,7 @@ class _ActiveResourceDetailViewState
                             widget.detailComponent.tile.activeStructureCode,
                         resourceId: widget.resourceId,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -115,7 +115,7 @@ class _ActiveResourceDetailViewState
         error,
         stackTrace: stackTrace,
       ),
-      loading: () => AppCircularLoadingWidget(),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }

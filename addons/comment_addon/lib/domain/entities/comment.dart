@@ -1,3 +1,5 @@
+import 'commented_user.dart';
+
 class Comment {
   final String id;
   final String topic;
@@ -6,8 +8,7 @@ class Comment {
   final String subjectId;
   final String commentTitle;
   final String commentContent;
-  final String createdBy;
-  final String createdByUser;
+  final CommentedUser createdByUser;
 
   Comment({
     required this.id,
@@ -17,7 +18,6 @@ class Comment {
     required this.subjectId,
     required this.commentTitle,
     required this.commentContent,
-    required this.createdBy,
     required this.createdByUser,
   });
 }

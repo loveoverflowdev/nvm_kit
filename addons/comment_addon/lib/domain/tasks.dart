@@ -7,21 +7,24 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
     getCommentListTask({
   required String activeStructureCode,
   required String resourceId,
+  required int limit,
+  String? requestField,
 }) {
   return ReaderTaskEither(
     (repository) {
       return repository
           .getCommentList(
+            limit: limit,
             activeStructureCode: activeStructureCode,
             resourceId: resourceId,
+            requestField: requestField,
           )
           .run();
     },
   );
 }
 
-ReaderTaskEither<CommentRepository, CommentFailure, void>
-    createCommentTask({
+ReaderTaskEither<CommentRepository, CommentFailure, void> createCommentTask({
   required String activeStructureCode,
   required String resourceId,
   required CommentPayload payload,

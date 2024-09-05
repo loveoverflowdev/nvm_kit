@@ -13,7 +13,8 @@ class CommentSubmit extends _$CommentSubmit {
   CommentSubmitState build({
     required String activeStructureCode,
     required String resourceId,
-  }) => const CommentSubmitState.data(null);
+  }) =>
+      const CommentSubmitState.data(null);
 
   void submit(CommentPayload payload) async {
     state = const AsyncValue.loading();

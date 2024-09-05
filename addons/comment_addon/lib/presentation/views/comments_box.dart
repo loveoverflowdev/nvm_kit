@@ -19,13 +19,14 @@ class CommentsBox extends ConsumerWidget {
       children: [
         Expanded(
           child: CommentListView(
-            activeStructureCode: activeStructureCode, 
+            activeStructureCode: activeStructureCode,
             resourceId: resourceId,
           ),
         ),
         CommentPrompt(
           activeStructureCode: activeStructureCode,
           resourceId: resourceId,
+          onCreated: () {},
         ),
       ],
     );

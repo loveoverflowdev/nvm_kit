@@ -9,8 +9,8 @@ part of 'commented_user_response.dart';
 CommentedUserResponse _$CommentedUserResponseFromJson(
         Map<String, dynamic> json) =>
     CommentedUserResponse(
-      id: json['id'] as String,
-      fullName: json['fullName'] as String,
+      id: json['id'] as String?,
+      fullName: json['fullName'] as String?,
     );
 
 Map<String, dynamic> _$CommentedUserResponseToJson(

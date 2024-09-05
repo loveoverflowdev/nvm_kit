@@ -95,7 +95,7 @@ class RootLayout extends StatelessWidget {
         selectedIndex: navigationIndex,
         onDestinationSelected: onDestination,
       ),
-      floatingActionButton: buildFab(context),
+      // floatingActionButton: buildFab(context),
     );
   }
 

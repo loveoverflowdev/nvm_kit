@@ -1,5 +1,4 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-import 'package:nvm_api_client/api_endpoints.dart' as endpoints;
 
 import '../../token_provider.dart';
 import '../../workspace_id_provider.dart';
@@ -41,6 +40,8 @@ final class CommentApiClient {
   Future<List<CommentResponse>> getCommentList({
     required String activeStructureCode,
     required String resourceId,
+    required int limit,
+    String? requestField,
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
@@ -49,6 +50,10 @@ final class CommentApiClient {
             '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
         requiredWorkspace: true,
         requiredAuthorization: true,
+      ),
+      alchemistQuery: AlchemistQuery(
+        requestField: requestField ?? CommentRequestField.simplified.build(),
+        limit: limit,
       ),
       dataHandler: (json) => (json['data'] as List)
           .map((e) => CommentResponse.fromJson(e))

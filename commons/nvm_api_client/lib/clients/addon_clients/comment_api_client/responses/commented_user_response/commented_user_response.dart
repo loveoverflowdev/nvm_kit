@@ -4,8 +4,8 @@ part 'commented_user_response.g.dart';
 
 @JsonSerializable()
 class CommentedUserResponse {
-  final String id;
-  final String fullName;
+  final String? id;
+  final String? fullName;
 
   CommentedUserResponse({
     required this.id,

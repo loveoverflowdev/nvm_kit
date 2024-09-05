@@ -13,12 +13,16 @@ final class RemoteCommentRepository implements CommentRepository {
   TaskEither<CommentFailure, List<Comment>> getCommentList({
     required String activeStructureCode,
     required String resourceId,
+    required int limit,
+    String? requestField,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
           .getCommentList(
             activeStructureCode: activeStructureCode,
             resourceId: resourceId,
+            requestField: requestField,
+            limit: limit,
           )
           .then(
             (value) => value.map(_mapResponse).toList(),
@@ -57,15 +61,17 @@ final class RemoteCommentRepository implements CommentRepository {
 
   Comment _mapResponse(api.CommentResponse response) {
     return Comment(
-      id: response.id,
-      topic: response.topic,
-      subjectType: response.subjectType,
-      commentType: response.commentType,
-      subjectId: response.subjectId,
-      commentTitle: response.commentTitle,
+      id: response.id ?? '',
+      topic: response.topic ?? '',
+      subjectType: response.subjectType ?? '',
+      commentType: response.commentType ?? '',
+      subjectId: response.subjectId ?? '',
+      commentTitle: response.commentTitle ?? '',
       commentContent: response.commentContent,
-      createdBy: response.createdBy,
-      createdByUser: response.createdByUser,
+      createdByUser: CommentedUser(
+        id: response.createdByUser?.id ?? '',
+        fullName: response.createdByUser?.fullName ?? '',
+      ),
     );
   }
 }
