@@ -7,8 +7,12 @@ part of 'active_form_component.dart';
 // **************************************************************************
 
 ActiveFormComponent _$ActiveFormComponentFromJson(Map<String, dynamic> json) =>
-    ActiveFormComponent();
+    ActiveFormComponent(
+      activeStructureCode: json['activeStructureCode'] as String,
+    );
 
 Map<String, dynamic> _$ActiveFormComponentToJson(
         ActiveFormComponent instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'activeStructureCode': instance.activeStructureCode,
+    };

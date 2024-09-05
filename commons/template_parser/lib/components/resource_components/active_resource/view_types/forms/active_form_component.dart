@@ -10,7 +10,11 @@ class ActiveFormComponent extends ActiveViewComponent {
   // ignore: overridden_fields
   late final String type = super.type;
 
-  ActiveFormComponent();
+  final String activeStructureCode;
+
+  ActiveFormComponent({
+    required this.activeStructureCode,
+  });
 
   @override
   factory ActiveFormComponent.fromJson(Map<String, dynamic> json) =>

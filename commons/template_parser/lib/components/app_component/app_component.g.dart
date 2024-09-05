@@ -12,7 +12,9 @@ AppComponent _$AppComponentFromJson(Map<String, dynamic> json) => AppComponent(
           .map((e) => ActivePageComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
       title: json['title'] as String,
-    );
+    )..collectionTypePages = (json['collectionTypePages'] as List<dynamic>)
+        .map((e) => ActivePageComponent.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$AppComponentToJson(AppComponent instance) =>
     <String, dynamic>{
