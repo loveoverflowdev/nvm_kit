@@ -23,7 +23,10 @@ class CommentsBox extends ConsumerWidget {
             resourceId: resourceId,
           ),
         ),
-        CommentPrompt(),
+        CommentPrompt(
+          activeStructureCode: activeStructureCode,
+          resourceId: resourceId,
+        ),
       ],
     );
   }

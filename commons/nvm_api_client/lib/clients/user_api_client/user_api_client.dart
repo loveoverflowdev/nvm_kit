@@ -24,7 +24,7 @@ final class UserApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? UserRequestField.all.build(),
       ),
-      dataHandler: (json) => UserResponse.fromJson(json),
+      dataHandler: (json) => UserResponse.fromJson(json['data']),
     );
   }
 

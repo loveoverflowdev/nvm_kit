@@ -16,7 +16,7 @@ import 'router.dart';
 
 void main() {
   final AlchemistApiClient alchemistApiClient = AlchemistApiClient();
-  final TokenStorage tokenStorage = TokenStorage.persistent();
+  final TokenStorage tokenStorage = TokenStorage.inMemory();
   final WorkspaceStorage workspaceStorage = WorkspaceStorage.inMemory();
   //
   final TokenProvider tokenProvider = tokenStorage.readAccessToken;
@@ -95,5 +95,8 @@ void main() {
     projectRepository: projectRepository,
     workspaceRepository: workspaceRepository,
     activeResourceRepository: activeResourceRepository,
+    //
+    commentRepository: commentRepository,
+    rolesBoardRepository: rolesBoardRepository,
   ));
 }

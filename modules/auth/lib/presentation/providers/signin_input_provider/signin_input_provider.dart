@@ -12,6 +12,8 @@ class SigninInput extends _$SigninInput {
 
   bool get isValid => state.username.isValid && state.password.isValid;
 
+  SigninForm getForm() => state;
+
   void makeDirty() {
     state = state.copyWith(
       username: Username.dirty(state.username.value),

@@ -34,7 +34,7 @@ final class CommentApiClient {
         requiredAuthorization: true,
       ),
       id: commentId,
-      dataHandler: (json) => CommentResponse.fromJson(json),
+      dataHandler: (json) => CommentResponse.fromJson(json['data']),
     );
   }
 

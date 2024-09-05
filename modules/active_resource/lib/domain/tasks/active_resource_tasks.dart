@@ -7,7 +7,6 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     ActiveResource> getActiveResourceTask({
   required String id,
   required String activeStructureCode,
-  required String workspaceId,
   String? requestField,
 }) =>
     ReaderTaskEither(

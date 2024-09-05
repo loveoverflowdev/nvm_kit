@@ -28,7 +28,10 @@ class CommentsPreview extends ConsumerWidget {
               content: comment.commentContent,
               topic: '',
             ),
-          CommentPrompt(),
+          CommentPrompt(
+            activeStructureCode: activeStructureCode,
+            resourceId: resourceId,
+          ),
         ],
       ),
       error: (error, stackTrace) =>

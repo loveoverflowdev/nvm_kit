@@ -12,6 +12,11 @@ import 'package:project/project.dart' as project;
 import 'package:workspace/workspace.dart' as workspace;
 import 'package:active_resource/active_resource.dart' as active_resource;
 
+// Addons
+import 'package:comment_addon/comment_addon.dart' as comment_addon;
+import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
+
+
 class NvmApp extends StatefulWidget {
   final NavigationGuard navigationGuard;
   final auth.AuthRepository authRepository;
@@ -19,6 +24,9 @@ class NvmApp extends StatefulWidget {
   final project.ProjectRepository projectRepository;
   final workspace.WorkspaceRepository workspaceRepository;
   final active_resource.ActiveResourceRepository activeResourceRepository;
+  //
+  final comment_addon.CommentRepository commentRepository;
+  final roles_board_addon.RolesBoardRepository rolesBoardRepository;
 
   const NvmApp({
     super.key,
@@ -28,6 +36,9 @@ class NvmApp extends StatefulWidget {
     required this.projectRepository,
     required this.workspaceRepository,
     required this.activeResourceRepository,
+    //
+    required this.commentRepository,
+    required this.rolesBoardRepository,
   });
 
   @override
@@ -69,6 +80,12 @@ class _NvmAppState extends State<NvmApp> {
         active_resource.activeResourceRepositoryProvider.overrideWithValue(
           widget.activeResourceRepository,
         ),
+        comment_addon.commentRepositoryProvider.overrideWithValue(
+          widget.commentRepository,
+        ),
+        // roles_board_addon.rolesBoardRepositoryProvider.overrideWithValue(
+        //   widget.rolesBoardRepository,
+        // ),
       ],
       child: MaterialApp.router(
         title: 'NVM',

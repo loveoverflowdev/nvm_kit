@@ -21,7 +21,9 @@ class CommentInput extends _$CommentInput {
     );
   }
 
-  void changeComment(String newValue) {
+  void setComment(String newValue) {
     state = state.copyWith(content: CommentContent.dirty(newValue));
   }
+
+  String get content => state.content.value;
 }

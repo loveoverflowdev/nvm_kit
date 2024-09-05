@@ -28,7 +28,7 @@ extension NotificationApiClientExt on ResourceApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? NotificationRequestField.all.build(),
       ),
-      dataHandler: (json) => NotificationResponse.fromJson(json),
+      dataHandler: (json) => NotificationResponse.fromJson(json['data']),
     );
   }
 

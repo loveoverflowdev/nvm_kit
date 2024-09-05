@@ -16,24 +16,31 @@ class ActiveResourcePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (pageComponent.view is template.ActiveCollectionComponent) {
-      return ActiveResourceCollectionView(
-        collectionComponent:
-            pageComponent.view as template.ActiveCollectionComponent, 
-        onViewDetail: onViewDetail,
+    Widget child = (){
+      if (pageComponent.view is template.ActiveCollectionComponent) {
+        return ActiveResourceCollectionView(
+          collectionComponent:
+              pageComponent.view as template.ActiveCollectionComponent, 
+          onViewDetail: onViewDetail,
+        );
+      } else if (pageComponent.view is template.ActiveDetailComponent) {
+        return ActiveResourceDetailView(
+          detailComponent: pageComponent.view as template.ActiveDetailComponent,
+          resourceId: resourceId!,
+        );
+      } else if (pageComponent.view is template.ActiveFormComponent) {
+        return ActiveResourceFormView(
+          formComponent: pageComponent.view as template.ActiveFormComponent,
+        );
+      }
+      return const Placeholder(
+        child: Text('Unimplemented Active Component'),
       );
-    } else if (pageComponent.view is template.ActiveDetailComponent) {
-      return ActiveResourceDetailView(
-        detailComponent: pageComponent.view as template.ActiveDetailComponent,
-        resourceId: resourceId!,
-      );
-    } else if (pageComponent.view is template.ActiveFormComponent) {
-      return ActiveResourceFormView(
-        formComponent: pageComponent.view as template.ActiveFormComponent,
-      );
-    }
-    return const Placeholder(
-      child: Text('Unimplemented Active Component'),
+    }();
+
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      child: child,
     );
   }
 }

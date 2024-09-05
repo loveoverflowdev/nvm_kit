@@ -48,7 +48,7 @@ final class WorkspaceApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? WorkspaceRequestField.all.build(),
       ),
-      dataHandler: (json) => WorkspaceResponse.fromJson(json),
+      dataHandler: (json) => WorkspaceResponse.fromJson(json['data']),
     );
   }
 
