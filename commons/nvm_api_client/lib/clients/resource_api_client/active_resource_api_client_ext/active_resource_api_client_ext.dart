@@ -26,7 +26,7 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     required String activeStructureCode,
     String? requestField,
   }) {
-    // {{domain}}/api/workspaces/{{workspace}}/active-resource/get/resources/tasks
+    // {{domain}}/api/workspaces/{{workspace}}/active-module/get/resources/tasks
     return requestJson(
       endpoint: endpoints.getActiveResourceList(
           activeStructureCode: activeStructureCode),

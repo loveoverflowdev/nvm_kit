@@ -1,17 +1,13 @@
-
 import 'package:comment_addon/domain.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Assuming these imports exist based on your domain models
+final commentInputProvider =
+    StateNotifierProvider<CommentInputNotifier, CommentPayload>(
+  (ref) => CommentInputNotifier(),
+);
 
-part 'comment_input_provider.g.dart';
-
-@riverpod
-class CommentInput extends _$CommentInput {
-  @override
-  CommentPayload build() {
-    return CommentPayload.pure();
-  }
+final class CommentInputNotifier extends StateNotifier<CommentPayload> {
+  CommentInputNotifier() : super(CommentPayload.pure());
 
   bool get isValid => state.content.isValid;
 

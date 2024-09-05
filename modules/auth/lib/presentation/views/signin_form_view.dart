@@ -21,15 +21,15 @@ class SigninFormView extends StatelessWidget {
         const SizedBox(height: 16),
         Consumer(
           builder: (_, WidgetRef ref, __) {
-            // final errorText = ref.watch(
-            //   signinInputProvider.select(
-            //     (form) => form.username.displayError?.message,
-            //   ),
-            // );
+            final errorText = ref.watch(
+              signinInputProvider.select(
+                (form) => form.username.displayError?.message,
+              ),
+            );
             return TextField(
               decoration: InputDecoration(
                 hintText: 'Enter your username',
-                errorText: null,
+                errorText: errorText,
               ),
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changeUsername(value);
@@ -40,14 +40,14 @@ class SigninFormView extends StatelessWidget {
         const SizedBox(height: AppSpacing.md),
         Consumer(
           builder: (_, WidgetRef ref, __) {
-            // final errorText = ref.watch(
-            //   signinInputProvider.select(
-            //     (form) => form.password.displayError?.message,
-            //   ),
-            // );
+            final errorText = ref.watch(
+              signinInputProvider.select(
+                (form) => form.password.displayError?.message,
+              ),
+            );
             return PasswordTextField(
               hintText: 'Enter your password',
-              errorText: null,
+              errorText: errorText,
               onChanged: (value) {
                 ref.read(signinInputProvider.notifier).changePassword(value);
               },
@@ -75,7 +75,6 @@ class SigninFormView extends StatelessWidget {
                   final signinInput = ref.read(signinInputProvider.notifier);
                   if (signinInput.isValid) {
                     final form = signinInput.getForm();
-                    print('Form: ' + form.username.value);
                     ref.read(signinSubmitProvider.notifier).submit(form: form);
                   } else {
                     signinInput.makeDirty();

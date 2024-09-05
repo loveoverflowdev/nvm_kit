@@ -53,6 +53,7 @@ final class AlchemistApiClient {
           //   listener.call();
           // }
         }
+        debugPrint(_responseBodyToJson(response).toString());
         throw AlchemistApiRequestFailure(
           body: _responseBodyToJson(response),
           statusCode: response.statusCode,

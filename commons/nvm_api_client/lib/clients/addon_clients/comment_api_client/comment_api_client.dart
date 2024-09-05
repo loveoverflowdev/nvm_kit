@@ -25,11 +25,11 @@ final class CommentApiClient {
     required String resourceId,
   }) async {
     // endpoints.getCo
-    // {{domain}}/api/workspaces/{{workspace}}/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
+    // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments/:id',
+            '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments/:id',
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
@@ -42,11 +42,11 @@ final class CommentApiClient {
     required String activeStructureCode,
     required String resourceId,
   }) async {
-    // {{domain}}/api/workspaces/{{workspace}}/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
+    // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
+            '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/get/comments',
         requiredWorkspace: true,
         requiredAuthorization: true,
       ),
@@ -64,7 +64,7 @@ final class CommentApiClient {
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate:
-            '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
+            '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
         requiredWorkspace: true,
         requiredAuthorization: true,
         jsonPayload: true,

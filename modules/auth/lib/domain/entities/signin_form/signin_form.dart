@@ -1,21 +1,22 @@
+import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
 import 'password.dart';
 import 'username.dart';
 
-class SigninForm {
+final class SigninForm extends Equatable {
   final Username username;
   final Password password;
 
-  SigninForm({
+  const SigninForm({
     required this.username,
     required this.password,
   });
 
   factory SigninForm.pure() {
-    return SigninForm(
-      username: const Username.pure(),
-      password: const Password.pure(),
+    return const SigninForm(
+      username: Username.pure(),
+      password: Password.pure(),
     );
   }
 
@@ -30,4 +31,7 @@ class SigninForm {
       password: password ?? this.password,
     );
   }
+
+  @override
+  List<Object?> get props => [username, password];
 }

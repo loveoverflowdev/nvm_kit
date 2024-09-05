@@ -16,11 +16,11 @@ class ActiveResourcePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget child = (){
+    Widget child = () {
       if (pageComponent.view is template.ActiveCollectionComponent) {
         return ActiveResourceCollectionView(
           collectionComponent:
-              pageComponent.view as template.ActiveCollectionComponent, 
+              pageComponent.view as template.ActiveCollectionComponent,
           onViewDetail: onViewDetail,
         );
       } else if (pageComponent.view is template.ActiveDetailComponent) {

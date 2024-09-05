@@ -13,7 +13,7 @@ final class CommentPayload {
   factory CommentPayload.pure() {
     return CommentPayload(
       topic: '',
-      content: CommentContent.pure(),
+      content: const CommentContent.pure(),
     );
   }
 
@@ -28,7 +28,7 @@ final class CommentPayload {
       topic: topic ?? this.topic,
     );
   }
-} 
+}
 
 /*
 {

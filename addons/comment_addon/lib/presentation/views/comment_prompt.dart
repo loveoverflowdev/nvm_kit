@@ -16,28 +16,33 @@ class CommentPrompt extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO: use family for commentInputProvider
-    
+    final errorText = ref.watch(
+      commentInputProvider.select(
+        (form) => form.content.displayError?.message,
+      ),
+    );
+
     return TextField(
       onChanged: (value) {
-        final commentInput = ref.read(commentInputProvider.notifier);
-        commentInput.setComment(value);
-        print('Changing: ${commentInput.content}');
+        ref.read(commentInputProvider.notifier).setComment(value);
       },
       decoration: InputDecoration(
+        errorText: errorText,
         hintText: 'Comment here ...',
         suffixIcon: IconButton(
-          icon: Icon(Icons.send),
+          icon: const Icon(Icons.send),
           onPressed: () {
             final commentInput = ref.read(commentInputProvider.notifier);
             if (commentInput.isValid) {
               final payload = ref.read(commentInputProvider);
-              print('payload: ${payload.content.value}');
-              ref.read(
-                commentSubmitProvider(
-                  activeStructureCode: activeStructureCode, 
-                  resourceId: resourceId,
-                ).notifier,
-              ).submit(payload);
+              ref
+                  .read(
+                    commentSubmitProvider(
+                      activeStructureCode: activeStructureCode,
+                      resourceId: resourceId,
+                    ).notifier,
+                  )
+                  .submit(payload);
             } else {
               commentInput.makeDirty();
             }

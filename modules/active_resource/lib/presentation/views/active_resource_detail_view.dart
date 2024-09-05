@@ -24,12 +24,10 @@ class ActiveResourceDetailView extends ConsumerStatefulWidget {
 
 class _ActiveResourceDetailViewState
     extends ConsumerState<ActiveResourceDetailView> {
-  
   String get _activeStructureCode =>
       widget.detailComponent.tile.activeStructureCode;
-  
-  template.ActiveTileComponent get _activeTile =>
-      widget.detailComponent.tile;
+
+  template.ActiveTileComponent get _activeTile => widget.detailComponent.tile;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -53,7 +51,7 @@ class _ActiveResourceDetailViewState
             activeStructureCode: _activeStructureCode,
           ).notifier)
           .loadActiveResource(
-            requestField: requestField, 
+            requestField: requestField,
             id: widget.resourceId,
           );
     });
@@ -67,54 +65,57 @@ class _ActiveResourceDetailViewState
       ),
     );
     return activeResource.when(
-      data: (data) => data == null ? const SizedBox.shrink() : SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // TODO: call fieldTitle here
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Text(
-                      data.liveAttributes[_activeTile.titleKey],
-                      style: Theme.of(context).textTheme.titleLarge,
+      data: (data) => data == null
+          ? const SizedBox.shrink()
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(AppSpacing.lg),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // TODO: call fieldTitle here
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Text(
+                            data.liveAttributes[_activeTile.titleKey],
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        if (data.liveAttributes[_activeTile.subtitleKey] !=
+                            null)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Text(
+                                data.liveAttributes[_activeTile.subtitleKey]),
+                          ),
+                        Divider(),
+                        for (final key in _activeTile.extraKeys)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Text(data.liveAttributes[key]),
+                          ),
+                      ],
                     ),
-                  ),
-                  if (data.liveAttributes[_activeTile.subtitleKey] != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Text(data.liveAttributes[_activeTile.subtitleKey]),
-                    ),
-                  
-                  Divider(),
-                  for (final key in _activeTile.extraKeys)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Text(data.liveAttributes[key]),
-                    ),
-                ],
-              ),
-              Flexible(
-                child: comment.CommentsPreview(
-                  activeStructureCode:
-                      widget.detailComponent.tile.activeStructureCode,
-                  resourceId: widget.resourceId,
+                    Flexible(
+                      child: comment.CommentsPreview(
+                        activeStructureCode:
+                            widget.detailComponent.tile.activeStructureCode,
+                        resourceId: widget.resourceId,
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ), 
+              ),
+            ),
       error: (error, stackTrace) => AppErrorWidget(
         error,
         stackTrace: stackTrace,
       ),
       loading: () => AppCircularLoadingWidget(),
-    ); 
+    );
   }
 }

@@ -112,7 +112,7 @@ ApiEndpoint createComment({
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspaces/:workspace_id/active-resource/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
+          '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
       requiredWorkspace: true,
       requiredAuthorization: true,
       jsonPayload: true,

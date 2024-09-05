@@ -22,7 +22,7 @@ final class RolesBoardApiClient {
     required String resourceId,
     String? requestField,
   }) async {
-    // {{domain}}/api/workspaces/{{workspace}}/active-resource/resources/tasks/664724104737195066/features/widget-comment/get/comments
+    // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
       endpoint: ApiEndpoint(
         uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/get',

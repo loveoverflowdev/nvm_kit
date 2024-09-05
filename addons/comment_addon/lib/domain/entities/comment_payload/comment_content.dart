@@ -22,4 +22,3 @@ class CommentContent extends FormzInput<String, CommentContentValidationError> {
     return null;
   }
 }
-
