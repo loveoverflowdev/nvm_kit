@@ -18,6 +18,7 @@ class CommentList extends _$CommentList {
 
   void loadCommentList({
     required int limit,
+    int? offset,
   }) async {
     state = const AsyncValue.loading();
 

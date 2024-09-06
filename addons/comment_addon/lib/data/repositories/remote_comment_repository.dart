@@ -14,6 +14,7 @@ final class RemoteCommentRepository implements CommentRepository {
     required String activeStructureCode,
     required String resourceId,
     required int limit,
+    int? offset,
     String? requestField,
   }) {
     return TaskEither.tryCatch(

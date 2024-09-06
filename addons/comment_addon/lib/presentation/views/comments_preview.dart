@@ -79,54 +79,55 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
 
   Widget _buildCommentsColumn(BuildContext context, List<Comment> data) {
     const double commentTileHeight = 48;
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(AppSpacing.lg),
-      ),
-      child: ConstrainedBox(
-        constraints:
-            BoxConstraints(maxHeight: data.length * commentTileHeight + 56),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (final comment in data.reversed)
-              Flexible(
-                child: SizedBox(
-                  height: commentTileHeight,
-                  child: CommentCell(
-                    authorName: comment.createdByUser.fullName,
-                    content: comment.commentContent,
-                    createdTime: comment.createdTime,
-                    topic: '',
+    final borderRadius = BorderRadius.circular(AppSpacing.lg);
+    return InkWell(
+      borderRadius: borderRadius,
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+          borderRadius: borderRadius,
+        ),
+        child: ConstrainedBox(
+          constraints:
+              BoxConstraints(maxHeight: data.length * commentTileHeight + 56 + 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 28,
+                child: Text('${data.length} comments', style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),),
+              ),
+              Divider(),
+              for (final comment in data.reversed)
+                Flexible(
+                  child: SizedBox(
+                    height: commentTileHeight,
+                    child: CommentCell(
+                      authorName: comment.createdByUser.fullName,
+                      content: comment.commentContent,
+                      createdTime: comment.createdTime,
+                      topic: '',
+                    ),
                   ),
                 ),
+              Flexible(
+                child: CommentPrompt(
+                  activeStructureCode: _activeStructureCode,
+                  resourceId: _resourceId,
+                  onCreated: () {
+                    _loadCommentList();
+                  },
+                ),
               ),
-            Flexible(
-              child: CommentPrompt(
-                activeStructureCode: _activeStructureCode,
-                resourceId: _resourceId,
-                onCreated: () {
-                  _loadCommentList();
-                },
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-// class CommentsPreview extends ConsumerWidget {
-//   final String activeStructureCode;
-//   final String resourceId;
-
-//   const CommentsPreview({
-//     super.key,
-//     required this.activeStructureCode,
-//     required this.resourceId,
-//   });
-// }

@@ -8,6 +8,7 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
   required String activeStructureCode,
   required String resourceId,
   required int limit,
+  int? offset,
   String? requestField,
 }) {
   return ReaderTaskEither(
@@ -15,6 +16,7 @@ ReaderTaskEither<CommentRepository, CommentFailure, List<Comment>>
       return repository
           .getCommentList(
             limit: limit,
+            offset: offset,
             activeStructureCode: activeStructureCode,
             resourceId: resourceId,
             requestField: requestField,

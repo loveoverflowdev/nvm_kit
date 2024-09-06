@@ -41,6 +41,7 @@ final class CommentApiClient {
     required String activeStructureCode,
     required String resourceId,
     required int limit,
+    int? offset,
     String? requestField,
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
@@ -54,6 +55,7 @@ final class CommentApiClient {
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? CommentRequestField.simplified.build(),
         limit: limit,
+        offset: offset,
       ),
       dataHandler: (json) => (json['data'] as List)
           .map((e) => CommentResponse.fromJson(e))

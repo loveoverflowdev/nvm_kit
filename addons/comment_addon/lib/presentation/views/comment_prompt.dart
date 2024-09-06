@@ -32,18 +32,18 @@ class CommentPrompt extends ConsumerWidget {
       },
     );
 
-    final errorText = ref.watch(
-      commentInputProvider.select(
-        (form) => form.content.displayError?.message,
-      ),
-    );
+    // final errorText = ref.watch(
+    //   commentInputProvider.select(
+    //     (form) => form.content.displayError?.message,
+    //   ),
+    // );
 
     return TextField(
       onChanged: (value) {
         ref.read(commentInputProvider.notifier).setComment(value);
       },
       decoration: InputDecoration(
-        errorText: errorText,
+        // errorText: errorText,
         hintText: 'Comment here ...',
         suffixIconConstraints: const BoxConstraints(
           maxHeight: 48,
