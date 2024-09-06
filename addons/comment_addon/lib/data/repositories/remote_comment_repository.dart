@@ -72,6 +72,7 @@ final class RemoteCommentRepository implements CommentRepository {
         id: response.createdByUser?.id ?? '',
         fullName: response.createdByUser?.fullName ?? '',
       ),
+      createdTime: response.createdTime,
     );
   }
 }

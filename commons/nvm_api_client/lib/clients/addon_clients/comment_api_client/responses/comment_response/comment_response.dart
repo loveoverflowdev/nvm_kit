@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:nvm_api_client/utils.dart';
 
 import '../commented_user_response.dart';
 
@@ -13,6 +14,10 @@ class CommentResponse {
   final String? subjectId;
   final String? commentTitle;
   final String commentContent;
+
+  @JsonKey(name: 'createdAt', fromJson: _toCreatedTime)
+  final DateTime? createdTime;
+
   final CommentedUserResponse? createdByUser;
 
   CommentResponse({
@@ -24,6 +29,7 @@ class CommentResponse {
     required this.commentTitle,
     required this.commentContent,
     required this.createdByUser,
+    required this.createdTime,
   });
 
   factory CommentResponse.fromJson(Map<String, dynamic> json) {
@@ -32,6 +38,8 @@ class CommentResponse {
 
   Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
 }
+
+DateTime? _toCreatedTime(String? value) => value?.toCreatedTime();
 
 /*
 id": "665057604556294886",

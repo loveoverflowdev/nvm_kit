@@ -19,6 +19,7 @@ CommentResponse _$CommentResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : CommentedUserResponse.fromJson(
               json['createdByUser'] as Map<String, dynamic>),
+      createdTime: _toCreatedTime(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$CommentResponseToJson(CommentResponse instance) =>
@@ -30,5 +31,6 @@ Map<String, dynamic> _$CommentResponseToJson(CommentResponse instance) =>
       'subjectId': instance.subjectId,
       'commentTitle': instance.commentTitle,
       'commentContent': instance.commentContent,
+      'createdAt': instance.createdTime?.toIso8601String(),
       'createdByUser': instance.createdByUser,
     };

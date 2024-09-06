@@ -72,10 +72,10 @@ class _ActiveResourceCollectionViewState
               widget.onViewDetail?.call(detailContextName, activeResource.id);
             },
             title: Text(
-              liveAttributes[tileComponent.titleKey],
+              liveAttributes[tileComponent.titleKey] ?? '',
             ),
             subtitle: Text(
-              liveAttributes[tileComponent.subtitleKey],
+              liveAttributes[tileComponent.subtitleKey] ?? '',
             ),
           );
         },

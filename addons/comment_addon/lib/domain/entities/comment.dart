@@ -8,6 +8,7 @@ class Comment {
   final String subjectId;
   final String commentTitle;
   final String commentContent;
+  final DateTime? createdTime;
   final CommentedUser createdByUser;
 
   Comment({
@@ -19,5 +20,6 @@ class Comment {
     required this.commentTitle,
     required this.commentContent,
     required this.createdByUser,
+    required this.createdTime,
   });
 }

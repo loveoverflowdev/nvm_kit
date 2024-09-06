@@ -24,9 +24,11 @@ class CommentPrompt extends ConsumerWidget {
         resourceId: resourceId,
       ),
       (previous, current) {
-        if (current.hasValue) {
-          onCreated();
-        }
+        current.whenData((_) {
+          Future.delayed(Duration(milliseconds: 100), () {
+            onCreated();
+          });
+        });
       },
     );
 

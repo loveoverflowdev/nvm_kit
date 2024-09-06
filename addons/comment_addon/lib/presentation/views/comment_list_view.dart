@@ -34,7 +34,8 @@ class CommentListView extends ConsumerWidget {
           return CommentCell(
             authorName: comment.commentTitle,
             content: comment.commentContent,
-            topic: '',
+            topic: '', 
+            createdTime: comment.createdTime,
           );
         },
       ),

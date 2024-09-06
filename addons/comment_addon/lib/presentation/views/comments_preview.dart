@@ -28,9 +28,12 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
 
   int get _limit => widget.limit;
 
+  late List<Comment> _comments;
+
   @override
   void initState() {
     super.initState();
+    _comments = [];
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadCommentList();
     });
@@ -55,50 +58,64 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
       activeStructureCode: _activeStructureCode,
       resourceId: _resourceId,
     ));
-    const double commentTileHeight = 44;
+    
     return commentList.when(
-      data: (data) => Container(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(AppSpacing.lg),
-        ),
-        child: ConstrainedBox(
-          constraints:
-              BoxConstraints(maxHeight: data.length * commentTileHeight + 56),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (final comment in data)
-                Flexible(
-                  child: SizedBox(
-                    height: commentTileHeight,
-                    child: CommentCell(
-                      authorName: comment.createdByUser.fullName,
-                      content: comment.commentContent,
-                      topic: '',
-                    ),
-                  ),
-                ),
-              Flexible(
-                child: CommentPrompt(
-                  activeStructureCode: _activeStructureCode,
-                  resourceId: _resourceId,
-                  onCreated: () {
-                    _loadCommentList();
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      data: (data) {
+        _comments = data;
+        return _buildCommentsColumn(context, _comments);
+      },
       error: (error, stackTrace) => AppErrorWidget(
         error,
         stackTrace: stackTrace,
       ),
-      loading: () => const AppCircularLoadingWidget(),
+      loading: () {
+        if (_comments.isNotEmpty) {
+          return _buildCommentsColumn(context, _comments);
+        }
+        return const AppCircularLoadingWidget();
+      },
+    );
+  }
+
+  Widget _buildCommentsColumn(BuildContext context, List<Comment> data) {
+    const double commentTileHeight = 48;
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(AppSpacing.lg),
+      ),
+      child: ConstrainedBox(
+        constraints:
+            BoxConstraints(maxHeight: data.length * commentTileHeight + 56),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (final comment in data.reversed)
+              Flexible(
+                child: SizedBox(
+                  height: commentTileHeight,
+                  child: CommentCell(
+                    authorName: comment.createdByUser.fullName,
+                    content: comment.commentContent,
+                    createdTime: comment.createdTime,
+                    topic: '',
+                  ),
+                ),
+              ),
+            Flexible(
+              child: CommentPrompt(
+                activeStructureCode: _activeStructureCode,
+                resourceId: _resourceId,
+                onCreated: () {
+                  _loadCommentList();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

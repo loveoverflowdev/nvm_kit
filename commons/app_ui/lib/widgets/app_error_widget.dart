@@ -18,11 +18,14 @@ class AppErrorWidget extends StatelessWidget {
         padding: EdgeInsets.all(AppSpacing.lg),
         color: Colors.red.shade900,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              exception.toString(),
-              style: TextStyle(
-                color: Colors.yellow,
+            Flexible(
+              child: Text(
+                exception.toString(),
+                style: TextStyle(
+                  color: Colors.yellow,
+                ),
               ),
             ),
             SizedBox(

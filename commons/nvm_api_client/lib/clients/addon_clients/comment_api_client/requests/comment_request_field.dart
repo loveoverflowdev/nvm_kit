@@ -4,6 +4,8 @@ abstract final class CommentRequestField {
   static final simplified = RequestField.children([
     content,
     createdByUser,
+    topic,
+    createdAt,
   ]);
 
   static final all = RequestField.children(
@@ -23,6 +25,7 @@ abstract final class CommentRequestField {
   static final title = RequestField.name('commentTitle');
   static final content = RequestField.name('commentContent');
   static final createdBy = RequestField.name('createdBy');
+  static final createdAt = RequestField.name('createdAt');
   static final createdByUser = RequestField(
     name: 'createdByUser',
     children: [
