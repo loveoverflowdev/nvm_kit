@@ -29,6 +29,7 @@ class CommentListView extends ConsumerWidget {
       data: (data) => ListView.builder(
         shrinkWrap: shrinkWrap,
         physics: physics,
+        itemCount: data.length,
         itemBuilder: (context, index) {
           final comment = data[index];
           return CommentCell(

@@ -18,7 +18,9 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
   @override
   void initState() {
     super.initState();
-    _loadCommentList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadCommentList();
+    });
   }
 
   void _loadCommentList() {
@@ -29,33 +31,35 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
           resourceId: widget.resourceId,
         ).notifier)
         .loadCommentList(
-          limit: 3,
+          limit: 15,
         );
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 1,
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: false,
-          title: const Text('Comments'),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: CommentListView(
+    return SafeArea(
+      child: DefaultTabController(
+        length: 1,
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: false,
+            title: const Text('Comments'),
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                child: CommentListView(
+                  activeStructureCode: widget.activeStructureCode,
+                  resourceId: widget.resourceId,
+                ),
+              ),
+              CommentPrompt(
                 activeStructureCode: widget.activeStructureCode,
                 resourceId: widget.resourceId,
+                onCreated: () {},
               ),
-            ),
-            CommentPrompt(
-              activeStructureCode: widget.activeStructureCode,
-              resourceId: widget.resourceId,
-              onCreated: () {},
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

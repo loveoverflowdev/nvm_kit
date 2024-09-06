@@ -61,7 +61,7 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
     
     return commentList.when(
       data: (data) {
-        _comments = data;
+        _comments = data.take(_limit).toList();
         return _buildCommentsColumn(context, _comments);
       },
       error: (error, stackTrace) => AppErrorWidget(
@@ -82,7 +82,19 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
     final borderRadius = BorderRadius.circular(AppSpacing.lg);
     return InkWell(
       borderRadius: borderRadius,
-      onTap: () {},
+      onTap: () {
+        showModalBottomSheet(
+          context: context, 
+          isScrollControlled: true, 
+          useRootNavigator: true,
+          builder: (context) {
+            return CommentsBox(
+              activeStructureCode: _activeStructureCode,
+              resourceId: _resourceId,
+            );
+          },
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
