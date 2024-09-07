@@ -30,7 +30,10 @@ class _ActiveResourceFormViewState
     return activeStructure.when(
       data: (data) {
         return ListView(
-          children: [],
+          children: [
+            // for (final field in data.fields)
+              
+          ],
         );
       },
       error: (error, stackTrace) =>

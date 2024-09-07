@@ -39,8 +39,8 @@ final class RemoteActiveStructureRepository
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
       getActiveStructureList() {
     return TaskEither.tryCatch(
-      () async {
-        return await _apiClient.getActiveStructureList().then(
+      () {
+        return _apiClient.getActiveStructureList().then(
               (value) => value.map(_mapResponse).toList(),
             );
       },

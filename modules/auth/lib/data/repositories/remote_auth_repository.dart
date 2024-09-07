@@ -32,13 +32,15 @@ final class RemoteAuthRepository implements AuthRepository {
                   .then(
                     _mapResponse,
                   ),
-              (error, stackTrace) => AuthFailure.fromError(error, stackTrace: stackTrace),
+              (error, stackTrace) =>
+                  AuthFailure.fromError(error, stackTrace: stackTrace),
             );
 
   @override
   TaskEither<AuthFailure, void> signOut() => TaskEither.tryCatch(
         () => _apiClient.signOut(),
-        (error, stackTrace) => AuthFailure.fromError(error, stackTrace: stackTrace),
+        (error, stackTrace) =>
+            AuthFailure.fromError(error, stackTrace: stackTrace),
       );
 
   AuthCredentials _mapResponse(api.AuthenticationCredentials response) {

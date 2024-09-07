@@ -34,7 +34,7 @@ final class RemoteProjectRepository implements ProjectRepository {
     String? requestField,
   }) {
     return TaskEither.tryCatch(
-      () async {
+      () {
         return _apiClient.getProjectList().then(
               (value) => value.map(_mapResponse).toList(),
             );

@@ -1,5 +1,9 @@
 import 'package:app_ui/app_ui.dart'
-    show AppErrorWidget, AppCircularLoadingWidget, AppSpacing;
+    show
+        AppCircularLoadingWidget,
+        AppErrorWidget,
+        AppSpacing,
+        showAppModelBottomSheet;
 import 'package:comment_addon/comment_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,7 +62,7 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
       activeStructureCode: _activeStructureCode,
       resourceId: _resourceId,
     ));
-    
+
     return commentList.when(
       data: (data) {
         _comments = data.take(_limit).toList();
@@ -83,10 +87,8 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
     return InkWell(
       borderRadius: borderRadius,
       onTap: () {
-        showModalBottomSheet(
-          context: context, 
-          isScrollControlled: true, 
-          useRootNavigator: true,
+        showAppModelBottomSheet(
+          context: context,
           builder: (context) {
             return CommentsBox(
               activeStructureCode: _activeStructureCode,
@@ -102,19 +104,22 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
           borderRadius: borderRadius,
         ),
         child: ConstrainedBox(
-          constraints:
-              BoxConstraints(maxHeight: data.length * commentTileHeight + 56 + 28),
+          constraints: BoxConstraints(
+              maxHeight: data.length * commentTileHeight + 56 + 28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 height: 28,
-                child: Text('${data.length} comments', style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),),
+                child: Text(
+                  'Comments',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
               ),
-              Divider(),
+              const Divider(),
               for (final comment in data.reversed)
                 Flexible(
                   child: SizedBox(

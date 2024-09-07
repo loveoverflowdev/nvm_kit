@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:comment_addon/comment_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,14 +8,17 @@ class CommentsBox extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
 
-  const CommentsBox({super.key, required this.activeStructureCode, required this.resourceId,});
+  const CommentsBox({
+    super.key,
+    required this.activeStructureCode,
+    required this.resourceId,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CommentsBoxState();
 }
 
 class _CommentsBoxState extends ConsumerState<CommentsBox> {
-
   @override
   void initState() {
     super.initState();
@@ -37,29 +41,42 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DefaultTabController(
-        length: 1,
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: false,
-            title: const Text('Comments'),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                child: CommentListView(
-                  activeStructureCode: widget.activeStructureCode,
-                  resourceId: widget.resourceId,
-                ),
+    return DefaultTabController(
+      length: 1,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          automaticallyImplyLeading: false,
+          title: const Text('Comments'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: CommentListView(
+                activeStructureCode: widget.activeStructureCode,
+                resourceId: widget.resourceId,
               ),
-              CommentPrompt(
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg)
+                  .copyWith(
+                bottom: AppSpacing.lg,
+              ),
+              child: CommentPrompt(
                 activeStructureCode: widget.activeStructureCode,
                 resourceId: widget.resourceId,
                 onCreated: () {},
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

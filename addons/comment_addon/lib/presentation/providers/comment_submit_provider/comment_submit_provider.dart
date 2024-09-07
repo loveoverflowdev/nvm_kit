@@ -16,7 +16,7 @@ class CommentSubmit extends _$CommentSubmit {
   }) =>
       const CommentSubmitState.data(null);
 
-  void submit(CommentPayload payload) async {
+  void submit(CommentPayload payload) {
     state = const AsyncValue.loading();
 
     // Assuming you have a task to create the comment

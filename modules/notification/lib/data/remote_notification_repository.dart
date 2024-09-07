@@ -17,21 +17,23 @@ class RemoteNotificationRepository implements NotificationRepository {
     required List<NotificationActionInput> inputs,
   }) =>
       TaskEither.tryCatch(
-        () async => _apiClient.createNotification(
+        () => _apiClient.createNotification(
           title: title,
           content: content,
           payloads: inputs.map(_mapInput).toList(),
         ),
-        (error, stackTrace) => NotificationFailure.fromError(error, stackTrace: stackTrace),
+        (error, stackTrace) =>
+            NotificationFailure.fromError(error, stackTrace: stackTrace),
       );
 
   @override
   TaskEither<NotificationFailure, List<Notification>> getNotificationList() =>
       TaskEither.tryCatch(
-        () async => _apiClient.getNotificationList().then(
+        () => _apiClient.getNotificationList().then(
               (value) => value.map(_mapResponse).toList(),
             ),
-        (error, stackTrace) => NotificationFailure.fromError(error, stackTrace: stackTrace),
+        (error, stackTrace) =>
+            NotificationFailure.fromError(error, stackTrace: stackTrace),
       );
 
   api.NotificationActionPayload _mapInput(NotificationActionInput input) {

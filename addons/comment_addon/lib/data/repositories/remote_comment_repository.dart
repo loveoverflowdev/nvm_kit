@@ -42,8 +42,8 @@ final class RemoteCommentRepository implements CommentRepository {
     required String resourceId,
   }) {
     return TaskEither.tryCatch(
-      () async {
-        _apiClient.createComment(
+      () {
+        return _apiClient.createComment(
           activeStructureCode: activeStructureCode,
           resourceId: resourceId,
           payload: api.CommentPayload(
