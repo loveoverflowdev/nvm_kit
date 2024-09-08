@@ -13,6 +13,9 @@ class CommentSubmit extends _$CommentSubmit {
   CommentSubmitState build({
     required String activeStructureCode,
     required String resourceId,
+
+    /// [key] to seperated listener
+    required String key,
   }) =>
       const CommentSubmitState.data(null);
 

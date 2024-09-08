@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'comment_submit_provider.dart';
+part of 'comment_preview_list_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commentSubmitHash() => r'14e360f5cdfc1b964ec0304c14c0dfed4c4b8ade';
+String _$commentPreviewListHash() =>
+    r'7b930cec14acc4cdd898eb660fa184e85fb21a20';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,49 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$CommentSubmit
-    extends BuildlessAutoDisposeNotifier<CommentSubmitState> {
-  late final String activeStructureCode;
-  late final String resourceId;
-  late final String key;
+/// See also [commentPreviewList].
+@ProviderFor(commentPreviewList)
+const commentPreviewListProvider = CommentPreviewListFamily();
 
-  CommentSubmitState build({
+/// See also [commentPreviewList].
+class CommentPreviewListFamily extends Family<AsyncValue<List<Comment>>> {
+  /// See also [commentPreviewList].
+  const CommentPreviewListFamily();
+
+  /// See also [commentPreviewList].
+  CommentPreviewListProvider call({
     required String activeStructureCode,
     required String resourceId,
-    required String key,
-  });
-}
-
-/// See also [CommentSubmit].
-@ProviderFor(CommentSubmit)
-const commentSubmitProvider = CommentSubmitFamily();
-
-/// See also [CommentSubmit].
-class CommentSubmitFamily extends Family<CommentSubmitState> {
-  /// See also [CommentSubmit].
-  const CommentSubmitFamily();
-
-  /// See also [CommentSubmit].
-  CommentSubmitProvider call({
-    required String activeStructureCode,
-    required String resourceId,
-    required String key,
+    required int limit,
   }) {
-    return CommentSubmitProvider(
+    return CommentPreviewListProvider(
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
-      key: key,
+      limit: limit,
     );
   }
 
   @override
-  CommentSubmitProvider getProviderOverride(
-    covariant CommentSubmitProvider provider,
+  CommentPreviewListProvider getProviderOverride(
+    covariant CommentPreviewListProvider provider,
   ) {
     return call(
       activeStructureCode: provider.activeStructureCode,
       resourceId: provider.resourceId,
-      key: provider.key,
+      limit: provider.limit,
     );
   }
 
@@ -87,37 +75,39 @@ class CommentSubmitFamily extends Family<CommentSubmitState> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'commentSubmitProvider';
+  String? get name => r'commentPreviewListProvider';
 }
 
-/// See also [CommentSubmit].
-class CommentSubmitProvider
-    extends AutoDisposeNotifierProviderImpl<CommentSubmit, CommentSubmitState> {
-  /// See also [CommentSubmit].
-  CommentSubmitProvider({
+/// See also [commentPreviewList].
+class CommentPreviewListProvider
+    extends AutoDisposeFutureProvider<List<Comment>> {
+  /// See also [commentPreviewList].
+  CommentPreviewListProvider({
     required String activeStructureCode,
     required String resourceId,
-    required String key,
+    required int limit,
   }) : this._internal(
-          () => CommentSubmit()
-            ..activeStructureCode = activeStructureCode
-            ..resourceId = resourceId
-            ..key = key,
-          from: commentSubmitProvider,
-          name: r'commentSubmitProvider',
+          (ref) => commentPreviewList(
+            ref as CommentPreviewListRef,
+            activeStructureCode: activeStructureCode,
+            resourceId: resourceId,
+            limit: limit,
+          ),
+          from: commentPreviewListProvider,
+          name: r'commentPreviewListProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$commentSubmitHash,
-          dependencies: CommentSubmitFamily._dependencies,
+                  : _$commentPreviewListHash,
+          dependencies: CommentPreviewListFamily._dependencies,
           allTransitiveDependencies:
-              CommentSubmitFamily._allTransitiveDependencies,
+              CommentPreviewListFamily._allTransitiveDependencies,
           activeStructureCode: activeStructureCode,
           resourceId: resourceId,
-          key: key,
+          limit: limit,
         );
 
-  CommentSubmitProvider._internal(
+  CommentPreviewListProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -126,33 +116,21 @@ class CommentSubmitProvider
     required super.from,
     required this.activeStructureCode,
     required this.resourceId,
-    required this.key,
+    required this.limit,
   }) : super.internal();
 
   final String activeStructureCode;
   final String resourceId;
-  final String key;
+  final int limit;
 
   @override
-  CommentSubmitState runNotifierBuild(
-    covariant CommentSubmit notifier,
+  Override overrideWith(
+    FutureOr<List<Comment>> Function(CommentPreviewListRef provider) create,
   ) {
-    return notifier.build(
-      activeStructureCode: activeStructureCode,
-      resourceId: resourceId,
-      key: key,
-    );
-  }
-
-  @override
-  Override overrideWith(CommentSubmit Function() create) {
     return ProviderOverride(
       origin: this,
-      override: CommentSubmitProvider._internal(
-        () => create()
-          ..activeStructureCode = activeStructureCode
-          ..resourceId = resourceId
-          ..key = key,
+      override: CommentPreviewListProvider._internal(
+        (ref) => create(ref as CommentPreviewListRef),
         from: from,
         name: null,
         dependencies: null,
@@ -160,23 +138,22 @@ class CommentSubmitProvider
         debugGetCreateSourceHash: null,
         activeStructureCode: activeStructureCode,
         resourceId: resourceId,
-        key: key,
+        limit: limit,
       ),
     );
   }
 
   @override
-  AutoDisposeNotifierProviderElement<CommentSubmit, CommentSubmitState>
-      createElement() {
-    return _CommentSubmitProviderElement(this);
+  AutoDisposeFutureProviderElement<List<Comment>> createElement() {
+    return _CommentPreviewListProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CommentSubmitProvider &&
+    return other is CommentPreviewListProvider &&
         other.activeStructureCode == activeStructureCode &&
         other.resourceId == resourceId &&
-        other.key == key;
+        other.limit == limit;
   }
 
   @override
@@ -184,34 +161,35 @@ class CommentSubmitProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
     hash = _SystemHash.combine(hash, resourceId.hashCode);
-    hash = _SystemHash.combine(hash, key.hashCode);
+    hash = _SystemHash.combine(hash, limit.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin CommentSubmitRef on AutoDisposeNotifierProviderRef<CommentSubmitState> {
+mixin CommentPreviewListRef on AutoDisposeFutureProviderRef<List<Comment>> {
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
 
   /// The parameter `resourceId` of this provider.
   String get resourceId;
 
-  /// The parameter `key` of this provider.
-  String get key;
+  /// The parameter `limit` of this provider.
+  int get limit;
 }
 
-class _CommentSubmitProviderElement extends AutoDisposeNotifierProviderElement<
-    CommentSubmit, CommentSubmitState> with CommentSubmitRef {
-  _CommentSubmitProviderElement(super.provider);
+class _CommentPreviewListProviderElement
+    extends AutoDisposeFutureProviderElement<List<Comment>>
+    with CommentPreviewListRef {
+  _CommentPreviewListProviderElement(super.provider);
 
   @override
   String get activeStructureCode =>
-      (origin as CommentSubmitProvider).activeStructureCode;
+      (origin as CommentPreviewListProvider).activeStructureCode;
   @override
-  String get resourceId => (origin as CommentSubmitProvider).resourceId;
+  String get resourceId => (origin as CommentPreviewListProvider).resourceId;
   @override
-  String get key => (origin as CommentSubmitProvider).key;
+  int get limit => (origin as CommentPreviewListProvider).limit;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

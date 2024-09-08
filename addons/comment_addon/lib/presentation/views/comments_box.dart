@@ -34,9 +34,7 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
           activeStructureCode: widget.activeStructureCode,
           resourceId: widget.resourceId,
         ).notifier)
-        .loadCommentList(
-          limit: 15,
-        );
+        .loadCommentList();
   }
 
   @override
@@ -65,6 +63,7 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
                 resourceId: widget.resourceId,
               ),
             ),
+            const Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg)
                   .copyWith(
@@ -73,7 +72,10 @@ class _CommentsBoxState extends ConsumerState<CommentsBox> {
               child: CommentPrompt(
                 activeStructureCode: widget.activeStructureCode,
                 resourceId: widget.resourceId,
-                onCreated: () {},
+                providerKey: 'comments_box',
+                onCreated: () {
+                  _loadCommentList();
+                },
               ),
             ),
           ],

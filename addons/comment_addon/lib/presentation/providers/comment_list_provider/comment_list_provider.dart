@@ -7,6 +7,12 @@ part 'comment_list_provider.g.dart';
 
 typedef CommentListState = AsyncValue<List<Comment>>;
 
+enum PageCountLimitType {
+  small,
+  medium,
+  large,
+}
+
 @riverpod
 class CommentList extends _$CommentList {
   @override
@@ -16,8 +22,19 @@ class CommentList extends _$CommentList {
   }) =>
       const CommentListState.data([]);
 
+  late PageCountLimitType _limitType = PageCountLimitType.medium;
+
+  void setLimit(PageCountLimitType type) {
+    _limitType = type;
+  }
+
+  int _getPageCount() => switch (_limitType) {
+        PageCountLimitType.small => 7,
+        PageCountLimitType.medium => 15,
+        PageCountLimitType.large => 23,
+      };
+
   void loadCommentList({
-    required int limit,
     int? offset,
   }) async {
     state = const AsyncValue.loading();
@@ -25,7 +42,7 @@ class CommentList extends _$CommentList {
     getCommentListTask(
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
-      limit: limit,
+      limit: _getPageCount(),
     ).match(
       (failure) {
         state = CommentListState.error(
@@ -41,51 +58,3 @@ class CommentList extends _$CommentList {
     );
   }
 }
-
-// @riverpod
-// Future<List<Comment>> commentList(
-//   CommentListRef ref, {
-//   required String activeStructureCode,
-//   required String resourceId,
-// }) {
-//   return getCommentListTask(
-//     activeStructureCode: activeStructureCode,
-//     resourceId: resourceId,
-//   )
-//       .run(
-//         ref.read(commentRepositoryProvider),
-//       )
-//       .then(
-//         (value) => value.fold((failure) => throw failure, (data) => data),
-//       );
-// }
-
-
-// typedef CommentListState = AsyncValue<List<Comment>>;
-
-// @riverpod
-// class CommentList extends _$CommentList {
-//   @override
-//   CommentListState build() => CommentListState.data(List.empty());
-
-//   void loadCommentList() async {
-//     state = const AsyncValue.loading();
-
-//     getCommentListTask(
-//       activeStructureCode: '',
-//       resourceId: '',
-//     ).match(
-//       (failure) {
-//         state = CommentListState.error(
-//           failure,
-//           StackTrace.current,
-//         );
-//       },
-//       (response) {
-//         state = CommentListState.data(response);
-//       },
-//     ).run(
-//       ref.read(commentRepositoryProvider),
-//     );
-//   }
-// }

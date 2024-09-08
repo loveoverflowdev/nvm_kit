@@ -84,11 +84,14 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
         ),
       ),
       tabBarTheme: TabBarTheme(
-          labelColor: colorScheme.onSurface,
-          unselectedLabelColor: colorScheme.onSurface,
-          indicator: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: colorScheme.primary, width: 2)))),
+        labelColor: colorScheme.onSurface,
+        unselectedLabelColor: colorScheme.onSurface,
+        indicator: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: colorScheme.primary, width: 2),
+          ),
+        ),
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: colorScheme.secondaryContainer,
           foregroundColor: colorScheme.onSecondaryContainer),
@@ -99,17 +102,21 @@ class BasilTheme extends ThemeExtension<BasilTheme> {
           indicatorColor: colorScheme.secondaryContainer),
       navigationBarTheme: NavigationBarThemeData(
           backgroundColor: isLight ? neutralColor : colorScheme.surface,
-          iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
-            if (states.contains(WidgetState.selected)) {
-              return IconThemeData(color: colorScheme.onSecondaryContainer);
-            }
-            return IconThemeData(color: colorScheme.onSurface);
-          }),
+          iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
+            (states) {
+              if (states.contains(WidgetState.selected)) {
+                return IconThemeData(color: colorScheme.onSecondaryContainer);
+              }
+              return IconThemeData(color: colorScheme.onSurface);
+            },
+          ),
           indicatorColor: colorScheme.secondaryContainer),
       appBarTheme: AppBarTheme(
-          backgroundColor: isLight ? neutralColor : colorScheme.surface),
+        backgroundColor: isLight ? neutralColor : colorScheme.surface,
+      ),
       chipTheme: ChipThemeData(
-          backgroundColor: isLight ? neutralColor : colorScheme.surface),
+        backgroundColor: isLight ? neutralColor : colorScheme.surface,
+      ),
     );
   }
 

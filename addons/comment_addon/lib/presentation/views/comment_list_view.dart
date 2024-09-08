@@ -27,28 +27,36 @@ class CommentListView extends ConsumerWidget {
       resourceId: resourceId,
     ));
     return commentList.when(
-      data: (data) => ListView.separated(
-        shrinkWrap: shrinkWrap,
-        physics: physics,
-        itemCount: data.length,
-        padding: const EdgeInsets.only(
-          left: AppSpacing.lg,
-          right: AppSpacing.lg,
-          bottom: AppSpacing.lg,
-        ),
-        itemBuilder: (context, index) {
-          final comment = data[index];
-          return CommentCell(
-            authorName: comment.createdByUser.fullName,
-            content: comment.commentContent,
-            topic: '',
-            createdTime: comment.createdTime,
-          );
-        },
-        separatorBuilder: (context, index) => const Divider(),
+      data: (data) {
+        // data = data.reversed.toList();
+        return ListView.separated(
+          shrinkWrap: shrinkWrap,
+          physics: physics,
+          itemCount: data.length,
+          reverse: true,
+          padding: const EdgeInsets.only(
+            left: AppSpacing.lg,
+            right: AppSpacing.lg,
+            bottom: AppSpacing.lg,
+          ),
+          itemBuilder: (context, index) {
+            final comment = data[index];
+            return CommentCell(
+              authorName: comment.createdByUser.fullName,
+              content: comment.commentContent,
+              topic: '',
+              createdTime: comment.createdTime,
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(
+            color: Colors.transparent,
+          ),
+        );
+      },
+      error: (error, stackTrace) => AppErrorWidget(
+        error,
+        stackTrace: stackTrace,
       ),
-      error: (error, stackTrace) =>
-          AppErrorWidget(error, stackTrace: stackTrace),
       loading: () => const AppCircularLoadingWidget(),
     );
   }

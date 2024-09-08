@@ -33,35 +33,54 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
   int get _limit => widget.limit;
 
   late List<Comment> _comments;
+  late bool _usePreviewList = true;
+
+  late final CommentPreviewListProvider _previewListProvider;
+  late final CommentListProvider _pagingListProvider;
 
   @override
   void initState() {
     super.initState();
     _comments = [];
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadCommentList();
-    });
+    _previewListProvider = commentPreviewListProvider(
+      activeStructureCode: _activeStructureCode,
+      resourceId: _resourceId,
+      limit: 3,
+    );
+    _pagingListProvider = commentListProvider(
+      activeStructureCode: _activeStructureCode,
+      resourceId: _resourceId,
+    );
   }
 
-  void _loadCommentList() {
-    ref
-        .read(commentListProvider(
-          activeStructureCode: _activeStructureCode,
-          resourceId: _resourceId,
-        ).notifier)
-        .loadCommentList(
-          limit: _limit,
-        );
+  void _reload() {
+    return ref.refresh(commentPreviewListProvider(
+      activeStructureCode: _activeStructureCode,
+      resourceId: _resourceId,
+      limit: 3,
+    ));
   }
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    final commentList = ref.watch(commentListProvider(
-      activeStructureCode: _activeStructureCode,
-      resourceId: _resourceId,
-    ));
+    ref.listen(_previewListProvider, (_, current) {
+      if (current.hasValue) {
+        _usePreviewList = true;
+      }
+    });
+    ref.listen(_pagingListProvider, (_, current) {
+      if (current.hasValue) {
+        _usePreviewList = false;
+      }
+    });
+
+    final commentPreviewList = ref.watch(_previewListProvider);
+    final commentPagingList = ref.watch(_pagingListProvider);
+
+    final commentList =
+        _usePreviewList ? commentPreviewList : commentPagingList;
 
     return commentList.when(
       data: (data) {
@@ -84,67 +103,77 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
   Widget _buildCommentsColumn(BuildContext context, List<Comment> data) {
     const double commentTileHeight = 48;
     final borderRadius = BorderRadius.circular(AppSpacing.lg);
-    return InkWell(
-      borderRadius: borderRadius,
-      onTap: () {
-        showAppModelBottomSheet(
-          context: context,
-          builder: (context) {
-            return CommentsBox(
-              activeStructureCode: _activeStructureCode,
-              resourceId: _resourceId,
-            );
-          },
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-          borderRadius: borderRadius,
-        ),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-              maxHeight: data.length * commentTileHeight + 56 + 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: 28,
-                child: Text(
-                  'Comments',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+    return Consumer(
+      builder: (_, WidgetRef ref, __) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+          ),
+          child: Material(
+            borderRadius: borderRadius,
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            child: InkWell(
+              borderRadius: borderRadius,
+              onTap: () {
+                showAppModelBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return CommentsBox(
+                      activeStructureCode: _activeStructureCode,
+                      resourceId: _resourceId,
+                    );
+                  },
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(AppSpacing.lg),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: data.length * commentTileHeight + 56 + 28,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: 28,
+                        child: Text(
+                          'Comments',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                ),
-              ),
-              const Divider(),
-              for (final comment in data.reversed)
-                Flexible(
-                  child: SizedBox(
-                    height: commentTileHeight,
-                    child: CommentCell(
-                      authorName: comment.createdByUser.fullName,
-                      content: comment.commentContent,
-                      createdTime: comment.createdTime,
-                      topic: '',
-                    ),
+                      const Divider(),
+                      for (final comment in data.reversed)
+                        Flexible(
+                          child: SizedBox(
+                            height: commentTileHeight,
+                            child: CommentCell(
+                              authorName: comment.createdByUser.fullName,
+                              content: comment.commentContent,
+                              createdTime: comment.createdTime,
+                              topic: '',
+                            ),
+                          ),
+                        ),
+                      Flexible(
+                        child: CommentPrompt(
+                          activeStructureCode: _activeStructureCode,
+                          resourceId: _resourceId,
+                          providerKey: 'comments_preview',
+                          onCreated: () => _reload(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              Flexible(
-                child: CommentPrompt(
-                  activeStructureCode: _activeStructureCode,
-                  resourceId: _resourceId,
-                  onCreated: () {
-                    _loadCommentList();
-                  },
-                ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
