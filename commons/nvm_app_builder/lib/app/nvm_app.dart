@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:app_ui/app_ui.dart';
-
-import 'package:nvm/router.dart';
-import 'package:nvm/template_repository.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nvm_app_builder/router.dart';
 
 import 'package:auth/auth.dart' as auth;
 import 'package:notification/notification.dart' as notification;
@@ -16,6 +14,7 @@ import 'package:active_resource/active_resource.dart' as active_resource;
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
 import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 
+import '../template_repository.dart';
 
 class NvmApp extends StatefulWidget {
   final NavigationGuard navigationGuard;

@@ -320,6 +320,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  nvm_app_builder:
+    dependency: "direct main"
+    description:
+      path: "../../commons/nvm_app_builder"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -594,5 +601,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.5.1 <4.0.0"
   flutter: ">=3.22.0"

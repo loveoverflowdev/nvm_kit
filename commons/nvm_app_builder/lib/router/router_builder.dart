@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nvm/app.dart';
-import 'package:nvm/router/navigation_guard.dart';
+import 'package:nvm_app_builder/app.dart';
 import 'package:template_parser/template_parser.dart';
+import 'navigation_guard.dart';
 import 'package:active_resource/active_resource.dart' as active_resource;
 
 final class RouterBuilder {
@@ -10,7 +10,7 @@ final class RouterBuilder {
   final TemplateComponent template;
 
   final GlobalKey<NavigatorState> _rootNavigatorKey =
-    GlobalKey<NavigatorState>();
+      GlobalKey<NavigatorState>();
 
   RouterBuilder({
     required this.template,
@@ -106,7 +106,8 @@ final class RouterBuilder {
                     final location = state.fullPath ?? '';
                     if (!location.contains('@')) {
                       final projectId = state.pathParameters['project_id']!;
-                      final path = '/projects/$projectId/@${app.pages.first.contextName}';
+                      final path =
+                          '/projects/$projectId/@${app.pages.first.contextName}';
                       return path;
                     }
                     return null;
@@ -116,7 +117,7 @@ final class RouterBuilder {
                   //   // final String projectId = state.pathParameters['project_id']!;
                   //   // final String? resourceId = (state.extra as Map?)?['resource_id'];
                   //   // WidgetsBinding.instance.addPostFrameCallback((_) {
-                  //   //   context.go('/projects/$projectId/@${page.contextName}', 
+                  //   //   context.go('/projects/$projectId/@${page.contextName}',
                   //   //     extra: {
                   //   //       'resource_id': resourceId,
                   //   //     },
@@ -129,15 +130,19 @@ final class RouterBuilder {
                       builder: (context, state, child) {
                         int index = 0;
                         final location = state.fullPath ?? '';
-                        for (int i = 0; i < app.collectionTypePages.length; i++) {
+                        for (int i = 0;
+                            i < app.collectionTypePages.length;
+                            i++) {
                           if (location
                               .contains('@${app.pages[i].contextName}')) {
                             index = i;
                             break;
                           }
                         }
-                        final String projectId = state.pathParameters['project_id']!;
-                        final String? resourceId = (state.extra as Map?)?['resource_id'];
+                        final String projectId =
+                            state.pathParameters['project_id']!;
+                        final String? resourceId =
+                            (state.extra as Map?)?['resource_id'];
                         final destinations = [
                           for (final page in app.collectionTypePages)
                             TabBarDestination(
@@ -148,7 +153,8 @@ final class RouterBuilder {
                           navigationIndex: index,
                           onDestination: (int value) {
                             final page = app.collectionTypePages[value];
-                            final path = '/projects/$projectId/@${page.contextName}';
+                            final path =
+                                '/projects/$projectId/@${page.contextName}';
                             context.go(
                               path,
                               extra: {
@@ -159,43 +165,45 @@ final class RouterBuilder {
                           destinations: destinations,
                           child: child,
                         );
-                      }, 
+                      },
                       branches: [
                         for (final page in app.pages)
-                          StatefulShellBranch(
-                            routes: [
-                              GoRoute(
-                                name: '@${page.contextName}',
-                                path: '@${page.contextName}',
-                                // builder: (context, state) {
-                                //   return Placeholder(
-                                //     child: Column(
-                                //       children: [
-                                //         Text('@' + page.contextName),
-                                //         Text(page.title ?? ''),
-                                //       ],
-                                //     ),
-                                //   );
-                                // },
-                                builder: (context, state) {
-                                  return active_resource.ActiveResourcePage(
-                                    pageComponent: page,
-                                    resourceId: (state.extra as Map?)?['resource_id'], 
-                                    onViewDetail: (String? detailContextName, String resourceId) {
-                                      if (detailContextName == null) return;
+                          StatefulShellBranch(routes: [
+                            GoRoute(
+                              name: '@${page.contextName}',
+                              path: '@${page.contextName}',
+                              // builder: (context, state) {
+                              //   return Placeholder(
+                              //     child: Column(
+                              //       children: [
+                              //         Text('@' + page.contextName),
+                              //         Text(page.title ?? ''),
+                              //       ],
+                              //     ),
+                              //   );
+                              // },
+                              builder: (context, state) {
+                                return active_resource.ActiveResourcePage(
+                                  pageComponent: page,
+                                  resourceId:
+                                      (state.extra as Map?)?['resource_id'],
+                                  onViewDetail: (String? detailContextName,
+                                      String resourceId) {
+                                    if (detailContextName == null) return;
 
-                                      final String projectId = state.pathParameters['project_id']!;
-                                      final path = '/projects/$projectId/@$detailContextName';
-                                      context.push(path, extra: {
-                                        'resource_id': resourceId,
-                                      });
-                                    },
-                                  );
-                                },
-                              ),
-                            ]
-                          ),
-                      ], 
+                                    final String projectId =
+                                        state.pathParameters['project_id']!;
+                                    final path =
+                                        '/projects/$projectId/@$detailContextName';
+                                    context.push(path, extra: {
+                                      'resource_id': resourceId,
+                                    });
+                                  },
+                                );
+                              },
+                            ),
+                          ]),
+                      ],
                     ),
                   ],
                 ),

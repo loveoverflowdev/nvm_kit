@@ -51,6 +51,8 @@ dependencies:
     path: ../../addons/roles_board_addon
 
   # Commons
+  nvm_app_builder:
+    path: ../../commons/nvm_app_builder
   app_ui:
     path: ../../commons/app_ui
   nvm_api_client:
