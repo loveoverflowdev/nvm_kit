@@ -5,7 +5,6 @@ import '../active_resource_repository_provider.dart';
 
 part 'active_resource_list_provider.g.dart';
 
-
 typedef ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 
 @riverpod
@@ -17,12 +16,14 @@ class ActiveResourceList extends _$ActiveResourceList {
       ActiveResourceListState.data(List.empty());
 
   void loadActiveResourceList({
+    required String? projectId,
     String? requestField,
   }) async {
     state = const AsyncValue.loading();
     getActiveResourceListTask(
       activeStructureCode: activeStructureCode,
       requestField: requestField,
+      projectId: projectId,
     ).match(
       (failure) {
         state = ActiveResourceListState.error(

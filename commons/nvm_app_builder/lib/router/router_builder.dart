@@ -123,10 +123,6 @@ final class RouterBuilder {
           routes: [
             GoRoute(
               path: 'projects/:project_id',
-              // builder: (_, state) => ProjectPage(
-              //   id: state.pathParameters['id']!,
-              //   pages: template.apps.first.pages,
-              // ),
               redirect: (context, state) {
                 final location = state.fullPath ?? '';
                 if (!location.contains('@')) {
@@ -137,19 +133,6 @@ final class RouterBuilder {
                 }
                 return null;
               },
-              // builder:(context, state) {
-              //   // final page = app.pages.first;
-              //   // final String projectId = state.pathParameters['project_id']!;
-              //   // final String? resourceId = (state.extra as Map?)?['resource_id'];
-              //   // WidgetsBinding.instance.addPostFrameCallback((_) {
-              //   //   context.go('/projects/$projectId/@${page.contextName}',
-              //   //     extra: {
-              //   //       'resource_id': resourceId,
-              //   //     },
-              //   //   );
-              //   // });
-              //   // return const SizedBox.shrink();
-              // },
               routes: [
                 StatefulShellRoute.indexedStack(
                   builder: (context, state, child) {
@@ -194,16 +177,6 @@ final class RouterBuilder {
                         GoRoute(
                           name: '@${page.contextName}',
                           path: '@${page.contextName}',
-                          // builder: (context, state) {
-                          //   return Placeholder(
-                          //     child: Column(
-                          //       children: [
-                          //         Text('@' + page.contextName),
-                          //         Text(page.title ?? ''),
-                          //       ],
-                          //     ),
-                          //   );
-                          // },
                           builder: (context, state) {
                             return active_resource.ActiveResourcePage(
                               pageComponent: page,

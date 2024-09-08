@@ -22,11 +22,13 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     List<ActiveResource>> getActiveResourceListTask({
   required String activeStructureCode,
+  required String? projectId,
   String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getActiveResourceList(
+            projectId: projectId,
             activeStructureCode: activeStructureCode,
             requestField: requestField,
           )

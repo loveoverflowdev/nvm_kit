@@ -13,6 +13,7 @@ abstract interface class ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
     required String activeStructureCode,
+    required String? projectId,
     String? requestField,
   });
 }

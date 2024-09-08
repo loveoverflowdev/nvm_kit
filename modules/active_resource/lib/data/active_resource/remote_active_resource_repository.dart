@@ -42,12 +42,14 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
     required String activeStructureCode,
+    required String? projectId,
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
             .getActiveResourceList(
+              projectId: projectId,
               activeStructureCode: activeStructureCode,
               requestField: requestField,
             )

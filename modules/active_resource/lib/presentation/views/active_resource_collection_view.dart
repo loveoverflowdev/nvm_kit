@@ -7,7 +7,8 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart' show activeResourceListProvider;
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
-  final void Function(String? detailContextName, String resourceId)? onViewDetail;
+  final void Function(String? detailContextName, String resourceId)?
+      onViewDetail;
   final template.ActiveCollectionComponent collectionComponent;
 
   const ActiveResourceCollectionView({
@@ -28,9 +29,8 @@ class _ActiveResourceCollectionViewState
 
   template.ActiveTileComponent get _activeTile =>
       widget.collectionComponent.tile;
-  
-  String? get detailContextName => widget.collectionComponent.detailContextName;
 
+  String? get detailContextName => widget.collectionComponent.detailContextName;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -51,7 +51,9 @@ class _ActiveResourceCollectionViewState
             activeStructureCode: _activeStructureCode,
           ).notifier)
           .loadActiveResourceList(
-              requestField: _parseRequestField(_activeTile));
+            projectId: null,
+            requestField: _parseRequestField(_activeTile),
+          );
     });
   }
 

@@ -24,14 +24,20 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
 
   Future<List<ActiveResourceResponse>> getActiveResourceList({
     required String activeStructureCode,
+    required String? projectId,
     String? requestField,
   }) {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/get/resources/tasks
+    final Map<String, dynamic> filtering = {};
+    if (projectId != null) {
+      filtering['project'] = projectId;
+    }
     return requestJson(
       endpoint: endpoints.getActiveResourceList(
           activeStructureCode: activeStructureCode),
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? ActiveFieldRequestField.all.build(),
+        filtering: filtering,
       ),
       dataHandler: (json) => (json['data'] as List)
           .map((e) => ActiveResourceResponse.fromJson(e))
