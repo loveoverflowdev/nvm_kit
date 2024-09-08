@@ -15,7 +15,7 @@ final class ActiveFieldResponse {
   final int order;
 
   @JsonKey(name: 'fieldType')
-  final dynamic type;
+  final String type;
 
   @JsonKey(name: 'fieldPlaceholder')
   final String placeholder;
@@ -23,15 +23,17 @@ final class ActiveFieldResponse {
   @JsonKey(name: 'fieldDescription')
   final String description;
 
+  final String? valueActiveStructureId;
+
   final bool isRequired;
-  final bool isUnique;
-  final bool isMultipleValued;
-  final bool searchable;
-  final bool sortable;
-  final bool filterable;
-  final bool isConcrete;
-  final bool showInExport;
-  final bool showInImport;
+  final bool? isUnique;
+  final bool? isMultipleValued;
+  final bool? searchable;
+  final bool? sortable;
+  final bool? filterable;
+  final bool? isConcrete;
+  final bool? showInExport;
+  final bool? showInImport;
   final dynamic createdBy;
   final dynamic updatedBy;
   final dynamic createdAt;
@@ -46,6 +48,7 @@ final class ActiveFieldResponse {
     required this.placeholder,
     required this.description,
     required this.isRequired,
+    required this.valueActiveStructureId,
     required this.isUnique,
     required this.isMultipleValued,
     required this.searchable,

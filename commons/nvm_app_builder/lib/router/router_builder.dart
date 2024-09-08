@@ -181,17 +181,28 @@ final class RouterBuilder {
                             return active_resource.ActiveResourcePage(
                               pageComponent: page,
                               resourceId: (state.extra as Map?)?['resource_id'],
-                              onViewDetail: (String? detailContextName,
-                                  String resourceId) {
-                                if (detailContextName == null) return;
+                              onViewDetail: (
+                                String? contextName,
+                                String resourceId,
+                              ) {
+                                if (contextName == null) return;
 
                                 final String projectId =
                                     state.pathParameters['project_id']!;
                                 final path =
-                                    '/projects/$projectId/@$detailContextName';
+                                    '/projects/$projectId/@$contextName';
                                 context.push(path, extra: {
                                   'resource_id': resourceId,
                                 });
+                              },
+                              onRouteCreateForm: (String? contextName) {
+                                if (contextName == null) return;
+
+                                final String projectId =
+                                    state.pathParameters['project_id']!;
+                                final path =
+                                    '/projects/$projectId/@$contextName';
+                                context.push(path);
                               },
                             );
                           },

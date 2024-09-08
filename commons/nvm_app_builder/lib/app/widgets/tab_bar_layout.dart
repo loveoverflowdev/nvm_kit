@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class TabBarLayout extends StatelessWidget {
   const TabBarLayout({
@@ -74,18 +73,7 @@ class TabBarLayout extends StatelessWidget {
           ),
         ),
         body: child,
-        // floatingActionButton: buildFab(context),
       ),
-    );
-  }
-
-  Widget? buildFab(BuildContext context, {bool elevated = true}) {
-    final router = GoRouter.of(context);
-    if (router.routerDelegate.currentConfiguration.fullPath != '/') return null;
-    return FloatingActionButton(
-      elevation: elevated ? null : 0,
-      child: const Icon(Icons.add),
-      onPressed: () {},
     );
   }
 }

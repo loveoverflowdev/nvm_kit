@@ -19,7 +19,7 @@ CommentResponse _$CommentResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : CommentedUserResponse.fromJson(
               json['createdByUser'] as Map<String, dynamic>),
-      createdTime: _toCreatedTime(json['createdAt'] as String),
+      createdTime: _toCreatedTime(json['createdAt'] as String?),
     );
 
 Map<String, dynamic> _$CommentResponseToJson(CommentResponse instance) =>

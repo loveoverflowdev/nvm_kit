@@ -31,6 +31,7 @@ final class RemoteActiveStructureRepository
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
+        stackTrace: stackTrace,
       ),
     );
   }
@@ -41,11 +42,16 @@ final class RemoteActiveStructureRepository
     return TaskEither.tryCatch(
       () {
         return _apiClient.getActiveStructureList().then(
-              (value) => value.map(_mapResponse).toList(),
+              (value) => value
+                  .map(
+                    _mapResponse,
+                  )
+                  .toList(),
             );
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
+        stackTrace: stackTrace,
       ),
     );
   }

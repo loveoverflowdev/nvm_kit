@@ -12,7 +12,7 @@ ActiveStructureResponse _$ActiveStructureResponseFromJson(
       id: json['id'] as String,
       code: json['activeStructureCode'] as String,
       title: json['activeStructureTitle'] as String,
-      fields: (json['fields'] as List<dynamic>)
+      fields: (json['activeFields'] as List<dynamic>)
           .map((e) => ActiveFieldResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
       supportedAddonTypes: _supportedAddonTypesFromJson(
@@ -25,7 +25,7 @@ Map<String, dynamic> _$ActiveStructureResponseToJson(
       'id': instance.id,
       'activeStructureCode': instance.code,
       'activeStructureTitle': instance.title,
-      'fields': instance.fields,
+      'activeFields': instance.fields,
       'activeFeatures': instance.supportedAddonTypes
           .map((e) => _$AddonTypeEnumMap[e]!)
           .toList(),

@@ -27,18 +27,39 @@ class _ActiveResourceFormViewState
       ),
     );
     // TODO: on create form
-    return activeStructure.when(
-      data: (data) {
-        return ListView(
-          children: [
-            // for (final field in data.fields)
-              
-          ],
-        );
-      },
-      error: (error, stackTrace) =>
-          AppErrorWidget(error, stackTrace: stackTrace),
-      loading: () => const AppCircularLoadingWidget(),
+    return Container(
+      margin: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceVariant,
+        borderRadius: BorderRadius.circular(AppSpacing.md),
+      ),
+      child: activeStructure.when(
+        data: (data) {
+          return ListView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+            ),
+            children: [
+              for (final field in data.fields)
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: field.title,
+                  ),
+                ),
+              const Divider(),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Submit'),
+              ),
+            ],
+          );
+        },
+        error: (error, stackTrace) => AppErrorWidget(
+          error,
+          stackTrace: stackTrace,
+        ),
+        loading: () => const AppCircularLoadingWidget(),
+      ),
     );
   }
 }

@@ -45,7 +45,6 @@ class _ActiveResourceDetailViewState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final String requestField = _parseRequestField(_activeTile);
-      print('_ActiveResourceDetailViewState.requestField: $requestField');
       ref
           .read(activeResourceProvider(
             activeStructureCode: _activeStructureCode,

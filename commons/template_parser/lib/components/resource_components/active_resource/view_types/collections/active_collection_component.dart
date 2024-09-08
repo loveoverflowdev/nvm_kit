@@ -13,10 +13,12 @@ class ActiveCollectionComponent extends ActiveViewComponent {
 
   final ActiveTileComponent tile;
   final String? detailContextName;
+  final String? createFormContextName;
 
   ActiveCollectionComponent({
     required this.tile,
     required this.detailContextName,
+    required this.createFormContextName,
   });
 
   @override

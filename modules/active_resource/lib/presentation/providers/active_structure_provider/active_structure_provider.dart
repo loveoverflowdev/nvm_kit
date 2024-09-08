@@ -14,8 +14,8 @@ Future<ActiveStructure> activeStructure(
       .getActiveStructureByCode(activeStructureCode)
       .run()
       .then(
-    (project) {
-      return project.fold(
+    (activeStructure) {
+      return activeStructure.fold(
         (failure) => throw failure,
         (data) => data,
       );

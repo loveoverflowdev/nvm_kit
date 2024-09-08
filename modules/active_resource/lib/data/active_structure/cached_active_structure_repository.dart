@@ -24,6 +24,7 @@ final class CachedActiveStructureRepository
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
+        stackTrace: stackTrace,
       ),
     ).flatMap<ActiveStructure>((cachedResult) => cachedResult != null
         ? TaskEither.right(cachedResult)
@@ -45,6 +46,7 @@ final class CachedActiveStructureRepository
       },
       (error, stackTrace) => ActiveStructureFailure.fromError(
         error,
+        stackTrace: stackTrace,
       ),
     ).flatMap(
       (cachedResult) => cachedResult.isEmpty

@@ -16,6 +16,7 @@ final class ActiveStructureResponse {
   @JsonKey(name: 'activeStructureTitle')
   final String title;
 
+  @JsonKey(name: 'activeFields')
   final List<ActiveFieldResponse> fields;
 
   @JsonKey(name: 'activeFeatures', fromJson: _supportedAddonTypesFromJson)

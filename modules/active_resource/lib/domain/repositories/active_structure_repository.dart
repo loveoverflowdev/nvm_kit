@@ -8,5 +8,6 @@ abstract class ActiveStructureRepository {
       getActiveStructureList();
 
   TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
-      String code);
+    String code,
+  );
 }

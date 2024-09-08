@@ -36,10 +36,6 @@ class RootLayout extends StatelessWidget {
         children: [
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: buildFab(context, elevated: false),
-              ),
               Expanded(
                 child: NavigationRail(
                   groupAlignment: 0,
@@ -95,17 +91,6 @@ class RootLayout extends StatelessWidget {
         selectedIndex: navigationIndex,
         onDestinationSelected: onDestination,
       ),
-      // floatingActionButton: buildFab(context),
-    );
-  }
-
-  Widget? buildFab(BuildContext context, {bool elevated = true}) {
-    final router = GoRouter.of(context);
-    if (router.routerDelegate.currentConfiguration.fullPath != '/') return null;
-    return FloatingActionButton(
-      elevation: elevated ? null : 0,
-      child: const Icon(Icons.add),
-      onPressed: () {},
     );
   }
 }

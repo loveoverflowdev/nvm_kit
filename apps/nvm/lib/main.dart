@@ -1,9 +1,10 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
-import 'package:flutter/widgets.dart' show runApp;
+import 'package:flutter/widgets.dart' show WidgetsFlutterBinding, runApp;
 import 'package:nvm_app_builder/nvm_app_builder.dart';
 
 import 'package:auth/auth.dart' as auth;
 import 'package:nvm_api_client/nvm_api_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workspace/workspace.dart' as workspace;
 import 'package:project/project.dart' as project;
 import 'package:notification/notification.dart' as notification;
@@ -12,7 +13,8 @@ import 'package:active_resource/active_resource.dart' as active_resource;
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
 import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final AlchemistApiClient alchemistApiClient = AlchemistApiClient();
   final TokenStorage tokenStorage = TokenStorage.persistent();
   final WorkspaceStorage workspaceStorage = WorkspaceStorage.inMemory();
@@ -75,6 +77,16 @@ void main() {
     apiClient: resourceApiClient,
   );
 
+  final active_resource.ActiveStructureRepository activeStructureRepository =
+      active_resource.CachedActiveStructureRepository(
+    activeStructureRepository: active_resource.RemoteActiveStructureRepository(
+      apiClient: resourceApiClient,
+    ),
+    storage: active_resource.CachedActiveStructureStorage(
+      sharedPreferences: await SharedPreferences.getInstance(),
+    ),
+  );
+
   //
   final comment_addon.CommentRepository commentRepository =
       comment_addon.RemoteCommentRepository(
@@ -87,12 +99,14 @@ void main() {
   //
 
   runApp(NvmApp(
+    templateRepository: TemplateRepository.example(),
     navigationGuard: navigationGuard,
     authRepository: authRepository,
     notificationRepository: notificationRepository,
     projectRepository: projectRepository,
     workspaceRepository: workspaceRepository,
     activeResourceRepository: activeResourceRepository,
+    activeStructureRepository: activeStructureRepository,
     //
     commentRepository: commentRepository,
     rolesBoardRepository: rolesBoardRepository,

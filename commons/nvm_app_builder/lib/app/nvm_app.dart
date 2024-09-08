@@ -17,24 +17,29 @@ import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 import '../template_repository.dart';
 
 class NvmApp extends StatefulWidget {
+  final TemplateRepository templateRepository;
+  //
   final NavigationGuard navigationGuard;
   final auth.AuthRepository authRepository;
   final notification.NotificationRepository notificationRepository;
   final project.ProjectRepository projectRepository;
   final workspace.WorkspaceRepository workspaceRepository;
   final active_resource.ActiveResourceRepository activeResourceRepository;
+  final active_resource.ActiveStructureRepository activeStructureRepository;
   //
   final comment_addon.CommentRepository commentRepository;
   final roles_board_addon.RolesBoardRepository rolesBoardRepository;
 
   const NvmApp({
     super.key,
+    required this.templateRepository,
     required this.navigationGuard,
     required this.authRepository,
     required this.notificationRepository,
     required this.projectRepository,
     required this.workspaceRepository,
     required this.activeResourceRepository,
+    required this.activeStructureRepository,
     //
     required this.commentRepository,
     required this.rolesBoardRepository,
@@ -51,7 +56,8 @@ class _NvmAppState extends State<NvmApp> {
   @override
   void initState() {
     super.initState();
-    final template = TemplateRepository.example().getTemplate();
+    // TODO: inject from app
+    final template = widget.templateRepository.getTemplate();
     _router = RouterBuilder(
       template: template,
       navigationGuard: widget.navigationGuard,
@@ -75,6 +81,9 @@ class _NvmAppState extends State<NvmApp> {
         ),
         workspace.workspaceRepositoryProvider.overrideWithValue(
           widget.workspaceRepository,
+        ),
+        active_resource.activeStructureRepositoryProvider.overrideWithValue(
+          widget.activeStructureRepository,
         ),
         active_resource.activeResourceRepositoryProvider.overrideWithValue(
           widget.activeResourceRepository,

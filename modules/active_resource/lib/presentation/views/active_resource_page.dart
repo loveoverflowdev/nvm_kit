@@ -5,6 +5,7 @@ import 'package:template_parser/template_parser.dart' as template;
 class ActiveResourcePage extends StatelessWidget {
   final void Function(String?, String)? onViewDetail;
   final template.ActivePageComponent pageComponent;
+  final void Function(String?)? onRouteCreateForm;
   final String? resourceId;
 
   const ActiveResourcePage({
@@ -12,6 +13,7 @@ class ActiveResourcePage extends StatelessWidget {
     required this.pageComponent,
     required this.onViewDetail,
     required this.resourceId,
+    required this.onRouteCreateForm,
   });
 
   @override
@@ -22,6 +24,7 @@ class ActiveResourcePage extends StatelessWidget {
           collectionComponent:
               pageComponent.view as template.ActiveCollectionComponent,
           onViewDetail: onViewDetail,
+          onRouteCreateForm: onRouteCreateForm,
         );
       } else if (pageComponent.view is template.ActiveDetailComponent) {
         return ActiveResourceDetailView(
@@ -40,7 +43,12 @@ class ActiveResourcePage extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-      child: child,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(pageComponent.title ?? ''),
+        ),
+        body: child,
+      ),
     );
   }
 }

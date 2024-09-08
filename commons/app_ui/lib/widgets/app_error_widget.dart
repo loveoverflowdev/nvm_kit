@@ -13,6 +13,7 @@ class AppErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('AppErrorWidget: ' + (stackTrace?.toString() ?? ''));
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(AppSpacing.lg),
@@ -33,10 +34,12 @@ class AppErrorWidget extends StatelessWidget {
             ),
             if (stackTrace != null)
               Flexible(
-                child: Text(stackTrace.toString(),
-                    style: TextStyle(
-                      color: Colors.yellow,
-                    )),
+                child: Text(
+                  stackTrace.toString(),
+                  style: TextStyle(
+                    color: Colors.yellow,
+                  ),
+                ),
               )
           ],
         ),

@@ -9,12 +9,15 @@ import '../providers.dart' show activeResourceListProvider;
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final void Function(String? detailContextName, String resourceId)?
       onViewDetail;
+  final void Function(String? createFormContextName)? onRouteCreateForm;
+
   final template.ActiveCollectionComponent collectionComponent;
 
   const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
     required this.onViewDetail,
+    required this.onRouteCreateForm,
   });
 
   @override
@@ -30,7 +33,10 @@ class _ActiveResourceCollectionViewState
   template.ActiveTileComponent get _activeTile =>
       widget.collectionComponent.tile;
 
-  String? get detailContextName => widget.collectionComponent.detailContextName;
+  String? get _detailContextName =>
+      widget.collectionComponent.detailContextName;
+  String? get _createFormContextName =>
+      widget.collectionComponent.createFormContextName;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -63,30 +69,53 @@ class _ActiveResourceCollectionViewState
       activeStructureCode: _activeStructureCode,
     ));
     final tileComponent = widget.collectionComponent.tile;
-    return activeResourceList.when(
-      data: (data) => ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          final activeResource = data[index];
-          final liveAttributes = activeResource.liveAttributes;
-          return ListTile(
-            onTap: () {
-              widget.onViewDetail?.call(detailContextName, activeResource.id);
+    return Stack(
+      children: [
+        activeResourceList.when(
+          data: (data) => ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final activeResource = data[index];
+              final liveAttributes = activeResource.liveAttributes;
+              return ListTile(
+                onTap: () {
+                  widget.onViewDetail
+                      ?.call(_detailContextName, activeResource.id);
+                },
+                title: Text(
+                  liveAttributes[tileComponent.titleKey] ?? '',
+                ),
+                subtitle: Text(
+                  liveAttributes[tileComponent.subtitleKey] ?? '',
+                ),
+              );
             },
-            title: Text(
-              liveAttributes[tileComponent.titleKey] ?? '',
+          ),
+          error: (error, stackTrace) => AppErrorWidget(
+            error,
+            stackTrace: stackTrace,
+          ),
+          loading: () => const AppCircularLoadingWidget(),
+        ),
+
+        //
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: AppSpacing.lg,
+              right: AppSpacing.lg,
             ),
-            subtitle: Text(
-              liveAttributes[tileComponent.subtitleKey] ?? '',
+            child: FloatingActionButton(
+              key: Key('active_resource_collection@${_activeTile.hashCode}'),
+              child: const Icon(Icons.add_outlined),
+              onPressed: () {
+                widget.onRouteCreateForm?.call(_createFormContextName);
+              },
             ),
-          );
-        },
-      ),
-      error: (error, stackTrace) => AppErrorWidget(
-        error,
-        stackTrace: stackTrace,
-      ),
-      loading: () => const AppCircularLoadingWidget(),
+          ),
+        ),
+      ],
     );
   }
 }

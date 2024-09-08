@@ -6,3 +6,4 @@ https://github.com/rrousselGit/riverpod/discussions/1387
 - check title project
 - stateful project route
 - active structure create from
+-  inject from app
