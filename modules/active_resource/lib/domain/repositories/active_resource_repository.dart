@@ -16,4 +16,9 @@ abstract interface class ActiveResourceRepository {
     required String? projectId,
     String? requestField,
   });
+
+  TaskEither<ActiveResourceFailure, void> createActiveResource({
+    required String activeStructureCode,
+    required ActiveResourcePayload payload,
+  });
 }

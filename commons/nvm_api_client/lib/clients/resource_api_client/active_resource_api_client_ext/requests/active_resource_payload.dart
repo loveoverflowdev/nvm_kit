@@ -6,13 +6,11 @@ final class ActiveResourcePayload {
     required this.projectId,
     required this.liveAttributes,
   });
-}
 
-/*
-{
-    "projectId": "656378298858733940",
-    "liveAttributes": {
-        "task_name": "ss"
-    }
+  Map<String, dynamic> toJson() {
+    return {
+      'projectId': projectId,
+      'liveAttributes': liveAttributes,
+    };
+  }
 }
-*/

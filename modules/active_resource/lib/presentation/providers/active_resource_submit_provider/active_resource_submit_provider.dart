@@ -1,5 +1,4 @@
 import 'package:active_resource/domain.dart';
-import 'package:comment_addon/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../active_resource_repository_provider.dart';
@@ -23,19 +22,18 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
     state = const AsyncValue.loading();
 
     // Assuming you have a task to create the comment
-    createCommentTask(
+    createActiveResourceTask(
       activeStructureCode: activeStructureCode,
-      resourceId: resourceId,
       payload: payload,
     ).match(
       (failure) {
-        state = CommentSubmitState.error(
+        state = ActiveResourceSubmitState.error(
           failure,
           failure.stackTrace ?? StackTrace.current,
         );
       },
       (response) {
-        state = const CommentSubmitState.data(null);
+        state = const ActiveResourceSubmitState.data(null);
         // Optionally, you can reload the comment list here or trigger any other side effect
       },
     ).run(

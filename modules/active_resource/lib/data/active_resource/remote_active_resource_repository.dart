@@ -1,3 +1,4 @@
+import 'package:active_resource/domain/entities/active_resource_payload.dart';
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
@@ -14,6 +15,25 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   RemoteActiveResourceRepository({
     required api.ResourceApiClient apiClient,
   }) : _apiClient = apiClient;
+
+  @override
+  TaskEither<ActiveResourceFailure, void> createActiveResource({
+    required String activeStructureCode, 
+    required ActiveResourcePayload payload,
+  }) {
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient.createActiveResource(
+          activeStructureCode: activeStructureCode,
+          payload: api.ActiveResourcePayload(
+            projectId: payload.projectId, 
+            liveAttributes: payload.liveAttributes,
+          ),
+        );
+      }, (error, stackTrace) =>
+          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+      );
+  }
 
   @override
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
@@ -79,6 +99,8 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           // TODO: convert DateTime
         ),
       );
+
+  
 }
 
 

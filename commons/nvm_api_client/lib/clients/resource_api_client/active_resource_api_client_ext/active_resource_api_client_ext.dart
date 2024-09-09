@@ -5,6 +5,19 @@ import 'requests.dart';
 import 'responses.dart';
 
 extension ActiveResourceApiClientExt on ResourceApiClient {
+  Future<dynamic> createActiveResource({
+    required String activeStructureCode,
+    required ActiveResourcePayload payload,
+  }) {
+    return requestJson(
+      endpoint: endpoints.createActiveResource(
+        activeStructureCode: activeStructureCode,
+      ),
+      payload: payload.toJson(), 
+      dataHandler: (json) => json, // now, result just used for logging
+    );
+  }
+ 
   Future<ActiveResourceResponse> getActiveResource({
     required String activeStructureCode,
     required String id,

@@ -40,7 +40,7 @@ ActiveField _$ActiveFieldFromJson(Map<String, dynamic> json) => ActiveField(
       key: json['key'] as String,
       title: json['title'] as String,
       order: (json['order'] as num).toInt(),
-      type: json['type'],
+      type: $enumDecode(_$ActiveFieldDataTypeEnumMap, json['type']),
       placeholder: json['placeholder'] as String,
       description: json['description'] as String,
     );
@@ -51,7 +51,27 @@ Map<String, dynamic> _$ActiveFieldToJson(ActiveField instance) =>
       'key': instance.key,
       'title': instance.title,
       'order': instance.order,
-      'type': instance.type,
+      'type': _$ActiveFieldDataTypeEnumMap[instance.type]!,
       'placeholder': instance.placeholder,
       'description': instance.description,
     };
+
+const _$ActiveFieldDataTypeEnumMap = {
+  ActiveFieldDataType.shortText: 'shortText',
+  ActiveFieldDataType.paragraph: 'paragraph',
+  ActiveFieldDataType.date: 'date',
+  ActiveFieldDataType.dateTime: 'dateTime',
+  ActiveFieldDataType.integer: 'integer',
+  ActiveFieldDataType.numeric: 'numeric',
+  ActiveFieldDataType.email: 'email',
+  ActiveFieldDataType.url: 'url',
+  ActiveFieldDataType.textList: 'textList',
+  ActiveFieldDataType.checkboxOne: 'checkboxOne',
+  ActiveFieldDataType.checkboxListLiveResource: 'checkboxListLiveResource',
+  ActiveFieldDataType.selectOneLiveResource: 'selectOneLiveResource',
+  ActiveFieldDataType.selectListLiveResource: 'selectListLiveResource',
+  ActiveFieldDataType.selectOneUser: 'selectOneUser',
+  ActiveFieldDataType.selectListUser: 'selectListUser',
+  ActiveFieldDataType.checkboxListUser: 'checkboxListUser',
+  ActiveFieldDataType.unsupported: 'unsupported',
+};

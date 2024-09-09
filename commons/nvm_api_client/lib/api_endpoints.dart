@@ -15,6 +15,16 @@ ApiEndpoint getWorkspaceList() => ApiEndpoint(
       requiredAuthorization: true,
     );
 
+ApiEndpoint createActiveResource({
+  required String activeStructureCode,
+}) => ApiEndpoint(
+      uriTemplate: '/api/workspace/:workspace_id/active-module/post/resources/$activeStructureCode',
+      jsonPayload: true,
+      requiredAuthorization: true,
+      requiredWorkspace: true,
+    );
+
+
 ApiEndpoint getActiveResourceById(
   String id, {
   required String activeStructureCode,

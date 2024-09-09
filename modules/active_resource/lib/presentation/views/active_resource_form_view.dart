@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
+import '../widgets.dart';
+
 class ActiveResourceFormView extends ConsumerStatefulWidget {
   final template.ActiveFormComponent formComponent;
 
@@ -41,14 +43,16 @@ class _ActiveResourceFormViewState
             ),
             children: [
               for (final field in data.fields)
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: field.title,
-                  ),
+                ActiveInputField(
+                  field: field,
                 ),
+              //
               const Divider(),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: submit form
+                  
+                },
                 child: const Text('Submit'),
               ),
             ],
