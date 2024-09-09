@@ -75,7 +75,8 @@ final class RemoteActiveStructureRepository
               title: e.title,
               order: e.order,
               placeholder: '',
-              description: '',
+              description: '', 
+              valueActiveStructureId: e.valueActiveStructureId ?? '',
             ),
           )
           .toList(),

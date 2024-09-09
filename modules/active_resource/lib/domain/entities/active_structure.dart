@@ -36,6 +36,8 @@ final class ActiveField {
   final ActiveFieldDataType type;
   final String placeholder;
   final String description;
+  final String valueActiveStructureId;
+
   // final bool isRequired;
   // final bool isUnique;
   // final bool isMultipleValued;
@@ -58,6 +60,7 @@ final class ActiveField {
     required this.type,
     required this.placeholder,
     required this.description,
+    required this.valueActiveStructureId,
     // required this.isRequired,
     // required this.isUnique,
     // required this.isMultipleValued,
@@ -95,7 +98,7 @@ enum ActiveFieldDataType {
   selectOneLiveResource,
   selectListLiveResource,
   selectOneUser,
-  selectListUser,
+  selectUserList,
   checkboxListUser,
   unsupported;
 
@@ -123,7 +126,7 @@ enum ActiveFieldDataType {
     'SELECT_ONE_LIVE_RESOURCE': ActiveFieldDataType.selectOneLiveResource,
     'SELECT_LIST_LIVE_RESOURCE': ActiveFieldDataType.selectListLiveResource,
     'SELECT_ONE_USER': ActiveFieldDataType.selectOneUser,
-    'SELECT_LIST_USER': ActiveFieldDataType.selectListUser,
+    'SELECT_LIST_USER': ActiveFieldDataType.selectUserList,
     'CHECKBOX_LIST_USER': ActiveFieldDataType.checkboxListUser,
   };
 }

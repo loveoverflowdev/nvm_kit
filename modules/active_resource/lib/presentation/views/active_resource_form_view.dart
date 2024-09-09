@@ -43,8 +43,11 @@ class _ActiveResourceFormViewState
             ),
             children: [
               for (final field in data.fields)
-                ActiveInputField(
-                  field: field,
+                Padding(
+                  padding: const EdgeInsets.only(top: AppSpacing.md),
+                  child: ActiveInputField(
+                    field: field,
+                  ),
                 ),
               //
               const Divider(),

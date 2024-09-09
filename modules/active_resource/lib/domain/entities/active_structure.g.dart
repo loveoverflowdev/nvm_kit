@@ -43,6 +43,7 @@ ActiveField _$ActiveFieldFromJson(Map<String, dynamic> json) => ActiveField(
       type: $enumDecode(_$ActiveFieldDataTypeEnumMap, json['type']),
       placeholder: json['placeholder'] as String,
       description: json['description'] as String,
+      valueActiveStructureId: json['valueActiveStructureId'] as String,
     );
 
 Map<String, dynamic> _$ActiveFieldToJson(ActiveField instance) =>
@@ -54,6 +55,7 @@ Map<String, dynamic> _$ActiveFieldToJson(ActiveField instance) =>
       'type': _$ActiveFieldDataTypeEnumMap[instance.type]!,
       'placeholder': instance.placeholder,
       'description': instance.description,
+      'valueActiveStructureId': instance.valueActiveStructureId,
     };
 
 const _$ActiveFieldDataTypeEnumMap = {
@@ -71,7 +73,7 @@ const _$ActiveFieldDataTypeEnumMap = {
   ActiveFieldDataType.selectOneLiveResource: 'selectOneLiveResource',
   ActiveFieldDataType.selectListLiveResource: 'selectListLiveResource',
   ActiveFieldDataType.selectOneUser: 'selectOneUser',
-  ActiveFieldDataType.selectListUser: 'selectListUser',
+  ActiveFieldDataType.selectUserList: 'selectListUser',
   ActiveFieldDataType.checkboxListUser: 'checkboxListUser',
   ActiveFieldDataType.unsupported: 'unsupported',
 };

@@ -101,7 +101,7 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
   }
 
   Widget _buildCommentsColumn(BuildContext context, List<Comment> data) {
-    const double commentTileHeight = 48;
+    const double commentTileHeight = 56;
     final borderRadius = BorderRadius.circular(AppSpacing.lg);
     return Consumer(
       builder: (_, WidgetRef ref, __) {
@@ -129,7 +129,7 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
                 padding: const EdgeInsets.all(AppSpacing.lg),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxHeight: data.length * commentTileHeight + 56 + 28,
+                    maxHeight: data.length * commentTileHeight + commentTileHeight + 28,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
