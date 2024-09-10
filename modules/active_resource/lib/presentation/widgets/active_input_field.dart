@@ -141,23 +141,16 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        alignment: Alignment.centerLeft,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSpacing.sm),
-        ),
-      ),
-      onPressed: () {
-
+    return InkWell(
+      onTap: () {
+        
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(labeltext),
-          ],
+      child: TextField(
+        decoration: InputDecoration(
+          labelText: labeltext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSpacing.md),
+          ),
         ),
       ),
     );
@@ -170,23 +163,16 @@ class _SelectUserListInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        alignment: Alignment.centerLeft,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSpacing.sm),
-        ),
-      ),
-      onPressed: () {
-
-      }, 
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(labeltext),
-          ],
+    return InkWell(
+      onTap: () {
+        
+      },
+      child: TextField(
+        decoration: InputDecoration(
+          labelText: labeltext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSpacing.md),
+          ),
         ),
       ),
     );
