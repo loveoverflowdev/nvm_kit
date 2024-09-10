@@ -11,7 +11,6 @@ class ProjectResponse {
   final String? icon;
   final String? createdAt;
   final String? updatedAt;
-  final List<String>? teamIds;
 
   ProjectResponse({
     this.id,
@@ -21,7 +20,6 @@ class ProjectResponse {
     this.icon,
     this.createdAt,
     this.updatedAt,
-    this.teamIds,
   });
 
   factory ProjectResponse.fromJson(Map<String, dynamic> json) =>

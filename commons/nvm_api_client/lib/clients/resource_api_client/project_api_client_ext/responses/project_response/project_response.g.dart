@@ -15,8 +15,6 @@ ProjectResponse _$ProjectResponseFromJson(Map<String, dynamic> json) =>
       icon: json['icon'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
-      teamIds:
-          (json['teamIds'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$ProjectResponseToJson(ProjectResponse instance) =>
@@ -28,5 +26,4 @@ Map<String, dynamic> _$ProjectResponseToJson(ProjectResponse instance) =>
       'icon': instance.icon,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
-      'teamIds': instance.teamIds,
     };

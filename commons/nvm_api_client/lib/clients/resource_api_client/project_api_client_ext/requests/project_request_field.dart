@@ -7,7 +7,6 @@ final class ProjectRequestField {
   static final RequestField projectDescription =
       RequestField.name('projectDescription');
   static final RequestField icon = RequestField.name('icon');
-  static final RequestField teamIds = RequestField.name('teamIds');
   static final RequestField createdAt = RequestField.name('createdAt');
   static final RequestField updatedAt = RequestField.name('updatedAt');
 
@@ -17,7 +16,6 @@ final class ProjectRequestField {
     projectName,
     projectDescription,
     icon,
-    teamIds,
     createdAt,
     updatedAt,
   ]);

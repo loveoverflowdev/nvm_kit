@@ -1,6 +1,9 @@
+import 'package:active_resource/active_resource.dart';
 import 'package:active_resource/domain.dart';
 import 'package:app_ui/app_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:template_parser/template_parser.dart';
 
 final class ActiveInputField extends StatelessWidget {
   final ActiveField field;
@@ -141,15 +144,32 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        showAppModelBottomSheet(
+          context: context, 
+          builder: (context) {
+            return ActiveResourceCollectionView(
+              collectionComponent: ActiveCollectionComponent(
+                createFormContextName: null,
+                detailContextName: null, 
+                tile: null,
+              ), 
+              onViewDetail: (String? detailContextName, String resourceId) {  }, 
+              onRouteCreateForm: (String? createFormContextName) {  },
+            );
+          },
+        );
       },
-      child: TextField(
-        decoration: InputDecoration(
-          labelText: labeltext,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSpacing.md),
+      child: IgnorePointer(
+        child: TextField(
+          decoration: InputDecoration(
+            labelText: labeltext,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppSpacing.md),
+            ),
+            suffixIcon: const Icon(Icons.arrow_drop_down, size: 28,),
           ),
         ),
       ),
@@ -163,15 +183,19 @@ class _SelectUserListInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
         
       },
-      child: TextField(
-        decoration: InputDecoration(
-          labelText: labeltext,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSpacing.md),
+      child: IgnorePointer(
+        child: TextField(
+          decoration: InputDecoration(
+            labelText: labeltext,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppSpacing.md),
+            ),
+            suffixIcon: const Icon(Icons.arrow_drop_down, size: 28,),
           ),
         ),
       ),

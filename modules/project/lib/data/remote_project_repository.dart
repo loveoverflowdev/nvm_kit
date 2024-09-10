@@ -56,12 +56,10 @@ final class RemoteProjectRepository implements ProjectRepository {
   }
 
   Project _mapResponse(api.ProjectResponse response) {
-    print('++++++++' + response.toJson().toString());
     return Project(
       id: response.id,
       name: response.projectName,
       description: response.projectDescription,
-      teamIds: response.teamIds,
       createdAt: response.createdAt, // TODO: Update soon
       updatedAt: response.updatedAt,
     );

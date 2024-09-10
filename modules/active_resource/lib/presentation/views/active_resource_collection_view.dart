@@ -13,11 +13,15 @@ class ActiveResourceCollectionView extends ConsumerStatefulWidget {
 
   final template.ActiveCollectionComponent collectionComponent;
 
+  final void Function(String resourceId)?
+      onTapResource;
+
   const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
-    required this.onViewDetail,
-    required this.onRouteCreateForm,
+    this.onViewDetail,
+    this.onTapResource,
+    this.onRouteCreateForm,
   });
 
   @override
@@ -79,6 +83,7 @@ class _ActiveResourceCollectionViewState
               final liveAttributes = activeResource.liveAttributes;
               return ListTile(
                 onTap: () {
+                  widget.onTapResource?.call(activeResource.id);
                   widget.onViewDetail
                       ?.call(_detailContextName, activeResource.id);
                 },

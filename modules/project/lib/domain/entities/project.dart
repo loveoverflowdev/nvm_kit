@@ -4,7 +4,6 @@ class Project {
   final String id;
   final String name;
   final String description;
-  final List<String> teamIds;
   final String? createdAt;
   final String? updatedAt;
 
@@ -18,14 +17,13 @@ class Project {
   })  : id = id ?? '',
         name = name ?? '',
         description = description ?? '',
-        teamIds = teamIds ?? [],
         createdAt = createdAt,
         updatedAt = updatedAt;
 
   @override
   String toString() {
     if (kDebugMode) {
-      return 'Project(id: $id, name: $name, description: $description, teamIds: $teamIds, createdAt: $createdAt, updatedAt: $updatedAt)';
+      return 'Project(id: $id, name: $name, description: $description, createdAt: $createdAt, updatedAt: $updatedAt)';
     }
     return super.toString();
   }
