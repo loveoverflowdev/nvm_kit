@@ -29,22 +29,44 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
   @override
   Widget build(BuildContext context) {
     final projectList = ref.watch(projectListProvider);
-    return projectList.when(
-      data: (data) => ListView.separated(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          final project = data[index];
-          return ListTile(
-            onTap: () => widget.onProjectPressed(project),
-            leading: const Icon(Icons.work),
-            title: Text(project.name),
-            subtitle: Text(project.createdAt ?? ''),
-          );
-        },
-        separatorBuilder: (context, index) => const Divider(),
-      ),
-      error: (error, stackTrace) => ErrorWidget(error),
-      loading: () => const AppCircularLoadingWidget(),
+    return Stack(
+      children: [
+        projectList.when(
+          data: (data) => ListView.separated(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final project = data[index];
+              return ListTile(
+                onTap: () => widget.onProjectPressed(project),
+                leading: const Icon(Icons.work),
+                title: Text(project.name),
+                subtitle: Text(project.createdAt ?? ''),
+              );
+            },
+            separatorBuilder: (context, index) => const Divider(),
+          ),
+          error: (error, stackTrace) => ErrorWidget(error),
+          loading: () => const AppCircularLoadingWidget(),
+        ),
+
+        //
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: AppSpacing.lg,
+              right: AppSpacing.lg,
+            ),
+            child: FloatingActionButton(
+              key: const Key('project_collection'),
+              child: const Icon(Icons.add),
+              onPressed: () {
+                // widget.onRouteCreateForm?.call(_createFormContextName);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

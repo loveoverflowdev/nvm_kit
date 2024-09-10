@@ -1,5 +1,4 @@
 import 'package:active_resource/active_resource.dart';
-import 'package:active_resource/domain.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -154,10 +153,15 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
               collectionComponent: ActiveCollectionComponent(
                 createFormContextName: null,
                 detailContextName: null, 
-                tile: null,
+                tile: ActiveTileComponent(
+                  activeStructureCode: '',
+                  titleKey: '',
+                  subtitleKey: '',
+                ),
               ), 
-              onViewDetail: (String? detailContextName, String resourceId) {  }, 
-              onRouteCreateForm: (String? createFormContextName) {  },
+              onTapResource: (resourceId) {
+
+              },
             );
           },
         );

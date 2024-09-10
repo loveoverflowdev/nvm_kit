@@ -113,7 +113,7 @@ class _ActiveResourceCollectionViewState
             ),
             child: FloatingActionButton(
               key: Key('active_resource_collection@${_activeTile.hashCode}'),
-              child: const Icon(Icons.add_outlined),
+              child: const Icon(Icons.add),
               onPressed: () {
                 widget.onRouteCreateForm?.call(_createFormContextName);
               },
