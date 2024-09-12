@@ -4,6 +4,8 @@ final class ActiveFieldRequestField {
   static final RequestField id = RequestField.name('id');
   static final RequestField liveAttributes =
       RequestField.name('liveAttributes');
+  static final RequestField liveFeatures = RequestField.name('liveFeatures');
+
   static final RequestField projectId = RequestField.name('projectId');
 
   static final RequestField icon = RequestField.name('icon');
@@ -17,6 +19,7 @@ final class ActiveFieldRequestField {
     [
       id,
       liveAttributes,
+      liveFeatures,
       RequestField.name('createdByUser').addChildren([
         username,
         id,

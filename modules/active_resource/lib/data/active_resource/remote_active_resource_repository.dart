@@ -18,7 +18,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
   @override
   TaskEither<ActiveResourceFailure, void> createActiveResource({
-    required String activeStructureCode, 
+    required String activeStructureCode,
     required ActiveResourcePayload payload,
   }) {
     return TaskEither.tryCatch(
@@ -26,13 +26,14 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         return _apiClient.createActiveResource(
           activeStructureCode: activeStructureCode,
           payload: api.ActiveResourcePayload(
-            projectId: payload.projectId, 
+            projectId: payload.projectId,
             liveAttributes: payload.liveAttributes,
           ),
         );
-      }, (error, stackTrace) =>
+      },
+      (error, stackTrace) =>
           ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
-      );
+    );
   }
 
   @override
@@ -99,8 +100,6 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           // TODO: convert DateTime
         ),
       );
-
-  
 }
 
 
