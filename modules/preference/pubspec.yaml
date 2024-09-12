@@ -1,55 +1,36 @@
-name: nvm_app_builder
+name: preference
 description: "A new Flutter package project."
 version: 0.0.1
 publish_to: none
+homepage:
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
+  sdk: ^3.5.0
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # Modules
-  auth:
-    path: ../../modules/auth
-  workspace:
-    path: ../../modules/workspace
-  project:
-    path: ../../modules/project
-  notification:
-    path: ../../modules/notification
-  active_resource:
-    path: ../../modules/active_resource
-  preference:
-    path: ../../modules/preference
+  formz: ^0.7.0
+  freezed_annotation: ^2.4.4
+  fpdart: ^1.1.0
+  riverpod_annotation: ^2.3.5
+  flutter_riverpod: ^2.5.1
 
-  # Addons
-  comment_addon:
-    path: ../../addons/comment_addon
-
-  roles_board_addon:
-    path: ../../addons/roles_board_addon
-
-  # Commons
   app_ui:
     path: ../../commons/app_ui
   nvm_api_client:
     path: ../../commons/nvm_api_client
-  alchemist_api_client:
-    path: ../../commons/alchemist_api_client
-  template_parser:
-    path: ../../commons/template_parser
-
-  # Pubs
-  go_router: ^14.2.3
-  flutter_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^3.0.0
+
+  freezed: ^2.5.3
+  riverpod_generator: ^2.4.2
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

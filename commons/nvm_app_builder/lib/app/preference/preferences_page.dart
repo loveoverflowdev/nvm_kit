@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preference/preference.dart' as preference;
 
 class PreferencesPage extends StatelessWidget {
   // final String userId;
@@ -10,12 +11,7 @@ class PreferencesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Preferences'),
       ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          ListTile(),
-        ],
-      ),
+      body: preference.PreferenceView(),
     );
   }
 }
