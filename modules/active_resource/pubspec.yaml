@@ -17,6 +17,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   json_annotation: ^4.9.0
   shared_preferences: ^2.3.2
+  go_router: ^14.2.3
 
   app_ui:
     path: ../../commons/app_ui

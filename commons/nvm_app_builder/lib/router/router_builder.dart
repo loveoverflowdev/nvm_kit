@@ -15,7 +15,7 @@ final class RouterBuilder {
   });
 
   GoRouter build() {
-    final app = template.apps.first;
+    final app = template.app;
     return GoRouter(
       initialLocation: '/signin',
       routes: [
@@ -178,7 +178,10 @@ final class RouterBuilder {
                           name: '@${page.contextName}',
                           path: '@${page.contextName}',
                           builder: (context, state) {
+                            final String projectId =
+                                state.pathParameters['project_id']!;
                             return active_resource.ActiveResourcePage(
+                              projectId: projectId,
                               pageComponent: page,
                               resourceId: (state.extra as Map?)?['resource_id'],
                               onViewDetail: (

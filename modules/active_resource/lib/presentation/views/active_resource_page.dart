@@ -1,5 +1,6 @@
 import 'package:active_resource/active_resource.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 class ActiveResourcePage extends StatelessWidget {
@@ -7,12 +8,14 @@ class ActiveResourcePage extends StatelessWidget {
   final template.ActivePageComponent pageComponent;
   final void Function(String?)? onRouteCreateForm;
   final String? resourceId;
+  final String? projectId;
 
   const ActiveResourcePage({
     super.key,
     required this.pageComponent,
     required this.onViewDetail,
     required this.resourceId,
+    required this.projectId,
     required this.onRouteCreateForm,
   });
 
@@ -21,6 +24,7 @@ class ActiveResourcePage extends StatelessWidget {
     Widget child = () {
       if (pageComponent.view is template.ActiveCollectionComponent) {
         return ActiveResourceCollectionView(
+          projectId: projectId,
           collectionComponent:
               pageComponent.view as template.ActiveCollectionComponent,
           onViewDetail: onViewDetail,
@@ -41,11 +45,18 @@ class ActiveResourcePage extends StatelessWidget {
       );
     }();
 
+    final Widget? leading = (pageComponent.view is template.ActiveFormComponent) ? IconButton(
+      icon: const Icon(Icons.clear), onPressed: () {
+        context.pop();
+      },
+    ) : null;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(pageComponent.title ?? ''),
+          leading: leading,
         ),
         body: child,
       ),

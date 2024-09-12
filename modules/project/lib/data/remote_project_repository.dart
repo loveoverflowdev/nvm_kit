@@ -51,12 +51,14 @@ final class RemoteProjectRepository implements ProjectRepository {
     return TaskEither.tryCatch(
       () {
         return _apiClient.createProject(
-          name: form.name.value, 
+          name: form.name.value,
           description: form.description.value,
         );
       },
-      (error, stackTrace) =>
-          ProjectFailure.fromError(error, stackTrace: stackTrace,),
+      (error, stackTrace) => ProjectFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 

@@ -1,15 +1,25 @@
-import 'package:alchemist_api_client/alchemist_api_client.dart';
+import 'package:alchemist_api_client/alchemist_api_client.dart'
+    show AlchemistApiRequestFailure;
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'failures.freezed.dart';
+part 'user_failure.freezed.dart';
 
 @freezed
 class UserFailure with _$UserFailure implements Exception {
   UserFailure._();
+
+  factory UserFailure.userIdMissing({
+    StackTrace? stackTrace,
+  }) = _UserIdMissing;
+
   factory UserFailure.badRequest({
     required String message,
     StackTrace? stackTrace,
   }) = _BadRequest;
+  factory UserFailure.unauthorized({
+    StackTrace? stackTrace,
+  }) = _Unauthorized;
   factory UserFailure.internalServer({
     StackTrace? stackTrace,
   }) = _InternalServer;
@@ -17,17 +27,19 @@ class UserFailure with _$UserFailure implements Exception {
     StackTrace? stackTrace,
   }) = _ApiConnection;
   factory UserFailure.unimplemented({
-    StackTrace? stackTrace,
-  }) = _Unimplemented;
-  factory UserFailure.invalidParams({
-    String? usernameError,
-    String? passwordError,
-    StackTrace? stackTrace,
-  }) = _InvalidParams;
-  factory UserFailure.unauthorized({
     required Object error,
     StackTrace? stackTrace,
-  }) = _Unauthorized;
+  }) = _Unimplemented;
+
+  @override
+  StackTrace? get stackTrace => when(
+        userIdMissing: (stackTrace) => stackTrace,
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (_, stackTrace) => stackTrace,
+        unauthorized: (stackTrace) => stackTrace,
+      );
 
   @override
   String toString() {
@@ -36,16 +48,6 @@ class UserFailure with _$UserFailure implements Exception {
     }
     return super.toString();
   }
-
-  @override
-  StackTrace? get stackTrace => when(
-        badRequest: (_, stackTrace) => stackTrace,
-        internalServer: (stackTrace) => stackTrace,
-        apiConnection: (stackTrace) => stackTrace,
-        unimplemented: (stackTrace) => stackTrace,
-        unauthorized: (_, stackTrace) => stackTrace,
-        invalidParams: (_, __, stackTrace) => stackTrace,
-      );
 
   factory UserFailure.fromError(
     Object failure, {
@@ -56,11 +58,13 @@ class UserFailure with _$UserFailure implements Exception {
         400 => UserFailure.badRequest(
             message: failure.body['message'],
           ),
+        401 => UserFailure.unauthorized(),
         500 => UserFailure.internalServer(),
         -1 => UserFailure.internalServer(),
-        _ => UserFailure.unimplemented(),
+        _ => UserFailure.unimplemented(error: failure),
       };
     }
-    return UserFailure.unimplemented();
+    debugPrint('UserFailure: $failure');
+    return UserFailure.unimplemented(error: failure);
   }
 }

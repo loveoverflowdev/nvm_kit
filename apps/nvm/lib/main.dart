@@ -8,7 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workspace/workspace.dart' as workspace;
 import 'package:project/project.dart' as project;
 import 'package:notification/notification.dart' as notification;
+import 'package:preference/preference.dart' as preference;
 import 'package:active_resource/active_resource.dart' as active_resource;
+
 // addons
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
 import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
@@ -22,6 +24,9 @@ void main() async {
   final TokenProvider tokenProvider = tokenStorage.readAccessToken;
   final WorkspaceIdProvider workspaceIdProvider =
       workspaceStorage.readWorkspaceId;
+
+  final UserIdProvider userIdProvider = tokenStorage.readUserId;
+
   //
   final navigationGuard = NavigationGuard(
     workspaceIdProvider: workspaceIdProvider,
@@ -41,6 +46,10 @@ void main() async {
     alchemistApiClient: alchemistApiClient,
     tokenProvider: tokenProvider,
     workspaceIdProvider: workspaceIdProvider,
+  );
+  final userApiClient = UserApiClient(
+    alchemistApiClient: alchemistApiClient,
+    tokenProvider: tokenProvider,
   );
   final commentApiClient = CommentApiClient(
     alchemistApiClient: alchemistApiClient,
@@ -87,6 +96,12 @@ void main() async {
     ),
   );
 
+  final preference.UserPreferenceRepository userPreferenceRepository =
+      preference.UserPreferenceRepositoryImpl(
+    userIdProvider: userIdProvider,
+    apiClient: userApiClient,
+  );
+
   //
   final comment_addon.CommentRepository commentRepository =
       comment_addon.RemoteCommentRepository(
@@ -105,6 +120,7 @@ void main() async {
     notificationRepository: notificationRepository,
     projectRepository: projectRepository,
     workspaceRepository: workspaceRepository,
+    userPreferenceRepository: userPreferenceRepository,
     activeResourceRepository: activeResourceRepository,
     activeStructureRepository: activeStructureRepository,
     //

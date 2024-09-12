@@ -11,7 +11,7 @@ class PreferencesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Preferences'),
       ),
-      body: preference.PreferenceView(),
+      body: const preference.PreferenceView(),
     );
   }
 }

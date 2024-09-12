@@ -13,12 +13,14 @@ class ActiveResourceCollectionView extends ConsumerStatefulWidget {
 
   final template.ActiveCollectionComponent collectionComponent;
 
-  final void Function(String resourceId)?
-      onTapResource;
+  final void Function(String resourceId)? onTapResource;
+
+  final String? projectId;
 
   const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
+    required this.projectId,
     this.onViewDetail,
     this.onTapResource,
     this.onRouteCreateForm,
@@ -61,7 +63,7 @@ class _ActiveResourceCollectionViewState
             activeStructureCode: _activeStructureCode,
           ).notifier)
           .loadActiveResourceList(
-            projectId: null,
+            projectId: widget.projectId,
             requestField: _parseRequestField(_activeTile),
           );
     });
@@ -76,25 +78,29 @@ class _ActiveResourceCollectionViewState
     return Stack(
       children: [
         activeResourceList.when(
-          data: (data) => ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final activeResource = data[index];
-              final liveAttributes = activeResource.liveAttributes;
-              return ListTile(
-                onTap: () {
-                  widget.onTapResource?.call(activeResource.id);
-                  widget.onViewDetail
-                      ?.call(_detailContextName, activeResource.id);
-                },
-                title: Text(
-                  liveAttributes[tileComponent.titleKey] ?? '',
-                ),
-                subtitle: Text(
-                  liveAttributes[tileComponent.subtitleKey] ?? '',
-                ),
-              );
-            },
+          data: (data) => Visibility(
+            visible: data.isNotEmpty,
+            replacement: const AppEmptyWidget(),
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final activeResource = data[index];
+                final liveAttributes = activeResource.liveAttributes;
+                return ListTile(
+                  onTap: () {
+                    widget.onTapResource?.call(activeResource.id);
+                    widget.onViewDetail
+                        ?.call(_detailContextName, activeResource.id);
+                  },
+                  title: Text(
+                    liveAttributes[tileComponent.titleKey] ?? '',
+                  ),
+                  subtitle: Text(
+                    liveAttributes[tileComponent.subtitleKey] ?? '',
+                  ),
+                );
+              },
+            ),
           ),
           error: (error, stackTrace) => AppErrorWidget(
             error,
@@ -112,7 +118,8 @@ class _ActiveResourceCollectionViewState
               right: AppSpacing.lg,
             ),
             child: FloatingActionButton(
-              key: Key('active_resource_collection@${_activeTile.hashCode}'),
+              heroTag:
+                  'active_resource_collection@${_activeTile.hashCode}${widget.projectId}',
               child: const Icon(Icons.add),
               onPressed: () {
                 widget.onRouteCreateForm?.call(_createFormContextName);

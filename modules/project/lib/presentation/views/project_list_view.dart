@@ -73,7 +73,7 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
               right: AppSpacing.lg,
             ),
             child: FloatingActionButton(
-              key: const Key('project_collection'),
+              heroTag: 'project_collection',
               child: const Icon(Icons.add),
               onPressed: () async {
                 final didCreateProject = await _routeToCreateForm(context);
@@ -90,7 +90,7 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
 
   Future<bool?> _routeToCreateForm(BuildContext context) {
     return Navigator.push<bool>(
-      context, 
+      context,
       MaterialPageRoute(builder: (_) {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -100,7 +100,7 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
-                }, 
+                },
                 icon: const Icon(Icons.clear),
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notification/notification.dart';
+import 'package:notification/notification.dart' as notification;
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
@@ -10,7 +10,7 @@ class NotificationsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Notifications'),
       ),
-      body: const NotificationListView(),
+      body: const notification.NotificationListView(),
     );
   }
 }

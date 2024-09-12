@@ -4,17 +4,17 @@ final class User {
   final String fullName;
   final String? email;
   final String? phone;
-  final String avatar;
-  final String? thumbnailAvatar;
+  final String? avatar;
+  final String? thumbnailAvatarUrl;
 
   User({
     required this.id,
     required this.username,
     required this.fullName,
-    required this.avatar,
+    this.avatar,
     this.email,
     this.phone,
-    this.thumbnailAvatar,
+    this.thumbnailAvatarUrl,
   });
 }
 

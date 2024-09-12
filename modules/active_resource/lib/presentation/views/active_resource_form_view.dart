@@ -40,6 +40,8 @@ class _ActiveResourceFormViewState
           return ListView(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.lg,
+            ).copyWith(
+              bottom: AppSpacing.lg,
             ),
             children: [
               for (final field in data.fields)
@@ -54,7 +56,6 @@ class _ActiveResourceFormViewState
               ElevatedButton(
                 onPressed: () {
                   // TODO: submit form
-                  
                 },
                 child: const Text('Submit'),
               ),

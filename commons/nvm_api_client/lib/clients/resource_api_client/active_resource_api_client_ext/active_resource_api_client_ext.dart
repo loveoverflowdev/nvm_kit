@@ -13,11 +13,11 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
       endpoint: endpoints.createActiveResource(
         activeStructureCode: activeStructureCode,
       ),
-      payload: payload.toJson(), 
+      payload: payload.toJson(),
       dataHandler: (json) => json, // now, result just used for logging
     );
   }
- 
+
   Future<ActiveResourceResponse> getActiveResource({
     required String activeStructureCode,
     required String id,
@@ -43,7 +43,7 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/get/resources/tasks
     final Map<String, dynamic> filtering = {};
     if (projectId != null) {
-      filtering['project'] = projectId;
+      filtering['projectId'] = projectId;
     }
     return requestJson(
       endpoint: endpoints.getActiveResourceList(

@@ -8,6 +8,9 @@ final class UserRequestField {
   static final RequestField phone = RequestField.name('phone');
   static final RequestField createdAt = RequestField.name('createdAt');
   static final RequestField updatedAt = RequestField.name('updatedAt');
+  static final RequestField thumbnailAvatar =
+      RequestField.name('thumbnailAvatar');
+  static final RequestField avatar = RequestField.name('avatar');
 
   static final RequestField all = RequestField.children(
     [
@@ -18,6 +21,8 @@ final class UserRequestField {
       phone,
       createdAt,
       updatedAt,
+      thumbnailAvatar,
+      avatar,
     ],
   );
 }

@@ -6,28 +6,30 @@ import 'package:template_parser/template_parser.dart';
 
 final class ActiveInputField extends StatelessWidget {
   final ActiveField field;
-  const ActiveInputField({super.key, required this.field,});
+  const ActiveInputField({
+    super.key,
+    required this.field,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return switch(field.type) {
+    return switch (field.type) {
       ActiveFieldDataType.shortText => _ShortTextInputField(
-        labeltext: field.title,
-        hintText: field.placeholder,
-      ),
+          labeltext: field.title,
+          hintText: field.placeholder,
+        ),
       ActiveFieldDataType.paragraph => _ParagraphInputField(
-        labeltext: field.title, 
-        hintText: field.placeholder,
-      ),
-
-      ActiveFieldDataType.selectOneLiveResource => _SelectOneLiveResourceInputField(
-        valueActiveStructureId: field.valueActiveStructureId, 
-        labeltext: field.title,
-      ),
-
+          labeltext: field.title,
+          hintText: field.placeholder,
+        ),
+      ActiveFieldDataType.selectOneLiveResource =>
+        _SelectOneLiveResourceInputField(
+          valueActiveStructureId: field.valueActiveStructureId,
+          labeltext: field.title,
+        ),
       ActiveFieldDataType.selectUserList => _SelectUserListInputField(
-        labeltext: field.title,
-      ),
+          labeltext: field.title,
+        ),
 
       // TODO: Handle this case.
       ActiveFieldDataType.date => throw UnimplementedError(),
@@ -46,15 +48,16 @@ final class ActiveInputField extends StatelessWidget {
       // TODO: Handle this case.
       ActiveFieldDataType.checkboxOne => throw UnimplementedError(),
       // TODO: Handle this case.
-      ActiveFieldDataType.checkboxListLiveResource => throw UnimplementedError(),
+      ActiveFieldDataType.checkboxListLiveResource =>
+        throw UnimplementedError(),
       // TODO: Handle this case.
-      
+
       // TODO: Handle this case.
       ActiveFieldDataType.selectListLiveResource => throw UnimplementedError(),
       // TODO: Handle this case.
       ActiveFieldDataType.selectOneUser => throw UnimplementedError(),
       // TODO: Handle this case.
-      
+
       // TODO: Handle this case.
       ActiveFieldDataType.checkboxListUser => throw UnimplementedError(),
       // TODO: Handle this case.
@@ -72,18 +75,21 @@ class _ShortTextInputField extends StatelessWidget {
   final String labeltext;
   final String hintText;
 
-  const _ShortTextInputField({super.key,required this.labeltext, required this.hintText,});
+  const _ShortTextInputField({
+    super.key,
+    required this.labeltext,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      maxLength: 50,
-      decoration: InputDecoration(
-        labelText: labeltext,
-        hintText: hintText,
-        // TODO: max chars
-      )
-    );
+        maxLength: 50,
+        decoration: InputDecoration(
+          labelText: labeltext,
+          hintText: hintText,
+          // TODO: max chars
+        ));
   }
 }
 
@@ -100,11 +106,10 @@ class _ParagraphInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
-        labelText: labeltext,
-        hintText: hintText,
-      )
-    );
+        decoration: InputDecoration(
+      labelText: labeltext,
+      hintText: hintText,
+    ));
   }
 }
 
@@ -121,14 +126,12 @@ class _NumericInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      keyboardType: TextInputType.number,
-      // TODO: set range
-      decoration: InputDecoration(
-        labelText: labeltext,
-        hintText: hintText,
-        
-      )
-    );
+        keyboardType: TextInputType.number,
+        // TODO: set range
+        decoration: InputDecoration(
+          labelText: labeltext,
+          hintText: hintText,
+        ));
   }
 }
 
@@ -136,7 +139,7 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
   final String valueActiveStructureId;
   final String labeltext;
   const _SelectOneLiveResourceInputField({
-    super.key, 
+    super.key,
     required this.valueActiveStructureId,
     required this.labeltext,
   });
@@ -147,21 +150,20 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () {
         showAppModelBottomSheet(
-          context: context, 
+          context: context,
           builder: (context) {
             return ActiveResourceCollectionView(
               collectionComponent: ActiveCollectionComponent(
                 createFormContextName: null,
-                detailContextName: null, 
+                detailContextName: null,
                 tile: ActiveTileComponent(
                   activeStructureCode: '',
                   titleKey: '',
                   subtitleKey: '',
                 ),
-              ), 
-              onTapResource: (resourceId) {
-
-              },
+              ),
+              onTapResource: (resourceId) {},
+              projectId: '', // TODO:
             );
           },
         );
@@ -173,7 +175,10 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),
-            suffixIcon: const Icon(Icons.arrow_drop_down, size: 28,),
+            suffixIcon: const Icon(
+              Icons.arrow_drop_down,
+              size: 28,
+            ),
           ),
         ),
       ),
@@ -183,15 +188,16 @@ class _SelectOneLiveResourceInputField extends StatelessWidget {
 
 class _SelectUserListInputField extends StatelessWidget {
   final String labeltext;
-  const _SelectUserListInputField({super.key, required this.labeltext,});
+  const _SelectUserListInputField({
+    super.key,
+    required this.labeltext,
+  });
 
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () {
-        
-      },
+      onPressed: () {},
       child: IgnorePointer(
         child: TextField(
           decoration: InputDecoration(
@@ -199,7 +205,10 @@ class _SelectUserListInputField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),
-            suffixIcon: const Icon(Icons.arrow_drop_down, size: 28,),
+            suffixIcon: const Icon(
+              Icons.arrow_drop_down,
+              size: 28,
+            ),
           ),
         ),
       ),

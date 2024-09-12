@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project/project.dart';
+import 'package:project/project.dart' as project;
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({super.key});
@@ -18,7 +18,7 @@ class ProjectsPage extends StatelessWidget {
               )
             : null,
       ),
-      body: ProjectListView(
+      body: project.ProjectListView(
         onProjectPressed: (project) {
           context.push('/projects/${project.id}');
         },

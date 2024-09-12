@@ -8,6 +8,7 @@ import 'package:auth/auth.dart' as auth;
 import 'package:notification/notification.dart' as notification;
 import 'package:project/project.dart' as project;
 import 'package:workspace/workspace.dart' as workspace;
+import 'package:preference/preference.dart' as preference;
 import 'package:active_resource/active_resource.dart' as active_resource;
 
 // Addons
@@ -24,6 +25,7 @@ class NvmApp extends StatefulWidget {
   final notification.NotificationRepository notificationRepository;
   final project.ProjectRepository projectRepository;
   final workspace.WorkspaceRepository workspaceRepository;
+  final preference.UserPreferenceRepository userPreferenceRepository;
   final active_resource.ActiveResourceRepository activeResourceRepository;
   final active_resource.ActiveStructureRepository activeStructureRepository;
   //
@@ -38,6 +40,7 @@ class NvmApp extends StatefulWidget {
     required this.notificationRepository,
     required this.projectRepository,
     required this.workspaceRepository,
+    required this.userPreferenceRepository,
     required this.activeResourceRepository,
     required this.activeStructureRepository,
     //
@@ -81,6 +84,9 @@ class _NvmAppState extends State<NvmApp> {
         ),
         workspace.workspaceRepositoryProvider.overrideWithValue(
           widget.workspaceRepository,
+        ),
+        preference.userPreferenceProvider.overrideWithValue(
+          widget.userPreferenceRepository,
         ),
         active_resource.activeStructureRepositoryProvider.overrideWithValue(
           widget.activeStructureRepository,

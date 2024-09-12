@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
 enum Shape { rectangle, circular, none }
@@ -42,7 +43,8 @@ final class TextAvatar extends StatelessWidget {
     if (RegExp(r'[A-Z]|').hasMatch(
       _textConfiguration(),
     )) {
-      backgroundColor = colorData[_textConfiguration()[0].toLowerCase().toString()];
+      backgroundColor =
+          colorData[_textConfiguration()[0].toLowerCase().toString()];
     }
     return backgroundColor!;
   }
@@ -89,7 +91,7 @@ final class TextAvatar extends StatelessWidget {
     switch (shape) {
       case Shape.rectangle:
         return RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0),
+          borderRadius: BorderRadius.circular(AppSpacing.sm),
         );
       case Shape.circular:
         return RoundedRectangleBorder(
@@ -124,9 +126,9 @@ final class TextAvatar extends StatelessWidget {
 }
 
 const colorData = {
-  "a":  Color.fromRGBO(226, 95, 81, 1),
-  "b":  Color.fromRGBO(242, 96, 145, 1),
-  "c":  Color.fromRGBO(187, 101, 202, 1),
+  "a": Color.fromRGBO(226, 95, 81, 1),
+  "b": Color.fromRGBO(242, 96, 145, 1),
+  "c": Color.fromRGBO(187, 101, 202, 1),
   "d": Color.fromRGBO(149, 114, 207, 1),
   "e": Color.fromRGBO(120, 132, 205, 1),
   "f": Color.fromRGBO(91, 149, 249, 1),

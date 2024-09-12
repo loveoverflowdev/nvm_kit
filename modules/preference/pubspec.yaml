@@ -17,6 +17,7 @@ dependencies:
   fpdart: ^1.1.0
   riverpod_annotation: ^2.3.5
   flutter_riverpod: ^2.5.1
+  cached_network_image: ^3.4.1
 
   app_ui:
     path: ../../commons/app_ui

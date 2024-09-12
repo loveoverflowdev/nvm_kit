@@ -40,6 +40,8 @@ dependencies:
     path: ../../modules/project
   notification:
     path: ../../modules/notification
+  preference:
+    path: ../../modules/preference
   active_resource:
     path: ../../modules/active_resource
 
