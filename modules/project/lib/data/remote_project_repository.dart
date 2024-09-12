@@ -45,14 +45,19 @@ final class RemoteProjectRepository implements ProjectRepository {
   }
 
   @override
-  TaskEither<ProjectFailure, Project> createProject({
-    required String projectName,
-    required String rojectDescription,
-    String? icon,
+  TaskEither<ProjectFailure, void> createProject({
+    required ProjectForm form,
   }) {
-    // TODO: implement createProject
-
-    throw UnimplementedError();
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient.createProject(
+          name: form.name.value, 
+          description: form.description.value,
+        );
+      },
+      (error, stackTrace) =>
+          ProjectFailure.fromError(error, stackTrace: stackTrace,),
+    );
   }
 
   Project _mapResponse(api.ProjectResponse response) {

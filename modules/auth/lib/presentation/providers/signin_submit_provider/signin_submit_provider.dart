@@ -17,8 +17,7 @@ class SigninSubmit extends _$SigninSubmit {
   }) {
     state = const AsyncValue.loading();
     signInTask(
-      username: form.username,
-      password: form.password,
+      form: form,
     ).match((failure) {
       state = SigninSubmitState.error(
         failure,

@@ -37,14 +37,14 @@ extension ProjectApiClientExt on ResourceApiClient {
   }
 
   Future<void> createProject({
-    required String projectName,
-    required String projectDescription,
+    required String name,
+    required String description,
   }) {
     return requestJson(
       endpoint: endpoints.createProject(),
       payload: {
-        "projectName": projectName,
-        "projectDescription": projectDescription,
+        "projectName": name,
+        "projectDescription": description,
         "icon": "",
       },
       dataHandler: (json) {},

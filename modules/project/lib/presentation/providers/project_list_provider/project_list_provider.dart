@@ -15,7 +15,7 @@ class ProjectList extends _$ProjectList {
   Future<void> loadProjectList() async {
     state = const AsyncValue.loading();
 
-    getProjectListTask().match(
+    getProjectListTask(requestField: null).match(
       (failure) {
         state = ProjectListState.error(
           failure,

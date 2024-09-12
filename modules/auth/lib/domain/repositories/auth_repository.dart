@@ -4,8 +4,7 @@ import '../entities.dart';
 
 abstract interface class AuthRepository {
   TaskEither<AuthFailure, AuthCredentials> signIn({
-    required Username username,
-    required Password password,
+    required SigninForm form,
   });
 
   TaskEither<AuthFailure, void> signOut();

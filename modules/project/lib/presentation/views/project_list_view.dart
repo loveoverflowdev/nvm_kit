@@ -4,6 +4,8 @@ import 'package:project/domain.dart';
 import '../providers.dart';
 import 'package:app_ui/app_ui.dart';
 
+import 'project_submit_form_view.dart';
+
 class ProjectListView extends ConsumerStatefulWidget {
   final void Function(Project project) onProjectPressed;
 
@@ -22,8 +24,12 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ref.read(projectListProvider.notifier).loadProjectList(),
+      (_) => _loadProjectList(),
     );
+  }
+
+  void _loadProjectList() {
+    ref.read(projectListProvider.notifier).loadProjectList();
   }
 
   @override
@@ -32,18 +38,27 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
     return Stack(
       children: [
         projectList.when(
-          data: (data) => ListView.separated(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final project = data[index];
-              return ListTile(
-                onTap: () => widget.onProjectPressed(project),
-                leading: const Icon(Icons.work),
-                title: Text(project.name),
-                subtitle: Text(project.createdAt ?? ''),
-              );
+          data: (data) => RefreshIndicator(
+            onRefresh: () async {
+              await ref.read(projectListProvider.notifier).loadProjectList();
             },
-            separatorBuilder: (context, index) => const Divider(),
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+              ),
+              physics: const AlwaysScrollableScrollPhysics(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final project = data[index];
+                return ListTile(
+                  onTap: () => widget.onProjectPressed(project),
+                  leading: const Icon(Icons.work),
+                  title: Text(project.name),
+                  subtitle: Text(project.createdAt ?? ''),
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(),
+            ),
           ),
           error: (error, stackTrace) => ErrorWidget(error),
           loading: () => const AppCircularLoadingWidget(),
@@ -60,13 +75,39 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
             child: FloatingActionButton(
               key: const Key('project_collection'),
               child: const Icon(Icons.add),
-              onPressed: () {
-                // widget.onRouteCreateForm?.call(_createFormContextName);
+              onPressed: () async {
+                final didCreateProject = await _routeToCreateForm(context);
+                if (didCreateProject == true && mounted) {
+                  _loadProjectList();
+                }
               },
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Future<bool?> _routeToCreateForm(BuildContext context) {
+    return Navigator.push<bool>(
+      context, 
+      MaterialPageRoute(builder: (_) {
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('New Project'),
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                }, 
+                icon: const Icon(Icons.clear),
+              ),
+            ),
+            body: const ProjectSubmitFormView(),
+          ),
+        );
+      }),
     );
   }
 }

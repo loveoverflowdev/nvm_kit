@@ -5,12 +5,12 @@ import '../project_repository_provider.dart';
 
 part 'project_submit_provider.g.dart';
 
-typedef ProjectFormSubmitState = AsyncValue<Project?>;
+typedef ProjectSubmitState = AsyncValue<Project?>;
 
 @riverpod
-class ProjectFormSubmit extends _$ProjectFormSubmit {
+class ProjectSubmit extends _$ProjectSubmit {
   @override
-  ProjectFormSubmitState build() => const ProjectFormSubmitState.data(null);
+  ProjectSubmitState build() => const ProjectSubmitState.data(null);
 
   void submit({
     required ProjectForm form,
@@ -21,13 +21,13 @@ class ProjectFormSubmit extends _$ProjectFormSubmit {
       form: form,
     ).match(
       (failure) {
-        state = ProjectFormSubmitState.error(
+        state = ProjectSubmitState.error(
           failure,
           failure.stackTrace ?? StackTrace.current,
         );
       },
-      (response) {
-        state = ProjectFormSubmitState.data(response);
+      (_) {
+        state = const ProjectSubmitState.data(null);
       },
     ).run(
       ref.read(projectRepositoryProvider),

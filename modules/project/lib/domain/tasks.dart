@@ -1,37 +1,39 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:project/domain.dart';
 
-import 'entities.dart';
-import 'repositories.dart';
-
-ReaderTaskEither<ProjectRepository, ProjectFailure, Project> createProjectTask({
+ReaderTaskEither<ProjectRepository, ProjectFailure, void> createProjectTask({
   required ProjectForm form,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .createProject(
-            projectName: form.name.value,
-            rojectDescription: form.description.value,
+            form: form,
           )
           .run(),
     );
 
 ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
-    getProjectListTask() => ReaderTaskEither(
+    getProjectListTask({
+  String? requestField,
+}) =>
+        ReaderTaskEither(
           (repository) => repository
-              .getProjectList()
-              .map(
-                (response) => response.toList(),
+              .getProjectList(
+                requestField: requestField,
               )
               .run(),
         );
 
-ReaderTaskEither<ProjectRepository, Exception, Project> getProjectTask({
+ReaderTaskEither<ProjectRepository, ProjectFailure, Project> getProjectTask({
+  required String workspaceId,
   required String projectId,
+  String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getProject(
             projectId: projectId,
+            requestField: requestField,
           )
           .run(),
     );

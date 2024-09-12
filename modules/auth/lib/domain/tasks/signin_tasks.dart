@@ -4,14 +4,12 @@ import 'package:fpdart/fpdart.dart';
 import '../entities.dart';
 
 ReaderTaskEither<AuthRepository, AuthFailure, AuthCredentials> signInTask({
-  required Username username,
-  required Password password,
+  required SigninForm form,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .signIn(
-            username: username,
-            password: password,
+            form: form
           )
           .run(),
     );

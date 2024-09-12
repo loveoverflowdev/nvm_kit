@@ -13,9 +13,7 @@ abstract interface class ProjectRepository {
   });
 
   // {{domain}}/api/workspaces/{{workspace}}/project/post/projects
-  TaskEither<ProjectFailure, Project> createProject({
-    required String projectName,
-    required String rojectDescription,
-    String? icon,
+  TaskEither<ProjectFailure, void> createProject({
+    required ProjectForm form,
   });
 }

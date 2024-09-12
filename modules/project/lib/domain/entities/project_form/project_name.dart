@@ -14,7 +14,7 @@ enum ProjectNameError {
 class ProjectName extends FormzInput<String, ProjectNameError> {
   const ProjectName.pure() : super.pure('');
 
-  const ProjectName.dirty({String value = ''}) : super.dirty(value);
+  const ProjectName.dirty([super.value = '']) : super.dirty();
 
   @override
   ProjectNameError? validator(String value) {

@@ -13,21 +13,20 @@ final class RemoteAuthRepository implements AuthRepository {
 
   @override
   TaskEither<AuthFailure, AuthCredentials> signIn({
-    required Username username,
-    required Password password,
+    required SigninForm form,
   }) =>
-      !Formz.validate([username, password])
+      !Formz.validate([form.username, form.password])
           ? TaskEither.left(
               AuthFailure.invalidParams(
-                passwordError: password.displayError?.message,
-                usernameError: username.displayError?.message,
+                passwordError: form.password.displayError?.message,
+                usernameError: form.username.displayError?.message,
               ),
             )
           : TaskEither.tryCatch(
               () => _apiClient
                   .signInWithUsernameAndPassword(
-                    username: username.value,
-                    password: password.value,
+                    username: form.username.value,
+                    password: form.password.value,
                   )
                   .then(
                     _mapResponse,
