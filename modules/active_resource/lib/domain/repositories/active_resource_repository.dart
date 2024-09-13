@@ -5,20 +5,20 @@ import '../entities.dart';
 // TODO: Make request field to common package
 abstract interface class ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required String id,
     String? requestField,
   });
 
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required String? projectId,
     String? requestField,
   });
 
   TaskEither<ActiveResourceFailure, void> createActiveResource({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required ActiveResourcePayload payload,
   });
 }

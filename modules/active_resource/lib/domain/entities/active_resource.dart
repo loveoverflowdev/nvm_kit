@@ -1,14 +1,18 @@
+import 'package:base_addon/base_addon.dart' as base_addon;
+
 class ActiveResource {
   final String id;
   final Map<String, dynamic> liveAttributes;
   final String? projectId;
   final ActiveResourceCreator? creator;
+  final List<base_addon.AddonAttribute> addonAttributes;
 
   ActiveResource({
     required String id,
     Map<String, dynamic>? liveAttributes,
     String? projectId,
     ActiveResourceCreator? creator,
+    this.addonAttributes = const [],
   })  : id = id,
         liveAttributes = liveAttributes ?? {},
         projectId = projectId,

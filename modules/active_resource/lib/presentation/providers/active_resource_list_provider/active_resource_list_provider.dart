@@ -1,3 +1,4 @@
+import 'package:active_resource/active_resource.dart';
 import 'package:active_resource/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,24 +21,36 @@ class ActiveResourceList extends _$ActiveResourceList {
     String? requestField,
   }) async {
     state = const AsyncValue.loading();
-    getActiveResourceListTask(
-      activeStructureCode: activeStructureCode,
-      requestField: requestField,
-      projectId: projectId,
-    ).match(
-      (failure) {
-        state = ActiveResourceListState.error(
-          failure,
-          failure.stackTrace ?? StackTrace.current,
-        );
-      },
-      (result) {
-        state = ActiveResourceListState.data(
-          result,
-        );
-      },
-    ).run(
-      ref.read(activeResourceRepositoryProvider),
-    );
+    ref.watch(activeStructureProvider(activeStructureCode: activeStructureCode).future,)
+      .then((structure) {
+          getActiveResourceListTask(
+            structure: structure,
+            requestField: requestField,
+            projectId: projectId,
+          ).match(
+            (failure) {
+              state = ActiveResourceListState.error(
+                failure,
+                failure.stackTrace ?? StackTrace.current,
+              );
+            },
+            (result) {
+              state = ActiveResourceListState.data(
+                result,
+              );
+            },
+          ).run(
+            ref.watch(activeResourceRepositoryProvider),
+          );
+        },
+      )
+      .catchError(
+        (error, stackTrace) {
+          state = ActiveResourceListState.error(
+            error,
+            stackTrace,
+          );
+        },
+      );
   }
 }

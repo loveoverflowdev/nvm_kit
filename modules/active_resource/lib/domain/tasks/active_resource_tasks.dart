@@ -6,14 +6,14 @@ import '../repositories.dart' show ActiveResourceRepository;
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     ActiveResource> getActiveResourceTask({
   required String id,
-  required String activeStructureCode,
+  required ActiveStructure structure,
   String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .getActiveResource(
             id: id,
-            activeStructureCode: activeStructureCode,
+            structure: structure,
             requestField: requestField,
           )
           .run(),
@@ -21,7 +21,7 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     List<ActiveResource>> getActiveResourceListTask({
-  required String activeStructureCode,
+  required ActiveStructure structure,
   required String? projectId,
   String? requestField,
 }) =>
@@ -29,7 +29,7 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
       (repository) => repository
           .getActiveResourceList(
             projectId: projectId,
-            activeStructureCode: activeStructureCode,
+            structure: structure,
             requestField: requestField,
           )
           .run(),
@@ -38,15 +38,14 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 /// TODO:
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void> 
   createActiveResourceTask({
-  required String activeStructureCode,
+  required ActiveStructure structure,
   required ActiveResourcePayload payload,
 }) =>
     ReaderTaskEither(
       (repository) => repository
           .createActiveResource(
-            activeStructureCode: activeStructureCode,
+            structure: structure,
             payload: payload,
           )
           .run(),
     );
-  

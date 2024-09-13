@@ -7,7 +7,7 @@ final currentUserProvider = FutureProvider.autoDispose<User>(
   (ref) async {
     return getCurrentUserTask()
         .run(
-          ref.read(userPreferenceProvider),
+          ref.watch(userPreferenceProvider),
         )
         .then(
           (either) => either.fold(

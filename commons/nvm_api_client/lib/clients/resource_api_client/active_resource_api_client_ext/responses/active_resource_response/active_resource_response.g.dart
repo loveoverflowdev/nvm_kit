@@ -16,6 +16,10 @@ ActiveResourceResponse _$ActiveResourceResponseFromJson(
           ? null
           : ActiveResourceCreatorResponse.fromJson(
               json['createdByUser'] as Map<String, dynamic>),
+      addons: json['liveFeatures'] == null
+          ? const []
+          : ActiveResourceResponse._addonListFromJson(
+              json['liveFeatures'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActiveResourceResponseToJson(
@@ -25,4 +29,5 @@ Map<String, dynamic> _$ActiveResourceResponseToJson(
       'liveAttributes': instance.liveAttributes,
       'projectId': instance.projectId,
       'createdByUser': instance.creator,
+      'liveFeatures': instance.addons,
     };

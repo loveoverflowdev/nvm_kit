@@ -73,7 +73,7 @@ const _$ActiveFieldDataTypeEnumMap = {
   ActiveFieldDataType.selectOneLiveResource: 'selectOneLiveResource',
   ActiveFieldDataType.selectListLiveResource: 'selectListLiveResource',
   ActiveFieldDataType.selectOneUser: 'selectOneUser',
-  ActiveFieldDataType.selectUserList: 'selectListUser',
+  ActiveFieldDataType.selectUserList: 'selectUserList',
   ActiveFieldDataType.checkboxListUser: 'checkboxListUser',
   ActiveFieldDataType.unsupported: 'unsupported',
 };

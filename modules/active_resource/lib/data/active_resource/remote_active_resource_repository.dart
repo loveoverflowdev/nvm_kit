@@ -3,11 +3,7 @@ import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
-    show
-        ActiveResource,
-        ActiveResourceCreator,
-        ActiveResourceFailure,
-        ActiveResourceRepository;
+    show ActiveResource, ActiveResourceCreator, ActiveResourceFailure, ActiveResourceRepository, ActiveStructure;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   final api.ResourceApiClient _apiClient;
@@ -18,13 +14,13 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
   @override
   TaskEither<ActiveResourceFailure, void> createActiveResource({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required ActiveResourcePayload payload,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient.createActiveResource(
-          activeStructureCode: activeStructureCode,
+          activeStructureCode: structure.code,
           payload: api.ActiveResourcePayload(
             projectId: payload.projectId,
             liveAttributes: payload.liveAttributes,
@@ -38,7 +34,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
   @override
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required String id,
     String? requestField,
   }) {
@@ -46,7 +42,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       () {
         return _apiClient
             .getActiveResource(
-              activeStructureCode: activeStructureCode,
+              activeStructureCode: structure.code,
               id: id,
               requestField: requestField,
             )
@@ -62,7 +58,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   @override
   TaskEither<ActiveResourceFailure, List<ActiveResource>>
       getActiveResourceList({
-    required String activeStructureCode,
+    required ActiveStructure structure,
     required String? projectId,
     String? requestField,
   }) {
@@ -71,7 +67,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         return _apiClient
             .getActiveResourceList(
               projectId: projectId,
-              activeStructureCode: activeStructureCode,
+              activeStructureCode: structure.code,
               requestField: requestField,
             )
             .then(
@@ -99,6 +95,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           phone: response.creator?.phone,
           // TODO: convert DateTime
         ),
+        addonAttributes: [
+          
+        ]
       );
 }
 

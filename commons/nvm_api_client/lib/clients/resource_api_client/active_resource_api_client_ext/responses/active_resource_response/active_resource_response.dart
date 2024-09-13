@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:nvm_api_client/clients/resource_api_client/active_resource_api_client_ext/responses/addons/addon_response.dart';
 
-import '../active_resource_creator_response/active_resource_creator_response.dart';
+import '../active_resource_creator_response.dart';
 
 part 'active_resource_response.g.dart';
 
@@ -12,19 +13,28 @@ final class ActiveResourceResponse {
 
   @JsonKey(name: 'createdByUser')
   final ActiveResourceCreatorResponse? creator;
+  
+  @JsonKey(name: 'liveFeatures', fromJson: _addonListFromJson)
+  final List<AddonResponse> addons;
 
   ActiveResourceResponse({
     required this.id,
     required this.liveAttributes,
     this.projectId,
     this.creator,
+    this.addons = const [],
   });
 
   factory ActiveResourceResponse.fromJson(Map<String, dynamic> json) {
     return _$ActiveResourceResponseFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$ActiveResourceResponseToJson(this);
+
+  static List<AddonResponse> _addonListFromJson(Map<String, dynamic> json) {
+    return json.entries.map(
+      (entry) => AddonResponse.fromJson(entry.value),
+    ).toList();
+  }
 }
 
 /*
