@@ -49,16 +49,5 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
           );
         },
       );
-    structure.when(
-      data: (structure) {
-        // Assuming you have a task to create the comment
-        
-      },
-      error: (error, stackTrace) => state = ActiveResourceSubmitState.error(
-        error,
-        stackTrace,
-      ),
-      loading: () => state = const AsyncValue.loading(),
-    );
   }
 }
