@@ -1,23 +1,16 @@
 import 'package:flutter/widgets.dart';
 
-abstract class Addon {
-  Addon({
-    required this.resourceDetailAddonView,
-    required this.resourceTileAddonIcon,
-    required this.resourceFormAddonView,
-  });
-
+abstract interface class Addon {
   bool get isVisibleInResourceDetail;
   bool get isVisibleInResourceList;
   bool get isRequiredInNewResourceForm;
 
-  Widget Function({
-    required VoidCallback? onTap,
-  }) resourceDetailAddonView;
+  Widget resourceDetailAddonView({
+    required String activeStructureCode,
+    required String resourceId,
+  });
 
-  Widget Function({
-    required VoidCallback? onTap,
-  }) resourceTileAddonIcon;
+  Widget resourceTileAddonIcon();
 
-  Widget Function() resourceFormAddonView;
+  Widget resourceFormAddonView();
 }

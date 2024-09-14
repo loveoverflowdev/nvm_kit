@@ -1,6 +1,5 @@
 import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:app_ui/app_ui.dart';
-import 'package:comment_addon/comment_addon.dart' as comment;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_parser/template_parser.dart' as template;
@@ -99,13 +98,20 @@ class _ActiveResourceDetailViewState
                           ),
                       ],
                     ),
-                    Flexible(
-                      child: comment.CommentsPreview(
-                        activeStructureCode:
-                            widget.detailComponent.tile.activeStructureCode,
-                        resourceId: widget.resourceId,
+                    for (final addon in data.addons)
+                      Flexible(
+                        child: addon.resourceDetailAddonView(
+                          activeStructureCode: _activeStructureCode, 
+                          resourceId: widget.resourceId,
+                        ),
                       ),
-                    ),
+                      // Flexible(
+                      //   child: comment.CommentsPreview(
+                      //     activeStructureCode:
+                      //         widget.detailComponent.tile.activeStructureCode,
+                      //     resourceId: widget.resourceId,
+                      //   ),
+                      // ),
                   ],
                 ),
               ),

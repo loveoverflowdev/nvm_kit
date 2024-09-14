@@ -1,7 +1,10 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:comment_addon/comment_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../providers.dart';
+import 'comment_list_view.dart';
+import 'comment_prompt.dart';
 
 /// Including [CommentListView] and [CommentPrompt]
 class CommentsBox extends ConsumerStatefulWidget {

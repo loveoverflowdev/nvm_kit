@@ -1,5 +1,5 @@
-import 'package:comment_addon/comment_addon.dart';
 import 'package:formz/formz.dart';
+import 'comment_content.dart';
 
 final class CommentPayload {
   final String topic;

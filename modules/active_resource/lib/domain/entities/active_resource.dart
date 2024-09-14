@@ -5,14 +5,14 @@ final class ActiveResource {
   final Map<String, dynamic> liveAttributes;
   final String? projectId;
   final ActiveResourceCreator? creator;
-  final List<addon.AddonAttribute> addonAttributes;
+  final List<addon.Addon> addons;
 
   ActiveResource({
     required String id,
     Map<String, dynamic>? liveAttributes,
     String? projectId,
     ActiveResourceCreator? creator,
-    this.addonAttributes = const [],
+    this.addons = const [],
   })  : id = id,
         liveAttributes = liveAttributes ?? {},
         projectId = projectId,

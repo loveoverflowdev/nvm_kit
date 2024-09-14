@@ -8,6 +8,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  addon:
+    dependency: transitive
+    description:
+      path: "../../addons/addon"
+      relative: true
+    source: path
+    version: "0.0.1"
   alchemist_api_client:
     dependency: "direct main"
     description:
@@ -41,13 +48,6 @@ packages:
     dependency: "direct main"
     description:
       path: "../../modules/auth"
-      relative: true
-    source: path
-    version: "0.0.1"
-  addon:
-    dependency: transitive
-    description:
-      path: "../../addons/addon"
       relative: true
     source: path
     version: "0.0.1"

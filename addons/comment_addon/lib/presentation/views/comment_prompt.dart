@@ -1,7 +1,8 @@
 import 'package:app_ui/widgets/app_circular_loading.dart';
-import 'package:comment_addon/comment_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../providers.dart';
 
 class CommentPrompt extends ConsumerWidget {
   final String activeStructureCode;

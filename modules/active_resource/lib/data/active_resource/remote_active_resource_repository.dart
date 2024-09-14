@@ -1,16 +1,9 @@
-import 'package:active_resource/domain/entities/active_resource_payload.dart';
-import 'package:comment_addon/comment_addon.dart';
+import 'package:comment_addon/comment_addon.dart' as comment_addon;
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
-    show
-        ActiveResource,
-        ActiveResourceCreator,
-        ActiveResourceFailure,
-        ActiveResourceRepository,
-        ActiveStructure,
-        AddonType;
+    show ActiveResource, ActiveResourceCreator, ActiveResourceFailure, ActiveResourcePayload, ActiveResourceRepository, ActiveStructure, AddonType;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   final api.ResourceApiClient _apiClient;
@@ -111,9 +104,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           phone: response.creator?.phone,
           // TODO: convert DateTime
         ),
-        addonAttributes: [
+        addons: [
           if (structure.supportedAddonTypes.contains(AddonType.comment))
-            CommentAddonAttribute()
+            comment_addon.commentAddon,
         ],
       );
 }

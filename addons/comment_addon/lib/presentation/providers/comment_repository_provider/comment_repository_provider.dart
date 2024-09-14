@@ -1,4 +1,4 @@
-import 'package:comment_addon/comment_addon.dart';
+import 'package:comment_addon/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'comment_repository_provider.g.dart';

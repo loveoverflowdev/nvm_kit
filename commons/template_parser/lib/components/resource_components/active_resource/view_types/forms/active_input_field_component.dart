@@ -4,6 +4,7 @@ import 'package:template_parser/core.dart';
 part 'active_input_field_component.freezed.dart';
 
 @freezed
+/// Will add field type in the future
 class ActiveInputFieldComponent with _$ActiveInputFieldComponent implements Component  {
   ActiveInputFieldComponent._();
 
