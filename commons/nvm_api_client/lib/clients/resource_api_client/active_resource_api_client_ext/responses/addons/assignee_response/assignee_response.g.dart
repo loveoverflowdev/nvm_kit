@@ -9,10 +9,10 @@ part of 'assignee_response.dart';
 AssigneeResponse _$AssigneeResponseFromJson(Map<String, dynamic> json) =>
     AssigneeResponse(
       widgetBoardRoleId: json['widgetBoardRoleId'] as String,
-      averageProgress: (json['averageProgress'] as num).toInt(),
+      averageProgress: (json['averageProgress'] as num).toDouble(),
       finalStatus: json['finalStatus'] as String,
       roles: (json['widgetRoles'] as List<dynamic>)
-          .map((e) => RoleResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) => RoleStateResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -24,17 +24,17 @@ Map<String, dynamic> _$AssigneeResponseToJson(AssigneeResponse instance) =>
       'widgetRoles': instance.roles,
     };
 
-RoleResponse _$RoleResponseFromJson(Map<String, dynamic> json) => RoleResponse(
+RoleStateResponse _$RoleResponseFromJson(Map<String, dynamic> json) => RoleStateResponse(
       id: json['widgetRoleId'] as String,
-      assignedByUserId: json['assignedByUserId'] as String?,
+      assignedToUserId: json['assignedBy'] as String?,
       status: json['status'] as String,
-      progress: (json['progress'] as num).toInt(),
+      progress: (json['progress'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$RoleResponseToJson(RoleResponse instance) =>
+Map<String, dynamic> _$RoleResponseToJson(RoleStateResponse instance) =>
     <String, dynamic>{
       'widgetRoleId': instance.id,
-      'assignedByUserId': instance.assignedByUserId,
+      'assignedBy': instance.assignedToUserId,
       'status': instance.status,
       'progress': instance.progress,
     };

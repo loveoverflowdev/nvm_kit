@@ -30,6 +30,7 @@ class _ActiveResourceDetailViewState
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
+      RequestField.name('liveFeatures'),
       RequestField.name('id'),
       RequestField(name: 'liveAttributes', children: [
         RequestField.name(tile.titleKey),
@@ -73,7 +74,7 @@ class _ActiveResourceDetailViewState
                   children: [
                     // TODO: call fieldTitle here
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
@@ -90,7 +91,7 @@ class _ActiveResourceDetailViewState
                             child: Text(
                                 data.liveAttributes[_activeTile.subtitleKey]),
                           ),
-                        const Divider(),
+                       
                         for (final key in _activeTile.extraKeys)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
@@ -99,12 +100,15 @@ class _ActiveResourceDetailViewState
                       ],
                     ),
                     for (final addon in data.addons)
-                      Flexible(
-                        child: addon.resourceDetailAddonView(
-                          activeStructureCode: _activeStructureCode, 
-                          resourceId: widget.resourceId,
+                      ...[
+                        Divider(),
+                        Flexible(
+                          child: addon.resourceDetailAddonView(
+                            activeStructureCode: _activeStructureCode, 
+                            resourceId: widget.resourceId,
+                          ),
                         ),
-                      ),
+                      ]
                       // Flexible(
                       //   child: comment.CommentsPreview(
                       //     activeStructureCode:

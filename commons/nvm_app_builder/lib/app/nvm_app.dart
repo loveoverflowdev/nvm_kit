@@ -97,6 +97,12 @@ class _NvmAppState extends State<NvmApp> {
         comment_addon.commentRepositoryProvider.overrideWithValue(
           widget.commentRepository,
         ),
+        roles_board_addon.rolesBoardRepositoryProvider.overrideWithValue(
+          widget.rolesBoardRepository,
+        ),
+        // comment_addon.commentRepositoryProvider.overrideWithValue(
+        //   widget.commentRepository,
+        // ),
         // roles_board_addon.rolesBoardRepositoryProvider.overrideWithValue(
         //   widget.rolesBoardRepository,
         // ),

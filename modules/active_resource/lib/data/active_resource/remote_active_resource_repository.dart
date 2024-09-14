@@ -1,4 +1,6 @@
+import 'package:addon/addon.dart' as addon;
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
+import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
@@ -90,8 +92,40 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   ActiveResource _mapResponse(
     api.ActiveResourceResponse response, {
     required ActiveStructure structure,
-  }) =>
-      ActiveResource(
+  }) {
+    List<addon.Addon> addons = [];
+
+    if (structure.supportedAddonTypes.contains(AddonType.comment)) {
+      addons.add(comment_addon.commentAddon);
+    }
+
+    if (structure.supportedAddonTypes.contains(AddonType.rolesBoard))
+      addons.addAll(
+          response.addons.whereType<api.AssigneeResponse>()
+            .map(
+              (response) {
+                return roles_board_addon.rolesBoardAddon(
+                  resourceState: roles_board_addon.RolesBoardResourceState(
+                    widgetBoardRoleId: response.widgetBoardRoleId, 
+                    averageProgress: response.averageProgress, 
+                    finalStatus: response.finalStatus, 
+                    widgetRoles: response.roles.map(
+                      (role) => roles_board_addon.RoleResourceState(
+                        assignedToUserId: role.assignedToUserId ?? '',
+                        roleId: role.id,
+                        progress: role.progress,
+                        status: role.status,
+                      ),
+                    ).toList(),
+                ),);
+              }
+            )
+            .toList(),
+          );
+    print('=================');
+    print('================= Addons: ${response.addons}');
+    print('=================');
+    return ActiveResource(
         id: response.id,
         liveAttributes: response.liveAttributes,
         projectId: response.projectId,
@@ -104,13 +138,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           phone: response.creator?.phone,
           // TODO: convert DateTime
         ),
-        addons: [
-          if (structure.supportedAddonTypes.contains(AddonType.comment))
-            comment_addon.commentAddon,
-          if (structure.supportedAddonTypes.contains(AddonType.rolesBoard))
-            comment_addon.commentAddon,
-        ],
+        addons: addons,
       );
+  }
 }
 
 /*

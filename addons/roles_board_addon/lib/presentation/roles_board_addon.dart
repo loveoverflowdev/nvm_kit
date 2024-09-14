@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roles_board_addon/domain.dart';
 
+import 'views.dart';
+
 final _RolesBoardAddonFactory rolesBoardAddon = _RolesBoardAddonFactory();
 
 final class _RolesBoardAddonFactory {
@@ -18,20 +20,24 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
 
   @override
   Widget resourceDetailAddonView({required String activeStructureCode, required String resourceId,}) {
-    // TODO: implement resourceDetailAddonView
-    throw UnimplementedError();
+    return SizedBox(
+      height: 200,
+      child: RolesBoardListView());
   }
 
   @override
   Widget resourceFormAddonView() {
-    // TODO: implement resourceFormAddonView
-    throw UnimplementedError();
+    return RolesBoardListView();
   }
 
   @override
   Widget resourceTileAddonIcon() {
-    // TODO: implement resourceTileAddonIcon
-    throw UnimplementedError();
+    return IconButton(
+      onPressed: () {
+
+      }, 
+      icon: Icon(Icons.assignment_ind),
+    );
   }
 }
 

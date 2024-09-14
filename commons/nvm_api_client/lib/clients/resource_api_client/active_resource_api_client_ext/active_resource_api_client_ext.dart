@@ -49,6 +49,7 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
       endpoint: endpoints.getActiveResourceList(
           activeStructureCode: activeStructureCode),
       alchemistQuery: AlchemistQuery(
+        // TODO: Opt request fields
         requestField: requestField ?? ActiveFieldRequestField.all.build(),
         filtering: filtering,
       ),

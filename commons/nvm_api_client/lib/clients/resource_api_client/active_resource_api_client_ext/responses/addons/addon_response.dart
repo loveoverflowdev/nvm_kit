@@ -32,6 +32,8 @@ enum AddonFeatureType {
 }
 
 abstract class AddonResponse {
+  AddonFeatureType get type;
+
   AddonResponse();
 
   factory AddonResponse.fromJson(Map<String, dynamic> json) {

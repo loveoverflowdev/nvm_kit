@@ -7,11 +7,11 @@ part 'assignee_response.g.dart';
 @JsonSerializable()
 class AssigneeResponse extends AddonResponse {
   final String widgetBoardRoleId;
-  final int averageProgress;
+  final double averageProgress;
   final String finalStatus;
 
   @JsonKey(name: 'widgetRoles')
-  final List<RoleResponse> roles;
+  final List<RoleStateResponse> roles;
 
   AssigneeResponse({
     required this.widgetBoardRoleId,
@@ -25,24 +25,29 @@ class AssigneeResponse extends AddonResponse {
       _$AssigneeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AssigneeResponseToJson(this);
+  
+  @override
+  AddonFeatureType get type => AddonFeatureType.rolesBoard;
 }
 
 @JsonSerializable()
-class RoleResponse {
+class RoleStateResponse {
   @JsonKey(name: 'widgetRoleId')
   final String id;
-  final String? assignedByUserId;
-  final String status;
-  final int progress;
 
-  RoleResponse({
+  @JsonKey(name: 'assignedBy')
+  final String? assignedToUserId;
+  final String status;
+  final double progress;
+
+  RoleStateResponse({
     required this.id,
-    required this.assignedByUserId,
+    required this.assignedToUserId,
     required this.status,
     required this.progress,
   });
 
-  factory RoleResponse.fromJson(Map<String, dynamic> json) =>
+  factory RoleStateResponse.fromJson(Map<String, dynamic> json) =>
       _$RoleResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RoleResponseToJson(this);

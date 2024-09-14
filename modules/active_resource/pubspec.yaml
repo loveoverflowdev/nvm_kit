@@ -29,6 +29,8 @@ dependencies:
     path: ../../commons/alchemist_query
   comment_addon:
     path: ../../addons/comment_addon
+  roles_board_addon:
+    path: ../../addons/roles_board_addon
   addon:
     path: ../../addons/addon
 
