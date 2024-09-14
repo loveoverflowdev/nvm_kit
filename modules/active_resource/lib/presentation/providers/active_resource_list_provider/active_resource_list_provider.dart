@@ -1,8 +1,5 @@
 import 'package:active_resource/active_resource.dart';
-import 'package:active_resource/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../active_resource_repository_provider.dart';
 
 part 'active_resource_list_provider.g.dart';
 

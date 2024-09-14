@@ -18,8 +18,6 @@ final class RolesBoardApiClient {
         _workspaceIdProvider = workspaceIdProvider;
 
   Future<List<RolesBoardResponse>> getRolesBoardList({
-    required String activeStructureCode,
-    required String resourceId,
     String? requestField,
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments

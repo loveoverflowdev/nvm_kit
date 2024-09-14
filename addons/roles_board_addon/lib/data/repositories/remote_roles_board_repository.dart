@@ -11,15 +11,11 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
 
   @override
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
-    required String activeStructureCode,
-    required String resourceId,
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () async => _apiClient
           .getRolesBoardList(
-            activeStructureCode: activeStructureCode,
-            resourceId: resourceId,
             requestField: requestField,
           )
           .then(
@@ -37,14 +33,32 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
       id: response.id,
       boardName: response.boardName,
       description: response.description,
-      roles: [],
+      roles: [
+        for (final role in response.roles)
+          Role(
+            id: role.id, 
+            name: role.name, 
+            description: role.description, 
+            shortName: role.shortName,
+          ),
+      ],
       createdBy: response.createdBy,
       createdAt: response.createdAt,
       updatedBy: response.updatedBy,
       updatedAt: response.updatedAt,
       createdByUser: response.createdByUser,
       updatedByUser: response.updatedByUser,
-      progresses: [],
+      progresses: [
+        for (final progress in response.progresses)
+          Progress(
+            id: progress.id,
+            progress: progress.progress,
+            title: progress.title,
+            description: progress.description,
+            color: progress.color,
+            icon: progress.icon,
+          ),
+      ],
     );
   }
 }

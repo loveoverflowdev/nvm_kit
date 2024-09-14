@@ -3,8 +3,6 @@ import 'package:roles_board_addon/domain/entities.dart';
 
 abstract interface class RolesBoardRepository {
   TaskEither<RolesBoardFailure, List<RolesBoard>> getRolesBoardList({
-    required String activeStructureCode,
-    required String resourceId,
     String? requestField,
   });
 }

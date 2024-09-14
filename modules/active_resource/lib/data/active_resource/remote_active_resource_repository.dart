@@ -107,6 +107,8 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         addons: [
           if (structure.supportedAddonTypes.contains(AddonType.comment))
             comment_addon.commentAddon,
+          if (structure.supportedAddonTypes.contains(AddonType.rolesBoard))
+            comment_addon.commentAddon,
         ],
       );
 }
