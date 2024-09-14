@@ -22,8 +22,8 @@ dependencies:
     path: ../../commons/nvm_api_client
   app_ui:
     path: ../../commons/app_ui
-  base_addon:
-    path: ../base_addon
+  addon:
+    path: ../addon
 
 
 dev_dependencies:

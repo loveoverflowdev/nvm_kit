@@ -44,10 +44,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  base_addon:
+  addon:
     dependency: transitive
     description:
-      path: "../../addons/base_addon"
+      path: "../../addons/addon"
       relative: true
     source: path
     version: "0.0.1"

@@ -7,7 +7,7 @@ part of 'active_resource_list_provider.dart';
 // **************************************************************************
 
 String _$activeResourceListHash() =>
-    r'5d19723e1ead73c7a040d415668456934ecbdb8d';
+    r'68da02faaa98c66fdb13a7220a2920caee6d3275';
 
 /// Copied from Dart SDK
 class _SystemHash {

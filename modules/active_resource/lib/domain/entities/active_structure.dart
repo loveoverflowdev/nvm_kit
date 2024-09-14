@@ -82,7 +82,6 @@ final class ActiveField {
       _$ActiveFieldFromJson(json);
 }
 
-
 enum ActiveFieldDataType {
   shortText,
   paragraph,

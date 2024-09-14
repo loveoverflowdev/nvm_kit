@@ -22,12 +22,12 @@ enum AddonFeatureType {
   const AddonFeatureType(this.key);
 
   factory AddonFeatureType.fromKey(String key) {
-   for (final type in AddonFeatureType.values) {
+    for (final type in AddonFeatureType.values) {
       if (type.key == key) {
         return type;
       }
-   }
-   throw UnimplementedError('AddonFeatureType: Not found key $key');
+    }
+    throw UnimplementedError('AddonFeatureType: Not found key $key');
   }
 }
 

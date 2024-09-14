@@ -29,8 +29,8 @@ dependencies:
     path: ../../commons/alchemist_query
   comment_addon:
     path: ../../addons/comment_addon
-  base_addon:
-    path: ../../addons/base_addon
+  addon:
+    path: ../../addons/addon
 
 dev_dependencies:
   flutter_test:

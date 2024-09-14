@@ -36,16 +36,16 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
     );
 
 /// TODO:
-ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void> 
-  createActiveResourceTask({
+ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
+    createActiveResourceTask({
   required ActiveStructure structure,
   required ActiveResourcePayload payload,
 }) =>
-    ReaderTaskEither(
-      (repository) => repository
-          .createActiveResource(
-            structure: structure,
-            payload: payload,
-          )
-          .run(),
-    );
+        ReaderTaskEither(
+          (repository) => repository
+              .createActiveResource(
+                structure: structure,
+                payload: payload,
+              )
+              .run(),
+        );

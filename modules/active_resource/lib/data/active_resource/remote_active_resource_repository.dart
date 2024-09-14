@@ -1,9 +1,16 @@
 import 'package:active_resource/domain/entities/active_resource_payload.dart';
+import 'package:comment_addon/comment_addon.dart';
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
-    show ActiveResource, ActiveResourceCreator, ActiveResourceFailure, ActiveResourceRepository, ActiveStructure;
+    show
+        ActiveResource,
+        ActiveResourceCreator,
+        ActiveResourceFailure,
+        ActiveResourceRepository,
+        ActiveStructure,
+        AddonType;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   final api.ResourceApiClient _apiClient;
@@ -47,11 +54,13 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
               requestField: requestField,
             )
             .then(
-              (value) => _mapResponse(value),
+              (value) => _mapResponse(value, structure: structure),
             );
       },
-      (error, stackTrace) =>
-          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) => ActiveResourceFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 
@@ -71,17 +80,24 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
               requestField: requestField,
             )
             .then(
-              (value) => value.map(_mapResponse).toList(),
+              (value) => value
+                  .map(
+                    (e) => _mapResponse(e, structure: structure),
+                  )
+                  .toList(),
             );
       },
-      (error, stackTrace) =>
-          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+      (error, stackTrace) => ActiveResourceFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 
   ActiveResource _mapResponse(
-    api.ActiveResourceResponse response,
-  ) =>
+    api.ActiveResourceResponse response, {
+    required ActiveStructure structure,
+  }) =>
       ActiveResource(
         id: response.id,
         liveAttributes: response.liveAttributes,
@@ -96,11 +112,11 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           // TODO: convert DateTime
         ),
         addonAttributes: [
-          
-        ]
+          if (structure.supportedAddonTypes.contains(AddonType.comment))
+            CommentAddonAttribute()
+        ],
       );
 }
-
 
 /*
 ActiveResourceBlock _convertActiveResponseToBlock(

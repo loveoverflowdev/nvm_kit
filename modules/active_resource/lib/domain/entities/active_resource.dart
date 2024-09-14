@@ -1,11 +1,11 @@
-import 'package:base_addon/base_addon.dart' as base_addon;
+import 'package:addon/addon.dart' as addon;
 
-class ActiveResource {
+final class ActiveResource {
   final String id;
   final Map<String, dynamic> liveAttributes;
   final String? projectId;
   final ActiveResourceCreator? creator;
-  final List<base_addon.AddonAttribute> addonAttributes;
+  final List<addon.AddonAttribute> addonAttributes;
 
   ActiveResource({
     required String id,
