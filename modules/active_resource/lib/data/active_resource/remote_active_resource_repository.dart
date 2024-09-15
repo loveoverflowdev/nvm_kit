@@ -129,9 +129,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         }).toList(),
       );
     }
-    print('=================');
-    print('================= Addons: ${response.addons}');
-    print('=================');
+    // print('=================');
+    // print('================= Addons: ${response.addons}');
+    // print('=================');
     return ActiveResource(
       id: response.id,
       liveAttributes: response.liveAttributes,

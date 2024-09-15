@@ -2,10 +2,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:roles_board_addon/domain.dart';
 
-final class RemoteRolesBoardRepository implements RolesBoardRepository {
+final class RemoteRolesBoardRepositoryImpl
+    implements RemoteRolesBoardRepository {
   final api.RolesBoardApiClient _apiClient;
 
-  RemoteRolesBoardRepository({
+  RemoteRolesBoardRepositoryImpl({
     required api.RolesBoardApiClient apiClient,
   }) : _apiClient = apiClient;
 
