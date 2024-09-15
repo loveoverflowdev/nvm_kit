@@ -20,12 +20,11 @@ class AssigneeResponse extends AddonResponse {
     required this.roles,
   });
 
-
   factory AssigneeResponse.fromJson(Map<String, dynamic> json) =>
       _$AssigneeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AssigneeResponseToJson(this);
-  
+
   @override
   AddonFeatureType get type => AddonFeatureType.rolesBoard;
 }
@@ -48,9 +47,9 @@ class RoleStateResponse {
   });
 
   factory RoleStateResponse.fromJson(Map<String, dynamic> json) =>
-      _$RoleResponseFromJson(json);
+      _$RoleStateResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RoleResponseToJson(this);
+  Map<String, dynamic> toJson() => _$RoleStateResponseToJson(this);
 }
 
 /*

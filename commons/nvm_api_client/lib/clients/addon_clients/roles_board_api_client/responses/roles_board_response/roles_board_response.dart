@@ -18,7 +18,10 @@ class RolesBoardResponse {
   final dynamic createdByUser;
   final dynamic updatedByUser;
 
+  @JsonKey(name: 'widgetRoles')
   final List<RoleResponse> roles;
+
+  @JsonKey(name: 'widgetProgresses')
   final List<ProgressResponse> progresses;
 
   RolesBoardResponse({

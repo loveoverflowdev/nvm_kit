@@ -1,6 +1,8 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import '../../token_provider.dart';
 import '../../workspace_id_provider.dart';
+import 'package:nvm_api_client/api_endpoints.dart' as endpoints;
+
 import 'requests.dart';
 import 'responses.dart';
 
@@ -22,11 +24,7 @@ final class RolesBoardApiClient {
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-comment/get/comments
     return _requestJson(
-      endpoint: ApiEndpoint(
-        uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/get',
-        requiredAuthorization: true,
-        jsonPayload: true,
-      ),
+      endpoint: endpoints.getRolesBoardList(),
       alchemistQuery: AlchemistQuery(
         requestField: requestField ?? RolesBoardRequestField.all.build(),
       ),
@@ -45,12 +43,7 @@ final class RolesBoardApiClient {
   }) async {
     // {{domain}}/api/workspaces/{{workspace}}/widget/board-roles/post
     return _requestJson(
-      endpoint: ApiEndpoint(
-        uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/post',
-        requiredWorkspace: true,
-        requiredAuthorization: true,
-        jsonPayload: true,
-      ),
+      endpoint: endpoints.createRolesBoard(),
       payload: payload.toJson(),
       dataHandler: (json) => {},
     );

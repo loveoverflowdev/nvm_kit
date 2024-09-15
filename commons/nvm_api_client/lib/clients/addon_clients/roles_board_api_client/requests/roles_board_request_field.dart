@@ -33,11 +33,11 @@ final class RolesBoardRequestField {
     name: 'widgetProgresses',
     children: [
       RequestField.name('id'),
-      RequestField.name('progress'),
-      RequestField.name('progressTitle'),
       RequestField.name('description'),
       RequestField.name('color'),
       RequestField.name('icon'),
+      RequestField.name('progress'),
+      RequestField.name('progressTitle'),
     ],
   );
   static final RequestField createdBy = RequestField.name('createdBy');

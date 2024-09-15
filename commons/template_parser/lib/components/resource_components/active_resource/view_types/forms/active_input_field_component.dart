@@ -4,8 +4,11 @@ import 'package:template_parser/core.dart';
 part 'active_input_field_component.freezed.dart';
 
 @freezed
+
 /// Will add field type in the future
-class ActiveInputFieldComponent with _$ActiveInputFieldComponent implements Component  {
+class ActiveInputFieldComponent
+    with _$ActiveInputFieldComponent
+    implements Component {
   ActiveInputFieldComponent._();
 
   factory ActiveInputFieldComponent.primitive([
@@ -32,7 +35,6 @@ class ActiveInputFieldComponent with _$ActiveInputFieldComponent implements Comp
       },
     );
   }
-
 
   factory ActiveInputFieldComponent.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;

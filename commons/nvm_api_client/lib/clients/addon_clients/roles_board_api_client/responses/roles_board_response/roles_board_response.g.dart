@@ -11,7 +11,7 @@ RolesBoardResponse _$RolesBoardResponseFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       boardName: json['boardName'] as String,
       description: json['description'] as String,
-      roles: (json['roles'] as List<dynamic>)
+      roles: (json['widgetRoles'] as List<dynamic>)
           .map((e) => RoleResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
       createdBy: json['createdBy'],
@@ -20,7 +20,7 @@ RolesBoardResponse _$RolesBoardResponseFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'],
       createdByUser: json['createdByUser'],
       updatedByUser: json['updatedByUser'],
-      progresses: (json['progresses'] as List<dynamic>)
+      progresses: (json['widgetProgresses'] as List<dynamic>)
           .map((e) => ProgressResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -36,6 +36,6 @@ Map<String, dynamic> _$RolesBoardResponseToJson(RolesBoardResponse instance) =>
       'updatedAt': instance.updatedAt,
       'createdByUser': instance.createdByUser,
       'updatedByUser': instance.updatedByUser,
-      'roles': instance.roles,
-      'progresses': instance.progresses,
+      'widgetRoles': instance.roles,
+      'widgetProgresses': instance.progresses,
     };

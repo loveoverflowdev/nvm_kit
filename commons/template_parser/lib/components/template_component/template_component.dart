@@ -17,5 +17,6 @@ final class TemplateComponent implements Component {
   factory TemplateComponent.fromJson(Map<String, dynamic> json) =>
       _$TemplateComponentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TemplateComponentToJson(this);
 }

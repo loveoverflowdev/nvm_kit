@@ -6,6 +6,8 @@ part 'progress_response.g.dart';
 class ProgressResponse {
   final String id;
   final num progress;
+
+  @JsonKey(name: 'progressTitle')
   final String title;
   final String description;
   final String color;
@@ -20,8 +22,9 @@ class ProgressResponse {
     required this.icon,
   });
 
-  factory ProgressResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProgressResponseFromJson(json);
+  factory ProgressResponse.fromJson(Map<String, dynamic> json) {
+    return _$ProgressResponseFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$ProgressResponseToJson(this);
 }

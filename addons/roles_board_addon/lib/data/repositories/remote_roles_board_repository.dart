@@ -36,9 +36,9 @@ final class RemoteRolesBoardRepository implements RolesBoardRepository {
       roles: [
         for (final role in response.roles)
           Role(
-            id: role.id, 
-            name: role.name, 
-            description: role.description, 
+            id: role.id,
+            name: role.name,
+            description: role.description,
             shortName: role.shortName,
           ),
       ],

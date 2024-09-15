@@ -17,13 +17,14 @@ ApiEndpoint getWorkspaceList() => ApiEndpoint(
 
 ApiEndpoint createActiveResource({
   required String activeStructureCode,
-}) => ApiEndpoint(
-      uriTemplate: '/api/workspace/:workspace_id/active-module/post/resources/$activeStructureCode',
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspace/:workspace_id/active-module/post/resources/$activeStructureCode',
       jsonPayload: true,
       requiredAuthorization: true,
       requiredWorkspace: true,
     );
-
 
 ApiEndpoint getActiveResourceById(
   String id, {
@@ -123,6 +124,19 @@ ApiEndpoint createComment({
     ApiEndpoint(
       uriTemplate:
           '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-comment/post/comments',
+      requiredWorkspace: true,
+      requiredAuthorization: true,
+      jsonPayload: true,
+    );
+
+ApiEndpoint getRolesBoardList() => ApiEndpoint(
+      uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/get',
+      requiredAuthorization: true,
+      requiredWorkspace: true,
+    );
+
+ApiEndpoint createRolesBoard() => ApiEndpoint(
+      uriTemplate: '/api/workspaces/:workspace_id/widget/board-roles/post',
       requiredWorkspace: true,
       requiredAuthorization: true,
       jsonPayload: true,

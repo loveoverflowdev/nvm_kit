@@ -24,14 +24,15 @@ Map<String, dynamic> _$AssigneeResponseToJson(AssigneeResponse instance) =>
       'widgetRoles': instance.roles,
     };
 
-RoleStateResponse _$RoleResponseFromJson(Map<String, dynamic> json) => RoleStateResponse(
+RoleStateResponse _$RoleStateResponseFromJson(Map<String, dynamic> json) =>
+    RoleStateResponse(
       id: json['widgetRoleId'] as String,
       assignedToUserId: json['assignedBy'] as String?,
       status: json['status'] as String,
       progress: (json['progress'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$RoleResponseToJson(RoleStateResponse instance) =>
+Map<String, dynamic> _$RoleStateResponseToJson(RoleStateResponse instance) =>
     <String, dynamic>{
       'widgetRoleId': instance.id,
       'assignedBy': instance.assignedToUserId,

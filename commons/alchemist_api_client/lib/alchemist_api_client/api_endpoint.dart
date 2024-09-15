@@ -25,6 +25,7 @@ class ApiEndpoint {
     this.method = 'POST',
   });
 
+  /// if [workspaceId] != null, it overrides uriParams['workspace_id'] = workspaceId;
   EndpointParams parseEndpointParams({
     String? workspaceId,
     String? authorization,
@@ -45,11 +46,13 @@ class ApiEndpoint {
       throw Exception('uriTemplate is cannot be empty');
     }
 
-    if (requiredWorkspace == true) {
-      if (workspaceId?.isNotEmpty != true) {
-        throw Exception('workspaceId is required '
-            '(because requiredWorkspace is true for endpoint $uriTemplate)');
-      } else {
+    if (requiredWorkspace == true && workspaceId?.isNotEmpty != true) {
+      throw Exception(
+        'workspaceId is required '
+        '(because requiredWorkspace is true for endpoint $uriTemplate)',
+      );
+    } else {
+      if (workspaceId?.isNotEmpty == true) {
         uriParams['workspace_id'] = workspaceId;
       }
     }

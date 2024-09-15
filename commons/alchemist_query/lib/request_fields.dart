@@ -42,7 +42,6 @@ final class RequestField {
           )
           .join(',')
           .split(',')
-          .toSet()
           .join(',');
       if (name == null) {
         return fieldChildren;

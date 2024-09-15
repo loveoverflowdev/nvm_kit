@@ -5,7 +5,14 @@ import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 
 import '../../domain.dart'
-    show ActiveResource, ActiveResourceCreator, ActiveResourceFailure, ActiveResourcePayload, ActiveResourceRepository, ActiveStructure, AddonType;
+    show
+        ActiveResource,
+        ActiveResourceCreator,
+        ActiveResourceFailure,
+        ActiveResourcePayload,
+        ActiveResourceRepository,
+        ActiveStructure,
+        AddonType;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   final api.ResourceApiClient _apiClient;
@@ -99,47 +106,47 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       addons.add(comment_addon.commentAddon);
     }
 
-    if (structure.supportedAddonTypes.contains(AddonType.rolesBoard))
+    if (structure.supportedAddonTypes.contains(AddonType.rolesBoard)) {
       addons.addAll(
-          response.addons.whereType<api.AssigneeResponse>()
-            .map(
-              (response) {
-                return roles_board_addon.rolesBoardAddon(
-                  resourceState: roles_board_addon.RolesBoardResourceState(
-                    widgetBoardRoleId: response.widgetBoardRoleId, 
-                    averageProgress: response.averageProgress, 
-                    finalStatus: response.finalStatus, 
-                    widgetRoles: response.roles.map(
-                      (role) => roles_board_addon.RoleResourceState(
-                        assignedToUserId: role.assignedToUserId ?? '',
-                        roleId: role.id,
-                        progress: role.progress,
-                        status: role.status,
-                      ),
-                    ).toList(),
-                ),);
-              }
-            )
-            .toList(),
+        response.addons.whereType<api.AssigneeResponse>().map((response) {
+          return roles_board_addon.rolesBoardAddon(
+            resourceState: roles_board_addon.RolesBoardResourceState(
+              widgetBoardRoleId: response.widgetBoardRoleId,
+              averageProgress: response.averageProgress,
+              finalStatus: response.finalStatus,
+              widgetRoles: response.roles
+                  .map(
+                    (role) => roles_board_addon.RoleResourceState(
+                      assignedToUserId: role.assignedToUserId ?? '',
+                      roleId: role.id,
+                      progress: role.progress,
+                      status: role.status,
+                    ),
+                  )
+                  .toList(),
+            ),
           );
+        }).toList(),
+      );
+    }
     print('=================');
     print('================= Addons: ${response.addons}');
     print('=================');
     return ActiveResource(
-        id: response.id,
-        liveAttributes: response.liveAttributes,
-        projectId: response.projectId,
-        creator: ActiveResourceCreator(
-          avatarUrl: response.creator?.avatarUrl,
-          thumbnailAvatarUrl: response.creator?.thumbnailAvatarUrl,
-          email: response.creator?.email,
-          username: response.creator?.username,
-          id: response.creator?.id,
-          phone: response.creator?.phone,
-          // TODO: convert DateTime
-        ),
-        addons: addons,
-      );
+      id: response.id,
+      liveAttributes: response.liveAttributes,
+      projectId: response.projectId,
+      creator: ActiveResourceCreator(
+        avatarUrl: response.creator?.avatarUrl,
+        thumbnailAvatarUrl: response.creator?.thumbnailAvatarUrl,
+        email: response.creator?.email,
+        username: response.creator?.username,
+        id: response.creator?.id,
+        phone: response.creator?.phone,
+        // TODO: convert DateTime
+      ),
+      addons: addons,
+    );
   }
 }
 

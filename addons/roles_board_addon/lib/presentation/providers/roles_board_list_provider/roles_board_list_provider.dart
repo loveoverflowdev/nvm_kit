@@ -10,8 +10,7 @@ typedef RolesBoardListState = AsyncValue<List<RolesBoard>>;
 @riverpod
 class RolesBoardList extends _$RolesBoardList {
   @override
-  RolesBoardListState build() =>
-      RolesBoardListState.data(List.empty());
+  RolesBoardListState build() => RolesBoardListState.data(List.empty());
 
   void loadRolesBoardList({
     String? requestField,

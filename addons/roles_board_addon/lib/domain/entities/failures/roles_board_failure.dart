@@ -38,6 +38,6 @@ class RolesBoardFailure with _$RolesBoardFailure implements Exception {
         _ => RolesBoardFailure.unimplemented(),
       };
     }
-    return RolesBoardFailure.unimplemented();
+    return RolesBoardFailure.unimplemented(stackTrace: stackTrace);
   }
 }

@@ -12,7 +12,7 @@ final class _CommentAddonImpl extends CommentAddon {
     required String resourceId,
   }) {
     return CommentsPreview(
-      activeStructureCode: activeStructureCode, 
+      activeStructureCode: activeStructureCode,
       resourceId: resourceId,
     );
   }
@@ -26,9 +26,7 @@ final class _CommentAddonImpl extends CommentAddon {
   @override
   Widget resourceTileAddonIcon() {
     return IconButton(
-      onPressed: () {
-
-      }, 
+      onPressed: () {},
       icon: Icon(Icons.comment),
     );
   }
