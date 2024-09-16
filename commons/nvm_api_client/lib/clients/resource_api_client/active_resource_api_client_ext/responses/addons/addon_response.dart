@@ -21,10 +21,10 @@ abstract class AddonResponse {
 
   AddonResponse();
 
-  factory AddonResponse.fromJson(Map<String, dynamic> json) {
-    switch (AddonFeatureType.fromKey(json['featureType'])) {
+  factory AddonResponse.fromEntry(MapEntry<String, dynamic> entry) {
+    switch (AddonFeatureType.fromKey(entry.value['featureType'])) {
       case AddonFeatureType.rolesBoard:
-        return RolesBoardStateResponse.fromJson(json);
+        return RolesBoardStateResponse.fromEntry(entry);
     }
   }
 

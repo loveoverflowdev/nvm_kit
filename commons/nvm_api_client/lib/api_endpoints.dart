@@ -107,6 +107,12 @@ ApiEndpoint getUserById(String id) => ApiEndpoint(
       requiredAuthorization: true,
     );
 
+ApiEndpoint getAllUsers() => ApiEndpoint(
+      uriTemplate: '/api/user/get/users',
+      requiredAuthorization: true,
+    );
+
+
 // Addons
 ApiEndpoint getCommentList({
   required String activeStructureCode,

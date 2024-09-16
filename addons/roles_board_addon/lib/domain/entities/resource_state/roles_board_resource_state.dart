@@ -3,12 +3,14 @@ import 'role_resource_state.dart';
 
 final class RolesBoardResourceState {
   final String widgetBoardRoleId;
+  final String typeCode;
   final double averageProgress;
   final ProgressStatus finalStatus;
   final List<RoleResourceState> widgetRoles;
 
   RolesBoardResourceState({
     required this.widgetBoardRoleId,
+    required this.typeCode,
     required this.averageProgress,
     required this.finalStatus,
     required this.widgetRoles,

@@ -6,6 +6,8 @@ part 'roles_board_state_response.g.dart';
 
 @JsonSerializable()
 class RolesBoardStateResponse extends AddonResponse {
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  late final String typeCode;
   final String widgetBoardRoleId;
   final double averageProgress;
 
@@ -22,10 +24,18 @@ class RolesBoardStateResponse extends AddonResponse {
     required this.roles,
   });
 
-  factory RolesBoardStateResponse.fromJson(Map<String, dynamic> json) =>
-      _$RolesBoardStateResponseFromJson(json);
+  factory RolesBoardStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
+    final json = entry.value as Map<String, dynamic>;
+    final instance = _$RolesBoardStateResponseFromJson(json);
+    instance.typeCode = entry.key;
+    return instance;
+  }
 
-  Map<String, dynamic> toJson() => _$RolesBoardStateResponseToJson(this);
+  Map<String, dynamic> toJson() {
+    return {
+      this.typeCode: _$RolesBoardStateResponseToJson(this)
+    };
+  }
 
   @override
   AddonFeatureType get type => AddonFeatureType.rolesBoard;

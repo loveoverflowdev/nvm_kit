@@ -38,7 +38,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         );
       },
       (error, stackTrace) =>
-          ActiveResourceFailure.fromError(error, stackTrace: stackTrace),
+          ActiveResourceFailure.fromError(error, stackTrace: stackTrace,),
     );
   }
 
@@ -112,6 +112,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         response.addons.whereType<api.RolesBoardStateResponse>().map((response) {
           return roles_board_addon.rolesBoardAddon(
             resourceState: roles_board_addon.RolesBoardResourceState(
+              typeCode: response.typeCode,
               widgetBoardRoleId: response.widgetBoardRoleId,
               averageProgress: response.averageProgress,
               finalStatus: _mapProgressStatus(response.finalStatus),

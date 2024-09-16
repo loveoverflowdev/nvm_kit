@@ -28,6 +28,20 @@ final class UserApiClient {
     );
   }
 
+  Future<List<UserResponse>> getAllUsers({
+    String? requestField,
+  }) async {
+    return _requestJson(
+      endpoint: endpoints.getAllUsers(),
+      alchemistQuery: AlchemistQuery(
+        requestField: requestField ?? UserRequestField.all.build(),
+      ),
+      dataHandler: (json) => (json['data'] as List<dynamic>)
+          .map((e) => UserResponse.fromJson(e))
+          .toList(),
+    );
+  }
+
   Future<T> _requestJson<T>({
     required ApiEndpoint endpoint,
     AlchemistQuery? alchemistQuery,

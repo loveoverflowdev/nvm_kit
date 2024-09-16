@@ -13,6 +13,7 @@ class UserPreferenceRepositoryImpl implements UserPreferenceRepository {
   })  : _apiClient = apiClient,
         _userIdProvider = userIdProvider;
 
+
   @override
   TaskEither<UserFailure, User> getCurrentUser() {
     return TaskEither.tryCatch(

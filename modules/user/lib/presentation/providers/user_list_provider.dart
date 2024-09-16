@@ -1,13 +1,13 @@
-import 'package:preference/domain.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:user/domain.dart';
 
-import 'user_preference_repository_provider.dart';
+import 'user_repository_provider.dart';
 
-final currentUserProvider = FutureProvider.autoDispose<User>(
+final userListProvider = FutureProvider.autoDispose<List<User>>(
   (ref) async {
-    return getCurrentUserTask()
+    return getAllUsersTask()
         .run(
-          ref.watch(userPreferenceRepositoryProvider),
+          ref.watch(userRepositoryProvider),
         )
         .then(
           (either) => either.fold(

@@ -87,7 +87,7 @@ class _NvmAppState extends State<NvmApp> {
         workspace.workspaceRepositoryProvider.overrideWithValue(
           widget.workspaceRepository,
         ),
-        preference.userPreferenceProvider.overrideWithValue(
+        preference.userPreferenceRepositoryProvider.overrideWithValue(
           widget.userPreferenceRepository,
         ),
         active_resource.activeStructureRepositoryProvider.overrideWithValue(

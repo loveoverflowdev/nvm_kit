@@ -32,7 +32,7 @@ final class ActiveResourceResponse {
   static List<AddonResponse> _addonListFromJson(Map<String, dynamic> json) {
     return json.entries
         .map(
-          (entry) => AddonResponse.fromJson(entry.value),
+          (entry) => AddonResponse.fromEntry(entry),
         )
         .toList();
   }

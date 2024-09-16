@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:preference/domain.dart';
 
-final userPreferenceProvider = Provider.autoDispose<UserPreferenceRepository>(
+final userPreferenceRepositoryProvider = Provider.autoDispose<UserPreferenceRepository>(
   (ref) => throw UnimplementedError(),
 );
