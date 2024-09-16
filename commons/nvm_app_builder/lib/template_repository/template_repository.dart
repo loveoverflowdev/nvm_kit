@@ -45,9 +45,15 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             contextName: 'create_task_form',
             title: 'New Task',
             view: ActiveFormComponent(
-              activeStructureCode: 'tasks', 
-              inputFields: [],
-              
+              activeStructureCode: 'tasks',
+              inputFields: [
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'task_name',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'task_description',
+                ),
+              ],
             ),
           ),
           ActivePageComponent(
@@ -81,7 +87,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             view: ActiveFormComponent(
               activeStructureCode: 'user_stories',
               inputFields: [
-                ActiveInputFieldComponent.primitive(),
+                // ActiveInputFieldComponent.primitive(),
               ],
             ),
           ),

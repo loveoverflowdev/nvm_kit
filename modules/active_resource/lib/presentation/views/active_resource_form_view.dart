@@ -1,4 +1,5 @@
 import 'package:active_resource/active_resource.dart';
+import 'package:active_resource/domain/entities/active_input_field.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,8 @@ class _ActiveResourceFormViewState
         activeStructureCode: widget.formComponent.activeStructureCode,
       ),
     );
-    // TODO: on create form
+    // TODO: Improving combined two types of input fields
+    final formInputFields = widget.formComponent.inputFields;
     return Container(
       margin: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
@@ -37,6 +39,18 @@ class _ActiveResourceFormViewState
       ),
       child: activeStructure.when(
         data: (data) {
+          final List<ActiveInputField> activeFields = formInputFields.map(
+            (field) {
+              // TODO: combined two types of input fields
+              return ActiveInputField(
+                key: '',
+                title: '',
+                placeholder: '',
+                description: '',
+                dataType: field,
+              );
+            },
+          ).toList();
           return ListView(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.lg,
@@ -47,7 +61,7 @@ class _ActiveResourceFormViewState
               for (final field in data.fields)
                 Padding(
                   padding: const EdgeInsets.only(top: AppSpacing.md),
-                  child: ActiveInputField(
+                  child: ActiveInputFieldWidget(
                     field: field,
                   ),
                 ),

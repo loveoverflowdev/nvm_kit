@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:template_parser/template_parser.dart';
 
-final class ActiveInputField extends StatelessWidget {
+final class ActiveInputFieldWidget extends StatelessWidget {
   final ActiveField field;
-  const ActiveInputField({
+  const ActiveInputFieldWidget({
     super.key,
     required this.field,
   });

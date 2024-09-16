@@ -16,27 +16,28 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ActiveInputFieldComponent {
+  String get fieldCode => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic initialValue) primitive,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)
+    required TResult Function(String fieldCode, dynamic initialValue) primitive,
+    required TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)
         resourcesSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic initialValue)? primitive,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult? Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult? Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic initialValue)? primitive,
-    TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
     required TResult orElse(),
   }) =>
@@ -60,6 +61,12 @@ mixin _$ActiveInputFieldComponent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of ActiveInputFieldComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ActiveInputFieldComponentCopyWith<ActiveInputFieldComponent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -67,6 +74,8 @@ abstract class $ActiveInputFieldComponentCopyWith<$Res> {
   factory $ActiveInputFieldComponentCopyWith(ActiveInputFieldComponent value,
           $Res Function(ActiveInputFieldComponent) then) =
       _$ActiveInputFieldComponentCopyWithImpl<$Res, ActiveInputFieldComponent>;
+  @useResult
+  $Res call({String fieldCode});
 }
 
 /// @nodoc
@@ -82,15 +91,29 @@ class _$ActiveInputFieldComponentCopyWithImpl<$Res,
 
   /// Create a copy of ActiveInputFieldComponent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fieldCode = null,
+  }) {
+    return _then(_value.copyWith(
+      fieldCode: null == fieldCode
+          ? _value.fieldCode
+          : fieldCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$PrimitiveTypeImplCopyWith<$Res> {
+abstract class _$$PrimitiveTypeImplCopyWith<$Res>
+    implements $ActiveInputFieldComponentCopyWith<$Res> {
   factory _$$PrimitiveTypeImplCopyWith(
           _$PrimitiveTypeImpl value, $Res Function(_$PrimitiveTypeImpl) then) =
       __$$PrimitiveTypeImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({dynamic initialValue});
+  $Res call({String fieldCode, dynamic initialValue});
 }
 
 /// @nodoc
@@ -106,10 +129,15 @@ class __$$PrimitiveTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? fieldCode = null,
     Object? initialValue = freezed,
   }) {
     return _then(_$PrimitiveTypeImpl(
-      freezed == initialValue
+      fieldCode: null == fieldCode
+          ? _value.fieldCode
+          : fieldCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      initialValue: freezed == initialValue
           ? _value.initialValue
           : initialValue // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -120,14 +148,16 @@ class __$$PrimitiveTypeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PrimitiveTypeImpl extends _PrimitiveType {
-  _$PrimitiveTypeImpl([this.initialValue]) : super._();
+  _$PrimitiveTypeImpl({required this.fieldCode, this.initialValue}) : super._();
 
+  @override
+  final String fieldCode;
   @override
   final dynamic initialValue;
 
   @override
   String toString() {
-    return 'ActiveInputFieldComponent.primitive(initialValue: $initialValue)';
+    return 'ActiveInputFieldComponent.primitive(fieldCode: $fieldCode, initialValue: $initialValue)';
   }
 
   @override
@@ -135,13 +165,15 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PrimitiveTypeImpl &&
+            (identical(other.fieldCode, fieldCode) ||
+                other.fieldCode == fieldCode) &&
             const DeepCollectionEquality()
                 .equals(other.initialValue, initialValue));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(initialValue));
+  int get hashCode => Object.hash(runtimeType, fieldCode,
+      const DeepCollectionEquality().hash(initialValue));
 
   /// Create a copy of ActiveInputFieldComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -154,36 +186,36 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic initialValue) primitive,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)
+    required TResult Function(String fieldCode, dynamic initialValue) primitive,
+    required TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)
         resourcesSelection,
   }) {
-    return primitive(initialValue);
+    return primitive(fieldCode, initialValue);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic initialValue)? primitive,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult? Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult? Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
   }) {
-    return primitive?.call(initialValue);
+    return primitive?.call(fieldCode, initialValue);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic initialValue)? primitive,
-    TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
     required TResult orElse(),
   }) {
     if (primitive != null) {
-      return primitive(initialValue);
+      return primitive(fieldCode, initialValue);
     }
     return orElse();
   }
@@ -221,26 +253,37 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
 }
 
 abstract class _PrimitiveType extends ActiveInputFieldComponent {
-  factory _PrimitiveType([final dynamic initialValue]) = _$PrimitiveTypeImpl;
+  factory _PrimitiveType(
+      {required final String fieldCode,
+      final dynamic initialValue}) = _$PrimitiveTypeImpl;
   _PrimitiveType._() : super._();
 
+  @override
+  String get fieldCode;
   dynamic get initialValue;
 
   /// Create a copy of ActiveInputFieldComponent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PrimitiveTypeImplCopyWith<_$PrimitiveTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ResourcesSelectionTypeImplCopyWith<$Res> {
+abstract class _$$ResourcesSelectionTypeImplCopyWith<$Res>
+    implements $ActiveInputFieldComponentCopyWith<$Res> {
   factory _$$ResourcesSelectionTypeImplCopyWith(
           _$ResourcesSelectionTypeImpl value,
           $Res Function(_$ResourcesSelectionTypeImpl) then) =
       __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String activeStructureCode, String titleKey, String subtitleKey});
+  $Res call(
+      {String fieldCode,
+      String activeStructureCode,
+      String titleKey,
+      String subtitleKey});
 }
 
 /// @nodoc
@@ -258,11 +301,16 @@ class __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? fieldCode = null,
     Object? activeStructureCode = null,
     Object? titleKey = null,
     Object? subtitleKey = null,
   }) {
     return _then(_$ResourcesSelectionTypeImpl(
+      fieldCode: null == fieldCode
+          ? _value.fieldCode
+          : fieldCode // ignore: cast_nullable_to_non_nullable
+              as String,
       activeStructureCode: null == activeStructureCode
           ? _value.activeStructureCode
           : activeStructureCode // ignore: cast_nullable_to_non_nullable
@@ -283,11 +331,14 @@ class __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>
 
 class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
   _$ResourcesSelectionTypeImpl(
-      {required this.activeStructureCode,
+      {required this.fieldCode,
+      required this.activeStructureCode,
       required this.titleKey,
       required this.subtitleKey})
       : super._();
 
+  @override
+  final String fieldCode;
   @override
   final String activeStructureCode;
   @override
@@ -297,7 +348,7 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
 
   @override
   String toString() {
-    return 'ActiveInputFieldComponent.resourcesSelection(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldComponent.resourcesSelection(fieldCode: $fieldCode, activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
@@ -305,6 +356,8 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResourcesSelectionTypeImpl &&
+            (identical(other.fieldCode, fieldCode) ||
+                other.fieldCode == fieldCode) &&
             (identical(other.activeStructureCode, activeStructureCode) ||
                 other.activeStructureCode == activeStructureCode) &&
             (identical(other.titleKey, titleKey) ||
@@ -314,8 +367,8 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, activeStructureCode, titleKey, subtitleKey);
+  int get hashCode => Object.hash(
+      runtimeType, fieldCode, activeStructureCode, titleKey, subtitleKey);
 
   /// Create a copy of ActiveInputFieldComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -329,36 +382,39 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic initialValue) primitive,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)
+    required TResult Function(String fieldCode, dynamic initialValue) primitive,
+    required TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)
         resourcesSelection,
   }) {
-    return resourcesSelection(activeStructureCode, titleKey, subtitleKey);
+    return resourcesSelection(
+        fieldCode, activeStructureCode, titleKey, subtitleKey);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic initialValue)? primitive,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult? Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult? Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
   }) {
-    return resourcesSelection?.call(activeStructureCode, titleKey, subtitleKey);
+    return resourcesSelection?.call(
+        fieldCode, activeStructureCode, titleKey, subtitleKey);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic initialValue)? primitive,
-    TResult Function(
-            String activeStructureCode, String titleKey, String subtitleKey)?
+    TResult Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
         resourcesSelection,
     required TResult orElse(),
   }) {
     if (resourcesSelection != null) {
-      return resourcesSelection(activeStructureCode, titleKey, subtitleKey);
+      return resourcesSelection(
+          fieldCode, activeStructureCode, titleKey, subtitleKey);
     }
     return orElse();
   }
@@ -397,17 +453,21 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
 
 abstract class _ResourcesSelectionType extends ActiveInputFieldComponent {
   factory _ResourcesSelectionType(
-      {required final String activeStructureCode,
+      {required final String fieldCode,
+      required final String activeStructureCode,
       required final String titleKey,
       required final String subtitleKey}) = _$ResourcesSelectionTypeImpl;
   _ResourcesSelectionType._() : super._();
 
+  @override
+  String get fieldCode;
   String get activeStructureCode;
   String get titleKey;
   String get subtitleKey;
 
   /// Create a copy of ActiveInputFieldComponent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResourcesSelectionTypeImplCopyWith<_$ResourcesSelectionTypeImpl>
       get copyWith => throw _privateConstructorUsedError;

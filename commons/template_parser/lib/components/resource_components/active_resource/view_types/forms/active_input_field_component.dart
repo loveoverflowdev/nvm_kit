@@ -11,23 +11,32 @@ class ActiveInputFieldComponent
     implements Component {
   ActiveInputFieldComponent._();
 
-  factory ActiveInputFieldComponent.primitive([
+  factory ActiveInputFieldComponent.primitive({
+    required String fieldCode,
     dynamic initialValue,
-  ]) = _PrimitiveType;
+  }) = _PrimitiveType;
 
   factory ActiveInputFieldComponent.resourcesSelection({
+    required String fieldCode,
     required final String activeStructureCode,
     required final String titleKey,
     required final String subtitleKey,
   }) = _ResourcesSelectionType;
 
+  @override
   Map<String, dynamic> toJson() {
-    return this.when(
-      primitive: (initialValue) => {
+    return when(
+      primitive: (fieldCode, initialValue) => {
         'type': 'PRIMITIVE',
         'initialValue': initialValue,
       },
-      resourcesSelection: (activeStructureCode, titleKey, subtitleKey) => {
+      resourcesSelection: (
+        fieldCode,
+        activeStructureCode,
+        titleKey,
+        subtitleKey,
+      ) =>
+          {
         'type': 'RESOURCES_SELECTION',
         'activeStructureCode': activeStructureCode,
         'titleKey': titleKey,
@@ -41,10 +50,12 @@ class ActiveInputFieldComponent
     switch (type) {
       case 'PRIMITIVE':
         return ActiveInputFieldComponent.primitive(
-          json['initialValue'],
+          fieldCode: json['fieldCode'] as String,
+          initialValue: json['initialValue'],
         );
       case 'RESOURCES_SELECTION':
         return ActiveInputFieldComponent.resourcesSelection(
+          fieldCode: json['fieldCode'] as String,
           activeStructureCode: json['activeStructureCode'] as String,
           titleKey: json['titleKey'] as String,
           subtitleKey: json['subtitleKey'] as String,

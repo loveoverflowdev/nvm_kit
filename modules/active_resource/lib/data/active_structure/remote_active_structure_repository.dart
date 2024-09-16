@@ -1,7 +1,13 @@
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
-    show ActiveField, ActiveFieldDataType, ActiveStructure, ActiveStructureFailure, ActiveStructureRepository, AddonType;
+    show
+        ActiveField,
+        ActiveFieldDataType,
+        ActiveStructure,
+        ActiveStructureFailure,
+        ActiveStructureRepository,
+        AddonType;
 
 final class RemoteActiveStructureRepository
     implements ActiveStructureRepository {
@@ -75,7 +81,7 @@ final class RemoteActiveStructureRepository
               title: e.title,
               order: e.order,
               placeholder: '',
-              description: '', 
+              description: '',
               valueActiveStructureId: e.valueActiveStructureId ?? '',
             ),
           )

@@ -25,6 +25,7 @@ class ActiveFormComponent extends ActiveViewComponent {
   factory ActiveFormComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveFormComponentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ActiveFormComponentToJson(this)
     ..addAll(
       {
@@ -32,13 +33,16 @@ class ActiveFormComponent extends ActiveViewComponent {
       },
     );
 
-  static Map<String, dynamic> _inputFieldsToJson(final List<ActiveInputFieldComponent> inputFields) => {
-    'inputFields': inputFields.map((component) => component.toJson()),
-  };
+  static Map<String, dynamic> _inputFieldsToJson(
+          final List<ActiveInputFieldComponent> inputFields) =>
+      {
+        'inputFields': inputFields.map((component) => component.toJson()),
+      };
 
-  static List<ActiveInputFieldComponent> _inputFieldsFromJson(Map<String, dynamic> json) {
-    return (json['inputFields'] as List).map(
-      (e) => ActiveInputFieldComponent.fromJson(e)
-    ).toList();
+  static List<ActiveInputFieldComponent> _inputFieldsFromJson(
+      Map<String, dynamic> json) {
+    return (json['inputFields'] as List)
+        .map((e) => ActiveInputFieldComponent.fromJson(e))
+        .toList();
   }
 }
