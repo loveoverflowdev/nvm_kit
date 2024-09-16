@@ -1,11 +1,16 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'workspace_failure.freezed.dart';
 
 @freezed
-class WorkspaceFailure with _$WorkspaceFailure implements Exception {
+class WorkspaceFailure with _$WorkspaceFailure implements AppFailure {
   WorkspaceFailure._();
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
   factory WorkspaceFailure.badRequest({
     required String message,
     StackTrace? stackTrace,

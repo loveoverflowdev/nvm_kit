@@ -2,12 +2,16 @@ import 'package:alchemist_api_client/alchemist_api_client.dart'
     show AlchemistApiRequestFailure;
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'user_failure.freezed.dart';
 
 @freezed
-class UserFailure with _$UserFailure implements Exception {
+class UserFailure with _$UserFailure implements AppFailure {
   UserFailure._();
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
 
   factory UserFailure.userIdMissing({
     StackTrace? stackTrace,

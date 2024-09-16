@@ -21,6 +21,8 @@ dependencies:
 
   app_ui:
     path: ../../commons/app_ui
+  app_failure:
+    path: ../../commons/app_failure
   nvm_api_client:
     path: ../../commons/nvm_api_client
 

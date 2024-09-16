@@ -18,36 +18,39 @@ class ActiveResourceList extends _$ActiveResourceList {
     String? requestField,
   }) async {
     state = const AsyncValue.loading();
-    ref.watch(activeStructureProvider(activeStructureCode: activeStructureCode).future,)
-      .then((structure) {
-          getActiveResourceListTask(
-            structure: structure,
-            requestField: requestField,
-            projectId: projectId,
-          ).match(
-            (failure) {
-              state = ActiveResourceListState.error(
-                failure,
-                failure.stackTrace ?? StackTrace.current,
-              );
-            },
-            (result) {
-              state = ActiveResourceListState.data(
-                result,
-              );
-            },
-          ).run(
-            ref.watch(activeResourceRepositoryProvider),
-          );
-        },
-      )
-      .catchError(
-        (error, stackTrace) {
-          state = ActiveResourceListState.error(
-            error,
-            stackTrace,
-          );
-        },
-      );
+    ref
+        .watch(
+      activeStructureProvider(activeStructureCode: activeStructureCode).future,
+    )
+        .then(
+      (structure) {
+        getActiveResourceListTask(
+          structure: structure,
+          requestField: requestField,
+          projectId: projectId,
+        ).match(
+          (failure) {
+            state = ActiveResourceListState.error(
+              failure,
+              failure.stackTrace ?? StackTrace.current,
+            );
+          },
+          (result) {
+            state = ActiveResourceListState.data(
+              result,
+            );
+          },
+        ).run(
+          ref.watch(activeResourceRepositoryProvider),
+        );
+      },
+    ).catchError(
+      (error, stackTrace) {
+        state = ActiveResourceListState.error(
+          error,
+          stackTrace,
+        );
+      },
+    );
   }
 }

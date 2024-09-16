@@ -28,6 +28,7 @@ final class UserApiClient {
     );
   }
 
+  @Deprecated('This code will remove when permission is required')
   Future<List<UserResponse>> getAllUsers({
     String? requestField,
   }) async {

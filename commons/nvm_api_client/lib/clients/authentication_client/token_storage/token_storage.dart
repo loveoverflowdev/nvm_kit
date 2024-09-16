@@ -20,4 +20,3 @@ abstract class TokenStorage {
     required String refreshToken,
   });
 }
-

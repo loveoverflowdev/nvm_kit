@@ -1,13 +1,18 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'active_structure_failure.freezed.dart';
 
 @freezed
 class ActiveStructureFailure
     with _$ActiveStructureFailure
-    implements Exception {
+    implements AppFailure {
   ActiveStructureFailure._();
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
   factory ActiveStructureFailure.badRequest({
     required String message,
     StackTrace? stackTrace,

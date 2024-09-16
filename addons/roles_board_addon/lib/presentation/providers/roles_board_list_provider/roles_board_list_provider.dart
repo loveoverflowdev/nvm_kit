@@ -17,24 +17,20 @@ class RolesBoardList extends _$RolesBoardList {
     state = const AsyncValue.loading();
     TaskEither(
       () => getLocalRolesBoardListTask()
-      .run(ref.watch(localRolesBoardRepositoryProvider)),
-    )
-    .flatMap((rolesBoard) {
+          .run(ref.watch(localRolesBoardRepositoryProvider)),
+    ).flatMap((rolesBoard) {
       if (rolesBoard.isNotEmpty) {
         return TaskEither.right(rolesBoard);
       } else {
         return TaskEither(
-          () => getRemoteRolesBoardListTask() 
-            .run(ref.watch(remoteRolesBoardRepositoryProvider),
+          () => getRemoteRolesBoardListTask().run(
+            ref.watch(remoteRolesBoardRepositoryProvider),
           ),
-        )
-        .chainFirst((rolesBoard) {
-          return TaskEither(
-            () => writeLocalRolesBoardListTask(
-              rolesBoardList: rolesBoard,
-            ).run(ref.watch(localRolesBoardRepositoryProvider))
-          )
-          .chainFirst((saved) {
+        ).chainFirst((rolesBoard) {
+          return TaskEither(() => writeLocalRolesBoardListTask(
+                    rolesBoardList: rolesBoard,
+                  ).run(ref.watch(localRolesBoardRepositoryProvider)))
+              .chainFirst((saved) {
             if (!saved) {
               throw Exception('writeLocalRolesBoardListTask return false');
             }
@@ -42,13 +38,11 @@ class RolesBoardList extends _$RolesBoardList {
           });
         });
       }
-    })
-    .match(_onFailure, (data) {
+    }).match(_onFailure, (data) {
       state = RolesBoardListState.data(
         data,
       );
-    })
-    .run();
+    }).run();
   }
 
   _onFailure(RolesBoardFailure failure) {

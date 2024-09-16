@@ -107,11 +107,11 @@ ApiEndpoint getUserById(String id) => ApiEndpoint(
       requiredAuthorization: true,
     );
 
+@Deprecated('This code will remove when permission is required')
 ApiEndpoint getAllUsers() => ApiEndpoint(
       uriTemplate: '/api/user/get/users',
       requiredAuthorization: true,
     );
-
 
 // Addons
 ApiEndpoint getCommentList({

@@ -6,7 +6,12 @@ import '../providers.dart';
 import '../widgets.dart';
 
 class PreferenceView extends StatelessWidget {
-  const PreferenceView({super.key});
+  final void Function() onSignoutPressed;
+
+  const PreferenceView({
+    super.key,
+    required this.onSignoutPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,7 @@ class PreferenceView extends StatelessWidget {
         ListTile(
           title: const Text('Sign out'),
           trailing: const Icon(Icons.logout),
-          onTap: () {},
+          onTap: onSignoutPressed,
         )
       ],
     );

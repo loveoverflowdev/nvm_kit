@@ -12,9 +12,7 @@ class WorkspaceList extends _$WorkspaceList {
   @override
   WorkspaceListState build() => WorkspaceListState.data(List.empty());
 
-  void loadWorkspaceList() async {
-    state = const AsyncValue.loading();
-
+  void loadWorkspaceList() {
     getWorkspaceListTask().match(
       (failure) {
         state = WorkspaceListState.error(

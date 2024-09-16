@@ -1,10 +1,23 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'roles_board_failure.freezed.dart';
 
 @freezed
-class RolesBoardFailure with _$RolesBoardFailure implements Exception {
+class RolesBoardFailure with _$RolesBoardFailure implements AppFailure {
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
+  @override
+  StackTrace? get stackTrace => when(
+        badRequest: (_, stackTrace) => stackTrace,
+        internalServer: (stackTrace) => stackTrace,
+        apiConnection: (stackTrace) => stackTrace,
+        unimplemented: (stackTrace) => stackTrace,
+        unauthorized: (stackTrace) => stackTrace,
+      );
+
   RolesBoardFailure._();
   factory RolesBoardFailure.badRequest({
     required String message,

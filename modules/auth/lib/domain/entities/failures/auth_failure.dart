@@ -1,11 +1,18 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'auth_failure.freezed.dart';
 
 @freezed
-class AuthFailure with _$AuthFailure implements Exception {
+class AuthFailure with _$AuthFailure implements AppFailure {
   AuthFailure._();
+
+  @override
+
+  /// Currently AuthFailure just [isUnauthorized] because auth just have signin api
+  bool get isUnauthorized => false;
+
   factory AuthFailure.badRequest({
     required String message,
     StackTrace? stackTrace,

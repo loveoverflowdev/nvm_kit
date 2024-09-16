@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:auth/auth.dart' as auth;
 import 'package:preference/preference.dart' as preference;
 
 class PreferencesPage extends StatelessWidget {
@@ -11,7 +13,15 @@ class PreferencesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Preferences'),
       ),
-      body: const preference.PreferenceView(),
+      body: Consumer(
+        builder: (_, WidgetRef ref, __) {
+          return preference.PreferenceView(
+            onSignoutPressed: () {
+              ref.read(auth.signoutProvider.notifier).signOut();
+            },
+          );
+        },
+      ),
     );
   }
 }

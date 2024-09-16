@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:app_ui/app_ui.dart';
+import 'package:app_ui/app_ui.dart' show BasilTheme;
+import 'package:app_failure/app_failure.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nvm_app_builder/router.dart';
 
@@ -33,22 +34,21 @@ class NvmApp extends StatefulWidget {
   final roles_board_addon.RemoteRolesBoardRepository remoteRolesBoardRepository;
   final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository;
 
-  const NvmApp({
-    super.key,
-    required this.templateRepository,
-    required this.navigationGuard,
-    required this.authRepository,
-    required this.notificationRepository,
-    required this.projectRepository,
-    required this.workspaceRepository,
-    required this.userPreferenceRepository,
-    required this.activeResourceRepository,
-    required this.activeStructureRepository,
-    //
-    required this.commentRepository,
-    required this.remoteRolesBoardRepository,
-    required this.localRolesBoardRepository
-  });
+  const NvmApp(
+      {super.key,
+      required this.templateRepository,
+      required this.navigationGuard,
+      required this.authRepository,
+      required this.notificationRepository,
+      required this.projectRepository,
+      required this.workspaceRepository,
+      required this.userPreferenceRepository,
+      required this.activeResourceRepository,
+      required this.activeStructureRepository,
+      //
+      required this.commentRepository,
+      required this.remoteRolesBoardRepository,
+      required this.localRolesBoardRepository});
 
   @override
   State<NvmApp> createState() => _NvmAppState();
@@ -74,6 +74,9 @@ class _NvmAppState extends State<NvmApp> {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
+      observers: [
+        AuthStateObserver(),
+      ],
       overrides: [
         auth.authRepositoryProvider.overrideWithValue(
           widget.authRepository,
@@ -105,19 +108,43 @@ class _NvmAppState extends State<NvmApp> {
         roles_board_addon.localRolesBoardRepositoryProvider.overrideWithValue(
           widget.localRolesBoardRepository,
         ),
-        // comment_addon.commentRepositoryProvider.overrideWithValue(
-        //   widget.commentRepository,
-        // ),
-        // roles_board_addon.rolesBoardRepositoryProvider.overrideWithValue(
-        //   widget.rolesBoardRepository,
-        // ),
       ],
-      child: MaterialApp.router(
-        title: 'NVM',
-        theme: _theme,
-        routerConfig: _router,
-        debugShowCheckedModeBanner: false,
+      child: Consumer(
+        builder: (_, WidgetRef ref, __) {
+          // TODO: So status in future
+          ref.listen(
+            auth.signoutProvider,
+            (previous, next) {
+              if (next.hasValue) {
+                _router.go(RouterBuilder.initialLocation);
+              }
+            },
+          );
+          return MaterialApp.router(
+            title: 'NVM',
+            theme: _theme,
+            routerConfig: _router,
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
     );
+  }
+}
+
+final class AuthStateObserver extends ProviderObserver {
+  @override
+  void didUpdateProvider(
+    ProviderBase<Object?> provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
+    if (newValue is AsyncError && newValue.error is AppFailure) {
+      final failure = newValue.error as AppFailure;
+      if (failure.isUnauthorized) {
+        container.read(auth.authRepositoryProvider).signOut();
+      }
+    }
   }
 }

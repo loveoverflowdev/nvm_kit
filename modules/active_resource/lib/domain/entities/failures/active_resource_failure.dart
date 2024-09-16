@@ -1,11 +1,15 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'active_resource_failure.freezed.dart';
 
 @freezed
-class ActiveResourceFailure with _$ActiveResourceFailure implements Exception {
+class ActiveResourceFailure with _$ActiveResourceFailure implements AppFailure {
   ActiveResourceFailure._();
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
 
   factory ActiveResourceFailure.badRequest({
     required String message,

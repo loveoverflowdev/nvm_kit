@@ -1,13 +1,20 @@
 import 'package:alchemist_api_client/alchemist_api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'notification_failure.freezed.dart';
 
 @freezed
-class NotificationFailure with _$NotificationFailure implements Exception {
+class NotificationFailure with _$NotificationFailure implements AppFailure {
   NotificationFailure._();
-  factory NotificationFailure.badRequest({required String message, StackTrace? stackTrace,}) =
-      _BadRequest;
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
+  factory NotificationFailure.badRequest({
+    required String message,
+    StackTrace? stackTrace,
+  }) = _BadRequest;
   factory NotificationFailure.unauthorized({
     StackTrace? stackTrace,
   }) = _Unauthorized;
@@ -23,9 +30,8 @@ class NotificationFailure with _$NotificationFailure implements Exception {
 
   factory NotificationFailure.fromError(
     Object failure, {
-      StackTrace? stackTrace,
-    }
-  ) {
+    StackTrace? stackTrace,
+  }) {
     if (failure is AlchemistApiRequestFailure) {
       return switch (failure.statusCode) {
         400 => NotificationFailure.badRequest(

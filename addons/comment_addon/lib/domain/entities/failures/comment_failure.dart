@@ -1,10 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:alchemist_api_client/alchemist_api_client.dart'
     show AlchemistApiRequestFailure;
+import 'package:app_failure/app_failure.dart';
+
 part 'comment_failure.freezed.dart';
 
 @freezed
-class CommentFailure with _$CommentFailure implements Exception {
+class CommentFailure with _$CommentFailure implements AppFailure {
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
   CommentFailure._();
   factory CommentFailure.badRequest({
     required String message,

@@ -14,11 +14,12 @@ class RolesBoardResourceStateView extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RolesBoardResourceStateViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RolesBoardResourceStateViewState();
 }
 
-class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResourceStateView> {
-
+class _RolesBoardResourceStateViewState
+    extends ConsumerState<RolesBoardResourceStateView> {
   @override
   void initState() {
     super.initState();
@@ -47,11 +48,17 @@ class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResource
                       fontWeight: FontWeight.w600,
                     ),
               ),
-              Divider(),
-              Text(
-                  'Average progress: ${widget.rolesBoardResourceState.averageProgress.round()} %'),
-              Text('Final status: ${widget.rolesBoardResourceState.finalStatus}'),
-              SizedBox(
+              const Divider(),
+              _Label(
+                label: 'Average progress',
+                value:
+                    '${widget.rolesBoardResourceState.averageProgress.round()} %',
+              ),
+              _Label(
+                label: 'Final status',
+                value: widget.rolesBoardResourceState.finalStatus.description,
+              ),
+              const SizedBox(
                 height: AppSpacing.md,
               ),
               Consumer(
@@ -59,9 +66,9 @@ class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResource
                   final rolesBoardList = ref.watch(rolesBoardListProvider);
                   return rolesBoardList.when(
                     data: (rolesBoardList) {
-                      print('+++++++++++++++++ rolesBoardList +++++++++++++++: $rolesBoardList');
-                      
-                      final index = rolesBoardList.indexWhere((e) => e.id == widget.rolesBoardResourceState.widgetBoardRoleId);
+                      final index = rolesBoardList.indexWhere((e) =>
+                          e.id ==
+                          widget.rolesBoardResourceState.widgetBoardRoleId);
                       if (index == -1) {
                         return const SizedBox.shrink();
                       }
@@ -69,27 +76,45 @@ class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResource
                       final rolesBoard = rolesBoardList[index];
 
                       // ====>
+                      final roleStates =
+                          widget.rolesBoardResourceState.widgetRoles;
                       return SizedBox(
-                        height: 80,
-                        child: ListView(
+                        height: 48,
+                        child: ListView.separated(
+                          itemCount: roleStates.length,
                           scrollDirection: Axis.horizontal,
-                          children: [
-                            for (final roleRef in widget.rolesBoardResourceState.widgetRoles)
-                              Builder(builder: (_) {
-                                final role = rolesBoard.roles.firstWhere((e) => e.id == roleRef.roleId);
-                                return Column(
-                                  children: [
-                                    Text(roleRef.status.description,),
-                                    Text(role.shortName,),
-                                  ],
-                                );
-                              },
-                            ),
-                          ],
+                          itemBuilder: (context, index) => Builder(
+                            builder: (_) {
+                              final roleState = roleStates[index];
+                              final role = rolesBoard.roles
+                                  .firstWhere((e) => e.id == roleState.roleId);
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    role.shortName,
+                                  ),
+                                  Text(
+                                    roleState.status.description,
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const VerticalDivider();
+                          },
                         ),
-                      ); 
+                      );
                     },
-                    error: (error, stackTrace) => AppErrorWidget(error, stackTrace: stackTrace), 
+                    error: (error, stackTrace) =>
+                        AppErrorWidget(error, stackTrace: stackTrace),
                     loading: () => const AppCircularLoadingWidget(),
                   );
                 },
@@ -98,6 +123,37 @@ class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResource
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Label extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _Label({
+    super.key,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          '$label:',
+          // cstyle: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(width: AppSpacing.sm),
+        Text(
+          value,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
     );
   }
 }

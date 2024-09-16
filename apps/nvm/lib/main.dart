@@ -107,13 +107,15 @@ void main() async {
       comment_addon.RemoteCommentRepository(
     apiClient: commentApiClient,
   );
-  final roles_board_addon.RemoteRolesBoardRepository remoteRolesBoardRepository =
+  final roles_board_addon.RemoteRolesBoardRepository
+      remoteRolesBoardRepository =
       roles_board_addon.RemoteRolesBoardRepositoryImpl(
     apiClient: rolesBoardApiClient,
   );
-  final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository 
-    = roles_board_addon.LocalRolesBoardRepositoryImpl(sharedPreferences: await SharedPreferences.getInstance());
-  
+  final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository =
+      roles_board_addon.LocalRolesBoardRepositoryImpl(
+          sharedPreferences: await SharedPreferences.getInstance());
+
   runApp(NvmApp(
     templateRepository: TemplateRepository.example(),
     navigationGuard: navigationGuard,

@@ -14,10 +14,12 @@ final class RouterBuilder {
     required this.navigationGuard,
   });
 
+  static String initialLocation = '/signin';
+
   GoRouter build() {
     final app = template.app;
     return GoRouter(
-      initialLocation: '/signin',
+      initialLocation: initialLocation,
       routes: [
         GoRoute(
           path: '/signin',

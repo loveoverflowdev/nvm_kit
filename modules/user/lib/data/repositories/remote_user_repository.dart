@@ -12,11 +12,9 @@ final class RemoteUserRepository implements UserRepository {
   @override
   TaskEither<UserFailure, List<User>> getAllUsers() {
     return TaskEither.tryCatch(
-      () => _apiClient
-        .getAllUsers()
-        .then(
-          (users) => users.map(_mapResponse).toList(),
-        ), 
+      () => _apiClient.getAllUsers().then(
+            (users) => users.map(_mapResponse).toList(),
+          ),
       (err, stackTrace) => UserFailure.fromError(err, stackTrace: stackTrace),
     );
   }

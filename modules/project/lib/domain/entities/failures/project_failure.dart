@@ -2,12 +2,17 @@ import 'package:alchemist_api_client/alchemist_api_client.dart'
     show AlchemistApiRequestFailure;
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:app_failure/app_failure.dart';
 
 part 'project_failure.freezed.dart';
 
 @freezed
-class ProjectFailure with _$ProjectFailure implements Exception {
+class ProjectFailure with _$ProjectFailure implements AppFailure {
   ProjectFailure._();
+
+  @override
+  bool get isUnauthorized => this is _Unauthorized;
+
   factory ProjectFailure.badRequest({
     required String message,
     StackTrace? stackTrace,
