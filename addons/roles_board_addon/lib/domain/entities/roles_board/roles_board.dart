@@ -1,6 +1,10 @@
 import 'progress.dart';
 import 'role.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'roles_board.g.dart';
+
+@JsonSerializable()
 final class RolesBoard {
   final String id;
   final String boardName;
@@ -29,4 +33,7 @@ final class RolesBoard {
     required this.updatedByUser,
     required this.progresses,
   });
+
+  factory RolesBoard.fromJson(Map<String, dynamic> json) => _$RolesBoardFromJson(json);
+  Map<String, dynamic> toJson() => _$RolesBoardToJson(this);
 }

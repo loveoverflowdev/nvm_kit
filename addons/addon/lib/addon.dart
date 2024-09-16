@@ -5,6 +5,9 @@ abstract interface class Addon {
   bool get isVisibleInResourceList;
   bool get isRequiredInNewResourceForm;
 
+  /// [priority] specify order in resource view
+  int get priority;
+
   Widget resourceDetailAddonView({
     required String activeStructureCode,
     required String resourceId,

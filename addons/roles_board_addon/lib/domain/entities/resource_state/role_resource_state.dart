@@ -7,10 +7,13 @@
 },
 */
 
+
+import 'progress_status.dart';
+
 final class RoleResourceState {
   final String roleId;
   final String assignedToUserId;
-  final String status;
+  final ProgressStatus status;
   final double progress;
 
   RoleResourceState({

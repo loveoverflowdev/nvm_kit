@@ -1,5 +1,6 @@
 import 'package:addon/addon.dart' as addon;
 import 'package:comment_addon/comment_addon.dart' as comment_addon;
+import 'package:roles_board_addon/domain.dart';
 import 'package:roles_board_addon/roles_board_addon.dart' as roles_board_addon;
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
@@ -108,19 +109,19 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
     if (structure.supportedAddonTypes.contains(AddonType.rolesBoard)) {
       addons.addAll(
-        response.addons.whereType<api.AssigneeResponse>().map((response) {
+        response.addons.whereType<api.RolesBoardStateResponse>().map((response) {
           return roles_board_addon.rolesBoardAddon(
             resourceState: roles_board_addon.RolesBoardResourceState(
               widgetBoardRoleId: response.widgetBoardRoleId,
               averageProgress: response.averageProgress,
-              finalStatus: response.finalStatus,
+              finalStatus: _mapProgressStatus(response.finalStatus),
               widgetRoles: response.roles
                   .map(
                     (role) => roles_board_addon.RoleResourceState(
                       assignedToUserId: role.assignedToUserId ?? '',
                       roleId: role.id,
                       progress: role.progress,
-                      status: role.status,
+                      status: _mapProgressStatus(role.status),
                     ),
                   )
                   .toList(),
@@ -129,9 +130,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         }).toList(),
       );
     }
-    // print('=================');
-    // print('================= Addons: ${response.addons}');
-    // print('=================');
+
+    addons.sort((a, b) => a.priority.compareTo(b.priority));
+
     return ActiveResource(
       id: response.id,
       liveAttributes: response.liveAttributes,
@@ -147,6 +148,14 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       ),
       addons: addons,
     );
+  }
+
+  ProgressStatus _mapProgressStatus(api.ProgressStatusResponse response) {
+    return switch (response) {
+      api.ProgressStatusResponse.notStarted => ProgressStatus.notStarted,
+      api.ProgressStatusResponse.inProgress => ProgressStatus.inProgress,
+      api.ProgressStatusResponse.completed =>  ProgressStatus.completed,
+    };
   }
 }
 

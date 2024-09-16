@@ -1,7 +1,8 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roles_board_addon/domain.dart';
 
-import '../roles_board_repository_provider.dart';
+import '../roles_board_repository_providers.dart';
 
 part 'roles_board_list_provider.g.dart';
 
@@ -12,26 +13,49 @@ class RolesBoardList extends _$RolesBoardList {
   @override
   RolesBoardListState build() => RolesBoardListState.data(List.empty());
 
-  void loadRolesBoardList({
-    String? requestField,
-  }) async {
+  void loadRolesBoardList() async {
     state = const AsyncValue.loading();
-    getRolesBoardListTask(
-      requestField: requestField,
-    ).match(
-      (failure) {
-        state = RolesBoardListState.error(
-          failure,
-          failure.stackTrace ?? StackTrace.current,
-        );
-      },
-      (result) {
-        state = RolesBoardListState.data(
-          result,
-        );
-      },
-    ).run(
-      ref.watch(rolesBoardRepositoryProvider),
+    TaskEither(
+      () => getLocalRolesBoardListTask()
+      .run(ref.watch(localRolesBoardRepositoryProvider)),
+    )
+    .flatMap((rolesBoard) {
+      if (rolesBoard.isNotEmpty) {
+        return TaskEither.right(rolesBoard);
+      } else {
+        return TaskEither(
+          () => getRemoteRolesBoardListTask() 
+            .run(ref.watch(remoteRolesBoardRepositoryProvider),
+          ),
+        )
+        .chainFirst((rolesBoard) {
+          return TaskEither(
+            () => writeLocalRolesBoardListTask(
+              rolesBoardList: rolesBoard,
+            ).run(ref.watch(localRolesBoardRepositoryProvider))
+          )
+          .chainFirst((saved) {
+            if (!saved) {
+              throw Exception('writeLocalRolesBoardListTask return false');
+            }
+            return TaskEither.right([]);
+          });
+        });
+      }
+    })
+    .match(_onFailure, (data) {
+      state = RolesBoardListState.data(
+        data,
+      );
+    })
+    .run();
+  }
+
+  _onFailure(RolesBoardFailure failure) {
+    print('+++++ RolesBoardListState +++++: $failure');
+    state = RolesBoardListState.error(
+      failure,
+      failure.stackTrace ?? StackTrace.current,
     );
   }
 }

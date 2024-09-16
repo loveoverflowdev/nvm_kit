@@ -1,19 +1,4 @@
-import 'assignee_response.dart';
-
-// enum AddonResponseType {
-//   rolesBoard('assignee');
-
-//   final String key;
-
-//   const AddonResponseType(this.key);
-
-//   factory AddonResponseType.fromKey(String key) {
-//     return switch (key) {
-//       AddonResponseType.rolesBoard => AddonResponseType.rolesBoard,
-//       _ => throw UnimplementedError(),
-//     };
-//   }
-// }
+import 'roles_board_state_response.dart';
 
 enum AddonFeatureType {
   rolesBoard('WIDGET_BOARD_ROLE');
@@ -39,13 +24,13 @@ abstract class AddonResponse {
   factory AddonResponse.fromJson(Map<String, dynamic> json) {
     switch (AddonFeatureType.fromKey(json['featureType'])) {
       case AddonFeatureType.rolesBoard:
-        return AssigneeResponse.fromJson(json);
+        return RolesBoardStateResponse.fromJson(json);
     }
   }
 
   Map<String, dynamic> toJson() {
     return switch (this) {
-      AssigneeResponse() => (this as AssigneeResponse).toJson(),
+      RolesBoardStateResponse() => (this as RolesBoardStateResponse).toJson(),
       _ => throw UnimplementedError(),
     };
   }

@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'progress.g.dart';
+
+@JsonSerializable()
 class Progress {
   final String id;
   final num progress;
@@ -14,4 +19,7 @@ class Progress {
     required this.color,
     required this.icon,
   });
+
+  factory Progress.fromJson(Map<String, dynamic> json) => _$ProgressFromJson(json);
+  Map<String, dynamic> toJson() => _$ProgressToJson(this);
 }

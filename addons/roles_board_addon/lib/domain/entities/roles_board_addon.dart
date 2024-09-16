@@ -2,6 +2,9 @@ import 'package:addon/addon.dart';
 
 abstract class RolesBoardAddon implements Addon {
   @override
+  int get priority => 1;
+
+  @override
   bool get isVisibleInResourceDetail => true;
 
   @override

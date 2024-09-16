@@ -19,10 +19,13 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
   }) : _resourceState = resourceState;
 
   @override
-  Widget resourceDetailAddonView({required String activeStructureCode, required String resourceId,}) {
-    return SizedBox(
-      height: 200,
-      child: RolesBoardListView());
+  Widget resourceDetailAddonView({
+    required String activeStructureCode, 
+    required String resourceId,
+  }) {
+    return RolesBoardResourceStateView(
+      rolesBoardResourceState: _resourceState,
+    );
   }
 
   @override
@@ -40,7 +43,6 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
     );
   }
 }
-
 
 /*
 "liveFeatures": {

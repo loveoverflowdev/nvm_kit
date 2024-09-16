@@ -24,10 +24,8 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
   @override
   Widget build(BuildContext context) {
     final rolesBoardList = ref.watch(rolesBoardListProvider);
-
     return rolesBoardList.when(
       data: (data) {
-        print('=========== $data');
         return ListView.builder(
           itemCount: data.length,
           itemBuilder: (BuildContext context, int index) {

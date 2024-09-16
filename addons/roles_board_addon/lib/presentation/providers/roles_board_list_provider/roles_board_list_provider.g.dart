@@ -6,7 +6,7 @@ part of 'roles_board_list_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rolesBoardListHash() => r'2877549a585b6504f0631d799e8211f7394708c9';
+String _$rolesBoardListHash() => r'ce34cd21c40021458804ec2b7d4a6f87167916a5';
 
 /// See also [RolesBoardList].
 @ProviderFor(RolesBoardList)

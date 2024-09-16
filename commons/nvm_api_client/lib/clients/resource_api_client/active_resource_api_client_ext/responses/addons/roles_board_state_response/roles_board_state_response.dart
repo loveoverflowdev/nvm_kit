@@ -2,28 +2,30 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../addon_response.dart';
 
-part 'assignee_response.g.dart';
+part 'roles_board_state_response.g.dart';
 
 @JsonSerializable()
-class AssigneeResponse extends AddonResponse {
+class RolesBoardStateResponse extends AddonResponse {
   final String widgetBoardRoleId;
   final double averageProgress;
-  final String finalStatus;
+
+  @JsonKey(fromJson: ProgressStatusResponse.fromJson, toJson: ProgressStatusResponse.toJson)
+  final ProgressStatusResponse finalStatus;
 
   @JsonKey(name: 'widgetRoles')
   final List<RoleStateResponse> roles;
 
-  AssigneeResponse({
+  RolesBoardStateResponse({
     required this.widgetBoardRoleId,
     required this.averageProgress,
     required this.finalStatus,
     required this.roles,
   });
 
-  factory AssigneeResponse.fromJson(Map<String, dynamic> json) =>
-      _$AssigneeResponseFromJson(json);
+  factory RolesBoardStateResponse.fromJson(Map<String, dynamic> json) =>
+      _$RolesBoardStateResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AssigneeResponseToJson(this);
+  Map<String, dynamic> toJson() => _$RolesBoardStateResponseToJson(this);
 
   @override
   AddonFeatureType get type => AddonFeatureType.rolesBoard;
@@ -36,7 +38,9 @@ class RoleStateResponse {
 
   @JsonKey(name: 'assignedBy')
   final String? assignedToUserId;
-  final String status;
+
+  @JsonKey(fromJson: ProgressStatusResponse.fromJson, toJson: ProgressStatusResponse.toJson)
+  final ProgressStatusResponse status;
   final double progress;
 
   RoleStateResponse({
@@ -50,6 +54,33 @@ class RoleStateResponse {
       _$RoleStateResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RoleStateResponseToJson(this);
+}
+
+enum ProgressStatusResponse {
+  notStarted('NOT_STARTED'),
+  inProgress('IN_PROGRESS'),
+  completed('COMPLETED');
+
+  final String raw;
+  const ProgressStatusResponse(this.raw);
+
+  static String toJson(ProgressStatusResponse status) {
+    return status.toString();
+  }
+
+  factory ProgressStatusResponse.fromJson(String raw) {
+    for (final e in ProgressStatusResponse.values) {
+      if (e.raw == raw) {
+        return e;
+      }
+    }
+    throw Exception('Progress status not found: $raw');
+  }
+
+  @override
+  String toString() {
+    return raw;
+  }
 }
 
 /*

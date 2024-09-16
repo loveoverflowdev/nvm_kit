@@ -110,69 +110,64 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
     final borderRadius = BorderRadius.circular(AppSpacing.lg);
     return Consumer(
       builder: (_, WidgetRef ref, __) {
-        return Container(
-          decoration: BoxDecoration(
+        return Material(
+          borderRadius: borderRadius,
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          child: InkWell(
             borderRadius: borderRadius,
-          ),
-          child: Material(
-            borderRadius: borderRadius,
-            color: Theme.of(context).colorScheme.surfaceVariant,
-            child: InkWell(
-              borderRadius: borderRadius,
-              onTap: () {
-                showAppModelBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return CommentsBox(
-                      activeStructureCode: _activeStructureCode,
-                      resourceId: _resourceId,
-                    );
-                  },
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: data.length * commentTileHeight + commentTileHeight + 28,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 28,
-                        child: Text(
-                          'Comments',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
+            onTap: () {
+              showAppModelBottomSheet(
+                context: context,
+                builder: (context) {
+                  return CommentsBox(
+                    activeStructureCode: _activeStructureCode,
+                    resourceId: _resourceId,
+                  );
+                },
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: data.length * commentTileHeight + commentTileHeight + 28,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 28,
+                      child: Text(
+                        'Comments',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                       ),
-                      const Divider(),
-                      for (final comment in data.reversed)
-                        Flexible(
-                          child: SizedBox(
-                            height: commentTileHeight,
-                            child: CommentCell(
-                              authorName: comment.createdByUser.fullName,
-                              content: comment.commentContent,
-                              createdTime: comment.createdTime,
-                              topic: '',
-                            ),
+                    ),
+                    const Divider(),
+                    for (final comment in data.reversed)
+                      Flexible(
+                        child: SizedBox(
+                          height: commentTileHeight,
+                          child: CommentCell(
+                            authorName: comment.createdByUser.fullName,
+                            content: comment.commentContent,
+                            createdTime: comment.createdTime,
+                            topic: '',
                           ),
                         ),
-                      Flexible(
-                        child: CommentPrompt(
-                          activeStructureCode: _activeStructureCode,
-                          resourceId: _resourceId,
-                          providerKey: 'comments_preview',
-                          onCreated: () => _reload(),
-                        ),
                       ),
-                    ],
-                  ),
+                    Flexible(
+                      child: CommentPrompt(
+                        activeStructureCode: _activeStructureCode,
+                        resourceId: _resourceId,
+                        providerKey: 'comments_preview',
+                        onCreated: () => _reload(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
