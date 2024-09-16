@@ -109,7 +109,7 @@ class _RolesBoardResourceStateViewState extends ConsumerState<RolesBoardResource
   "widgetRoles": [
     {
         "widgetRoleId": "664886483190025000",
-        "assignedBy": "0",
+        "assignedTo": "0",
         "status": "NOT_STARTED",
         "progress": 0
     },

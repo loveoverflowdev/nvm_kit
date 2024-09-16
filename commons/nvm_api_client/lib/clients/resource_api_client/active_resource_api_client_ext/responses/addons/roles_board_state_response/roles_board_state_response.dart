@@ -46,7 +46,7 @@ class RoleStateResponse {
   @JsonKey(name: 'widgetRoleId')
   final String id;
 
-  @JsonKey(name: 'assignedBy')
+  @JsonKey(name: 'assignedTo')
   final String? assignedToUserId;
 
   @JsonKey(fromJson: ProgressStatusResponse.fromJson, toJson: ProgressStatusResponse.toJson)
@@ -100,7 +100,7 @@ enum ProgressStatusResponse {
   "widgetRoles": [
       {
           "widgetRoleId": "664886483190025000",
-          "assignedBy": "0",
+          "assignedTo": "0",
           "status": "NOT_STARTED",
           "progress": 0
       },

@@ -93,37 +93,37 @@ abstract class AddonResponse {
       "widgetRoles": [
           {
               "widgetRoleId": "664886483190025000",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           },
           {
               "widgetRoleId": "664886778854901945",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           },
           {
               "widgetRoleId": "664886825533312168",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           },
           {
               "widgetRoleId": "664886861579159215",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           },
           {
               "widgetRoleId": "664886897125885814",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           },
           {
               "widgetRoleId": "664886937521226732",
-              "assignedBy": "0",
+              "assignedTo": "0",
               "status": "NOT_STARTED",
               "progress": 0
           }
