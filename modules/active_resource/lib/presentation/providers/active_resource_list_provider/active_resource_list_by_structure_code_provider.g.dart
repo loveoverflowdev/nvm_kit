@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_list_provider.dart';
+part of 'active_resource_list_by_structure_code_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeResourceListHash() =>
-    r'68da02faaa98c66fdb13a7220a2920caee6d3275';
+String _$activeResourceListByStructureCodeHash() =>
+    r'8f94d97f0c98b4fab6b54af712dd5887adf2a082';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$ActiveResourceList
+abstract class _$ActiveResourceListByStructureCode
     extends BuildlessAutoDisposeNotifier<ActiveResourceListState> {
   late final String activeStructureCode;
 
@@ -39,27 +39,29 @@ abstract class _$ActiveResourceList
   });
 }
 
-/// See also [ActiveResourceList].
-@ProviderFor(ActiveResourceList)
-const activeResourceListProvider = ActiveResourceListFamily();
+/// See also [ActiveResourceListByStructureCode].
+@ProviderFor(ActiveResourceListByStructureCode)
+const activeResourceListByStructureCodeProvider =
+    ActiveResourceListByStructureCodeFamily();
 
-/// See also [ActiveResourceList].
-class ActiveResourceListFamily extends Family<ActiveResourceListState> {
-  /// See also [ActiveResourceList].
-  const ActiveResourceListFamily();
+/// See also [ActiveResourceListByStructureCode].
+class ActiveResourceListByStructureCodeFamily
+    extends Family<ActiveResourceListState> {
+  /// See also [ActiveResourceListByStructureCode].
+  const ActiveResourceListByStructureCodeFamily();
 
-  /// See also [ActiveResourceList].
-  ActiveResourceListProvider call({
+  /// See also [ActiveResourceListByStructureCode].
+  ActiveResourceListByStructureCodeProvider call({
     required String activeStructureCode,
   }) {
-    return ActiveResourceListProvider(
+    return ActiveResourceListByStructureCodeProvider(
       activeStructureCode: activeStructureCode,
     );
   }
 
   @override
-  ActiveResourceListProvider getProviderOverride(
-    covariant ActiveResourceListProvider provider,
+  ActiveResourceListByStructureCodeProvider getProviderOverride(
+    covariant ActiveResourceListByStructureCodeProvider provider,
   ) {
     return call(
       activeStructureCode: provider.activeStructureCode,
@@ -78,30 +80,32 @@ class ActiveResourceListFamily extends Family<ActiveResourceListState> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'activeResourceListProvider';
+  String? get name => r'activeResourceListByStructureCodeProvider';
 }
 
-/// See also [ActiveResourceList].
-class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
-    ActiveResourceList, ActiveResourceListState> {
-  /// See also [ActiveResourceList].
-  ActiveResourceListProvider({
+/// See also [ActiveResourceListByStructureCode].
+class ActiveResourceListByStructureCodeProvider
+    extends AutoDisposeNotifierProviderImpl<ActiveResourceListByStructureCode,
+        ActiveResourceListState> {
+  /// See also [ActiveResourceListByStructureCode].
+  ActiveResourceListByStructureCodeProvider({
     required String activeStructureCode,
   }) : this._internal(
-          () => ActiveResourceList()..activeStructureCode = activeStructureCode,
-          from: activeResourceListProvider,
-          name: r'activeResourceListProvider',
+          () => ActiveResourceListByStructureCode()
+            ..activeStructureCode = activeStructureCode,
+          from: activeResourceListByStructureCodeProvider,
+          name: r'activeResourceListByStructureCodeProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$activeResourceListHash,
-          dependencies: ActiveResourceListFamily._dependencies,
-          allTransitiveDependencies:
-              ActiveResourceListFamily._allTransitiveDependencies,
+                  : _$activeResourceListByStructureCodeHash,
+          dependencies: ActiveResourceListByStructureCodeFamily._dependencies,
+          allTransitiveDependencies: ActiveResourceListByStructureCodeFamily
+              ._allTransitiveDependencies,
           activeStructureCode: activeStructureCode,
         );
 
-  ActiveResourceListProvider._internal(
+  ActiveResourceListByStructureCodeProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -115,7 +119,7 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
 
   @override
   ActiveResourceListState runNotifierBuild(
-    covariant ActiveResourceList notifier,
+    covariant ActiveResourceListByStructureCode notifier,
   ) {
     return notifier.build(
       activeStructureCode: activeStructureCode,
@@ -123,10 +127,10 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(ActiveResourceList Function() create) {
+  Override overrideWith(ActiveResourceListByStructureCode Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ActiveResourceListProvider._internal(
+      override: ActiveResourceListByStructureCodeProvider._internal(
         () => create()..activeStructureCode = activeStructureCode,
         from: from,
         name: null,
@@ -139,14 +143,14 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActiveResourceList,
+  AutoDisposeNotifierProviderElement<ActiveResourceListByStructureCode,
       ActiveResourceListState> createElement() {
-    return _ActiveResourceListProviderElement(this);
+    return _ActiveResourceListByStructureCodeProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ActiveResourceListProvider &&
+    return other is ActiveResourceListByStructureCodeProvider &&
         other.activeStructureCode == activeStructureCode;
   }
 
@@ -159,20 +163,21 @@ class ActiveResourceListProvider extends AutoDisposeNotifierProviderImpl<
   }
 }
 
-mixin ActiveResourceListRef
+mixin ActiveResourceListByStructureCodeRef
     on AutoDisposeNotifierProviderRef<ActiveResourceListState> {
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
 }
 
-class _ActiveResourceListProviderElement
-    extends AutoDisposeNotifierProviderElement<ActiveResourceList,
-        ActiveResourceListState> with ActiveResourceListRef {
-  _ActiveResourceListProviderElement(super.provider);
+class _ActiveResourceListByStructureCodeProviderElement
+    extends AutoDisposeNotifierProviderElement<
+        ActiveResourceListByStructureCode,
+        ActiveResourceListState> with ActiveResourceListByStructureCodeRef {
+  _ActiveResourceListByStructureCodeProviderElement(super.provider);
 
   @override
   String get activeStructureCode =>
-      (origin as ActiveResourceListProvider).activeStructureCode;
+      (origin as ActiveResourceListByStructureCodeProvider).activeStructureCode;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -2,7 +2,7 @@ import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
     show
-        ActiveField,
+        ActiveFieldStructure,
         ActiveFieldDataType,
         ActiveStructure,
         ActiveStructureFailure,
@@ -74,7 +74,7 @@ final class RemoteActiveStructureRepository
           .toList(),
       fields: response.fields
           .map(
-            (e) => ActiveField(
+            (e) => ActiveFieldStructure(
               id: e.id,
               key: e.key,
               type: ActiveFieldDataType.fromString(e.type),

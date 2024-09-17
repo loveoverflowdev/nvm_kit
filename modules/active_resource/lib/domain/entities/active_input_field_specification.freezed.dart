@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'active_input_field.dart';
+part of 'active_input_field_specification.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -27,22 +27,22 @@ mixin _$ActiveInputFieldDataType {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,19 +57,20 @@ mixin _$ActiveInputFieldDataType {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) =>
       throw _privateConstructorUsedError;
@@ -84,19 +85,19 @@ mixin _$ActiveInputFieldDataType {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) =>
@@ -112,16 +113,16 @@ mixin _$ActiveInputFieldDataType {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) =>
       throw _privateConstructorUsedError;
@@ -136,14 +137,16 @@ mixin _$ActiveInputFieldDataType {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) =>
       throw _privateConstructorUsedError;
@@ -158,13 +161,16 @@ mixin _$ActiveInputFieldDataType {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) =>
@@ -243,22 +249,22 @@ class _$ShortTextImpl extends _ShortText {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return shortText();
@@ -276,19 +282,20 @@ class _$ShortTextImpl extends _ShortText {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return shortText?.call();
@@ -306,19 +313,19 @@ class _$ShortTextImpl extends _ShortText {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -340,16 +347,16 @@ class _$ShortTextImpl extends _ShortText {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return shortText(this);
@@ -367,14 +374,16 @@ class _$ShortTextImpl extends _ShortText {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return shortText?.call(this);
@@ -392,13 +401,16 @@ class _$ShortTextImpl extends _ShortText {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -464,22 +476,22 @@ class _$ParagraphImpl extends _Paragraph {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return paragraph();
@@ -497,19 +509,20 @@ class _$ParagraphImpl extends _Paragraph {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return paragraph?.call();
@@ -527,19 +540,19 @@ class _$ParagraphImpl extends _Paragraph {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -561,16 +574,16 @@ class _$ParagraphImpl extends _Paragraph {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return paragraph(this);
@@ -588,14 +601,16 @@ class _$ParagraphImpl extends _Paragraph {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return paragraph?.call(this);
@@ -613,13 +628,16 @@ class _$ParagraphImpl extends _Paragraph {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -684,22 +702,22 @@ class _$DateImpl extends _Date {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return date();
@@ -717,19 +735,20 @@ class _$DateImpl extends _Date {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return date?.call();
@@ -747,19 +766,19 @@ class _$DateImpl extends _Date {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -781,16 +800,16 @@ class _$DateImpl extends _Date {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return date(this);
@@ -808,14 +827,16 @@ class _$DateImpl extends _Date {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return date?.call(this);
@@ -833,13 +854,16 @@ class _$DateImpl extends _Date {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -905,22 +929,22 @@ class _$DateTimeImpl extends _DateTime {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return dateTime();
@@ -938,19 +962,20 @@ class _$DateTimeImpl extends _DateTime {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return dateTime?.call();
@@ -968,19 +993,19 @@ class _$DateTimeImpl extends _DateTime {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -1002,16 +1027,16 @@ class _$DateTimeImpl extends _DateTime {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return dateTime(this);
@@ -1029,14 +1054,16 @@ class _$DateTimeImpl extends _DateTime {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return dateTime?.call(this);
@@ -1054,13 +1081,16 @@ class _$DateTimeImpl extends _DateTime {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -1126,22 +1156,22 @@ class _$IntegerImpl extends _Integer {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return integer();
@@ -1159,19 +1189,20 @@ class _$IntegerImpl extends _Integer {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return integer?.call();
@@ -1189,19 +1220,19 @@ class _$IntegerImpl extends _Integer {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -1223,16 +1254,16 @@ class _$IntegerImpl extends _Integer {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return integer(this);
@@ -1250,14 +1281,16 @@ class _$IntegerImpl extends _Integer {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return integer?.call(this);
@@ -1275,13 +1308,16 @@ class _$IntegerImpl extends _Integer {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -1347,22 +1383,22 @@ class _$NumericImpl extends _Numeric {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return numeric();
@@ -1380,19 +1416,20 @@ class _$NumericImpl extends _Numeric {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return numeric?.call();
@@ -1410,19 +1447,19 @@ class _$NumericImpl extends _Numeric {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -1444,16 +1481,16 @@ class _$NumericImpl extends _Numeric {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return numeric(this);
@@ -1471,14 +1508,16 @@ class _$NumericImpl extends _Numeric {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return numeric?.call(this);
@@ -1496,13 +1535,16 @@ class _$NumericImpl extends _Numeric {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -1568,22 +1610,22 @@ class _$EmailImpl extends _Email {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return email();
@@ -1601,19 +1643,20 @@ class _$EmailImpl extends _Email {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return email?.call();
@@ -1631,19 +1674,19 @@ class _$EmailImpl extends _Email {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -1665,16 +1708,16 @@ class _$EmailImpl extends _Email {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return email(this);
@@ -1692,14 +1735,16 @@ class _$EmailImpl extends _Email {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return email?.call(this);
@@ -1717,13 +1762,16 @@ class _$EmailImpl extends _Email {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -1787,22 +1835,22 @@ class _$UrlImpl extends _Url {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return url();
@@ -1820,19 +1868,20 @@ class _$UrlImpl extends _Url {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return url?.call();
@@ -1850,19 +1899,19 @@ class _$UrlImpl extends _Url {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -1884,16 +1933,16 @@ class _$UrlImpl extends _Url {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return url(this);
@@ -1911,14 +1960,16 @@ class _$UrlImpl extends _Url {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return url?.call(this);
@@ -1936,13 +1987,16 @@ class _$UrlImpl extends _Url {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -2008,22 +2062,22 @@ class _$TextListImpl extends _TextList {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return textList();
@@ -2041,19 +2095,20 @@ class _$TextListImpl extends _TextList {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return textList?.call();
@@ -2071,19 +2126,19 @@ class _$TextListImpl extends _TextList {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -2105,16 +2160,16 @@ class _$TextListImpl extends _TextList {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return textList(this);
@@ -2132,14 +2187,16 @@ class _$TextListImpl extends _TextList {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return textList?.call(this);
@@ -2157,13 +2214,16 @@ class _$TextListImpl extends _TextList {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
@@ -2180,18 +2240,18 @@ abstract class _TextList extends ActiveInputFieldDataType {
 }
 
 /// @nodoc
-abstract class _$$CheckboxOneImplCopyWith<$Res> {
-  factory _$$CheckboxOneImplCopyWith(
-          _$CheckboxOneImpl value, $Res Function(_$CheckboxOneImpl) then) =
-      __$$CheckboxOneImplCopyWithImpl<$Res>;
+abstract class _$$BinaryCheckboxImplCopyWith<$Res> {
+  factory _$$BinaryCheckboxImplCopyWith(_$BinaryCheckboxImpl value,
+          $Res Function(_$BinaryCheckboxImpl) then) =
+      __$$BinaryCheckboxImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CheckboxOneImplCopyWithImpl<$Res>
-    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res, _$CheckboxOneImpl>
-    implements _$$CheckboxOneImplCopyWith<$Res> {
-  __$$CheckboxOneImplCopyWithImpl(
-      _$CheckboxOneImpl _value, $Res Function(_$CheckboxOneImpl) _then)
+class __$$BinaryCheckboxImplCopyWithImpl<$Res>
+    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res, _$BinaryCheckboxImpl>
+    implements _$$BinaryCheckboxImplCopyWith<$Res> {
+  __$$BinaryCheckboxImplCopyWithImpl(
+      _$BinaryCheckboxImpl _value, $Res Function(_$BinaryCheckboxImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldDataType
@@ -2200,18 +2260,18 @@ class __$$CheckboxOneImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CheckboxOneImpl extends _CheckboxOne {
-  _$CheckboxOneImpl() : super._();
+class _$BinaryCheckboxImpl extends _BinaryCheckbox {
+  _$BinaryCheckboxImpl() : super._();
 
   @override
   String toString() {
-    return 'ActiveInputFieldDataType.checkboxOne()';
+    return 'ActiveInputFieldDataType.binaryCheckbox()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CheckboxOneImpl);
+        (other.runtimeType == runtimeType && other is _$BinaryCheckboxImpl);
   }
 
   @override
@@ -2229,25 +2289,25 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
-    return checkboxOne();
+    return binaryCheckbox();
   }
 
   @override
@@ -2262,22 +2322,23 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
-    return checkboxOne?.call();
+    return binaryCheckbox?.call();
   }
 
   @override
@@ -2292,24 +2353,24 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxOne != null) {
-      return checkboxOne();
+    if (binaryCheckbox != null) {
+      return binaryCheckbox();
     }
     return orElse();
   }
@@ -2326,19 +2387,19 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
-    return checkboxOne(this);
+    return binaryCheckbox(this);
   }
 
   @override
@@ -2353,17 +2414,19 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
-    return checkboxOne?.call(this);
+    return binaryCheckbox?.call(this);
   }
 
   @override
@@ -2378,46 +2441,49 @@ class _$CheckboxOneImpl extends _CheckboxOne {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxOne != null) {
-      return checkboxOne(this);
+    if (binaryCheckbox != null) {
+      return binaryCheckbox(this);
     }
     return orElse();
   }
 }
 
-abstract class _CheckboxOne extends ActiveInputFieldDataType {
-  factory _CheckboxOne() = _$CheckboxOneImpl;
-  _CheckboxOne._() : super._();
+abstract class _BinaryCheckbox extends ActiveInputFieldDataType {
+  factory _BinaryCheckbox() = _$BinaryCheckboxImpl;
+  _BinaryCheckbox._() : super._();
 }
 
 /// @nodoc
-abstract class _$$CheckboxListLiveResourceImplCopyWith<$Res> {
-  factory _$$CheckboxListLiveResourceImplCopyWith(
-          _$CheckboxListLiveResourceImpl value,
-          $Res Function(_$CheckboxListLiveResourceImpl) then) =
-      __$$CheckboxListLiveResourceImplCopyWithImpl<$Res>;
+abstract class _$$MultiActiveResourceCheckboxImplCopyWith<$Res> {
+  factory _$$MultiActiveResourceCheckboxImplCopyWith(
+          _$MultiActiveResourceCheckboxImpl value,
+          $Res Function(_$MultiActiveResourceCheckboxImpl) then) =
+      __$$MultiActiveResourceCheckboxImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String activeStructureCode, String titleKey, String? subtitleKey});
 }
 
 /// @nodoc
-class __$$CheckboxListLiveResourceImplCopyWithImpl<$Res>
+class __$$MultiActiveResourceCheckboxImplCopyWithImpl<$Res>
     extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
-        _$CheckboxListLiveResourceImpl>
-    implements _$$CheckboxListLiveResourceImplCopyWith<$Res> {
-  __$$CheckboxListLiveResourceImplCopyWithImpl(
-      _$CheckboxListLiveResourceImpl _value,
-      $Res Function(_$CheckboxListLiveResourceImpl) _then)
+        _$MultiActiveResourceCheckboxImpl>
+    implements _$$MultiActiveResourceCheckboxImplCopyWith<$Res> {
+  __$$MultiActiveResourceCheckboxImplCopyWithImpl(
+      _$MultiActiveResourceCheckboxImpl _value,
+      $Res Function(_$MultiActiveResourceCheckboxImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldDataType
@@ -2429,7 +2495,7 @@ class __$$CheckboxListLiveResourceImplCopyWithImpl<$Res>
     Object? titleKey = null,
     Object? subtitleKey = freezed,
   }) {
-    return _then(_$CheckboxListLiveResourceImpl(
+    return _then(_$MultiActiveResourceCheckboxImpl(
       activeStructureCode: null == activeStructureCode
           ? _value.activeStructureCode
           : activeStructureCode // ignore: cast_nullable_to_non_nullable
@@ -2448,8 +2514,8 @@ class __$$CheckboxListLiveResourceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
-  _$CheckboxListLiveResourceImpl(
+class _$MultiActiveResourceCheckboxImpl extends _MultiActiveResourceCheckbox {
+  _$MultiActiveResourceCheckboxImpl(
       {required this.activeStructureCode,
       required this.titleKey,
       this.subtitleKey})
@@ -2464,14 +2530,14 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
 
   @override
   String toString() {
-    return 'ActiveInputFieldDataType.checkboxListLiveResource(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldDataType.multiActiveResourceCheckbox(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckboxListLiveResourceImpl &&
+            other is _$MultiActiveResourceCheckboxImpl &&
             (identical(other.activeStructureCode, activeStructureCode) ||
                 other.activeStructureCode == activeStructureCode) &&
             (identical(other.titleKey, titleKey) ||
@@ -2489,9 +2555,9 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CheckboxListLiveResourceImplCopyWith<_$CheckboxListLiveResourceImpl>
-      get copyWith => __$$CheckboxListLiveResourceImplCopyWithImpl<
-          _$CheckboxListLiveResourceImpl>(this, _$identity);
+  _$$MultiActiveResourceCheckboxImplCopyWith<_$MultiActiveResourceCheckboxImpl>
+      get copyWith => __$$MultiActiveResourceCheckboxImplCopyWithImpl<
+          _$MultiActiveResourceCheckboxImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2505,25 +2571,26 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
-    return checkboxListLiveResource(activeStructureCode, titleKey, subtitleKey);
+    return multiActiveResourceCheckbox(
+        activeStructureCode, titleKey, subtitleKey);
   }
 
   @override
@@ -2538,22 +2605,23 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
-    return checkboxListLiveResource?.call(
+    return multiActiveResourceCheckbox?.call(
         activeStructureCode, titleKey, subtitleKey);
   }
 
@@ -2569,24 +2637,24 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxListLiveResource != null) {
-      return checkboxListLiveResource(
+    if (multiActiveResourceCheckbox != null) {
+      return multiActiveResourceCheckbox(
           activeStructureCode, titleKey, subtitleKey);
     }
     return orElse();
@@ -2604,19 +2672,19 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
-    return checkboxListLiveResource(this);
+    return multiActiveResourceCheckbox(this);
   }
 
   @override
@@ -2631,17 +2699,19 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
-    return checkboxListLiveResource?.call(this);
+    return multiActiveResourceCheckbox?.call(this);
   }
 
   @override
@@ -2656,29 +2726,32 @@ class _$CheckboxListLiveResourceImpl extends _CheckboxListLiveResource {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxListLiveResource != null) {
-      return checkboxListLiveResource(this);
+    if (multiActiveResourceCheckbox != null) {
+      return multiActiveResourceCheckbox(this);
     }
     return orElse();
   }
 }
 
-abstract class _CheckboxListLiveResource extends ActiveInputFieldDataType {
-  factory _CheckboxListLiveResource(
+abstract class _MultiActiveResourceCheckbox extends ActiveInputFieldDataType {
+  factory _MultiActiveResourceCheckbox(
       {required final String activeStructureCode,
       required final String titleKey,
-      final String? subtitleKey}) = _$CheckboxListLiveResourceImpl;
-  _CheckboxListLiveResource._() : super._();
+      final String? subtitleKey}) = _$MultiActiveResourceCheckboxImpl;
+  _MultiActiveResourceCheckbox._() : super._();
 
   String get activeStructureCode;
   String get titleKey;
@@ -2687,27 +2760,28 @@ abstract class _CheckboxListLiveResource extends ActiveInputFieldDataType {
   /// Create a copy of ActiveInputFieldDataType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CheckboxListLiveResourceImplCopyWith<_$CheckboxListLiveResourceImpl>
+  _$$MultiActiveResourceCheckboxImplCopyWith<_$MultiActiveResourceCheckboxImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectOneLiveResourceImplCopyWith<$Res> {
-  factory _$$SelectOneLiveResourceImplCopyWith(
-          _$SelectOneLiveResourceImpl value,
-          $Res Function(_$SelectOneLiveResourceImpl) then) =
-      __$$SelectOneLiveResourceImplCopyWithImpl<$Res>;
+abstract class _$$SingleActiveResourceSelectionImplCopyWith<$Res> {
+  factory _$$SingleActiveResourceSelectionImplCopyWith(
+          _$SingleActiveResourceSelectionImpl value,
+          $Res Function(_$SingleActiveResourceSelectionImpl) then) =
+      __$$SingleActiveResourceSelectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String activeStructureCode, String titleKey, String? subtitleKey});
 }
 
 /// @nodoc
-class __$$SelectOneLiveResourceImplCopyWithImpl<$Res>
+class __$$SingleActiveResourceSelectionImplCopyWithImpl<$Res>
     extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
-        _$SelectOneLiveResourceImpl>
-    implements _$$SelectOneLiveResourceImplCopyWith<$Res> {
-  __$$SelectOneLiveResourceImplCopyWithImpl(_$SelectOneLiveResourceImpl _value,
-      $Res Function(_$SelectOneLiveResourceImpl) _then)
+        _$SingleActiveResourceSelectionImpl>
+    implements _$$SingleActiveResourceSelectionImplCopyWith<$Res> {
+  __$$SingleActiveResourceSelectionImplCopyWithImpl(
+      _$SingleActiveResourceSelectionImpl _value,
+      $Res Function(_$SingleActiveResourceSelectionImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldDataType
@@ -2719,7 +2793,7 @@ class __$$SelectOneLiveResourceImplCopyWithImpl<$Res>
     Object? titleKey = null,
     Object? subtitleKey = freezed,
   }) {
-    return _then(_$SelectOneLiveResourceImpl(
+    return _then(_$SingleActiveResourceSelectionImpl(
       activeStructureCode: null == activeStructureCode
           ? _value.activeStructureCode
           : activeStructureCode // ignore: cast_nullable_to_non_nullable
@@ -2738,8 +2812,9 @@ class __$$SelectOneLiveResourceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
-  _$SelectOneLiveResourceImpl(
+class _$SingleActiveResourceSelectionImpl
+    extends _SingleActiveResourceSelection {
+  _$SingleActiveResourceSelectionImpl(
       {required this.activeStructureCode,
       required this.titleKey,
       this.subtitleKey})
@@ -2754,14 +2829,14 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
 
   @override
   String toString() {
-    return 'ActiveInputFieldDataType.selectOneLiveResource(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldDataType.singleActiveResourceSelection(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectOneLiveResourceImpl &&
+            other is _$SingleActiveResourceSelectionImpl &&
             (identical(other.activeStructureCode, activeStructureCode) ||
                 other.activeStructureCode == activeStructureCode) &&
             (identical(other.titleKey, titleKey) ||
@@ -2779,9 +2854,10 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectOneLiveResourceImplCopyWith<_$SelectOneLiveResourceImpl>
-      get copyWith => __$$SelectOneLiveResourceImplCopyWithImpl<
-          _$SelectOneLiveResourceImpl>(this, _$identity);
+  _$$SingleActiveResourceSelectionImplCopyWith<
+          _$SingleActiveResourceSelectionImpl>
+      get copyWith => __$$SingleActiveResourceSelectionImplCopyWithImpl<
+          _$SingleActiveResourceSelectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2795,25 +2871,26 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
-    return selectOneLiveResource(activeStructureCode, titleKey, subtitleKey);
+    return singleActiveResourceSelection(
+        activeStructureCode, titleKey, subtitleKey);
   }
 
   @override
@@ -2828,22 +2905,23 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
-    return selectOneLiveResource?.call(
+    return singleActiveResourceSelection?.call(
         activeStructureCode, titleKey, subtitleKey);
   }
 
@@ -2859,24 +2937,25 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
-    if (selectOneLiveResource != null) {
-      return selectOneLiveResource(activeStructureCode, titleKey, subtitleKey);
+    if (singleActiveResourceSelection != null) {
+      return singleActiveResourceSelection(
+          activeStructureCode, titleKey, subtitleKey);
     }
     return orElse();
   }
@@ -2893,19 +2972,19 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
-    return selectOneLiveResource(this);
+    return singleActiveResourceSelection(this);
   }
 
   @override
@@ -2920,17 +2999,19 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
-    return selectOneLiveResource?.call(this);
+    return singleActiveResourceSelection?.call(this);
   }
 
   @override
@@ -2945,29 +3026,32 @@ class _$SelectOneLiveResourceImpl extends _SelectOneLiveResource {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
-    if (selectOneLiveResource != null) {
-      return selectOneLiveResource(this);
+    if (singleActiveResourceSelection != null) {
+      return singleActiveResourceSelection(this);
     }
     return orElse();
   }
 }
 
-abstract class _SelectOneLiveResource extends ActiveInputFieldDataType {
-  factory _SelectOneLiveResource(
+abstract class _SingleActiveResourceSelection extends ActiveInputFieldDataType {
+  factory _SingleActiveResourceSelection(
       {required final String activeStructureCode,
       required final String titleKey,
-      final String? subtitleKey}) = _$SelectOneLiveResourceImpl;
-  _SelectOneLiveResource._() : super._();
+      final String? subtitleKey}) = _$SingleActiveResourceSelectionImpl;
+  _SingleActiveResourceSelection._() : super._();
 
   String get activeStructureCode;
   String get titleKey;
@@ -2976,28 +3060,29 @@ abstract class _SelectOneLiveResource extends ActiveInputFieldDataType {
   /// Create a copy of ActiveInputFieldDataType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectOneLiveResourceImplCopyWith<_$SelectOneLiveResourceImpl>
+  _$$SingleActiveResourceSelectionImplCopyWith<
+          _$SingleActiveResourceSelectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectListLiveResourceImplCopyWith<$Res> {
-  factory _$$SelectListLiveResourceImplCopyWith(
-          _$SelectListLiveResourceImpl value,
-          $Res Function(_$SelectListLiveResourceImpl) then) =
-      __$$SelectListLiveResourceImplCopyWithImpl<$Res>;
+abstract class _$$MultiActiveResourceSelectionImplCopyWith<$Res> {
+  factory _$$MultiActiveResourceSelectionImplCopyWith(
+          _$MultiActiveResourceSelectionImpl value,
+          $Res Function(_$MultiActiveResourceSelectionImpl) then) =
+      __$$MultiActiveResourceSelectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String activeStructureCode, String titleKey, String? subtitleKey});
 }
 
 /// @nodoc
-class __$$SelectListLiveResourceImplCopyWithImpl<$Res>
+class __$$MultiActiveResourceSelectionImplCopyWithImpl<$Res>
     extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
-        _$SelectListLiveResourceImpl>
-    implements _$$SelectListLiveResourceImplCopyWith<$Res> {
-  __$$SelectListLiveResourceImplCopyWithImpl(
-      _$SelectListLiveResourceImpl _value,
-      $Res Function(_$SelectListLiveResourceImpl) _then)
+        _$MultiActiveResourceSelectionImpl>
+    implements _$$MultiActiveResourceSelectionImplCopyWith<$Res> {
+  __$$MultiActiveResourceSelectionImplCopyWithImpl(
+      _$MultiActiveResourceSelectionImpl _value,
+      $Res Function(_$MultiActiveResourceSelectionImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldDataType
@@ -3009,7 +3094,7 @@ class __$$SelectListLiveResourceImplCopyWithImpl<$Res>
     Object? titleKey = null,
     Object? subtitleKey = freezed,
   }) {
-    return _then(_$SelectListLiveResourceImpl(
+    return _then(_$MultiActiveResourceSelectionImpl(
       activeStructureCode: null == activeStructureCode
           ? _value.activeStructureCode
           : activeStructureCode // ignore: cast_nullable_to_non_nullable
@@ -3028,8 +3113,8 @@ class __$$SelectListLiveResourceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
-  _$SelectListLiveResourceImpl(
+class _$MultiActiveResourceSelectionImpl extends _MultiActiveResourceSelection {
+  _$MultiActiveResourceSelectionImpl(
       {required this.activeStructureCode,
       required this.titleKey,
       this.subtitleKey})
@@ -3044,14 +3129,14 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
 
   @override
   String toString() {
-    return 'ActiveInputFieldDataType.selectListLiveResource(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldDataType.multiActiveResourceSelection(activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectListLiveResourceImpl &&
+            other is _$MultiActiveResourceSelectionImpl &&
             (identical(other.activeStructureCode, activeStructureCode) ||
                 other.activeStructureCode == activeStructureCode) &&
             (identical(other.titleKey, titleKey) ||
@@ -3069,9 +3154,10 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectListLiveResourceImplCopyWith<_$SelectListLiveResourceImpl>
-      get copyWith => __$$SelectListLiveResourceImplCopyWithImpl<
-          _$SelectListLiveResourceImpl>(this, _$identity);
+  _$$MultiActiveResourceSelectionImplCopyWith<
+          _$MultiActiveResourceSelectionImpl>
+      get copyWith => __$$MultiActiveResourceSelectionImplCopyWithImpl<
+          _$MultiActiveResourceSelectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3085,25 +3171,26 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
-    return selectListLiveResource(activeStructureCode, titleKey, subtitleKey);
+    return multiActiveResourceSelection(
+        activeStructureCode, titleKey, subtitleKey);
   }
 
   @override
@@ -3118,22 +3205,23 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
-    return selectListLiveResource?.call(
+    return multiActiveResourceSelection?.call(
         activeStructureCode, titleKey, subtitleKey);
   }
 
@@ -3149,24 +3237,25 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
-    if (selectListLiveResource != null) {
-      return selectListLiveResource(activeStructureCode, titleKey, subtitleKey);
+    if (multiActiveResourceSelection != null) {
+      return multiActiveResourceSelection(
+          activeStructureCode, titleKey, subtitleKey);
     }
     return orElse();
   }
@@ -3183,19 +3272,19 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
-    return selectListLiveResource(this);
+    return multiActiveResourceSelection(this);
   }
 
   @override
@@ -3210,17 +3299,19 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
-    return selectListLiveResource?.call(this);
+    return multiActiveResourceSelection?.call(this);
   }
 
   @override
@@ -3235,29 +3326,32 @@ class _$SelectListLiveResourceImpl extends _SelectListLiveResource {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
-    if (selectListLiveResource != null) {
-      return selectListLiveResource(this);
+    if (multiActiveResourceSelection != null) {
+      return multiActiveResourceSelection(this);
     }
     return orElse();
   }
 }
 
-abstract class _SelectListLiveResource extends ActiveInputFieldDataType {
-  factory _SelectListLiveResource(
+abstract class _MultiActiveResourceSelection extends ActiveInputFieldDataType {
+  factory _MultiActiveResourceSelection(
       {required final String activeStructureCode,
       required final String titleKey,
-      final String? subtitleKey}) = _$SelectListLiveResourceImpl;
-  _SelectListLiveResource._() : super._();
+      final String? subtitleKey}) = _$MultiActiveResourceSelectionImpl;
+  _MultiActiveResourceSelection._() : super._();
 
   String get activeStructureCode;
   String get titleKey;
@@ -3266,25 +3360,27 @@ abstract class _SelectListLiveResource extends ActiveInputFieldDataType {
   /// Create a copy of ActiveInputFieldDataType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectListLiveResourceImplCopyWith<_$SelectListLiveResourceImpl>
+  _$$MultiActiveResourceSelectionImplCopyWith<
+          _$MultiActiveResourceSelectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectOneUserImplCopyWith<$Res> {
-  factory _$$SelectOneUserImplCopyWith(
-          _$SelectOneUserImpl value, $Res Function(_$SelectOneUserImpl) then) =
-      __$$SelectOneUserImplCopyWithImpl<$Res>;
+abstract class _$$SingleUserSelectionImplCopyWith<$Res> {
+  factory _$$SingleUserSelectionImplCopyWith(_$SingleUserSelectionImpl value,
+          $Res Function(_$SingleUserSelectionImpl) then) =
+      __$$SingleUserSelectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String titleKey, String? subtitleKey});
 }
 
 /// @nodoc
-class __$$SelectOneUserImplCopyWithImpl<$Res>
-    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res, _$SelectOneUserImpl>
-    implements _$$SelectOneUserImplCopyWith<$Res> {
-  __$$SelectOneUserImplCopyWithImpl(
-      _$SelectOneUserImpl _value, $Res Function(_$SelectOneUserImpl) _then)
+class __$$SingleUserSelectionImplCopyWithImpl<$Res>
+    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
+        _$SingleUserSelectionImpl>
+    implements _$$SingleUserSelectionImplCopyWith<$Res> {
+  __$$SingleUserSelectionImplCopyWithImpl(_$SingleUserSelectionImpl _value,
+      $Res Function(_$SingleUserSelectionImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldDataType
@@ -3295,7 +3391,7 @@ class __$$SelectOneUserImplCopyWithImpl<$Res>
     Object? titleKey = null,
     Object? subtitleKey = freezed,
   }) {
-    return _then(_$SelectOneUserImpl(
+    return _then(_$SingleUserSelectionImpl(
       titleKey: null == titleKey
           ? _value.titleKey
           : titleKey // ignore: cast_nullable_to_non_nullable
@@ -3310,547 +3406,8 @@ class __$$SelectOneUserImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectOneUserImpl extends _SelectOneUser {
-  _$SelectOneUserImpl({required this.titleKey, this.subtitleKey}) : super._();
-
-  @override
-  final String titleKey;
-  @override
-  final String? subtitleKey;
-
-  @override
-  String toString() {
-    return 'ActiveInputFieldDataType.selectOneUser(titleKey: $titleKey, subtitleKey: $subtitleKey)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectOneUserImpl &&
-            (identical(other.titleKey, titleKey) ||
-                other.titleKey == titleKey) &&
-            (identical(other.subtitleKey, subtitleKey) ||
-                other.subtitleKey == subtitleKey));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, titleKey, subtitleKey);
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectOneUserImplCopyWith<_$SelectOneUserImpl> get copyWith =>
-      __$$SelectOneUserImplCopyWithImpl<_$SelectOneUserImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() shortText,
-    required TResult Function() paragraph,
-    required TResult Function() date,
-    required TResult Function() dateTime,
-    required TResult Function() integer,
-    required TResult Function() numeric,
-    required TResult Function() email,
-    required TResult Function() url,
-    required TResult Function() textList,
-    required TResult Function() checkboxOne,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
-    required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
-    required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
-    required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
-    required TResult Function() unsupported,
-  }) {
-    return selectOneUser(titleKey, subtitleKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shortText,
-    TResult? Function()? paragraph,
-    TResult? Function()? date,
-    TResult? Function()? dateTime,
-    TResult? Function()? integer,
-    TResult? Function()? numeric,
-    TResult? Function()? email,
-    TResult? Function()? url,
-    TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
-    TResult? Function()? unsupported,
-  }) {
-    return selectOneUser?.call(titleKey, subtitleKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shortText,
-    TResult Function()? paragraph,
-    TResult Function()? date,
-    TResult Function()? dateTime,
-    TResult Function()? integer,
-    TResult Function()? numeric,
-    TResult Function()? email,
-    TResult Function()? url,
-    TResult Function()? textList,
-    TResult Function()? checkboxOne,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
-    TResult Function()? unsupported,
-    required TResult orElse(),
-  }) {
-    if (selectOneUser != null) {
-      return selectOneUser(titleKey, subtitleKey);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShortText value) shortText,
-    required TResult Function(_Paragraph value) paragraph,
-    required TResult Function(_Date value) date,
-    required TResult Function(_DateTime value) dateTime,
-    required TResult Function(_Integer value) integer,
-    required TResult Function(_Numeric value) numeric,
-    required TResult Function(_Email value) email,
-    required TResult Function(_Url value) url,
-    required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
-    required TResult Function(_Unsupported value) unsupported,
-  }) {
-    return selectOneUser(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShortText value)? shortText,
-    TResult? Function(_Paragraph value)? paragraph,
-    TResult? Function(_Date value)? date,
-    TResult? Function(_DateTime value)? dateTime,
-    TResult? Function(_Integer value)? integer,
-    TResult? Function(_Numeric value)? numeric,
-    TResult? Function(_Email value)? email,
-    TResult? Function(_Url value)? url,
-    TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
-    TResult? Function(_Unsupported value)? unsupported,
-  }) {
-    return selectOneUser?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShortText value)? shortText,
-    TResult Function(_Paragraph value)? paragraph,
-    TResult Function(_Date value)? date,
-    TResult Function(_DateTime value)? dateTime,
-    TResult Function(_Integer value)? integer,
-    TResult Function(_Numeric value)? numeric,
-    TResult Function(_Email value)? email,
-    TResult Function(_Url value)? url,
-    TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
-    TResult Function(_Unsupported value)? unsupported,
-    required TResult orElse(),
-  }) {
-    if (selectOneUser != null) {
-      return selectOneUser(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectOneUser extends ActiveInputFieldDataType {
-  factory _SelectOneUser(
-      {required final String titleKey,
-      final String? subtitleKey}) = _$SelectOneUserImpl;
-  _SelectOneUser._() : super._();
-
-  String get titleKey;
-  String? get subtitleKey;
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectOneUserImplCopyWith<_$SelectOneUserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SelectUserListImplCopyWith<$Res> {
-  factory _$$SelectUserListImplCopyWith(_$SelectUserListImpl value,
-          $Res Function(_$SelectUserListImpl) then) =
-      __$$SelectUserListImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String titleKey, String? subtitleKey});
-}
-
-/// @nodoc
-class __$$SelectUserListImplCopyWithImpl<$Res>
-    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res, _$SelectUserListImpl>
-    implements _$$SelectUserListImplCopyWith<$Res> {
-  __$$SelectUserListImplCopyWithImpl(
-      _$SelectUserListImpl _value, $Res Function(_$SelectUserListImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? titleKey = null,
-    Object? subtitleKey = freezed,
-  }) {
-    return _then(_$SelectUserListImpl(
-      titleKey: null == titleKey
-          ? _value.titleKey
-          : titleKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitleKey: freezed == subtitleKey
-          ? _value.subtitleKey
-          : subtitleKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SelectUserListImpl extends _SelectUserList {
-  _$SelectUserListImpl({required this.titleKey, this.subtitleKey}) : super._();
-
-  @override
-  final String titleKey;
-  @override
-  final String? subtitleKey;
-
-  @override
-  String toString() {
-    return 'ActiveInputFieldDataType.selectUserList(titleKey: $titleKey, subtitleKey: $subtitleKey)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectUserListImpl &&
-            (identical(other.titleKey, titleKey) ||
-                other.titleKey == titleKey) &&
-            (identical(other.subtitleKey, subtitleKey) ||
-                other.subtitleKey == subtitleKey));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, titleKey, subtitleKey);
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectUserListImplCopyWith<_$SelectUserListImpl> get copyWith =>
-      __$$SelectUserListImplCopyWithImpl<_$SelectUserListImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() shortText,
-    required TResult Function() paragraph,
-    required TResult Function() date,
-    required TResult Function() dateTime,
-    required TResult Function() integer,
-    required TResult Function() numeric,
-    required TResult Function() email,
-    required TResult Function() url,
-    required TResult Function() textList,
-    required TResult Function() checkboxOne,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
-    required TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
-    required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
-    required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
-    required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
-    required TResult Function() unsupported,
-  }) {
-    return selectUserList(titleKey, subtitleKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? shortText,
-    TResult? Function()? paragraph,
-    TResult? Function()? date,
-    TResult? Function()? dateTime,
-    TResult? Function()? integer,
-    TResult? Function()? numeric,
-    TResult? Function()? email,
-    TResult? Function()? url,
-    TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
-    TResult? Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
-    TResult? Function()? unsupported,
-  }) {
-    return selectUserList?.call(titleKey, subtitleKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? shortText,
-    TResult Function()? paragraph,
-    TResult Function()? date,
-    TResult Function()? dateTime,
-    TResult Function()? integer,
-    TResult Function()? numeric,
-    TResult Function()? email,
-    TResult Function()? url,
-    TResult Function()? textList,
-    TResult Function()? checkboxOne,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
-    TResult Function(
-            String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
-    TResult Function()? unsupported,
-    required TResult orElse(),
-  }) {
-    if (selectUserList != null) {
-      return selectUserList(titleKey, subtitleKey);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ShortText value) shortText,
-    required TResult Function(_Paragraph value) paragraph,
-    required TResult Function(_Date value) date,
-    required TResult Function(_DateTime value) dateTime,
-    required TResult Function(_Integer value) integer,
-    required TResult Function(_Numeric value) numeric,
-    required TResult Function(_Email value) email,
-    required TResult Function(_Url value) url,
-    required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
-    required TResult Function(_Unsupported value) unsupported,
-  }) {
-    return selectUserList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShortText value)? shortText,
-    TResult? Function(_Paragraph value)? paragraph,
-    TResult? Function(_Date value)? date,
-    TResult? Function(_DateTime value)? dateTime,
-    TResult? Function(_Integer value)? integer,
-    TResult? Function(_Numeric value)? numeric,
-    TResult? Function(_Email value)? email,
-    TResult? Function(_Url value)? url,
-    TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
-    TResult? Function(_Unsupported value)? unsupported,
-  }) {
-    return selectUserList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ShortText value)? shortText,
-    TResult Function(_Paragraph value)? paragraph,
-    TResult Function(_Date value)? date,
-    TResult Function(_DateTime value)? dateTime,
-    TResult Function(_Integer value)? integer,
-    TResult Function(_Numeric value)? numeric,
-    TResult Function(_Email value)? email,
-    TResult Function(_Url value)? url,
-    TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
-    TResult Function(_Unsupported value)? unsupported,
-    required TResult orElse(),
-  }) {
-    if (selectUserList != null) {
-      return selectUserList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectUserList extends ActiveInputFieldDataType {
-  factory _SelectUserList(
-      {required final String titleKey,
-      final String? subtitleKey}) = _$SelectUserListImpl;
-  _SelectUserList._() : super._();
-
-  String get titleKey;
-  String? get subtitleKey;
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SelectUserListImplCopyWith<_$SelectUserListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CheckboxListUserImplCopyWith<$Res> {
-  factory _$$CheckboxListUserImplCopyWith(_$CheckboxListUserImpl value,
-          $Res Function(_$CheckboxListUserImpl) then) =
-      __$$CheckboxListUserImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String titleKey, String? subtitleKey});
-}
-
-/// @nodoc
-class __$$CheckboxListUserImplCopyWithImpl<$Res>
-    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res, _$CheckboxListUserImpl>
-    implements _$$CheckboxListUserImplCopyWith<$Res> {
-  __$$CheckboxListUserImplCopyWithImpl(_$CheckboxListUserImpl _value,
-      $Res Function(_$CheckboxListUserImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ActiveInputFieldDataType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? titleKey = null,
-    Object? subtitleKey = freezed,
-  }) {
-    return _then(_$CheckboxListUserImpl(
-      titleKey: null == titleKey
-          ? _value.titleKey
-          : titleKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      subtitleKey: freezed == subtitleKey
-          ? _value.subtitleKey
-          : subtitleKey // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CheckboxListUserImpl extends _CheckboxListUser {
-  _$CheckboxListUserImpl({required this.titleKey, this.subtitleKey})
+class _$SingleUserSelectionImpl extends _SingleUserSelection {
+  _$SingleUserSelectionImpl({required this.titleKey, this.subtitleKey})
       : super._();
 
   @override
@@ -3860,14 +3417,14 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
 
   @override
   String toString() {
-    return 'ActiveInputFieldDataType.checkboxListUser(titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldDataType.singleUserSelection(titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CheckboxListUserImpl &&
+            other is _$SingleUserSelectionImpl &&
             (identical(other.titleKey, titleKey) ||
                 other.titleKey == titleKey) &&
             (identical(other.subtitleKey, subtitleKey) ||
@@ -3882,8 +3439,8 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CheckboxListUserImplCopyWith<_$CheckboxListUserImpl> get copyWith =>
-      __$$CheckboxListUserImplCopyWithImpl<_$CheckboxListUserImpl>(
+  _$$SingleUserSelectionImplCopyWith<_$SingleUserSelectionImpl> get copyWith =>
+      __$$SingleUserSelectionImplCopyWithImpl<_$SingleUserSelectionImpl>(
           this, _$identity);
 
   @override
@@ -3898,25 +3455,25 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
-    return checkboxListUser(titleKey, subtitleKey);
+    return singleUserSelection(titleKey, subtitleKey);
   }
 
   @override
@@ -3931,22 +3488,23 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
-    return checkboxListUser?.call(titleKey, subtitleKey);
+    return singleUserSelection?.call(titleKey, subtitleKey);
   }
 
   @override
@@ -3961,24 +3519,24 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxListUser != null) {
-      return checkboxListUser(titleKey, subtitleKey);
+    if (singleUserSelection != null) {
+      return singleUserSelection(titleKey, subtitleKey);
     }
     return orElse();
   }
@@ -3995,19 +3553,19 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
-    return checkboxListUser(this);
+    return singleUserSelection(this);
   }
 
   @override
@@ -4022,17 +3580,19 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
-    return checkboxListUser?.call(this);
+    return singleUserSelection?.call(this);
   }
 
   @override
@@ -4047,28 +3607,31 @@ class _$CheckboxListUserImpl extends _CheckboxListUser {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {
-    if (checkboxListUser != null) {
-      return checkboxListUser(this);
+    if (singleUserSelection != null) {
+      return singleUserSelection(this);
     }
     return orElse();
   }
 }
 
-abstract class _CheckboxListUser extends ActiveInputFieldDataType {
-  factory _CheckboxListUser(
+abstract class _SingleUserSelection extends ActiveInputFieldDataType {
+  factory _SingleUserSelection(
       {required final String titleKey,
-      final String? subtitleKey}) = _$CheckboxListUserImpl;
-  _CheckboxListUser._() : super._();
+      final String? subtitleKey}) = _$SingleUserSelectionImpl;
+  _SingleUserSelection._() : super._();
 
   String get titleKey;
   String? get subtitleKey;
@@ -4076,7 +3639,563 @@ abstract class _CheckboxListUser extends ActiveInputFieldDataType {
   /// Create a copy of ActiveInputFieldDataType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CheckboxListUserImplCopyWith<_$CheckboxListUserImpl> get copyWith =>
+  _$$SingleUserSelectionImplCopyWith<_$SingleUserSelectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MultiUserSelectionImplCopyWith<$Res> {
+  factory _$$MultiUserSelectionImplCopyWith(_$MultiUserSelectionImpl value,
+          $Res Function(_$MultiUserSelectionImpl) then) =
+      __$$MultiUserSelectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String titleKey, String? subtitleKey});
+}
+
+/// @nodoc
+class __$$MultiUserSelectionImplCopyWithImpl<$Res>
+    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
+        _$MultiUserSelectionImpl>
+    implements _$$MultiUserSelectionImplCopyWith<$Res> {
+  __$$MultiUserSelectionImplCopyWithImpl(_$MultiUserSelectionImpl _value,
+      $Res Function(_$MultiUserSelectionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? titleKey = null,
+    Object? subtitleKey = freezed,
+  }) {
+    return _then(_$MultiUserSelectionImpl(
+      titleKey: null == titleKey
+          ? _value.titleKey
+          : titleKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      subtitleKey: freezed == subtitleKey
+          ? _value.subtitleKey
+          : subtitleKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MultiUserSelectionImpl extends _MultiUserSelection {
+  _$MultiUserSelectionImpl({required this.titleKey, this.subtitleKey})
+      : super._();
+
+  @override
+  final String titleKey;
+  @override
+  final String? subtitleKey;
+
+  @override
+  String toString() {
+    return 'ActiveInputFieldDataType.multiUserSelection(titleKey: $titleKey, subtitleKey: $subtitleKey)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MultiUserSelectionImpl &&
+            (identical(other.titleKey, titleKey) ||
+                other.titleKey == titleKey) &&
+            (identical(other.subtitleKey, subtitleKey) ||
+                other.subtitleKey == subtitleKey));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, titleKey, subtitleKey);
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MultiUserSelectionImplCopyWith<_$MultiUserSelectionImpl> get copyWith =>
+      __$$MultiUserSelectionImplCopyWithImpl<_$MultiUserSelectionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() shortText,
+    required TResult Function() paragraph,
+    required TResult Function() date,
+    required TResult Function() dateTime,
+    required TResult Function() integer,
+    required TResult Function() numeric,
+    required TResult Function() email,
+    required TResult Function() url,
+    required TResult Function() textList,
+    required TResult Function() binaryCheckbox,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        multiActiveResourceCheckbox,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        singleActiveResourceSelection,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        multiActiveResourceSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        singleUserSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        multiUserSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        multiUserCheckbox,
+    required TResult Function() unsupported,
+  }) {
+    return multiUserSelection(titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? shortText,
+    TResult? Function()? paragraph,
+    TResult? Function()? date,
+    TResult? Function()? dateTime,
+    TResult? Function()? integer,
+    TResult? Function()? numeric,
+    TResult? Function()? email,
+    TResult? Function()? url,
+    TResult? Function()? textList,
+    TResult? Function()? binaryCheckbox,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceCheckbox,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        singleActiveResourceSelection,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
+    TResult? Function()? unsupported,
+  }) {
+    return multiUserSelection?.call(titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? shortText,
+    TResult Function()? paragraph,
+    TResult Function()? date,
+    TResult Function()? dateTime,
+    TResult Function()? integer,
+    TResult Function()? numeric,
+    TResult Function()? email,
+    TResult Function()? url,
+    TResult Function()? textList,
+    TResult Function()? binaryCheckbox,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceCheckbox,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        singleActiveResourceSelection,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
+    TResult Function()? unsupported,
+    required TResult orElse(),
+  }) {
+    if (multiUserSelection != null) {
+      return multiUserSelection(titleKey, subtitleKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ShortText value) shortText,
+    required TResult Function(_Paragraph value) paragraph,
+    required TResult Function(_Date value) date,
+    required TResult Function(_DateTime value) dateTime,
+    required TResult Function(_Integer value) integer,
+    required TResult Function(_Numeric value) numeric,
+    required TResult Function(_Email value) email,
+    required TResult Function(_Url value) url,
+    required TResult Function(_TextList value) textList,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
+    required TResult Function(_Unsupported value) unsupported,
+  }) {
+    return multiUserSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ShortText value)? shortText,
+    TResult? Function(_Paragraph value)? paragraph,
+    TResult? Function(_Date value)? date,
+    TResult? Function(_DateTime value)? dateTime,
+    TResult? Function(_Integer value)? integer,
+    TResult? Function(_Numeric value)? numeric,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_Url value)? url,
+    TResult? Function(_TextList value)? textList,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
+    TResult? Function(_Unsupported value)? unsupported,
+  }) {
+    return multiUserSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ShortText value)? shortText,
+    TResult Function(_Paragraph value)? paragraph,
+    TResult Function(_Date value)? date,
+    TResult Function(_DateTime value)? dateTime,
+    TResult Function(_Integer value)? integer,
+    TResult Function(_Numeric value)? numeric,
+    TResult Function(_Email value)? email,
+    TResult Function(_Url value)? url,
+    TResult Function(_TextList value)? textList,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
+    TResult Function(_Unsupported value)? unsupported,
+    required TResult orElse(),
+  }) {
+    if (multiUserSelection != null) {
+      return multiUserSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MultiUserSelection extends ActiveInputFieldDataType {
+  factory _MultiUserSelection(
+      {required final String titleKey,
+      final String? subtitleKey}) = _$MultiUserSelectionImpl;
+  _MultiUserSelection._() : super._();
+
+  String get titleKey;
+  String? get subtitleKey;
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MultiUserSelectionImplCopyWith<_$MultiUserSelectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MultiUserCheckboxImplCopyWith<$Res> {
+  factory _$$MultiUserCheckboxImplCopyWith(_$MultiUserCheckboxImpl value,
+          $Res Function(_$MultiUserCheckboxImpl) then) =
+      __$$MultiUserCheckboxImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String titleKey, String? subtitleKey});
+}
+
+/// @nodoc
+class __$$MultiUserCheckboxImplCopyWithImpl<$Res>
+    extends _$ActiveInputFieldDataTypeCopyWithImpl<$Res,
+        _$MultiUserCheckboxImpl>
+    implements _$$MultiUserCheckboxImplCopyWith<$Res> {
+  __$$MultiUserCheckboxImplCopyWithImpl(_$MultiUserCheckboxImpl _value,
+      $Res Function(_$MultiUserCheckboxImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? titleKey = null,
+    Object? subtitleKey = freezed,
+  }) {
+    return _then(_$MultiUserCheckboxImpl(
+      titleKey: null == titleKey
+          ? _value.titleKey
+          : titleKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      subtitleKey: freezed == subtitleKey
+          ? _value.subtitleKey
+          : subtitleKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MultiUserCheckboxImpl extends _MultiUserCheckbox {
+  _$MultiUserCheckboxImpl({required this.titleKey, this.subtitleKey})
+      : super._();
+
+  @override
+  final String titleKey;
+  @override
+  final String? subtitleKey;
+
+  @override
+  String toString() {
+    return 'ActiveInputFieldDataType.multiUserCheckbox(titleKey: $titleKey, subtitleKey: $subtitleKey)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MultiUserCheckboxImpl &&
+            (identical(other.titleKey, titleKey) ||
+                other.titleKey == titleKey) &&
+            (identical(other.subtitleKey, subtitleKey) ||
+                other.subtitleKey == subtitleKey));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, titleKey, subtitleKey);
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MultiUserCheckboxImplCopyWith<_$MultiUserCheckboxImpl> get copyWith =>
+      __$$MultiUserCheckboxImplCopyWithImpl<_$MultiUserCheckboxImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() shortText,
+    required TResult Function() paragraph,
+    required TResult Function() date,
+    required TResult Function() dateTime,
+    required TResult Function() integer,
+    required TResult Function() numeric,
+    required TResult Function() email,
+    required TResult Function() url,
+    required TResult Function() textList,
+    required TResult Function() binaryCheckbox,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        multiActiveResourceCheckbox,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        singleActiveResourceSelection,
+    required TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)
+        multiActiveResourceSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        singleUserSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        multiUserSelection,
+    required TResult Function(String titleKey, String? subtitleKey)
+        multiUserCheckbox,
+    required TResult Function() unsupported,
+  }) {
+    return multiUserCheckbox(titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? shortText,
+    TResult? Function()? paragraph,
+    TResult? Function()? date,
+    TResult? Function()? dateTime,
+    TResult? Function()? integer,
+    TResult? Function()? numeric,
+    TResult? Function()? email,
+    TResult? Function()? url,
+    TResult? Function()? textList,
+    TResult? Function()? binaryCheckbox,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceCheckbox,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        singleActiveResourceSelection,
+    TResult? Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
+    TResult? Function()? unsupported,
+  }) {
+    return multiUserCheckbox?.call(titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? shortText,
+    TResult Function()? paragraph,
+    TResult Function()? date,
+    TResult Function()? dateTime,
+    TResult Function()? integer,
+    TResult Function()? numeric,
+    TResult Function()? email,
+    TResult Function()? url,
+    TResult Function()? textList,
+    TResult Function()? binaryCheckbox,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceCheckbox,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        singleActiveResourceSelection,
+    TResult Function(
+            String activeStructureCode, String titleKey, String? subtitleKey)?
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
+    TResult Function()? unsupported,
+    required TResult orElse(),
+  }) {
+    if (multiUserCheckbox != null) {
+      return multiUserCheckbox(titleKey, subtitleKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ShortText value) shortText,
+    required TResult Function(_Paragraph value) paragraph,
+    required TResult Function(_Date value) date,
+    required TResult Function(_DateTime value) dateTime,
+    required TResult Function(_Integer value) integer,
+    required TResult Function(_Numeric value) numeric,
+    required TResult Function(_Email value) email,
+    required TResult Function(_Url value) url,
+    required TResult Function(_TextList value) textList,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
+    required TResult Function(_Unsupported value) unsupported,
+  }) {
+    return multiUserCheckbox(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ShortText value)? shortText,
+    TResult? Function(_Paragraph value)? paragraph,
+    TResult? Function(_Date value)? date,
+    TResult? Function(_DateTime value)? dateTime,
+    TResult? Function(_Integer value)? integer,
+    TResult? Function(_Numeric value)? numeric,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_Url value)? url,
+    TResult? Function(_TextList value)? textList,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
+    TResult? Function(_Unsupported value)? unsupported,
+  }) {
+    return multiUserCheckbox?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ShortText value)? shortText,
+    TResult Function(_Paragraph value)? paragraph,
+    TResult Function(_Date value)? date,
+    TResult Function(_DateTime value)? dateTime,
+    TResult Function(_Integer value)? integer,
+    TResult Function(_Numeric value)? numeric,
+    TResult Function(_Email value)? email,
+    TResult Function(_Url value)? url,
+    TResult Function(_TextList value)? textList,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
+    TResult Function(_Unsupported value)? unsupported,
+    required TResult orElse(),
+  }) {
+    if (multiUserCheckbox != null) {
+      return multiUserCheckbox(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MultiUserCheckbox extends ActiveInputFieldDataType {
+  factory _MultiUserCheckbox(
+      {required final String titleKey,
+      final String? subtitleKey}) = _$MultiUserCheckboxImpl;
+  _MultiUserCheckbox._() : super._();
+
+  String get titleKey;
+  String? get subtitleKey;
+
+  /// Create a copy of ActiveInputFieldDataType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MultiUserCheckboxImplCopyWith<_$MultiUserCheckboxImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4130,22 +4249,22 @@ class _$UnsupportedImpl extends _Unsupported {
     required TResult Function() email,
     required TResult Function() url,
     required TResult Function() textList,
-    required TResult Function() checkboxOne,
+    required TResult Function() binaryCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     required TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)
-        selectListLiveResource,
+        multiActiveResourceSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectOneUser,
+        singleUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        selectUserList,
+        multiUserSelection,
     required TResult Function(String titleKey, String? subtitleKey)
-        checkboxListUser,
+        multiUserCheckbox,
     required TResult Function() unsupported,
   }) {
     return unsupported();
@@ -4163,19 +4282,20 @@ class _$UnsupportedImpl extends _Unsupported {
     TResult? Function()? email,
     TResult? Function()? url,
     TResult? Function()? textList,
-    TResult? Function()? checkboxOne,
+    TResult? Function()? binaryCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult? Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult? Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult? Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult? Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult? Function(String titleKey, String? subtitleKey)?
+        singleUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult? Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult? Function()? unsupported,
   }) {
     return unsupported?.call();
@@ -4193,19 +4313,19 @@ class _$UnsupportedImpl extends _Unsupported {
     TResult Function()? email,
     TResult Function()? url,
     TResult Function()? textList,
-    TResult Function()? checkboxOne,
+    TResult Function()? binaryCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        checkboxListLiveResource,
+        multiActiveResourceCheckbox,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectOneLiveResource,
+        singleActiveResourceSelection,
     TResult Function(
             String activeStructureCode, String titleKey, String? subtitleKey)?
-        selectListLiveResource,
-    TResult Function(String titleKey, String? subtitleKey)? selectOneUser,
-    TResult Function(String titleKey, String? subtitleKey)? selectUserList,
-    TResult Function(String titleKey, String? subtitleKey)? checkboxListUser,
+        multiActiveResourceSelection,
+    TResult Function(String titleKey, String? subtitleKey)? singleUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserSelection,
+    TResult Function(String titleKey, String? subtitleKey)? multiUserCheckbox,
     TResult Function()? unsupported,
     required TResult orElse(),
   }) {
@@ -4227,16 +4347,16 @@ class _$UnsupportedImpl extends _Unsupported {
     required TResult Function(_Email value) email,
     required TResult Function(_Url value) url,
     required TResult Function(_TextList value) textList,
-    required TResult Function(_CheckboxOne value) checkboxOne,
-    required TResult Function(_CheckboxListLiveResource value)
-        checkboxListLiveResource,
-    required TResult Function(_SelectOneLiveResource value)
-        selectOneLiveResource,
-    required TResult Function(_SelectListLiveResource value)
-        selectListLiveResource,
-    required TResult Function(_SelectOneUser value) selectOneUser,
-    required TResult Function(_SelectUserList value) selectUserList,
-    required TResult Function(_CheckboxListUser value) checkboxListUser,
+    required TResult Function(_BinaryCheckbox value) binaryCheckbox,
+    required TResult Function(_MultiActiveResourceCheckbox value)
+        multiActiveResourceCheckbox,
+    required TResult Function(_SingleActiveResourceSelection value)
+        singleActiveResourceSelection,
+    required TResult Function(_MultiActiveResourceSelection value)
+        multiActiveResourceSelection,
+    required TResult Function(_SingleUserSelection value) singleUserSelection,
+    required TResult Function(_MultiUserSelection value) multiUserSelection,
+    required TResult Function(_MultiUserCheckbox value) multiUserCheckbox,
     required TResult Function(_Unsupported value) unsupported,
   }) {
     return unsupported(this);
@@ -4254,14 +4374,16 @@ class _$UnsupportedImpl extends _Unsupported {
     TResult? Function(_Email value)? email,
     TResult? Function(_Url value)? url,
     TResult? Function(_TextList value)? textList,
-    TResult? Function(_CheckboxOne value)? checkboxOne,
-    TResult? Function(_CheckboxListLiveResource value)?
-        checkboxListLiveResource,
-    TResult? Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult? Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult? Function(_SelectOneUser value)? selectOneUser,
-    TResult? Function(_SelectUserList value)? selectUserList,
-    TResult? Function(_CheckboxListUser value)? checkboxListUser,
+    TResult? Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult? Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult? Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult? Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult? Function(_SingleUserSelection value)? singleUserSelection,
+    TResult? Function(_MultiUserSelection value)? multiUserSelection,
+    TResult? Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult? Function(_Unsupported value)? unsupported,
   }) {
     return unsupported?.call(this);
@@ -4279,13 +4401,16 @@ class _$UnsupportedImpl extends _Unsupported {
     TResult Function(_Email value)? email,
     TResult Function(_Url value)? url,
     TResult Function(_TextList value)? textList,
-    TResult Function(_CheckboxOne value)? checkboxOne,
-    TResult Function(_CheckboxListLiveResource value)? checkboxListLiveResource,
-    TResult Function(_SelectOneLiveResource value)? selectOneLiveResource,
-    TResult Function(_SelectListLiveResource value)? selectListLiveResource,
-    TResult Function(_SelectOneUser value)? selectOneUser,
-    TResult Function(_SelectUserList value)? selectUserList,
-    TResult Function(_CheckboxListUser value)? checkboxListUser,
+    TResult Function(_BinaryCheckbox value)? binaryCheckbox,
+    TResult Function(_MultiActiveResourceCheckbox value)?
+        multiActiveResourceCheckbox,
+    TResult Function(_SingleActiveResourceSelection value)?
+        singleActiveResourceSelection,
+    TResult Function(_MultiActiveResourceSelection value)?
+        multiActiveResourceSelection,
+    TResult Function(_SingleUserSelection value)? singleUserSelection,
+    TResult Function(_MultiUserSelection value)? multiUserSelection,
+    TResult Function(_MultiUserCheckbox value)? multiUserCheckbox,
     TResult Function(_Unsupported value)? unsupported,
     required TResult orElse(),
   }) {

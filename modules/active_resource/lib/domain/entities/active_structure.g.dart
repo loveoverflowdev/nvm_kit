@@ -12,7 +12,7 @@ ActiveStructure _$ActiveStructureFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String,
       title: json['title'] as String,
       fields: (json['fields'] as List<dynamic>)
-          .map((e) => ActiveField.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActiveFieldStructure.fromJson(e as Map<String, dynamic>))
           .toList(),
       supportedAddonTypes: (json['supportedAddonTypes'] as List<dynamic>)
           .map((e) => $enumDecode(_$AddonTypeEnumMap, e))
@@ -35,7 +35,9 @@ const _$AddonTypeEnumMap = {
   AddonType.rolesBoard: 'rolesBoard',
 };
 
-ActiveField _$ActiveFieldFromJson(Map<String, dynamic> json) => ActiveField(
+ActiveFieldStructure _$ActiveFieldStructureFromJson(
+        Map<String, dynamic> json) =>
+    ActiveFieldStructure(
       id: json['id'] as String,
       key: json['key'] as String,
       title: json['title'] as String,
@@ -46,7 +48,8 @@ ActiveField _$ActiveFieldFromJson(Map<String, dynamic> json) => ActiveField(
       valueActiveStructureId: json['valueActiveStructureId'] as String,
     );
 
-Map<String, dynamic> _$ActiveFieldToJson(ActiveField instance) =>
+Map<String, dynamic> _$ActiveFieldStructureToJson(
+        ActiveFieldStructure instance) =>
     <String, dynamic>{
       'id': instance.id,
       'key': instance.key,
@@ -68,12 +71,14 @@ const _$ActiveFieldDataTypeEnumMap = {
   ActiveFieldDataType.email: 'email',
   ActiveFieldDataType.url: 'url',
   ActiveFieldDataType.textList: 'textList',
-  ActiveFieldDataType.checkboxOne: 'checkboxOne',
-  ActiveFieldDataType.checkboxListLiveResource: 'checkboxListLiveResource',
-  ActiveFieldDataType.selectOneLiveResource: 'selectOneLiveResource',
+  ActiveFieldDataType.binaryCheckbox: 'binaryCheckbox',
+  ActiveFieldDataType.multiActiveResourceCheckbox:
+      'multiActiveResourceCheckbox',
+  ActiveFieldDataType.singleActiveResourceSelection:
+      'singleActiveResourceSelection',
   ActiveFieldDataType.selectListLiveResource: 'selectListLiveResource',
-  ActiveFieldDataType.selectOneUser: 'selectOneUser',
-  ActiveFieldDataType.selectUserList: 'selectUserList',
-  ActiveFieldDataType.checkboxListUser: 'checkboxListUser',
+  ActiveFieldDataType.singleUserSelection: 'singleUserSelection',
+  ActiveFieldDataType.multiUserSelection: 'multiUserSelection',
+  ActiveFieldDataType.multiUserCheckbox: 'multiUserCheckbox',
   ActiveFieldDataType.unsupported: 'unsupported',
 };

@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'active_input_field.freezed.dart';
+part 'active_input_field_specification.freezed.dart';
 
-final class ActiveInputField {
+final class ActiveInputFieldSpecification {
   final String key;
   final String title;
 
@@ -10,7 +10,7 @@ final class ActiveInputField {
   final String description;
   final ActiveInputFieldDataType dataType;
 
-  ActiveInputField({
+  ActiveInputFieldSpecification({
     required this.key,
     required this.title,
     required this.placeholder,
@@ -20,7 +20,7 @@ final class ActiveInputField {
 }
 
 @freezed
-class ActiveInputFieldDataType {
+class ActiveInputFieldDataType with _$ActiveInputFieldDataType {
   ActiveInputFieldDataType._();
 
   factory ActiveInputFieldDataType.shortText() = _ShortText;
@@ -32,34 +32,36 @@ class ActiveInputFieldDataType {
   factory ActiveInputFieldDataType.email() = _Email;
   factory ActiveInputFieldDataType.url() = _Url;
   factory ActiveInputFieldDataType.textList() = _TextList;
-  factory ActiveInputFieldDataType.checkboxOne() = _CheckboxOne;
-  factory ActiveInputFieldDataType.checkboxListLiveResource({
+  factory ActiveInputFieldDataType.binaryCheckbox() = _BinaryCheckbox;
+  factory ActiveInputFieldDataType.multiActiveResourceCheckbox({
     required String activeStructureCode,
     required String titleKey,
     String? subtitleKey,
-  }) = _CheckboxListLiveResource;
+  }) = _MultiActiveResourceCheckbox;
 
-  factory ActiveInputFieldDataType.selectOneLiveResource({
+  factory ActiveInputFieldDataType.singleActiveResourceSelection({
     required String activeStructureCode,
     required String titleKey,
     String? subtitleKey,
-  }) = _SelectOneLiveResource;
-  factory ActiveInputFieldDataType.selectListLiveResource({
+  }) = _SingleActiveResourceSelection;
+
+  factory ActiveInputFieldDataType.multiActiveResourceSelection({
     required String activeStructureCode,
     required String titleKey,
     String? subtitleKey,
-  }) = _SelectListLiveResource;
-  factory ActiveInputFieldDataType.selectOneUser({
+  }) = _MultiActiveResourceSelection;
+
+  factory ActiveInputFieldDataType.singleUserSelection({
     required String titleKey,
     String? subtitleKey,
-  }) = _SelectOneUser;
-  factory ActiveInputFieldDataType.selectUserList({
+  }) = _SingleUserSelection;
+  factory ActiveInputFieldDataType.multiUserSelection({
     required String titleKey,
     String? subtitleKey,
-  }) = _SelectUserList;
-  factory ActiveInputFieldDataType.checkboxListUser({
+  }) = _MultiUserSelection;
+  factory ActiveInputFieldDataType.multiUserCheckbox({
     required String titleKey,
     String? subtitleKey,
-  }) = _CheckboxListUser;
+  }) = _MultiUserCheckbox;
   factory ActiveInputFieldDataType.unsupported() = _Unsupported;
 }

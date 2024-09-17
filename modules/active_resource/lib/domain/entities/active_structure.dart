@@ -9,7 +9,7 @@ final class ActiveStructure {
   final String id;
   final String code;
   final String title;
-  final List<ActiveField> fields;
+  final List<ActiveFieldStructure> fields;
   final List<AddonType> supportedAddonTypes;
 
   ActiveStructure({
@@ -27,7 +27,7 @@ final class ActiveStructure {
 }
 
 @JsonSerializable()
-final class ActiveField {
+final class ActiveFieldStructure {
   final String id;
   final String key;
   final String title;
@@ -52,7 +52,7 @@ final class ActiveField {
   // final dynamic createdAt;
   // final dynamic updatedAt;
 
-  ActiveField({
+  ActiveFieldStructure({
     required this.id,
     required this.key,
     required this.title,
@@ -76,10 +76,10 @@ final class ActiveField {
     // required this.updatedAt,
   });
 
-  Map<String, dynamic> toJson() => _$ActiveFieldToJson(this);
+  Map<String, dynamic> toJson() => _$ActiveFieldStructureToJson(this);
 
-  factory ActiveField.fromJson(Map<String, dynamic> json) =>
-      _$ActiveFieldFromJson(json);
+  factory ActiveFieldStructure.fromJson(Map<String, dynamic> json) =>
+      _$ActiveFieldStructureFromJson(json);
 }
 
 enum ActiveFieldDataType {
@@ -92,13 +92,13 @@ enum ActiveFieldDataType {
   email,
   url,
   textList,
-  checkboxOne,
-  checkboxListLiveResource,
-  selectOneLiveResource,
+  binaryCheckbox,
+  multiActiveResourceCheckbox,
+  singleActiveResourceSelection,
   selectListLiveResource,
-  selectOneUser,
-  selectUserList,
-  checkboxListUser,
+  singleUserSelection,
+  multiUserSelection,
+  multiUserCheckbox,
   unsupported;
 
   factory ActiveFieldDataType.fromString(String str) {
@@ -120,16 +120,59 @@ enum ActiveFieldDataType {
     'EMAIL': ActiveFieldDataType.email,
     'URL': ActiveFieldDataType.url,
     'TEXT_LIST': ActiveFieldDataType.textList,
-    'CHECKBOX_ONE': ActiveFieldDataType.checkboxOne,
-    'CHECKBOX_LIST_LIVE_RESOURCE': ActiveFieldDataType.checkboxListLiveResource,
-    'SELECT_ONE_LIVE_RESOURCE': ActiveFieldDataType.selectOneLiveResource,
+    'CHECKBOX_ONE': ActiveFieldDataType.binaryCheckbox,
+    'CHECKBOX_LIST_LIVE_RESOURCE': ActiveFieldDataType.multiActiveResourceCheckbox,
+    'SELECT_ONE_LIVE_RESOURCE': ActiveFieldDataType.singleActiveResourceSelection,
     'SELECT_LIST_LIVE_RESOURCE': ActiveFieldDataType.selectListLiveResource,
-    'SELECT_ONE_USER': ActiveFieldDataType.selectOneUser,
-    'SELECT_LIST_USER': ActiveFieldDataType.selectUserList,
-    'CHECKBOX_LIST_USER': ActiveFieldDataType.checkboxListUser,
+    'SELECT_ONE_USER': ActiveFieldDataType.singleUserSelection,
+    'SELECT_LIST_USER': ActiveFieldDataType.multiUserSelection,
+    'CHECKBOX_LIST_USER': ActiveFieldDataType.multiUserCheckbox,
   };
 }
 
+/*
+  factory ActiveInputFieldDataType.shortText() = _ShortText;
+  factory ActiveInputFieldDataType.paragraph() = _Paragraph;
+  factory ActiveInputFieldDataType.date() = _Date;
+  factory ActiveInputFieldDataType.dateTime() = _DateTime;
+  factory ActiveInputFieldDataType.integer() = _Integer;
+  factory ActiveInputFieldDataType.numeric() = _Numeric;
+  factory ActiveInputFieldDataType.email() = _Email;
+  factory ActiveInputFieldDataType.url() = _Url;
+  factory ActiveInputFieldDataType.textList() = _TextList;
+  factory ActiveInputFieldDataType.binaryCheckbox() = _BinaryCheckbox;
+  factory ActiveInputFieldDataType.multiActiveResourceCheckbox({
+    required String activeStructureCode,
+    required String titleKey,
+    String? subtitleKey,
+  }) = _MultiActiveResourceCheckbox;
+
+  factory ActiveInputFieldDataType.singleActiveResourceSelection({
+    required String activeStructureCode,
+    required String titleKey,
+    String? subtitleKey,
+  }) = _SingleActiveResourceSelection;
+
+  factory ActiveInputFieldDataType.multiActiveResourceSelection({
+    required String activeStructureCode,
+    required String titleKey,
+    String? subtitleKey,
+  }) = _MultiActiveResourceSelection;
+
+  factory ActiveInputFieldDataType.singleUserSelection({
+    required String titleKey,
+    String? subtitleKey,
+  }) = _SingleUserSelection;
+  factory ActiveInputFieldDataType.multiUserSelection({
+    required String titleKey,
+    String? subtitleKey,
+  }) = _MultiUserSelection;
+  factory ActiveInputFieldDataType.multiUserCheckbox({
+    required String titleKey,
+    String? subtitleKey,
+  }) = _MultiUserCheckbox;
+  factory ActiveInputFieldDataType.unsupported() = _Unsupported;
+*/
 
 /*
 SHORT_TEXT, PARAGRAPH, DATE, DATETIME, INTEGER, 

@@ -1,12 +1,12 @@
 import 'package:active_resource/active_resource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'active_resource_list_provider.g.dart';
+part 'active_resource_list_by_structure_code_provider.g.dart';
 
 typedef ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 
 @riverpod
-class ActiveResourceList extends _$ActiveResourceList {
+class ActiveResourceListByStructureCode extends _$ActiveResourceListByStructureCode {
   @override
   ActiveResourceListState build({
     required String activeStructureCode,
