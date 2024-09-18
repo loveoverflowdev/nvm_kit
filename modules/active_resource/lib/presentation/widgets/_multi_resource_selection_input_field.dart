@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '_active_resource_selection_list_view.dart';
 
-class SelectResourceListInputField extends StatelessWidget {
+class MultiResourceSelectionInputField extends StatelessWidget {
   final String projectId;
   final String activeStructureCode;
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
 
-  const SelectResourceListInputField({
+  const MultiResourceSelectionInputField({
     super.key,
     //
     required this.activeStructureCode,
@@ -31,7 +31,7 @@ class SelectResourceListInputField extends StatelessWidget {
           builder: (context) {
             return ActiveResourceSelectionListView(
               projectId: projectId,
-              activeStructureCode: valueActiveStructureId,
+              activeStructureCode: activeStructureCode,
               titleKey: titleKey,
               subtitleKey: subtitleKey,
             );

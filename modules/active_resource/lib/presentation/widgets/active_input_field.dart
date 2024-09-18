@@ -73,9 +73,9 @@ final class ActiveInputField extends StatelessWidget {
         String titleKey,
         String? subtitleKey,
       ) {
-        return SelectResourceListInputField(
+        return MultiResourceSelectionInputField(
           labeltext: specification.title,
-          valueActiveStructureId: '',
+          activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
           projectId: '',
@@ -86,11 +86,12 @@ final class ActiveInputField extends StatelessWidget {
         String titleKey,
         String? subtitleKey,
       ) {
-        return SelectOneResourceInputField(
+        return SingleResourceSelectionInputField(
+          projectId: specification.projectId,
           labeltext: specification.title,
-          valueActiveStructureId: specification.,
+          activeStructureCode: activeStructureCode,
           titleKey: titleKey,
-          subtitleKey: subtitleKey,
+          subtitleKey: subtitleKey, 
         );
       },
       multiActiveResourceSelection: (
@@ -98,33 +99,33 @@ final class ActiveInputField extends StatelessWidget {
         String titleKey,
         String? subtitleKey,
       ) {
-        return SelectResourceListInputField(
+        return MultiResourceSelectionInputField(
+          projectId: specification.projectId,
           labeltext: specification.title,
-          valueActiveStructureId: '',
+          activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
-          projectId: specification.projectId,
         );
       },
       singleUserSelection: (
         String titleKey,
         String? subtitleKey,
       ) {
-        return SelectOneUserInputField(
+        return SingleUserInputField(
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
         );
       },
       multiUserSelection: (String titleKey, String? subtitleKey) {
-        return SelectUserListInputField(
+        return MultiUserInputField(
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
         );
       },
       multiUserCheckbox: (String titleKey, String? subtitleKey) {
-        return SelectUserListInputField(
+        return MultiUserInputField(
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,

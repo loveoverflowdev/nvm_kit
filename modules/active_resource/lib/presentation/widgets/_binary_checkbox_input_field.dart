@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CheckboxBinaryInputField extends StatelessWidget {
-  const CheckboxBinaryInputField({super.key});
+class BinaryCheckboxInputField extends StatelessWidget {
+  const BinaryCheckboxInputField({super.key});
 
   @override
   Widget build(BuildContext context) {

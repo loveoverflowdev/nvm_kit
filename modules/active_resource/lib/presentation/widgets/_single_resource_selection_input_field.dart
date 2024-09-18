@@ -2,22 +2,21 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:template_parser/template_parser.dart' show ActiveCollectionComponent, ActiveTileComponent;
+import '_active_resource_selection_list_view.dart';
 
-import '../providers.dart';
-import '../views.dart';
-
-class SelectOneResourceInputField extends ConsumerWidget {
-  final String valueActiveStructureId;
+class SingleResourceSelectionInputField extends ConsumerWidget {
+  final String projectId;
+  final String activeStructureCode;
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
 
-  const SelectOneResourceInputField({
+  const SingleResourceSelectionInputField({
     super.key,
-    required this.valueActiveStructureId,
+    required this.activeStructureCode,
     required this.labeltext, 
-    required this.titleKey, 
+    required this.titleKey,
+    required this.projectId, 
     this.subtitleKey,
   });
 
@@ -35,19 +34,11 @@ class SelectOneResourceInputField extends ConsumerWidget {
         showAppModelBottomSheet(
           context: context,
           builder: (context) {
-            // Refactor to its own list view
-            return ActiveResourceCollectionView(
-              collectionComponent: ActiveCollectionComponent(
-                createFormContextName: null,
-                detailContextName: null,
-                tile: ActiveTileComponent(
-                  activeStructureCode: '',
-                  titleKey: titleKey,
-                  subtitleKey: subtitleKey,
-                ),
-              ),
-              onTapResource: (resourceId) {},
-              projectId: '', // TODO:
+            return ActiveResourceSelectionListView(
+              projectId: projectId,
+              activeStructureCode: activeStructureCode,
+              titleKey: titleKey,
+              subtitleKey: subtitleKey,
             );
           },
         );

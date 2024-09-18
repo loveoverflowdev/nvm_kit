@@ -2,12 +2,12 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SelectOneUserInputField extends StatelessWidget {
+class SingleUserInputField extends StatelessWidget {
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
   
-  const SelectOneUserInputField({
+  const SingleUserInputField({
     super.key,
     required this.labeltext,
     required this.titleKey,
