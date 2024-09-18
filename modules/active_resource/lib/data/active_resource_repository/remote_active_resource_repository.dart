@@ -25,15 +25,15 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   @override
   TaskEither<ActiveResourceFailure, void> createActiveResource({
     required ActiveStructure structure,
-    required ActiveResourceForm payload,
+    required ActiveResourceForm form,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient.createActiveResource(
           activeStructureCode: structure.code,
           payload: api.ActiveResourcePayload(
-            projectId: payload.projectId,
-            liveAttributes: payload.liveAttributes,
+            projectId: form.projectId,
+            liveAttributes: form.getAllAttributes(),
           ),
         );
       },

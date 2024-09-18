@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 abstract interface class ActiveResourceRepository {
   TaskEither<ActiveResourceFailure, void> createActiveResource({
     required ActiveStructure structure,
-    required ActiveResourceForm payload,
+    required ActiveResourceForm form,
   });
 
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({

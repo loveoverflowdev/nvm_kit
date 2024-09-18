@@ -19,7 +19,7 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
   }) =>
       const _ActiveResourceSubmitState.data(null);
 
-  void submit(ActiveResourceForm payload) {
+  void submit(ActiveResourceForm form) {
     state = const AsyncValue.loading();
     ref
         .watch(
@@ -29,7 +29,7 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
       (structure) {
         createActiveResourceTask(
           structure: structure,
-          payload: payload,
+          form: form,
         ).match(
           (failure) {
             state = _ActiveResourceSubmitState.error(

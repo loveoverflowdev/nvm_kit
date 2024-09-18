@@ -1,4 +1,5 @@
 import 'package:active_resource/domain.dart';
+import 'package:active_resource/presentation/providers/active_resource_providers/active_resource_submit_provider.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,9 +24,19 @@ class ActiveResourceFormView extends ConsumerStatefulWidget {
 
 class _ActiveResourceFormViewState
     extends ConsumerState<ActiveResourceFormView> {
+  late final ActiveResourceForm _form;
+
+  @override
+  void initState() {
+    super.initState();
+    _form = ActiveResourceForm(
+      projectId: widget.projectId,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final activeStructure = ref.watch(
+    final result = ref.watch(
       activeStructureByCodeProvider(
         widget.formComponent.activeStructureCode,
       ),
@@ -38,12 +49,12 @@ class _ActiveResourceFormViewState
         color: Theme.of(context).colorScheme.surfaceVariant,
         borderRadius: BorderRadius.circular(AppSpacing.md),
       ),
-      child: activeStructure.when(
-        data: (data) {
+      child: result.when(
+        data: (activeStructure) {
           final activeInputFieldSpecifications =
               _combinedToGetInputFieldSpecifications(
             inputFieldComponents: formInputFields,
-            activeFieldStructures: data.fields,
+            activeFieldStructures: activeStructure.fields,
           );
           return ListView(
             padding: const EdgeInsets.symmetric(
@@ -58,17 +69,31 @@ class _ActiveResourceFormViewState
                   child: ActiveInputField(
                     specification: specification,
                     onSelected: (value) {
-                      
+                      _form.setAttribute(key: specification.key, value: value);
                     },
                   ),
                 ),
               //
               const Divider(),
-              ElevatedButton(
-                onPressed: () {
-                  // TODO: submit form
+              Consumer(
+                builder: (_, WidgetRef ref, __) {
+                  final submitProvider = activeResourceSubmitProvider(
+                    activeStructureCode: activeStructure.code,
+                    key:
+                      'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
+                  );
+                  final submitStatus = ref.watch(submitProvider);
+                  
+                  if (submitStatus.isLoading) {
+                    return const AppCircularLoadingWidget();
+                  }
+                  return ElevatedButton(
+                    onPressed: () {
+                      ref.read(submitProvider.notifier).submit(_form);
+                    },
+                    child: const Text('Submit'),
+                  );
                 },
-                child: const Text('Submit'),
               ),
             ],
           );

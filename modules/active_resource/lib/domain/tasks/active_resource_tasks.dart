@@ -39,13 +39,13 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
     createActiveResourceTask({
   required ActiveStructure structure,
-  required ActiveResourceForm payload,
+  required ActiveResourceForm form,
 }) =>
         ReaderTaskEither(
           (repository) => repository
               .createActiveResource(
                 structure: structure,
-                payload: payload,
+                form: form,
               )
               .run(),
         );

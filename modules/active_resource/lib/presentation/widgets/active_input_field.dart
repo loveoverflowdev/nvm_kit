@@ -30,6 +30,7 @@ final class ActiveInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return specification.dataType.when(
       shortText: () {
+        print('++++ shortText');
         return ShortTextInputField(
           labeltext: specification.title,
           hintText: specification.placeholder,
@@ -37,12 +38,11 @@ final class ActiveInputField extends StatelessWidget {
         );
       },
       paragraph: () {
+        print('++++ paragraph');
         return ParagraphInputField(
           hintText: specification.placeholder,
           labeltext: specification.title, 
-          onChanged: (String text) {
-
-          },
+          onChanged: onSelected,
         );
       },
       date: () {
@@ -55,14 +55,14 @@ final class ActiveInputField extends StatelessWidget {
         return NumericInputField(
           hintText: specification.placeholder,
           labeltext: specification.title, 
-          onChanged: (num ) {  },
+          onChanged: onSelected,
         );
       },
       numeric: () {
         return NumericInputField(
           hintText: specification.placeholder,
           labeltext: specification.title, 
-          onChanged: (num ) {  },
+          onChanged: onSelected,
         );
       },
       email: () {
@@ -88,7 +88,7 @@ final class ActiveInputField extends StatelessWidget {
           titleKey: titleKey,
           subtitleKey: subtitleKey,
           projectId: specification.projectId, 
-          onChanged: (String ) {  },
+          onChanged: onSelected,
         );
       },
       singleActiveResourceSelection: (

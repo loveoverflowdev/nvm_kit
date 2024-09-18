@@ -1,11 +1,20 @@
 final class ActiveResourceForm {
   final String projectId;
-  final Map<String, dynamic> liveAttributes;
+  final Map<String, dynamic> _attributes;
 
   ActiveResourceForm({
     required this.projectId,
-    required this.liveAttributes,
-  });
+    Map<String, dynamic>? attributes,
+  }) : _attributes = attributes ?? {};
+
+  void setAttribute({
+    required String key,
+    required dynamic value,
+  }) {
+    _attributes[key] = value;
+  }
+
+  Map<String, dynamic> getAllAttributes() => _attributes; 
 }
 
 /*
