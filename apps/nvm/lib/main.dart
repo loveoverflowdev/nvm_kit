@@ -86,14 +86,16 @@ void main() async {
     apiClient: resourceApiClient,
   );
 
-  final active_resource.ActiveStructureRepository activeStructureRepository =
-      active_resource.CachedActiveStructureRepository(
-    activeStructureRepository: active_resource.RemoteActiveStructureRepository(
-      apiClient: resourceApiClient,
-    ),
-    storage: active_resource.CachedActiveStructureStorage(
-      sharedPreferences: await SharedPreferences.getInstance(),
-    ),
+  final active_resource.RemoteActiveStructureRepository
+      remoteActiveStructureRepository =
+      active_resource.RemoteActiveStructureRepositoryImpl(
+    apiClient: resourceApiClient,
+  );
+
+  final active_resource.LocalActiveStructureRepository
+      localActiveStructureRepository =
+      active_resource.LocalActiveStructureRepositoryImpl(
+    sharedPreferences: await SharedPreferences.getInstance(),
   );
 
   final preference.UserPreferenceRepository userPreferenceRepository =
@@ -125,7 +127,8 @@ void main() async {
     workspaceRepository: workspaceRepository,
     userPreferenceRepository: userPreferenceRepository,
     activeResourceRepository: activeResourceRepository,
-    activeStructureRepository: activeStructureRepository,
+    remoteActiveStructureRepository: remoteActiveStructureRepository,
+    localActiveStructureRepository: localActiveStructureRepository,
     //
     commentRepository: commentRepository,
     remoteRolesBoardRepository: remoteRolesBoardRepository,

@@ -2,26 +2,44 @@ import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
-import 'package:template_parser/template_parser.dart' as template;
 
-import '../providers.dart' show activeResourceListProvider;
+import '../providers.dart'
+    show
+        activeResourceListByStructureCodeProvider,
+        activeResourceListByStructureIdProvider;
 
 class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
-  const ActiveResourceSelectionListView({super.key});
+  final String projectId;
+  final String activeStructureCode;
+  final String titleKey;
+  final String? subtitleKey;
+
+  const ActiveResourceSelectionListView({
+    super.key,
+    required this.activeStructureCode,
+    required this.projectId,
+    required this.titleKey,
+    required this.subtitleKey,
+  });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _Live_ResourceSelectionListViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ActiveResourceSelectionListViewState();
 }
 
-class _Live_ResourceSelectionListViewState extends ConsumerState<ActiveResourceSelectionListView> {
-
-  String _parseRequestField(template.ActiveTileComponent tile) {
+class _ActiveResourceSelectionListViewState
+    extends ConsumerState<ActiveResourceSelectionListView> {
+  String _parseRequestField() {
     return RequestField.children([
       RequestField.name('id'),
-      RequestField(name: 'liveAttributes', children: [
-        RequestField.name(tile.titleKey),
-        if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
-      ]),
+      RequestField(
+        name: 'liveAttributes',
+        children: [
+          RequestField.name(widget.titleKey),
+          if (widget.subtitleKey != null)
+            RequestField.name(widget.subtitleKey!),
+        ],
+      ),
     ]).build();
   }
 
@@ -30,22 +48,23 @@ class _Live_ResourceSelectionListViewState extends ConsumerState<ActiveResourceS
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(activeResourceListProvider(
-            activeStructureCode: _activeStructureCode,
-          ).notifier)
+          .read(
+            activeResourceListByStructureCodeProvider(
+              widget.activeStructureCode,
+            ).notifier,
+          )
           .loadActiveResourceList(
             projectId: widget.projectId,
-            requestField: _parseRequestField(_activeTile),
+            requestField: _parseRequestField(),
           );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final activeResourceList = ref.watch(activeResourceListProvider(
-      activeStructureCode: _activeStructureCode,
-    ));
-    final tileComponent = widget.collectionComponent.tile;
+    final activeResourceList = ref.watch(
+      activeResourceListByStructureIdProvider(widget.activeStructureCode),
+    );
     return Stack(
       children: [
         activeResourceList.when(
@@ -58,16 +77,12 @@ class _Live_ResourceSelectionListViewState extends ConsumerState<ActiveResourceS
                 final activeResource = data[index];
                 final liveAttributes = activeResource.liveAttributes;
                 return ListTile(
-                  onTap: () {
-                    widget.onTapResource?.call(activeResource.id);
-                    widget.onViewDetail
-                        ?.call(_detailContextName, activeResource.id);
-                  },
+                  onTap: () {},
                   title: Text(
-                    liveAttributes[tileComponent.titleKey] ?? '',
+                    liveAttributes[widget.titleKey] ?? '',
                   ),
                   subtitle: Text(
-                    liveAttributes[tileComponent.subtitleKey] ?? '',
+                    liveAttributes[widget.subtitleKey] ?? '',
                   ),
                 );
               },
@@ -78,25 +93,6 @@ class _Live_ResourceSelectionListViewState extends ConsumerState<ActiveResourceS
             stackTrace: stackTrace,
           ),
           loading: () => const AppCircularLoadingWidget(),
-        ),
-
-        //
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppSpacing.lg,
-              right: AppSpacing.lg,
-            ),
-            child: FloatingActionButton(
-              heroTag:
-                  'active_resource_collection@${_activeTile.hashCode}${widget.projectId}',
-              child: const Icon(Icons.add),
-              onPressed: () {
-                widget.onRouteCreateForm?.call(_createFormContextName);
-              },
-            ),
-          ),
         ),
       ],
     );

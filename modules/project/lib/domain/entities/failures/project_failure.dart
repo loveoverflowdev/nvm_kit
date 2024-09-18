@@ -60,10 +60,16 @@ class ProjectFailure with _$ProjectFailure implements AppFailure {
         401 => ProjectFailure.unauthorized(),
         500 => ProjectFailure.internalServer(),
         -1 => ProjectFailure.internalServer(),
-        _ => ProjectFailure.unimplemented(error: failure),
+        _ => ProjectFailure.unimplemented(
+            error: failure,
+            stackTrace: stackTrace,
+          ),
       };
     }
-    debugPrint('ProjectFailure: $failure');
-    return ProjectFailure.unimplemented(error: failure);
+    debugPrint('ProjectFailure: $failure, $stackTrace');
+    return ProjectFailure.unimplemented(
+      error: failure,
+      stackTrace: stackTrace,
+    );
   }
 }

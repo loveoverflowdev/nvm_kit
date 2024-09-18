@@ -8,7 +8,7 @@ class ActiveResourcePage extends StatelessWidget {
   final template.ActivePageComponent pageComponent;
   final void Function(String?)? onRouteCreateForm;
   final String? resourceId;
-  final String? projectId;
+  final String projectId;
 
   const ActiveResourcePage({
     super.key,
@@ -38,6 +38,7 @@ class ActiveResourcePage extends StatelessWidget {
       } else if (pageComponent.view is template.ActiveFormComponent) {
         return ActiveResourceFormView(
           formComponent: pageComponent.view as template.ActiveFormComponent,
+          projectId: projectId,
         );
       }
       return const Placeholder(

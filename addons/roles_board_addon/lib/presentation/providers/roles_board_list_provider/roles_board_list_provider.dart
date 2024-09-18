@@ -18,9 +18,9 @@ class RolesBoardList extends _$RolesBoardList {
     TaskEither(
       () => getLocalRolesBoardListTask()
           .run(ref.watch(localRolesBoardRepositoryProvider)),
-    ).flatMap((rolesBoard) {
-      if (rolesBoard.isNotEmpty) {
-        return TaskEither.right(rolesBoard);
+    ).flatMap((rolesBoardList) {
+      if (rolesBoardList.isNotEmpty) {
+        return TaskEither.right(rolesBoardList);
       } else {
         return TaskEither(
           () => getRemoteRolesBoardListTask().run(
@@ -46,7 +46,6 @@ class RolesBoardList extends _$RolesBoardList {
   }
 
   _onFailure(RolesBoardFailure failure) {
-    print('+++++ RolesBoardListState +++++: $failure');
     state = RolesBoardListState.error(
       failure,
       failure.stackTrace ?? StackTrace.current,

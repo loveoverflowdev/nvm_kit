@@ -3,20 +3,21 @@ import 'package:active_resource/presentation/widgets/_date_input_field.dart';
 import 'package:active_resource/presentation/widgets/_date_time_input_field.dart';
 import 'package:active_resource/presentation/widgets/_email_input_field.dart';
 import 'package:active_resource/presentation/widgets/_numeric_input_field.dart';
-import 'package:active_resource/presentation/widgets/_select_resource_list_input_field.dart';
+import 'package:active_resource/presentation/widgets/_multi_resource_selection_input_field.dart';
 import 'package:active_resource/presentation/widgets/_url_input_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '_paragraph_input_field.dart';
-import '_select_one_resource_input_field.dart';
-import '_select_one_user_input_field.dart';
-import '_select_user_list_input_field.dart';
+import '_single_resource_selection_input_field.dart';
+import '_single_user_input_field.dart';
+import '_multi_user_input_field.dart';
 import '_short_text_input_field.dart';
 import '_text_list_input_field.dart';
 
 final class ActiveInputField extends StatelessWidget {
   final ActiveInputFieldSpecification specification;
+
   const ActiveInputField({
     super.key,
     required this.specification,
@@ -36,7 +37,7 @@ final class ActiveInputField extends StatelessWidget {
           hintText: specification.placeholder,
           labeltext: specification.title,
         );
-      }, 
+      },
       date: () {
         return DateInputField();
       },
@@ -56,8 +57,7 @@ final class ActiveInputField extends StatelessWidget {
         );
       },
       email: () {
-        return EmailInputField(
-        );
+        return EmailInputField();
       },
       url: () {
         return UrlInputField();
@@ -68,31 +68,48 @@ final class ActiveInputField extends StatelessWidget {
       binaryCheckbox: () {
         return throw UnimplementedError();
       },
-      multiActiveResourceCheckbox: (String activeStructureCode, String titleKey, String? subtitleKey,) {
+      multiActiveResourceCheckbox: (
+        String activeStructureCode,
+        String titleKey,
+        String? subtitleKey,
+      ) {
         return SelectResourceListInputField(
           labeltext: specification.title,
           valueActiveStructureId: '',
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          projectId: '',
         );
       },
-      singleActiveResourceSelection: (String activeStructureCode, String titleKey, String? subtitleKey) {
+      singleActiveResourceSelection: (
+        String activeStructureCode,
+        String titleKey,
+        String? subtitleKey,
+      ) {
         return SelectOneResourceInputField(
           labeltext: specification.title,
-          valueActiveStructureId: '',
+          valueActiveStructureId: specification.,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
         );
       },
-      multiActiveResourceSelection: (String activeStructureCode, String titleKey, String? subtitleKey) {
+      multiActiveResourceSelection: (
+        String activeStructureCode,
+        String titleKey,
+        String? subtitleKey,
+      ) {
         return SelectResourceListInputField(
           labeltext: specification.title,
           valueActiveStructureId: '',
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          projectId: specification.projectId,
         );
       },
-      singleUserSelection: (String titleKey, String? subtitleKey) {
+      singleUserSelection: (
+        String titleKey,
+        String? subtitleKey,
+      ) {
         return SelectOneUserInputField(
           labeltext: specification.title,
           titleKey: titleKey,
@@ -101,14 +118,14 @@ final class ActiveInputField extends StatelessWidget {
       },
       multiUserSelection: (String titleKey, String? subtitleKey) {
         return SelectUserListInputField(
-          labeltext: specification.title, 
+          labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
         );
       },
       multiUserCheckbox: (String titleKey, String? subtitleKey) {
         return SelectUserListInputField(
-          labeltext: specification.title, 
+          labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
         );

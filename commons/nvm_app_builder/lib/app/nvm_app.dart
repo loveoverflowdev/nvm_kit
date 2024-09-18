@@ -28,27 +28,32 @@ class NvmApp extends StatefulWidget {
   final workspace.WorkspaceRepository workspaceRepository;
   final preference.UserPreferenceRepository userPreferenceRepository;
   final active_resource.ActiveResourceRepository activeResourceRepository;
-  final active_resource.ActiveStructureRepository activeStructureRepository;
+  final active_resource.RemoteActiveStructureRepository
+      remoteActiveStructureRepository;
+  final active_resource.LocalActiveStructureRepository
+      localActiveStructureRepository;
   //
   final comment_addon.CommentRepository commentRepository;
   final roles_board_addon.RemoteRolesBoardRepository remoteRolesBoardRepository;
   final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository;
 
-  const NvmApp(
-      {super.key,
-      required this.templateRepository,
-      required this.navigationGuard,
-      required this.authRepository,
-      required this.notificationRepository,
-      required this.projectRepository,
-      required this.workspaceRepository,
-      required this.userPreferenceRepository,
-      required this.activeResourceRepository,
-      required this.activeStructureRepository,
-      //
-      required this.commentRepository,
-      required this.remoteRolesBoardRepository,
-      required this.localRolesBoardRepository});
+  const NvmApp({
+    super.key,
+    required this.templateRepository,
+    required this.navigationGuard,
+    required this.authRepository,
+    required this.notificationRepository,
+    required this.projectRepository,
+    required this.workspaceRepository,
+    required this.userPreferenceRepository,
+    required this.activeResourceRepository,
+    required this.remoteActiveStructureRepository,
+    required this.localActiveStructureRepository,
+    //
+    required this.commentRepository,
+    required this.remoteRolesBoardRepository,
+    required this.localRolesBoardRepository,
+  });
 
   @override
   State<NvmApp> createState() => _NvmAppState();
@@ -93,8 +98,13 @@ class _NvmAppState extends State<NvmApp> {
         preference.userPreferenceRepositoryProvider.overrideWithValue(
           widget.userPreferenceRepository,
         ),
-        active_resource.activeStructureRepositoryProvider.overrideWithValue(
-          widget.activeStructureRepository,
+        active_resource.remoteActiveStructureRepositoryProvider
+            .overrideWithValue(
+          widget.remoteActiveStructureRepository,
+        ),
+        active_resource.localActiveStructureRepositoryProvider
+            .overrideWithValue(
+          widget.localActiveStructureRepository,
         ),
         active_resource.activeResourceRepositoryProvider.overrideWithValue(
           widget.activeResourceRepository,

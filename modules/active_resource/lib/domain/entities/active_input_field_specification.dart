@@ -5,6 +5,7 @@ part 'active_input_field_specification.freezed.dart';
 final class ActiveInputFieldSpecification {
   final String key;
   final String title;
+  final String projectId;
 
   final String placeholder;
   final String description;
@@ -16,6 +17,7 @@ final class ActiveInputFieldSpecification {
     required this.placeholder,
     required this.description,
     required this.dataType,
+    required this.projectId,
   });
 }
 

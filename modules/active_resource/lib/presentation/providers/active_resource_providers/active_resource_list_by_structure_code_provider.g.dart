@@ -7,7 +7,7 @@ part of 'active_resource_list_by_structure_code_provider.dart';
 // **************************************************************************
 
 String _$activeResourceListByStructureCodeHash() =>
-    r'8f94d97f0c98b4fab6b54af712dd5887adf2a082';
+    r'2021a2bf3ad6f2a8790f307f0c034deb36cd608b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,12 +31,12 @@ class _SystemHash {
 }
 
 abstract class _$ActiveResourceListByStructureCode
-    extends BuildlessAutoDisposeNotifier<ActiveResourceListState> {
+    extends BuildlessAutoDisposeNotifier<_ActiveResourceListState> {
   late final String activeStructureCode;
 
-  ActiveResourceListState build({
-    required String activeStructureCode,
-  });
+  _ActiveResourceListState build(
+    String activeStructureCode,
+  );
 }
 
 /// See also [ActiveResourceListByStructureCode].
@@ -46,16 +46,16 @@ const activeResourceListByStructureCodeProvider =
 
 /// See also [ActiveResourceListByStructureCode].
 class ActiveResourceListByStructureCodeFamily
-    extends Family<ActiveResourceListState> {
+    extends Family<_ActiveResourceListState> {
   /// See also [ActiveResourceListByStructureCode].
   const ActiveResourceListByStructureCodeFamily();
 
   /// See also [ActiveResourceListByStructureCode].
-  ActiveResourceListByStructureCodeProvider call({
-    required String activeStructureCode,
-  }) {
+  ActiveResourceListByStructureCodeProvider call(
+    String activeStructureCode,
+  ) {
     return ActiveResourceListByStructureCodeProvider(
-      activeStructureCode: activeStructureCode,
+      activeStructureCode,
     );
   }
 
@@ -64,7 +64,7 @@ class ActiveResourceListByStructureCodeFamily
     covariant ActiveResourceListByStructureCodeProvider provider,
   ) {
     return call(
-      activeStructureCode: provider.activeStructureCode,
+      provider.activeStructureCode,
     );
   }
 
@@ -86,11 +86,11 @@ class ActiveResourceListByStructureCodeFamily
 /// See also [ActiveResourceListByStructureCode].
 class ActiveResourceListByStructureCodeProvider
     extends AutoDisposeNotifierProviderImpl<ActiveResourceListByStructureCode,
-        ActiveResourceListState> {
+        _ActiveResourceListState> {
   /// See also [ActiveResourceListByStructureCode].
-  ActiveResourceListByStructureCodeProvider({
-    required String activeStructureCode,
-  }) : this._internal(
+  ActiveResourceListByStructureCodeProvider(
+    String activeStructureCode,
+  ) : this._internal(
           () => ActiveResourceListByStructureCode()
             ..activeStructureCode = activeStructureCode,
           from: activeResourceListByStructureCodeProvider,
@@ -118,11 +118,11 @@ class ActiveResourceListByStructureCodeProvider
   final String activeStructureCode;
 
   @override
-  ActiveResourceListState runNotifierBuild(
+  _ActiveResourceListState runNotifierBuild(
     covariant ActiveResourceListByStructureCode notifier,
   ) {
     return notifier.build(
-      activeStructureCode: activeStructureCode,
+      activeStructureCode,
     );
   }
 
@@ -144,7 +144,7 @@ class ActiveResourceListByStructureCodeProvider
 
   @override
   AutoDisposeNotifierProviderElement<ActiveResourceListByStructureCode,
-      ActiveResourceListState> createElement() {
+      _ActiveResourceListState> createElement() {
     return _ActiveResourceListByStructureCodeProviderElement(this);
   }
 
@@ -164,7 +164,7 @@ class ActiveResourceListByStructureCodeProvider
 }
 
 mixin ActiveResourceListByStructureCodeRef
-    on AutoDisposeNotifierProviderRef<ActiveResourceListState> {
+    on AutoDisposeNotifierProviderRef<_ActiveResourceListState> {
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
 }
@@ -172,7 +172,7 @@ mixin ActiveResourceListByStructureCodeRef
 class _ActiveResourceListByStructureCodeProviderElement
     extends AutoDisposeNotifierProviderElement<
         ActiveResourceListByStructureCode,
-        ActiveResourceListState> with ActiveResourceListByStructureCodeRef {
+        _ActiveResourceListState> with ActiveResourceListByStructureCodeRef {
   _ActiveResourceListByStructureCodeProviderElement(super.provider);
 
   @override

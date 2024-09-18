@@ -1,45 +1,44 @@
 import 'package:active_resource/active_resource.dart';
-import 'package:active_resource/domain.dart' as domain;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'active_resource_provider.g.dart';
+part 'active_resource_list_by_structure_code_provider.g.dart';
 
-typedef ActiveResourceState = AsyncValue<domain.ActiveResource?>;
+typedef _ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 
 @riverpod
-class ActiveResource extends _$ActiveResource {
+class ActiveResourceListByStructureCode
+    extends _$ActiveResourceListByStructureCode {
   @override
-  ActiveResourceState build({
-    required String activeStructureCode,
-  }) =>
-      const ActiveResourceState.data(null);
+  // ignore: library_private_types_in_public_api
+  _ActiveResourceListState build(
+    String activeStructureCode,
+  ) =>
+      _ActiveResourceListState.data(List.empty());
 
-  void loadActiveResource({
-    required String id,
+  void loadActiveResourceList({
+    required String? projectId,
     String? requestField,
   }) async {
     state = const AsyncValue.loading();
     ref
         .watch(
-      activeStructureProvider(activeStructureCode: activeStructureCode).future,
+      activeStructureByCodeProvider(activeStructureCode).future,
     )
         .then(
       (structure) {
-        domain
-            .getActiveResourceTask(
+        getActiveResourceListTask(
           structure: structure,
           requestField: requestField,
-          id: id,
-        )
-            .match(
+          projectId: projectId,
+        ).match(
           (failure) {
-            state = ActiveResourceState.error(
+            state = _ActiveResourceListState.error(
               failure,
               failure.stackTrace ?? StackTrace.current,
             );
           },
           (result) {
-            state = ActiveResourceState.data(
+            state = _ActiveResourceListState.data(
               result,
             );
           },
@@ -49,7 +48,7 @@ class ActiveResource extends _$ActiveResource {
       },
     ).catchError(
       (error, stackTrace) {
-        state = ActiveResourceState.error(
+        state = _ActiveResourceListState.error(
           error,
           stackTrace,
         );

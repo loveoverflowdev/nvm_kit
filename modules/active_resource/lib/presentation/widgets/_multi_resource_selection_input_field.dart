@@ -1,21 +1,22 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:template_parser/template_parser.dart' show ActiveCollectionComponent, ActiveTileComponent;
 
-
-import '../views.dart';
+import '_active_resource_selection_list_view.dart';
 
 class SelectResourceListInputField extends StatelessWidget {
-  final String valueActiveStructureId;
+  final String projectId;
+  final String activeStructureCode;
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
 
   const SelectResourceListInputField({
     super.key,
-    required this.valueActiveStructureId,
+    //
+    required this.activeStructureCode,
     required this.labeltext,
+    required this.projectId,
     required this.titleKey,
     this.subtitleKey,
   });
@@ -28,18 +29,11 @@ class SelectResourceListInputField extends StatelessWidget {
         showAppModelBottomSheet(
           context: context,
           builder: (context) {
-            return ActiveResourceCollectionView(
-              collectionComponent: ActiveCollectionComponent(
-                createFormContextName: null,
-                detailContextName: null,
-                tile: ActiveTileComponent(
-                  activeStructureCode: '',
-                  titleKey: '',
-                  subtitleKey: '',
-                ),
-              ),
-              onTapResource: (resourceId) {},
-              projectId: '', // TODO:
+            return ActiveResourceSelectionListView(
+              projectId: projectId,
+              activeStructureCode: valueActiveStructureId,
+              titleKey: titleKey,
+              subtitleKey: subtitleKey,
             );
           },
         );

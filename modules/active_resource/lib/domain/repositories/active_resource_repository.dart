@@ -1,9 +1,12 @@
+import 'package:active_resource/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../entities.dart';
-
-// TODO: Make request field to common package
 abstract interface class ActiveResourceRepository {
+  TaskEither<ActiveResourceFailure, void> createActiveResource({
+    required ActiveStructure structure,
+    required ActiveResourcePayload payload,
+  });
+
   TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
     required ActiveStructure structure,
     required String id,
@@ -15,10 +18,5 @@ abstract interface class ActiveResourceRepository {
     required ActiveStructure structure,
     required String? projectId,
     String? requestField,
-  });
-
-  TaskEither<ActiveResourceFailure, void> createActiveResource({
-    required ActiveStructure structure,
-    required ActiveResourcePayload payload,
   });
 }

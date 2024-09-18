@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import '../entities.dart';
 
-abstract class ActiveStructureRepository {
+abstract class RemoteActiveStructureRepository {
   // TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureById(String id);
 
   TaskEither<ActiveStructureFailure, List<ActiveStructure>>
@@ -9,5 +9,9 @@ abstract class ActiveStructureRepository {
 
   TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
     String code,
+  );
+
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureById(
+    String id,
   );
 }

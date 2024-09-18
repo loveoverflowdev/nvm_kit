@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
-import '../providers.dart' show activeResourceListProvider;
+import '../providers.dart' show activeResourceListByStructureCodeProvider;
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final void Function(String? detailContextName, String resourceId)?
@@ -59,8 +59,8 @@ class _ActiveResourceCollectionViewState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(activeResourceListProvider(
-            activeStructureCode: _activeStructureCode,
+          .read(activeResourceListByStructureCodeProvider(
+            _activeStructureCode,
           ).notifier)
           .loadActiveResourceList(
             projectId: widget.projectId,
@@ -71,9 +71,11 @@ class _ActiveResourceCollectionViewState
 
   @override
   Widget build(BuildContext context) {
-    final activeResourceList = ref.watch(activeResourceListProvider(
-      activeStructureCode: _activeStructureCode,
-    ));
+    final activeResourceList = ref.watch(
+      activeResourceListByStructureCodeProvider(
+        _activeStructureCode,
+      ),
+    );
     final tileComponent = widget.collectionComponent.tile;
     return Stack(
       children: [

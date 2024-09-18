@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
-import '../providers.dart' show activeResourceProvider;
+import '../providers.dart' show activeResourceByStructureCodeProvider;
 
 class ActiveResourceDetailView extends ConsumerStatefulWidget {
   final template.ActiveDetailComponent detailComponent;
@@ -46,8 +46,8 @@ class _ActiveResourceDetailViewState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final String requestField = _parseRequestField(_activeTile);
       ref
-          .read(activeResourceProvider(
-            activeStructureCode: _activeStructureCode,
+          .read(activeResourceByStructureCodeProvider(
+            _activeStructureCode,
           ).notifier)
           .loadActiveResource(
             requestField: requestField,
@@ -59,8 +59,8 @@ class _ActiveResourceDetailViewState
   @override
   Widget build(BuildContext context) {
     final activeResource = ref.watch(
-      activeResourceProvider(
-        activeStructureCode: _activeStructureCode,
+      activeResourceByStructureCodeProvider(
+        _activeStructureCode,
       ),
     );
     return activeResource.when(
@@ -91,7 +91,6 @@ class _ActiveResourceDetailViewState
                             child: Text(
                                 data.liveAttributes[_activeTile.subtitleKey]),
                           ),
-                       
                         for (final key in _activeTile.extraKeys)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
@@ -99,23 +98,15 @@ class _ActiveResourceDetailViewState
                           ),
                       ],
                     ),
-                    for (final addon in data.addons)
-                      ...[
-                        Divider(),
-                        Flexible(
-                          child: addon.resourceDetailAddonView(
-                            activeStructureCode: _activeStructureCode, 
-                            resourceId: widget.resourceId,
-                          ),
+                    for (final addon in data.addons) ...[
+                      const Divider(),
+                      Flexible(
+                        child: addon.resourceDetailAddonView(
+                          activeStructureCode: _activeStructureCode,
+                          resourceId: widget.resourceId,
                         ),
-                      ]
-                      // Flexible(
-                      //   child: comment.CommentsPreview(
-                      //     activeStructureCode:
-                      //         widget.detailComponent.tile.activeStructureCode,
-                      //     resourceId: widget.resourceId,
-                      //   ),
-                      // ),
+                      ),
+                    ]
                   ],
                 ),
               ),

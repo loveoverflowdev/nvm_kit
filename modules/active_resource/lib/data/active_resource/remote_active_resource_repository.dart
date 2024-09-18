@@ -37,8 +37,10 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           ),
         );
       },
-      (error, stackTrace) =>
-          ActiveResourceFailure.fromError(error, stackTrace: stackTrace,),
+      (error, stackTrace) => ActiveResourceFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
     );
   }
 
@@ -109,7 +111,9 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
     if (structure.supportedAddonTypes.contains(AddonType.rolesBoard)) {
       addons.addAll(
-        response.addons.whereType<api.RolesBoardStateResponse>().map((response) {
+        response.addons
+            .whereType<api.RolesBoardStateResponse>()
+            .map((response) {
           return roles_board_addon.rolesBoardAddon(
             resourceState: roles_board_addon.RolesBoardResourceState(
               typeCode: response.typeCode,
@@ -155,7 +159,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
     return switch (response) {
       api.ProgressStatusResponse.notStarted => ProgressStatus.notStarted,
       api.ProgressStatusResponse.inProgress => ProgressStatus.inProgress,
-      api.ProgressStatusResponse.completed =>  ProgressStatus.completed,
+      api.ProgressStatusResponse.completed => ProgressStatus.completed,
     };
   }
 }

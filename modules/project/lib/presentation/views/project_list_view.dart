@@ -60,7 +60,10 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
               separatorBuilder: (context, index) => const Divider(),
             ),
           ),
-          error: (error, stackTrace) => ErrorWidget(error),
+          error: (error, stackTrace) => AppErrorWidget(
+            error,
+            stackTrace: stackTrace,
+          ),
           loading: () => const AppCircularLoadingWidget(),
         ),
 

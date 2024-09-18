@@ -6,20 +6,42 @@ import '../../domain.dart'
         ActiveFieldDataType,
         ActiveStructure,
         ActiveStructureFailure,
-        ActiveStructureRepository,
+        RemoteActiveStructureRepository,
         AddonType;
 
-final class RemoteActiveStructureRepository
-    implements ActiveStructureRepository {
+final class RemoteActiveStructureRepositoryImpl
+    implements RemoteActiveStructureRepository {
   final api.ResourceApiClient _apiClient;
 
-  RemoteActiveStructureRepository({
+  RemoteActiveStructureRepositoryImpl({
     required api.ResourceApiClient apiClient,
   }) : _apiClient = apiClient;
 
   @override
+  TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureById(
+    String id,
+  ) {
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient
+            .getActiveStructureById(
+              id,
+            )
+            .then(
+              (value) => _mapResponse(value),
+            );
+      },
+      (error, stackTrace) => ActiveStructureFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
+    );
+  }
+
+  @override
   TaskEither<ActiveStructureFailure, ActiveStructure> getActiveStructureByCode(
-      String code) {
+    String code,
+  ) {
     return TaskEither.tryCatch(
       () async {
         return _apiClient
