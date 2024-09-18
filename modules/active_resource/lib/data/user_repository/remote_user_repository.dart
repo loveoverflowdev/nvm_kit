@@ -1,6 +1,6 @@
+import 'package:active_resource/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:nvm_api_client/nvm_api_client.dart' as api;
-import 'package:user/domain.dart';
 
 final class RemoteUserRepository implements UserRepository {
   final api.UserApiClient _apiClient;

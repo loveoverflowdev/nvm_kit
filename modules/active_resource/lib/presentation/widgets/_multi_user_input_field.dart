@@ -6,11 +6,13 @@ class MultiUserInputField extends StatelessWidget {
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
+  final void Function(String) onChanged;
 
   const MultiUserInputField({
     super.key,
     required this.labeltext,
     required this.titleKey,
+    required this.onChanged,
     this.subtitleKey,
   });
 

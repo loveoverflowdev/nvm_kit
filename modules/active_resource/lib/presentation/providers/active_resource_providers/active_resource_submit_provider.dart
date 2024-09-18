@@ -6,20 +6,20 @@ import 'active_resource_repository_provider.dart';
 
 part 'active_resource_submit_provider.g.dart';
 
-typedef ActiveResourceSubmitState = AsyncValue<void>;
+typedef _ActiveResourceSubmitState = AsyncValue<void>;
 
 @riverpod
 class ActiveResourceSubmit extends _$ActiveResourceSubmit {
   @override
-  ActiveResourceSubmitState build({
+  AsyncValue<void> build({
     required String activeStructureCode,
 
     /// [key] to seperated listener
     required String key,
   }) =>
-      const ActiveResourceSubmitState.data(null);
+      const _ActiveResourceSubmitState.data(null);
 
-  void submit(ActiveResourcePayload payload) {
+  void submit(ActiveResourceForm payload) {
     state = const AsyncValue.loading();
     ref
         .watch(
@@ -32,13 +32,13 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
           payload: payload,
         ).match(
           (failure) {
-            state = ActiveResourceSubmitState.error(
+            state = _ActiveResourceSubmitState.error(
               failure,
               failure.stackTrace ?? StackTrace.current,
             );
           },
           (response) {
-            state = const ActiveResourceSubmitState.data(null);
+            state = const _ActiveResourceSubmitState.data(null);
           },
         ).run(
           ref.watch(activeResourceRepositoryProvider),
@@ -46,7 +46,7 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
       },
     ).catchError(
       (error, stackTrace) {
-        state = ActiveResourceSubmitState.error(
+        state = _ActiveResourceSubmitState.error(
           error,
           stackTrace,
         );

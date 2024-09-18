@@ -4,30 +4,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '_active_resource_selection_list_view.dart';
 
-class SingleResourceSelectionInputField extends ConsumerWidget {
-  final String projectId;
-  final String activeStructureCode;
-  final String labeltext;
-  final String titleKey;
-  final String? subtitleKey;
-
+class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
   const SingleResourceSelectionInputField({
     super.key,
     required this.activeStructureCode,
     required this.labeltext, 
     required this.titleKey,
     required this.projectId, 
+    required this.onChanged,
     this.subtitleKey,
   });
 
+  final String projectId;
+  final String activeStructureCode;
+  final String labeltext;
+  final String titleKey;
+  final String? subtitleKey;
+  final void Function(String) onChanged;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // final activeStructureList = ref.watch(activeStructureListProvider);
-    // return activeStructureList.when(
-    //   data: data, 
-    //   error: error, 
-    //   loading: loading,
-    // );
+  ConsumerState<ConsumerStatefulWidget> createState() => _SingleResourceSelectionInputFieldState();
+}
+
+class _SingleResourceSelectionInputFieldState extends ConsumerState<SingleResourceSelectionInputField> {
+  late String? _selectedResourceId;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedResourceId = null;
+  }
+
+  void _onChanged() {
+    if (_selectedResourceId != null) {
+      widget.onChanged(_selectedResourceId!);
+    }
+  }
+  
+  @override
+  Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: () {
@@ -35,10 +50,15 @@ class SingleResourceSelectionInputField extends ConsumerWidget {
           context: context,
           builder: (context) {
             return ActiveResourceSelectionListView(
-              projectId: projectId,
-              activeStructureCode: activeStructureCode,
-              titleKey: titleKey,
-              subtitleKey: subtitleKey,
+              initialResourceId: _selectedResourceId,
+              projectId: widget.projectId,
+              activeStructureCode: widget.activeStructureCode,
+              titleKey: widget.titleKey,
+              subtitleKey: widget.subtitleKey,
+              onResourceSelected: (resourceId) {
+                _selectedResourceId = resourceId;
+                _onChanged();
+              },
             );
           },
         );
@@ -46,7 +66,7 @@ class SingleResourceSelectionInputField extends ConsumerWidget {
       child: IgnorePointer(
         child: TextField(
           decoration: InputDecoration(
-            labelText: labeltext,
+            labelText: widget.labeltext,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),

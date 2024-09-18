@@ -7,7 +7,7 @@ part of 'active_resource_by_structure_id_provider.dart';
 // **************************************************************************
 
 String _$activeResourceByStructureIdHash() =>
-    r'f6565fe99808e0bc7f60556dfa60a4adf98a900e';
+    r'bab80dcfcb88713c8e5f6bbb54ac53e589ecc05f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$ActiveResourceByStructureId
-    extends BuildlessAutoDisposeNotifier<_ActiveResourceState> {
+    extends BuildlessAutoDisposeNotifier<AsyncValue<domain.ActiveResource?>> {
   late final String activeStructureId;
 
-  _ActiveResourceState build(
+  AsyncValue<domain.ActiveResource?> build(
     String activeStructureId,
   );
 }
@@ -44,7 +44,8 @@ abstract class _$ActiveResourceByStructureId
 const activeResourceByStructureIdProvider = ActiveResourceByStructureIdFamily();
 
 /// See also [ActiveResourceByStructureId].
-class ActiveResourceByStructureIdFamily extends Family<_ActiveResourceState> {
+class ActiveResourceByStructureIdFamily
+    extends Family<AsyncValue<domain.ActiveResource?>> {
   /// See also [ActiveResourceByStructureId].
   const ActiveResourceByStructureIdFamily();
 
@@ -84,7 +85,7 @@ class ActiveResourceByStructureIdFamily extends Family<_ActiveResourceState> {
 /// See also [ActiveResourceByStructureId].
 class ActiveResourceByStructureIdProvider
     extends AutoDisposeNotifierProviderImpl<ActiveResourceByStructureId,
-        _ActiveResourceState> {
+        AsyncValue<domain.ActiveResource?>> {
   /// See also [ActiveResourceByStructureId].
   ActiveResourceByStructureIdProvider(
     String activeStructureId,
@@ -116,7 +117,7 @@ class ActiveResourceByStructureIdProvider
   final String activeStructureId;
 
   @override
-  _ActiveResourceState runNotifierBuild(
+  AsyncValue<domain.ActiveResource?> runNotifierBuild(
     covariant ActiveResourceByStructureId notifier,
   ) {
     return notifier.build(
@@ -142,7 +143,7 @@ class ActiveResourceByStructureIdProvider
 
   @override
   AutoDisposeNotifierProviderElement<ActiveResourceByStructureId,
-      _ActiveResourceState> createElement() {
+      AsyncValue<domain.ActiveResource?>> createElement() {
     return _ActiveResourceByStructureIdProviderElement(this);
   }
 
@@ -162,14 +163,15 @@ class ActiveResourceByStructureIdProvider
 }
 
 mixin ActiveResourceByStructureIdRef
-    on AutoDisposeNotifierProviderRef<_ActiveResourceState> {
+    on AutoDisposeNotifierProviderRef<AsyncValue<domain.ActiveResource?>> {
   /// The parameter `activeStructureId` of this provider.
   String get activeStructureId;
 }
 
 class _ActiveResourceByStructureIdProviderElement
     extends AutoDisposeNotifierProviderElement<ActiveResourceByStructureId,
-        _ActiveResourceState> with ActiveResourceByStructureIdRef {
+        AsyncValue<domain.ActiveResource?>>
+    with ActiveResourceByStructureIdRef {
   _ActiveResourceByStructureIdProviderElement(super.provider);
 
   @override

@@ -7,7 +7,7 @@ part of 'active_resource_submit_provider.dart';
 // **************************************************************************
 
 String _$activeResourceSubmitHash() =>
-    r'05bce9daaf8b77e8e280bc609818e90af2b2c12b';
+    r'8a6ad80d6e8790b3e0d8d2962356eba278b75752';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$ActiveResourceSubmit
-    extends BuildlessAutoDisposeNotifier<ActiveResourceSubmitState> {
+    extends BuildlessAutoDisposeNotifier<AsyncValue<void>> {
   late final String activeStructureCode;
   late final String key;
 
-  ActiveResourceSubmitState build({
+  AsyncValue<void> build({
     required String activeStructureCode,
     required String key,
   });
@@ -46,7 +46,7 @@ abstract class _$ActiveResourceSubmit
 const activeResourceSubmitProvider = ActiveResourceSubmitFamily();
 
 /// See also [ActiveResourceSubmit].
-class ActiveResourceSubmitFamily extends Family<ActiveResourceSubmitState> {
+class ActiveResourceSubmitFamily extends Family<AsyncValue<void>> {
   /// See also [ActiveResourceSubmit].
   const ActiveResourceSubmitFamily();
 
@@ -88,7 +88,7 @@ class ActiveResourceSubmitFamily extends Family<ActiveResourceSubmitState> {
 
 /// See also [ActiveResourceSubmit].
 class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
-    ActiveResourceSubmit, ActiveResourceSubmitState> {
+    ActiveResourceSubmit, AsyncValue<void>> {
   /// See also [ActiveResourceSubmit].
   ActiveResourceSubmitProvider({
     required String activeStructureCode,
@@ -125,7 +125,7 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
   final String key;
 
   @override
-  ActiveResourceSubmitState runNotifierBuild(
+  AsyncValue<void> runNotifierBuild(
     covariant ActiveResourceSubmit notifier,
   ) {
     return notifier.build(
@@ -154,8 +154,8 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActiveResourceSubmit,
-      ActiveResourceSubmitState> createElement() {
+  AutoDisposeNotifierProviderElement<ActiveResourceSubmit, AsyncValue<void>>
+      createElement() {
     return _ActiveResourceSubmitProviderElement(this);
   }
 
@@ -177,7 +177,7 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
 }
 
 mixin ActiveResourceSubmitRef
-    on AutoDisposeNotifierProviderRef<ActiveResourceSubmitState> {
+    on AutoDisposeNotifierProviderRef<AsyncValue<void>> {
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
 
@@ -187,7 +187,7 @@ mixin ActiveResourceSubmitRef
 
 class _ActiveResourceSubmitProviderElement
     extends AutoDisposeNotifierProviderElement<ActiveResourceSubmit,
-        ActiveResourceSubmitState> with ActiveResourceSubmitRef {
+        AsyncValue<void>> with ActiveResourceSubmitRef {
   _ActiveResourceSubmitProviderElement(super.provider);
 
   @override

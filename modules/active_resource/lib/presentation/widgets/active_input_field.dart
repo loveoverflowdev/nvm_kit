@@ -1,26 +1,29 @@
 import 'package:active_resource/active_resource.dart';
-import 'package:active_resource/presentation/widgets/_date_input_field.dart';
-import 'package:active_resource/presentation/widgets/_date_time_input_field.dart';
-import 'package:active_resource/presentation/widgets/_email_input_field.dart';
-import 'package:active_resource/presentation/widgets/_numeric_input_field.dart';
-import 'package:active_resource/presentation/widgets/_multi_resource_selection_input_field.dart';
-import 'package:active_resource/presentation/widgets/_url_input_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '_date_input_field.dart';
+import '_date_time_input_field.dart';
+import '_email_input_field.dart';
+import '_multi_resource_selection_input_field.dart';
+import '_numeric_input_field.dart';
 import '_paragraph_input_field.dart';
 import '_single_resource_selection_input_field.dart';
 import '_single_user_input_field.dart';
 import '_multi_user_input_field.dart';
 import '_short_text_input_field.dart';
 import '_text_list_input_field.dart';
+import '_url_input_field.dart';
 
 final class ActiveInputField extends StatelessWidget {
+  /// Return raw value to fill submission form
+  final void Function(dynamic) onSelected;
   final ActiveInputFieldSpecification specification;
 
   const ActiveInputField({
     super.key,
     required this.specification,
+    required this.onSelected,
   });
 
   @override
@@ -30,12 +33,16 @@ final class ActiveInputField extends StatelessWidget {
         return ShortTextInputField(
           labeltext: specification.title,
           hintText: specification.placeholder,
+          onChanged: onSelected,
         );
       },
       paragraph: () {
         return ParagraphInputField(
           hintText: specification.placeholder,
-          labeltext: specification.title,
+          labeltext: specification.title, 
+          onChanged: (String text) {
+
+          },
         );
       },
       date: () {
@@ -47,13 +54,15 @@ final class ActiveInputField extends StatelessWidget {
       integer: () {
         return NumericInputField(
           hintText: specification.placeholder,
-          labeltext: specification.title,
+          labeltext: specification.title, 
+          onChanged: (num ) {  },
         );
       },
       numeric: () {
         return NumericInputField(
           hintText: specification.placeholder,
-          labeltext: specification.title,
+          labeltext: specification.title, 
+          onChanged: (num ) {  },
         );
       },
       email: () {
@@ -78,7 +87,8 @@ final class ActiveInputField extends StatelessWidget {
           activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
-          projectId: '',
+          projectId: specification.projectId, 
+          onChanged: (String ) {  },
         );
       },
       singleActiveResourceSelection: (
@@ -92,6 +102,7 @@ final class ActiveInputField extends StatelessWidget {
           activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey, 
+          onChanged: onSelected, 
         );
       },
       multiActiveResourceSelection: (
@@ -105,6 +116,7 @@ final class ActiveInputField extends StatelessWidget {
           activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          onChanged: onSelected,
         );
       },
       singleUserSelection: (
@@ -122,6 +134,7 @@ final class ActiveInputField extends StatelessWidget {
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          onChanged: onSelected,
         );
       },
       multiUserCheckbox: (String titleKey, String? subtitleKey) {
@@ -129,6 +142,7 @@ final class ActiveInputField extends StatelessWidget {
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          onChanged: onSelected,
         );
       },
       unsupported: () {

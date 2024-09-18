@@ -1,25 +1,47 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '_active_resource_selection_list_view.dart';
 
-class MultiResourceSelectionInputField extends StatelessWidget {
+
+class MultiResourceSelectionInputField extends ConsumerStatefulWidget {
+  const MultiResourceSelectionInputField({
+    super.key,
+    required this.activeStructureCode,
+    required this.labeltext, 
+    required this.titleKey,
+    required this.projectId, 
+    required this.onChanged,
+    this.subtitleKey,
+  });
+
   final String projectId;
   final String activeStructureCode;
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
+  final void Function(String) onChanged;
 
-  const MultiResourceSelectionInputField({
-    super.key,
-    //
-    required this.activeStructureCode,
-    required this.labeltext,
-    required this.projectId,
-    required this.titleKey,
-    this.subtitleKey,
-  });
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _MultiResourceSelectionInputFieldState();
+}
+
+class _MultiResourceSelectionInputFieldState extends ConsumerState<MultiResourceSelectionInputField> {
+  late String? _selectedResourceId;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedResourceId = null;
+  }
+
+  void _onChanged() {
+    if (_selectedResourceId != null) {
+      widget.onChanged(_selectedResourceId!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +52,15 @@ class MultiResourceSelectionInputField extends StatelessWidget {
           context: context,
           builder: (context) {
             return ActiveResourceSelectionListView(
-              projectId: projectId,
-              activeStructureCode: activeStructureCode,
-              titleKey: titleKey,
-              subtitleKey: subtitleKey,
+              initialResourceId: _selectedResourceId,
+              projectId: widget.projectId,
+              activeStructureCode: widget.activeStructureCode,
+              titleKey: widget.titleKey,
+              subtitleKey: widget.subtitleKey,
+              onResourceSelected: (resourceId) {
+                _selectedResourceId = resourceId;
+                _onChanged();
+              },
             );
           },
         );
@@ -41,7 +68,7 @@ class MultiResourceSelectionInputField extends StatelessWidget {
       child: IgnorePointer(
         child: TextField(
           decoration: InputDecoration(
-            labelText: labeltext,
+            labelText: widget.labeltext,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),

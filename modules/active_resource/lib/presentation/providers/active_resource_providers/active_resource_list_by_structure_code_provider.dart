@@ -9,7 +9,6 @@ typedef _ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 class ActiveResourceListByStructureCode
     extends _$ActiveResourceListByStructureCode {
   @override
-  // ignore: library_private_types_in_public_api
   _ActiveResourceListState build(
     String activeStructureCode,
   ) =>

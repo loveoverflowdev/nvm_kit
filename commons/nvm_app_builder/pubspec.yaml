@@ -24,8 +24,6 @@ dependencies:
     path: ../../modules/active_resource
   preference:
     path: ../../modules/preference
-  user:
-    path: ../../modules/user
 
   # Addons
   comment_addon:

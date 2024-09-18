@@ -4,9 +4,9 @@ part 'user_response.g.dart';
 
 @JsonSerializable()
 class UserResponse {
-  final String id;
-  final String username;
-  final String fullName;
+  late final String id;
+  late final String username;
+  late final String fullName;
   final String? email;
   final String? phone;
   final String? phoneCountryCode;

@@ -10,7 +10,7 @@ import '../../domain.dart'
         ActiveResource,
         ActiveResourceCreator,
         ActiveResourceFailure,
-        ActiveResourcePayload,
+        ActiveResourceForm,
         ActiveResourceRepository,
         ActiveStructure,
         AddonType;
@@ -25,7 +25,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   @override
   TaskEither<ActiveResourceFailure, void> createActiveResource({
     required ActiveStructure structure,
-    required ActiveResourcePayload payload,
+    required ActiveResourceForm payload,
   }) {
     return TaskEither.tryCatch(
       () {

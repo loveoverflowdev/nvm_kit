@@ -57,6 +57,9 @@ class _ActiveResourceFormViewState
                   padding: const EdgeInsets.only(top: AppSpacing.md),
                   child: ActiveInputField(
                     specification: specification,
+                    onSelected: (value) {
+                      
+                    },
                   ),
                 ),
               //

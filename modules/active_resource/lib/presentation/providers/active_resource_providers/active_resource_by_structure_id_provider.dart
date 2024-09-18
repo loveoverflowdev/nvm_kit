@@ -9,8 +9,7 @@ typedef _ActiveResourceState = AsyncValue<domain.ActiveResource?>;
 @riverpod
 class ActiveResourceByStructureId extends _$ActiveResourceByStructureId {
   @override
-  // ignore: library_private_types_in_public_api
-  _ActiveResourceState build(String activeStructureId) =>
+  AsyncValue<domain.ActiveResource?> build(String activeStructureId) =>
       const _ActiveResourceState.data(null);
 
   void loadActiveResource({

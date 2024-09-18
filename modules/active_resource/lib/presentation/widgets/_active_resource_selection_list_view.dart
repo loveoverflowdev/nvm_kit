@@ -13,6 +13,11 @@ class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String titleKey;
   final String? subtitleKey;
+  //
+  final String? initialResourceId;
+
+  /// return selected resource id
+  final void Function(String) onResourceSelected;
 
   const ActiveResourceSelectionListView({
     super.key,
@@ -20,6 +25,9 @@ class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
     required this.projectId,
     required this.titleKey,
     required this.subtitleKey,
+
+    required this.onResourceSelected,
+    this.initialResourceId,
   });
 
   @override

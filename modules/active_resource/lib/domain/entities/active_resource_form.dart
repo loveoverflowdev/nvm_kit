@@ -1,8 +1,8 @@
-final class ActiveResourcePayload {
+final class ActiveResourceForm {
   final String projectId;
   final Map<String, dynamic> liveAttributes;
 
-  ActiveResourcePayload({
+  ActiveResourceForm({
     required this.projectId,
     required this.liveAttributes,
   });
