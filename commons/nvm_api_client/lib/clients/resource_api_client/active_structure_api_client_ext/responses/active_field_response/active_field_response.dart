@@ -25,7 +25,7 @@ final class ActiveFieldResponse {
 
   final String? valueActiveStructureId;
 
-  final bool isRequired;
+  final bool? isRequired;
   final bool? isUnique;
   final bool? isMultipleValued;
   final bool? searchable;

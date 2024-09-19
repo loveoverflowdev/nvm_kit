@@ -45,17 +45,25 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   }
 
   @override
-  TaskEither<ActiveResourceFailure, ActiveResource> getActiveResource({
+  TaskEither<ActiveResourceFailure, void> updateActiveResourceById(String id, {
+    required ActiveStructure structure, 
+    required ActiveResourceForm form
+  }) {
+    // TODO: implement updateActiveResource
+    throw UnimplementedError();
+  }
+
+  @override
+  TaskEither<ActiveResourceFailure, ActiveResource> getActiveResourceById(String id, {
     required ActiveStructure structure,
-    required String id,
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
-            .getActiveResource(
+            .getActiveResourceById(
+              id,
               activeStructureCode: structure.code,
-              id: id,
               requestField: requestField,
             )
             .then(
@@ -91,6 +99,25 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
                   )
                   .toList(),
             );
+      },
+      (error, stackTrace) => ActiveResourceFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
+    );
+  }
+
+  @override
+  TaskEither<ActiveResourceFailure, void> deleteActiveResourceById(String id, {
+    required ActiveStructure structure, 
+  }) {
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient
+          .deleteActiveResourceById(
+            id,
+            activeStructureCode: structure.code, 
+          );
       },
       (error, stackTrace) => ActiveResourceFailure.fromError(
         error,
@@ -162,6 +189,8 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       api.ProgressStatusResponse.completed => ProgressStatus.completed,
     };
   }
+  
+  
 }
 
 /*

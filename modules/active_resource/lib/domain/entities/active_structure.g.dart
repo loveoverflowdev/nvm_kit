@@ -46,6 +46,7 @@ ActiveFieldStructure _$ActiveFieldStructureFromJson(
       placeholder: json['placeholder'] as String,
       description: json['description'] as String,
       valueActiveStructureId: json['valueActiveStructureId'] as String,
+      isRequired: json['isRequired'] as bool,
     );
 
 Map<String, dynamic> _$ActiveFieldStructureToJson(
@@ -55,6 +56,7 @@ Map<String, dynamic> _$ActiveFieldStructureToJson(
       'key': instance.key,
       'title': instance.title,
       'order': instance.order,
+      'isRequired': instance.isRequired,
       'type': _$ActiveFieldDataTypeEnumMap[instance.type]!,
       'placeholder': instance.placeholder,
       'description': instance.description,

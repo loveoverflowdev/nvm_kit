@@ -65,6 +65,7 @@ class ActiveResourceFailure with _$ActiveResourceFailure implements AppFailure {
           ),
       };
     }
+    print('+++++++++++++++++++++++$failure;     $stackTrace');
     return ActiveResourceFailure.unimplemented(
         error: failure, stackTrace: stackTrace);
   }

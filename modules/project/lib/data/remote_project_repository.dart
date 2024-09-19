@@ -10,15 +10,14 @@ final class RemoteProjectRepository implements ProjectRepository {
   }) : _apiClient = apiClient;
 
   @override
-  TaskEither<ProjectFailure, Project> getProject({
-    required String projectId,
+  TaskEither<ProjectFailure, Project> getProjectId(String projectId, {
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () {
         return _apiClient
-            .getProject(
-              projectId: projectId,
+            .getProjectById(
+              projectId,
             )
             .then(
               _mapResponse,

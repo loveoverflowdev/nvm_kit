@@ -26,6 +26,16 @@ ApiEndpoint createActiveResource({
       requiredWorkspace: true,
     );
 
+ApiEndpoint deleteActiveResourceById(
+  String id,{
+    required String activeStructureCode,
+  }
+) => ApiEndpoint(
+  uriTemplate: '/api/workspaces/:workspace_id/active-module/delete/resources/$activeStructureCode/$id',
+  requiredAuthorization: true,
+  requiredWorkspace: true,
+);
+
 ApiEndpoint getActiveResourceById(
   String id, {
   required String activeStructureCode,

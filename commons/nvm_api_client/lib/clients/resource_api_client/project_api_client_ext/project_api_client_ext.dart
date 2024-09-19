@@ -21,8 +21,7 @@ extension ProjectApiClientExt on ResourceApiClient {
     );
   }
 
-  Future<ProjectResponse> getProject({
-    required String projectId,
+  Future<ProjectResponse> getProjectById(String projectId, {
     String? requestField,
   }) async {
     return requestJson(

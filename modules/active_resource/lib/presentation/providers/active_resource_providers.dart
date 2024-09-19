@@ -3,3 +3,4 @@ export 'active_resource_providers/active_resource_list_by_structure_id_provider.
 export 'active_resource_providers/active_resource_repository_provider.dart';
 export 'active_resource_providers/active_resource_by_structure_code_provider.dart';
 export 'active_resource_providers/active_resource_by_structure_id_provider.dart';
+export 'active_resource_providers/active_resource_submit_provider.dart';

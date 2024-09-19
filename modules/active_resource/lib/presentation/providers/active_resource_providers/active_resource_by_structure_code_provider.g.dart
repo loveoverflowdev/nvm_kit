@@ -7,7 +7,7 @@ part of 'active_resource_by_structure_code_provider.dart';
 // **************************************************************************
 
 String _$activeResourceByStructureCodeHash() =>
-    r'6525dafe9fd0de755f274cd10d44d152b66d0408';
+    r'235f42929b16251876aa787a20e56a883c849501';
 
 /// Copied from Dart SDK
 class _SystemHash {

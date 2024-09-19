@@ -38,8 +38,7 @@ final class WorkspaceApiClient {
     );
   }
 
-  Future<WorkspaceResponse> getWorkspace({
-    required String workspaceId,
+  Future<WorkspaceResponse> getWorkspaceById(String workspaceId, {
     String? requestField,
   }) async {
     return _requestJson(

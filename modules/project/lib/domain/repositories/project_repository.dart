@@ -7,8 +7,7 @@ abstract interface class ProjectRepository {
     String? requestField,
   });
 
-  TaskEither<ProjectFailure, Project> getProject({
-    required String projectId,
+  TaskEither<ProjectFailure, Project> getProjectId(String projectId,{
     String? requestField,
   });
 

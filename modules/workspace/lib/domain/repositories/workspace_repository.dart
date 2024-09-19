@@ -9,8 +9,7 @@ abstract interface class WorkspaceRepository {
     String? requestField,
   });
 
-  TaskEither<WorkspaceFailure, Workspace> getWorkspace({
-    required String workspaceId,
+  TaskEither<WorkspaceFailure, Workspace> getWorkspaceById(String workspaceId, {
     String? requestField,
   });
 }

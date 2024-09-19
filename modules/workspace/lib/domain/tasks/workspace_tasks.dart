@@ -22,14 +22,13 @@ ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, List<Workspace>>
         );
 
 ReaderTaskEither<WorkspaceRepository, WorkspaceFailure, Workspace>
-    getWorkspaceTask({
-  required String workspaceId,
+    getWorkspaceByIdTask(String workspaceId, {
   String? requestField,
 }) =>
         ReaderTaskEither(
           (repository) => repository
-              .getWorkspace(
-                workspaceId: workspaceId,
+              .getWorkspaceById(
+                workspaceId,
               )
               .run(),
         );

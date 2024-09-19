@@ -24,8 +24,8 @@ class UserPreferenceRepositoryImpl implements UserPreferenceRepository {
               throw UserFailure.userIdMissing(stackTrace: StackTrace.current);
             }
             return _apiClient
-                .getUser(
-                  userId: userId,
+                .getUserById(
+                  userId,
                 )
                 .then(
                   _mapResponse,

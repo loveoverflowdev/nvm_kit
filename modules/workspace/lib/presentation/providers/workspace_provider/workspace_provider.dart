@@ -12,8 +12,8 @@ Future<WorkspaceState> workspace(
   WorkspaceRef ref, {
   required String workspaceId,
 }) async {
-  return getWorkspaceTask(
-    workspaceId: workspaceId,
+  return getWorkspaceByIdTask(
+    workspaceId,
   ).match(
     (failure) {
       return WorkspaceState.error(

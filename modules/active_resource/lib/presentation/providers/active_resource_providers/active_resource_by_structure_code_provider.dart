@@ -1,6 +1,8 @@
-import 'package:active_resource/active_resource.dart';
 import 'package:active_resource/domain.dart' as domain;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../active_structure_providers.dart';
+import 'active_resource_repository_provider.dart';
 
 part 'active_resource_by_structure_code_provider.g.dart';
 

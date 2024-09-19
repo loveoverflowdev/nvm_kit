@@ -24,15 +24,14 @@ ReaderTaskEither<ProjectRepository, ProjectFailure, List<Project>>
               .run(),
         );
 
-ReaderTaskEither<ProjectRepository, ProjectFailure, Project> getProjectTask({
+ReaderTaskEither<ProjectRepository, ProjectFailure, Project> getProjectByIdTask(String projectId, {
   required String workspaceId,
-  required String projectId,
   String? requestField,
 }) =>
     ReaderTaskEither(
       (repository) => repository
-          .getProject(
-            projectId: projectId,
+          .getProjectId(
+            projectId,
             requestField: requestField,
           )
           .run(),

@@ -32,6 +32,7 @@ final class ActiveFieldStructure {
   final String key;
   final String title;
   final int order;
+  final bool isRequired;
 
   final ActiveFieldDataType type;
   final String placeholder;
@@ -61,6 +62,7 @@ final class ActiveFieldStructure {
     required this.placeholder,
     required this.description,
     required this.valueActiveStructureId,
+    required this.isRequired,
     // required this.isRequired,
     // required this.isUnique,
     // required this.isMultipleValued,

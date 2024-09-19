@@ -1,3 +1,4 @@
+import 'package:active_resource/presentation/providers/active_resource_providers/active_resource_delete_provider.dart';
 import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +6,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 import '../providers.dart' show activeResourceListByStructureCodeProvider;
+import '../widgets.dart';
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final void Function(String? detailContextName, String resourceId)?
@@ -69,6 +71,11 @@ class _ActiveResourceCollectionViewState
     });
   }
 
+  String _getDeleteProviderKey({
+    required String activeStructureCode,
+  }) {
+    return 'delete_active_resource_in_collection_view@$_activeStructureCode';
+  }
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(
@@ -77,6 +84,30 @@ class _ActiveResourceCollectionViewState
       ),
     );
     final tileComponent = widget.collectionComponent.tile;
+    final deleteProvider = activeResourceDeleteProvider(
+      activeStructureCode: _activeStructureCode, 
+      key: _getDeleteProviderKey(activeStructureCode: _activeStructureCode),
+    );
+    
+    ref.listen(deleteProvider, 
+      (previous, next) {
+        if (next.isLoading) {
+          showLoadingDialog(context);
+        } else {
+          hideLoadingDialog(context);
+
+          if (next.hasValue) {
+            print('+++++++++++++Deleted');
+            showScaffoldMessage(context, 'Deleted');
+          } else if (next.hasError) {
+            // Fix this
+            print('+++++++++++++${next.error}');
+            showScaffoldMessage(context, 'Error');
+          }
+        }
+      },
+    );
+    
     return Stack(
       children: [
         activeResourceList.when(
@@ -88,18 +119,25 @@ class _ActiveResourceCollectionViewState
               itemBuilder: (context, index) {
                 final activeResource = data[index];
                 final liveAttributes = activeResource.liveAttributes;
-                return ListTile(
-                  onTap: () {
-                    widget.onTapResource?.call(activeResource.id);
-                    widget.onViewDetail
-                        ?.call(_detailContextName, activeResource.id);
-                  },
-                  title: Text(
-                    liveAttributes[tileComponent.titleKey] ?? '',
-                  ),
-                  subtitle: Text(
-                    liveAttributes[tileComponent.subtitleKey] ?? '',
-                  ),
+                
+
+                
+
+                return ActiveResourceListTile(
+                  title: liveAttributes[tileComponent.titleKey],
+                  subtitleKey: tileComponent.subtitleKey != null
+                      ? liveAttributes[tileComponent.subtitleKey!]
+                      : null, 
+                    onPressed: () {
+                      widget.onTapResource?.call(activeResource.id,);
+                      widget.onViewDetail
+                        ?.call(_detailContextName, activeResource.id,);
+                    }, 
+                    onShareAction: () {  },
+                    onDeleteAction: () {
+                      ref.read(deleteProvider.notifier).deleteById(activeResource.id);
+                    },
+                    onEditAction: () {  },
                 );
               },
             ),

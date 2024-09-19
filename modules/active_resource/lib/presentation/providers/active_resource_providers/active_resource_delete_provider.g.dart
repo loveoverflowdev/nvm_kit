@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'active_resource_submit_provider.dart';
+part of 'active_resource_delete_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeResourceSubmitHash() =>
-    r'85e9c437e47900ca172b7069c7fdec3e742a674d';
+String _$activeResourceDeleteHash() =>
+    r'a81edc7b70129836260b6f0f9ac5622a0f4b3fc6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$ActiveResourceSubmit
+abstract class _$ActiveResourceDelete
     extends BuildlessAutoDisposeNotifier<AsyncValue<void>> {
   late final String activeStructureCode;
   late final String key;
@@ -41,29 +41,29 @@ abstract class _$ActiveResourceSubmit
   });
 }
 
-/// See also [ActiveResourceSubmit].
-@ProviderFor(ActiveResourceSubmit)
-const activeResourceSubmitProvider = ActiveResourceSubmitFamily();
+/// See also [ActiveResourceDelete].
+@ProviderFor(ActiveResourceDelete)
+const activeResourceDeleteProvider = ActiveResourceDeleteFamily();
 
-/// See also [ActiveResourceSubmit].
-class ActiveResourceSubmitFamily extends Family<AsyncValue<void>> {
-  /// See also [ActiveResourceSubmit].
-  const ActiveResourceSubmitFamily();
+/// See also [ActiveResourceDelete].
+class ActiveResourceDeleteFamily extends Family<AsyncValue<void>> {
+  /// See also [ActiveResourceDelete].
+  const ActiveResourceDeleteFamily();
 
-  /// See also [ActiveResourceSubmit].
-  ActiveResourceSubmitProvider call({
+  /// See also [ActiveResourceDelete].
+  ActiveResourceDeleteProvider call({
     required String activeStructureCode,
     required String key,
   }) {
-    return ActiveResourceSubmitProvider(
+    return ActiveResourceDeleteProvider(
       activeStructureCode: activeStructureCode,
       key: key,
     );
   }
 
   @override
-  ActiveResourceSubmitProvider getProviderOverride(
-    covariant ActiveResourceSubmitProvider provider,
+  ActiveResourceDeleteProvider getProviderOverride(
+    covariant ActiveResourceDeleteProvider provider,
   ) {
     return call(
       activeStructureCode: provider.activeStructureCode,
@@ -83,34 +83,34 @@ class ActiveResourceSubmitFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'activeResourceSubmitProvider';
+  String? get name => r'activeResourceDeleteProvider';
 }
 
-/// See also [ActiveResourceSubmit].
-class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
-    ActiveResourceSubmit, AsyncValue<void>> {
-  /// See also [ActiveResourceSubmit].
-  ActiveResourceSubmitProvider({
+/// See also [ActiveResourceDelete].
+class ActiveResourceDeleteProvider extends AutoDisposeNotifierProviderImpl<
+    ActiveResourceDelete, AsyncValue<void>> {
+  /// See also [ActiveResourceDelete].
+  ActiveResourceDeleteProvider({
     required String activeStructureCode,
     required String key,
   }) : this._internal(
-          () => ActiveResourceSubmit()
+          () => ActiveResourceDelete()
             ..activeStructureCode = activeStructureCode
             ..key = key,
-          from: activeResourceSubmitProvider,
-          name: r'activeResourceSubmitProvider',
+          from: activeResourceDeleteProvider,
+          name: r'activeResourceDeleteProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$activeResourceSubmitHash,
-          dependencies: ActiveResourceSubmitFamily._dependencies,
+                  : _$activeResourceDeleteHash,
+          dependencies: ActiveResourceDeleteFamily._dependencies,
           allTransitiveDependencies:
-              ActiveResourceSubmitFamily._allTransitiveDependencies,
+              ActiveResourceDeleteFamily._allTransitiveDependencies,
           activeStructureCode: activeStructureCode,
           key: key,
         );
 
-  ActiveResourceSubmitProvider._internal(
+  ActiveResourceDeleteProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -126,7 +126,7 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
 
   @override
   AsyncValue<void> runNotifierBuild(
-    covariant ActiveResourceSubmit notifier,
+    covariant ActiveResourceDelete notifier,
   ) {
     return notifier.build(
       activeStructureCode: activeStructureCode,
@@ -135,10 +135,10 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(ActiveResourceSubmit Function() create) {
+  Override overrideWith(ActiveResourceDelete Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ActiveResourceSubmitProvider._internal(
+      override: ActiveResourceDeleteProvider._internal(
         () => create()
           ..activeStructureCode = activeStructureCode
           ..key = key,
@@ -154,14 +154,14 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActiveResourceSubmit, AsyncValue<void>>
+  AutoDisposeNotifierProviderElement<ActiveResourceDelete, AsyncValue<void>>
       createElement() {
-    return _ActiveResourceSubmitProviderElement(this);
+    return _ActiveResourceDeleteProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ActiveResourceSubmitProvider &&
+    return other is ActiveResourceDeleteProvider &&
         other.activeStructureCode == activeStructureCode &&
         other.key == key;
   }
@@ -176,7 +176,7 @@ class ActiveResourceSubmitProvider extends AutoDisposeNotifierProviderImpl<
   }
 }
 
-mixin ActiveResourceSubmitRef
+mixin ActiveResourceDeleteRef
     on AutoDisposeNotifierProviderRef<AsyncValue<void>> {
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
@@ -185,16 +185,16 @@ mixin ActiveResourceSubmitRef
   String get key;
 }
 
-class _ActiveResourceSubmitProviderElement
-    extends AutoDisposeNotifierProviderElement<ActiveResourceSubmit,
-        AsyncValue<void>> with ActiveResourceSubmitRef {
-  _ActiveResourceSubmitProviderElement(super.provider);
+class _ActiveResourceDeleteProviderElement
+    extends AutoDisposeNotifierProviderElement<ActiveResourceDelete,
+        AsyncValue<void>> with ActiveResourceDeleteRef {
+  _ActiveResourceDeleteProviderElement(super.provider);
 
   @override
   String get activeStructureCode =>
-      (origin as ActiveResourceSubmitProvider).activeStructureCode;
+      (origin as ActiveResourceDeleteProvider).activeStructureCode;
   @override
-  String get key => (origin as ActiveResourceSubmitProvider).key;
+  String get key => (origin as ActiveResourceDeleteProvider).key;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

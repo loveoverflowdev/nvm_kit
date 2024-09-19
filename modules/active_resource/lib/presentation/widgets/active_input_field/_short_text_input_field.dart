@@ -1,6 +1,10 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
+import '_asterisk_icon.dart';
+
 class ShortTextInputField extends StatelessWidget {
+  final bool isRequiredIconVisible;
   final String labeltext;
   final String hintText;
   final void Function(String) onChanged;
@@ -10,6 +14,7 @@ class ShortTextInputField extends StatelessWidget {
     required this.labeltext,
     required this.hintText,
     required this.onChanged,
+    this.isRequiredIconVisible = false,
   });
 
   @override
@@ -18,10 +23,19 @@ class ShortTextInputField extends StatelessWidget {
       maxLength: 50,
       onChanged: onChanged,
       decoration: InputDecoration(
-        labelText: labeltext,
+        label: Row(
+          children: [
+            Text(labeltext),
+            if (isRequiredIconVisible)
+              ...[
+                const SizedBox(width: AppSpacing.xs),
+                AsteriskIcon(),  
+              ],           
+          ],
+        ),
         hintText: hintText,
-        // TODO: max chars
       ),
     );
   }
 }
+

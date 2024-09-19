@@ -104,6 +104,7 @@ final class RemoteActiveStructureRepositoryImpl
               order: e.order,
               placeholder: '',
               description: '',
+              isRequired: e.isRequired ?? false,
               valueActiveStructureId: e.valueActiveStructureId ?? '',
             ),
           )

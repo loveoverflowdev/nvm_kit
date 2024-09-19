@@ -36,14 +36,13 @@ final class RemoteWorkspaceRepository implements WorkspaceRepository {
   }
 
   @override
-  TaskEither<WorkspaceFailure, Workspace> getWorkspace({
-    required String workspaceId,
+  TaskEither<WorkspaceFailure, Workspace> getWorkspaceById(String workspaceId, {
     String? requestField,
   }) {
     return TaskEither.tryCatch(
       () => _apiClient
-          .getWorkspace(
-            workspaceId: workspaceId,
+          .getWorkspaceById(
+            workspaceId,
           )
           .then(
             _mapResponse,

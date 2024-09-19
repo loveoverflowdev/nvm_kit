@@ -18,7 +18,7 @@ final class CommentInputNotifier extends StateNotifier<CommentPayload> {
   }
 
   void setComment(String newValue) {
-    state = state.copyWith(content: CommentContent.dirty(newValue));
+    state = state.copyWith(content: CommentContent.dirty(newValue.trim()));
   }
 
   String get content => state.content.value;

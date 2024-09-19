@@ -1,6 +1,4 @@
 import 'package:active_resource/domain.dart';
-import 'package:active_resource/presentation/providers/active_resource_providers/active_resource_submit_provider.dart';
-import 'package:active_resource/presentation/views/active_resource_page.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -182,7 +180,8 @@ class _ActiveResourceFormViewState
             title: activeFieldStructure.title,
             placeholder: activeFieldStructure.placeholder,
             description: activeFieldStructure.description,
-            dataType: activeInputFieldDataType,
+            dataType: activeInputFieldDataType, 
+            isRequired: activeFieldStructure.isRequired,
           );
         },
         resourcesSelection:
@@ -247,7 +246,8 @@ class _ActiveResourceFormViewState
             title: activeFieldStructure.title,
             placeholder: activeFieldStructure.placeholder,
             description: activeFieldStructure.description,
-            dataType: activeInputFieldDataType,
+            dataType: activeInputFieldDataType, 
+            isRequired: activeFieldStructure.isRequired,
           );
         },
       );

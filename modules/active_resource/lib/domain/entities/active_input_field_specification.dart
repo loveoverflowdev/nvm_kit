@@ -9,6 +9,7 @@ final class ActiveInputFieldSpecification {
 
   final String placeholder;
   final String description;
+  final bool isRequired;
   final ActiveInputFieldDataType dataType;
 
   ActiveInputFieldSpecification({
@@ -17,6 +18,7 @@ final class ActiveInputFieldSpecification {
     required this.placeholder,
     required this.description,
     required this.dataType,
+    required this.isRequired,
     required this.projectId,
   });
 }

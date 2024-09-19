@@ -11,7 +11,7 @@ Future<Project> project(
 }) {
   return ref
       .read(projectRepositoryProvider)
-      .getProject(projectId: projectId)
+      .getProjectId( projectId)
       .run()
       .then(
     (project) {

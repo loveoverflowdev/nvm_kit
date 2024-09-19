@@ -43,9 +43,6 @@ class _ProjectListViewState extends ConsumerState<ProjectListView> {
               await ref.read(projectListProvider.notifier).loadProjectList();
             },
             child: ListView.separated(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.lg,
-              ),
               physics: const AlwaysScrollableScrollPhysics(),
               itemCount: data.length,
               itemBuilder: (context, index) {

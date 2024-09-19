@@ -1,20 +1,27 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MultiUserInputField extends StatelessWidget {
+class SingleUserInputField extends ConsumerStatefulWidget {
+  const SingleUserInputField({
+    super.key,
+    this.isRequiredIconVisible = false,
+    required this.labeltext,
+    required this.titleKey,
+    this.subtitleKey,
+  });
+
+  final bool isRequiredIconVisible;
   final String labeltext;
   final String titleKey;
   final String? subtitleKey;
-  final void Function(String) onChanged;
 
-  const MultiUserInputField({
-    super.key,
-    required this.labeltext,
-    required this.titleKey,
-    required this.onChanged,
-    this.subtitleKey,
-  });
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _SingleUserInputFieldState();
+}
+
+class _SingleUserInputFieldState extends ConsumerState<SingleUserInputField> {
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class MultiUserInputField extends StatelessWidget {
       child: IgnorePointer(
         child: TextField(
           decoration: InputDecoration(
-            labelText: labeltext,
+            labelText: widget.labeltext,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),

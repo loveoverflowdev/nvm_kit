@@ -23,13 +23,13 @@ final class ProjectInputNotifier extends StateNotifier<ProjectForm> {
 
  void changeName(String newValue) {
     state = state.copyWith(
-      name: ProjectName.dirty(newValue),
+      name: ProjectName.dirty(newValue.trim()),
     );
   }
 
   void changeDescription(String newValue) {
     state = state.copyWith(
-      description: ProjectDescription.dirty( newValue),
+      description: ProjectDescription.dirty(newValue.trim()),
     );
   }
 }

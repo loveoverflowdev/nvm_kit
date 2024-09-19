@@ -7,6 +7,7 @@ import '_active_resource_selection_list_view.dart';
 class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
   const SingleResourceSelectionInputField({
     super.key,
+    this.isRequiredIconVisible = false,
     required this.activeStructureCode,
     required this.labeltext, 
     required this.titleKey,
@@ -15,6 +16,7 @@ class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
     this.subtitleKey,
   });
 
+  final bool isRequiredIconVisible;
   final String projectId;
   final String activeStructureCode;
   final String labeltext;

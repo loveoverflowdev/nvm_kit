@@ -15,7 +15,7 @@ ActiveFieldResponse _$ActiveFieldResponseFromJson(Map<String, dynamic> json) =>
       type: json['fieldType'] as String,
       placeholder: json['fieldPlaceholder'] as String,
       description: json['fieldDescription'] as String,
-      isRequired: json['isRequired'] as bool,
+      isRequired: json['isRequired'] as bool?,
       valueActiveStructureId: json['valueActiveStructureId'] as String?,
       isUnique: json['isUnique'] as bool?,
       isMultipleValued: json['isMultipleValued'] as bool?,

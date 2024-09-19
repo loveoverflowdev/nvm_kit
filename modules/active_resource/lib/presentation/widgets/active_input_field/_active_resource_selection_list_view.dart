@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
 
-import '../providers.dart'
+import '../../providers.dart'
     show
         activeResourceListByStructureCodeProvider,
         activeResourceListByStructureIdProvider;
