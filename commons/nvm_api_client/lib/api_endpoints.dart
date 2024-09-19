@@ -20,7 +20,7 @@ ApiEndpoint createActiveResource({
 }) =>
     ApiEndpoint(
       uriTemplate:
-          '/api/workspace/:workspace_id/active-module/post/resources/$activeStructureCode',
+          '/api/workspaces/:workspace_id/active-module/post/resources/$activeStructureCode',
       jsonPayload: true,
       requiredAuthorization: true,
       requiredWorkspace: true,

@@ -153,7 +153,7 @@ final class AuthStateObserver extends ProviderObserver {
     if (newValue is AsyncError && newValue.error is AppFailure) {
       final failure = newValue.error as AppFailure;
       if (failure.isUnauthorized) {
-        container.read(auth.authRepositoryProvider).signOut();
+        container.read(auth.signoutProvider.notifier).signOut();
       }
     }
   }

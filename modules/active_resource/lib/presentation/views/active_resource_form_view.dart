@@ -1,8 +1,10 @@
 import 'package:active_resource/domain.dart';
 import 'package:active_resource/presentation/providers/active_resource_providers/active_resource_submit_provider.dart';
+import 'package:active_resource/presentation/views/active_resource_page.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart';
 import '../widgets.dart';
@@ -80,13 +82,37 @@ class _ActiveResourceFormViewState
                   final submitProvider = activeResourceSubmitProvider(
                     activeStructureCode: activeStructure.code,
                     key:
-                      'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
+                        'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
                   );
                   final submitStatus = ref.watch(submitProvider);
-                  
+
                   if (submitStatus.isLoading) {
                     return const AppCircularLoadingWidget();
                   }
+
+                  ref.listen(
+                    submitProvider,
+                    (previous, next) {
+                      // Divide code
+                      if (next.hasError) {
+                        return showScaffoldMessage(
+                          context,
+                          next.error?.toString() ?? 'Error',
+                        );
+                      }
+
+                      if (next.hasValue) {
+                        // Seem not work
+                        if (context.canPop()) {
+                          context.pop();
+                        }
+                        return showScaffoldMessage(
+                          context,
+                          'New Task Created',
+                        );
+                      }
+                    },
+                  );
                   return ElevatedButton(
                     onPressed: () {
                       ref.read(submitProvider.notifier).submit(_form);

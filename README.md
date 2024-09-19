@@ -8,3 +8,13 @@ This repository includes various packages and Flutter applications that work tog
 
 ###
 Make late final for all response properties
+
+Global error message for button
+
+Project List padding ink
+
+reload state after creating resource
+
+reload state after deleting
+
+Dynamic height for active field
