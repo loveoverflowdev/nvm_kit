@@ -4,18 +4,32 @@ import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 class ActiveResourcePage extends StatelessWidget {
-  final void Function(String?, String)? onViewDetail;
   final template.ActivePageComponent pageComponent;
-  final void Function(String?)? onRouteCreateForm;
   final String? resourceId;
   final String projectId;
 
+  final void Function({
+    required String? contextName,
+    required String activeResourceId,
+  })? onRouteDetailView;
+
+  final void Function({
+    required String? contextName,
+  })? onRouteCreateForm;
+
+  final void Function({
+    required String? contextName,
+  })? onRouteListView;
+
   const ActiveResourcePage({
     super.key,
-    required this.pageComponent,
-    required this.onViewDetail,
     required this.resourceId,
     required this.projectId,
+    required this.pageComponent,
+
+    ///
+    required this.onRouteDetailView,
+    required this.onRouteListView,
     required this.onRouteCreateForm,
   });
 
@@ -27,7 +41,7 @@ class ActiveResourcePage extends StatelessWidget {
           projectId: projectId,
           collectionComponent:
               pageComponent.view as template.ActiveCollectionComponent,
-          onViewDetail: onViewDetail,
+          onRouteDetailView: onRouteDetailView,
           onRouteCreateForm: onRouteCreateForm,
         );
       } else if (pageComponent.view is template.ActiveDetailComponent) {
@@ -39,6 +53,7 @@ class ActiveResourcePage extends StatelessWidget {
         return ActiveResourceFormView(
           formComponent: pageComponent.view as template.ActiveFormComponent,
           projectId: projectId,
+          onRouteListView: onRouteListView,
         );
       }
       return const Placeholder(

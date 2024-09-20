@@ -11,6 +11,8 @@ class ActiveFormComponent extends ActiveViewComponent {
   // ignore: overridden_fields
   late final String type = super.type;
 
+  final String? listViewContextName;
+
   final String activeStructureCode;
 
   @JsonKey(fromJson: _inputFieldsFromJson, toJson: _inputFieldsToJson)
@@ -19,6 +21,7 @@ class ActiveFormComponent extends ActiveViewComponent {
   ActiveFormComponent({
     required this.activeStructureCode,
     required this.inputFields,
+    required this.listViewContextName,
   });
 
   @override

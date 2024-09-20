@@ -186,28 +186,38 @@ final class RouterBuilder {
                               projectId: projectId,
                               pageComponent: page,
                               resourceId: (state.extra as Map?)?['resource_id'],
-                              onViewDetail: (
-                                String? contextName,
-                                String resourceId,
-                              ) {
+                              onRouteDetailView: ({
+                                required activeResourceId,
+                                required contextName,
+                              }) {
                                 if (contextName == null) return;
-
                                 final String projectId =
                                     state.pathParameters['project_id']!;
                                 final path =
                                     '/projects/$projectId/@$contextName';
                                 context.push(path, extra: {
-                                  'resource_id': resourceId,
+                                  'resource_id': activeResourceId,
                                 });
                               },
-                              onRouteCreateForm: (String? contextName) {
+                              onRouteCreateForm: ({
+                                required contextName,
+                              }) {
                                 if (contextName == null) return;
-
                                 final String projectId =
                                     state.pathParameters['project_id']!;
                                 final path =
                                     '/projects/$projectId/@$contextName';
                                 context.push(path);
+                              },
+                              onRouteListView: ({
+                                required contextName,
+                              }) {
+                                if (contextName == null) return;
+                                final String projectId =
+                                    state.pathParameters['project_id']!;
+                                final path =
+                                    '/projects/$projectId/@$contextName';
+                                context.go(path);
                               },
                             );
                           },

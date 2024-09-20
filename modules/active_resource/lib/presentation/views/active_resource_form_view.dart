@@ -2,7 +2,6 @@ import 'package:active_resource/domain.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart';
 import '../widgets.dart';
@@ -11,10 +10,15 @@ class ActiveResourceFormView extends ConsumerStatefulWidget {
   final String projectId;
   final template.ActiveFormComponent formComponent;
 
+  final void Function({
+    required String? contextName,
+  })? onRouteListView;
+
   const ActiveResourceFormView({
     super.key,
     required this.projectId,
     required this.formComponent,
+    required this.onRouteListView,
   });
 
   @override
@@ -34,6 +38,31 @@ class _ActiveResourceFormViewState
     );
   }
 
+  void _submissionListener(AsyncValue<void>? previous, AsyncValue<void> next) {
+    print('++++++ _submissionListener 1');
+    if (next.hasError) {
+      print('++++++ _submissionListener 2');
+      return showScaffoldMessage(
+        context,
+        next.error?.toString() ?? 'Error',
+      );
+    }
+
+    if (next.hasValue) {
+      // Seem not work
+      print('++++++ _submissionListener 3');
+      widget.onRouteListView?.call(
+        contextName: widget.formComponent.listViewContextName,
+      );
+      return showScaffoldMessage(
+        context,
+        'New Task Created',
+      );
+    }
+
+    print('++++++ _submissionListener 4');
+  }
+
   @override
   Widget build(BuildContext context) {
     final result = ref.watch(
@@ -41,7 +70,6 @@ class _ActiveResourceFormViewState
         widget.formComponent.activeStructureCode,
       ),
     );
-    // TODO: Improving combined two types of input fields
     final formInputFields = widget.formComponent.inputFields;
     return Container(
       margin: const EdgeInsets.all(AppSpacing.lg),
@@ -82,35 +110,17 @@ class _ActiveResourceFormViewState
                     key:
                         'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
                   );
+
+                  ref.listen(
+                    submitProvider,
+                    _submissionListener,
+                  );
+
                   final submitStatus = ref.watch(submitProvider);
 
                   if (submitStatus.isLoading) {
                     return const AppCircularLoadingWidget();
                   }
-
-                  ref.listen(
-                    submitProvider,
-                    (previous, next) {
-                      // Divide code
-                      if (next.hasError) {
-                        return showScaffoldMessage(
-                          context,
-                          next.error?.toString() ?? 'Error',
-                        );
-                      }
-
-                      if (next.hasValue) {
-                        // Seem not work
-                        if (context.canPop()) {
-                          context.pop();
-                        }
-                        return showScaffoldMessage(
-                          context,
-                          'New Task Created',
-                        );
-                      }
-                    },
-                  );
                   return ElevatedButton(
                     onPressed: () {
                       ref.read(submitProvider.notifier).submit(_form);
@@ -180,7 +190,7 @@ class _ActiveResourceFormViewState
             title: activeFieldStructure.title,
             placeholder: activeFieldStructure.placeholder,
             description: activeFieldStructure.description,
-            dataType: activeInputFieldDataType, 
+            dataType: activeInputFieldDataType,
             isRequired: activeFieldStructure.isRequired,
           );
         },
@@ -246,7 +256,7 @@ class _ActiveResourceFormViewState
             title: activeFieldStructure.title,
             placeholder: activeFieldStructure.placeholder,
             description: activeFieldStructure.description,
-            dataType: activeInputFieldDataType, 
+            dataType: activeInputFieldDataType,
             isRequired: activeFieldStructure.isRequired,
           );
         },

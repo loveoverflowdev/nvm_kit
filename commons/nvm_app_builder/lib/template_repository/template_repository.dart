@@ -18,7 +18,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
         title: 'Task Manager',
         pages: [
           ActivePageComponent(
-            contextName: 'tasks',
+            contextName: 'task_list',
             title: 'Tasks',
             view: ActiveCollectionComponent(
               detailContextName: 'task_detail',
@@ -54,10 +54,11 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   fieldCode: 'task_description',
                 ),
               ],
+              listViewContextName: 'task_list',
             ),
           ),
           ActivePageComponent(
-            contextName: 'user_stories',
+            contextName: 'user_story_list',
             title: 'User Stories',
             view: ActiveCollectionComponent(
               detailContextName: 'user_story_detail',
@@ -85,6 +86,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             contextName: 'create_user_story_form',
             title: 'New User Story',
             view: ActiveFormComponent(
+              listViewContextName: 'user_story_list',
               activeStructureCode: 'user_stories',
               inputFields: [
                 // ActiveInputFieldComponent.primitive(),

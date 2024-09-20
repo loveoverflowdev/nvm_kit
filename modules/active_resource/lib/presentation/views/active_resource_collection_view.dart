@@ -9,21 +9,25 @@ import '../providers.dart' show activeResourceListByStructureCodeProvider;
 import '../widgets.dart';
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
-  final void Function(String? detailContextName, String resourceId)?
-      onViewDetail;
-  final void Function(String? createFormContextName)? onRouteCreateForm;
-
   final template.ActiveCollectionComponent collectionComponent;
+  final String? projectId;
+
+  final void Function({
+    required String? contextName,
+    required String activeResourceId,
+  })? onRouteDetailView;
+
+  final void Function({
+    required String? contextName,
+  })? onRouteCreateForm;
 
   final void Function(String resourceId)? onTapResource;
-
-  final String? projectId;
 
   const ActiveResourceCollectionView({
     super.key,
     required this.collectionComponent,
     required this.projectId,
-    this.onViewDetail,
+    this.onRouteDetailView,
     this.onTapResource,
     this.onRouteCreateForm,
   });
@@ -60,15 +64,19 @@ class _ActiveResourceCollectionViewState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(activeResourceListByStructureCodeProvider(
-            _activeStructureCode,
-          ).notifier)
-          .loadActiveResourceList(
-            projectId: widget.projectId,
-            requestField: _parseRequestField(_activeTile),
-          );
+      _loadActiveResourceList();
     });
+  }
+
+  void _loadActiveResourceList() {
+    ref
+        .read(activeResourceListByStructureCodeProvider(
+          _activeStructureCode,
+        ).notifier)
+        .loadActiveResourceList(
+          projectId: widget.projectId,
+          requestField: _parseRequestField(_activeTile),
+        );
   }
 
   String _getDeleteProviderKey({
@@ -76,6 +84,7 @@ class _ActiveResourceCollectionViewState
   }) {
     return 'delete_active_resource_in_collection_view@$_activeStructureCode';
   }
+
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(
@@ -85,11 +94,12 @@ class _ActiveResourceCollectionViewState
     );
     final tileComponent = widget.collectionComponent.tile;
     final deleteProvider = activeResourceDeleteProvider(
-      activeStructureCode: _activeStructureCode, 
+      activeStructureCode: _activeStructureCode,
       key: _getDeleteProviderKey(activeStructureCode: _activeStructureCode),
     );
-    
-    ref.listen(deleteProvider, 
+
+    ref.listen(
+      deleteProvider,
       (previous, next) {
         if (next.isLoading) {
           showLoadingDialog(context);
@@ -97,77 +107,84 @@ class _ActiveResourceCollectionViewState
           hideLoadingDialog(context);
 
           if (next.hasValue) {
-            print('+++++++++++++Deleted');
             showScaffoldMessage(context, 'Deleted');
+            _loadActiveResourceList();
           } else if (next.hasError) {
-            // Fix this
-            print('+++++++++++++${next.error}');
             showScaffoldMessage(context, 'Error');
           }
         }
       },
     );
-    
-    return Stack(
-      children: [
-        activeResourceList.when(
-          data: (data) => Visibility(
-            visible: data.isNotEmpty,
-            replacement: const AppEmptyWidget(),
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                final activeResource = data[index];
-                final liveAttributes = activeResource.liveAttributes;
-                
 
-                
+    return RefreshIndicator(
+      onRefresh: () async => _loadActiveResourceList(),
+      child: Stack(
+        children: [
+          activeResourceList.when(
+            data: (data) => Visibility(
+              visible: data.isNotEmpty,
+              replacement: const AppEmptyWidget(),
+              child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  final activeResource = data[index];
+                  final liveAttributes = activeResource.liveAttributes;
 
-                return ActiveResourceListTile(
-                  title: liveAttributes[tileComponent.titleKey],
-                  subtitleKey: tileComponent.subtitleKey != null
-                      ? liveAttributes[tileComponent.subtitleKey!]
-                      : null, 
+                  return ActiveResourceListTile(
+                    title: liveAttributes[tileComponent.titleKey],
+                    subtitleKey: tileComponent.subtitleKey != null
+                        ? liveAttributes[tileComponent.subtitleKey!]
+                        : null,
                     onPressed: () {
-                      widget.onTapResource?.call(activeResource.id,);
-                      widget.onViewDetail
-                        ?.call(_detailContextName, activeResource.id,);
-                    }, 
-                    onShareAction: () {  },
-                    onDeleteAction: () {
-                      ref.read(deleteProvider.notifier).deleteById(activeResource.id);
+                      widget.onTapResource?.call(
+                        activeResource.id,
+                      );
+                      widget.onRouteDetailView?.call(
+                        contextName: _detailContextName,
+                        activeResourceId: activeResource.id,
+                      );
                     },
-                    onEditAction: () {  },
-                );
-              },
+                    onShareAction: () {},
+                    onDeleteAction: () {
+                      ref
+                          .read(deleteProvider.notifier)
+                          .deleteById(activeResource.id);
+                    },
+                    onEditAction: () {},
+                  );
+                },
+              ),
             ),
+            error: (error, stackTrace) => AppErrorWidget(
+              error,
+              stackTrace: stackTrace,
+            ),
+            loading: () => const AppCircularLoadingWidget(),
           ),
-          error: (error, stackTrace) => AppErrorWidget(
-            error,
-            stackTrace: stackTrace,
-          ),
-          loading: () => const AppCircularLoadingWidget(),
-        ),
 
-        //
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: AppSpacing.lg,
-              right: AppSpacing.lg,
-            ),
-            child: FloatingActionButton(
-              heroTag:
-                  'active_resource_collection@${_activeTile.hashCode}${widget.projectId}',
-              child: const Icon(Icons.add),
-              onPressed: () {
-                widget.onRouteCreateForm?.call(_createFormContextName);
-              },
+          //
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: AppSpacing.lg,
+                right: AppSpacing.lg,
+              ),
+              child: FloatingActionButton(
+                heroTag:
+                    'active_resource_collection@${_activeTile.hashCode}${widget.projectId}',
+                child: const Icon(Icons.add),
+                onPressed: () {
+                  widget.onRouteCreateForm?.call(
+                    contextName: _createFormContextName,
+                  );
+                },
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

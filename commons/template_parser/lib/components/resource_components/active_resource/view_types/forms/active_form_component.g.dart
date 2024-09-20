@@ -11,11 +11,13 @@ ActiveFormComponent _$ActiveFormComponentFromJson(Map<String, dynamic> json) =>
       activeStructureCode: json['activeStructureCode'] as String,
       inputFields: ActiveFormComponent._inputFieldsFromJson(
           json['inputFields'] as Map<String, dynamic>),
+      listViewContextName: json['listViewContextName'] as String?,
     );
 
 Map<String, dynamic> _$ActiveFormComponentToJson(
         ActiveFormComponent instance) =>
     <String, dynamic>{
+      'listViewContextName': instance.listViewContextName,
       'activeStructureCode': instance.activeStructureCode,
       'inputFields':
           ActiveFormComponent._inputFieldsToJson(instance.inputFields),
