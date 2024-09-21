@@ -9,9 +9,9 @@ class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
     super.key,
     this.isRequiredIconVisible = false,
     required this.activeStructureCode,
-    required this.labeltext, 
+    required this.labeltext,
     required this.titleKey,
-    required this.projectId, 
+    required this.projectId,
     required this.onChanged,
     this.subtitleKey,
   });
@@ -25,24 +25,32 @@ class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
   final void Function(String) onChanged;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SingleResourceSelectionInputFieldState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _SingleResourceSelectionInputFieldState();
 }
 
-class _SingleResourceSelectionInputFieldState extends ConsumerState<SingleResourceSelectionInputField> {
+class _SingleResourceSelectionInputFieldState
+    extends ConsumerState<SingleResourceSelectionInputField> {
   late String? _selectedResourceId;
+  late String? _selectedResourceTitle;
+  late final TextEditingController _textEditingController;
 
   @override
   void initState() {
     super.initState();
     _selectedResourceId = null;
+    _selectedResourceTitle = null;
+    _textEditingController = TextEditingController();
   }
 
   void _onChanged() {
     if (_selectedResourceId != null) {
       widget.onChanged(_selectedResourceId!);
     }
+    _textEditingController.text = _selectedResourceTitle ?? '';
+    setState(() {});
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
@@ -57,8 +65,12 @@ class _SingleResourceSelectionInputFieldState extends ConsumerState<SingleResour
               activeStructureCode: widget.activeStructureCode,
               titleKey: widget.titleKey,
               subtitleKey: widget.subtitleKey,
-              onResourceSelected: (resourceId) {
+              onResourceSelected: ({
+                required String resourceId,
+                required String resourceTitle,
+              }) {
                 _selectedResourceId = resourceId;
+                _selectedResourceTitle = resourceTitle;
                 _onChanged();
               },
             );
@@ -67,6 +79,7 @@ class _SingleResourceSelectionInputFieldState extends ConsumerState<SingleResour
       },
       child: IgnorePointer(
         child: TextField(
+          controller: _textEditingController,
           decoration: InputDecoration(
             labelText: widget.labeltext,
             border: OutlineInputBorder(

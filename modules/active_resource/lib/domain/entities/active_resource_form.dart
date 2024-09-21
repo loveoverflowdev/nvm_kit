@@ -1,4 +1,3 @@
-
 /// Add provider for input
 final class ActiveResourceForm {
   final String projectId;
@@ -16,7 +15,7 @@ final class ActiveResourceForm {
     _attributes[key] = value;
   }
 
-  Map<String, dynamic> getAllAttributes() => _attributes; 
+  Map<String, dynamic> getAllAttributes() => _attributes;
 }
 
 /*

@@ -1,10 +1,14 @@
+import 'package:active_resource/domain.dart';
 import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
-import '../providers.dart' show activeResourceByStructureCodeProvider;
+import '../providers.dart'
+    show
+        ActiveResourceByStructureCodeProvider,
+        activeResourceByStructureCodeProvider;
 
 class ActiveResourceDetailView extends ConsumerStatefulWidget {
   final template.ActiveDetailComponent detailComponent;
@@ -24,9 +28,13 @@ class ActiveResourceDetailView extends ConsumerStatefulWidget {
 class _ActiveResourceDetailViewState
     extends ConsumerState<ActiveResourceDetailView> {
   String get _activeStructureCode =>
-      widget.detailComponent.tile.activeStructureCode;
+      widget.detailComponent.primaryTile.activeStructureCode;
 
-  template.ActiveTileComponent get _activeTile => widget.detailComponent.tile;
+  template.ActiveTileComponent get _primaryActiveTile =>
+      widget.detailComponent.primaryTile;
+
+  List<template.ActiveRefsTileComponent> get _refTileList =>
+      widget.detailComponent.refTileList;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -35,6 +43,10 @@ class _ActiveResourceDetailViewState
       RequestField(name: 'liveAttributes', children: [
         RequestField.name(tile.titleKey),
         if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
+
+        ///
+        for (final refTile in _refTileList)
+          RequestField.name(refTile.fieldCode),
       ]),
       for (final key in tile.extraKeys) RequestField.name(key),
     ]).build();
@@ -44,7 +56,7 @@ class _ActiveResourceDetailViewState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final String requestField = _parseRequestField(_activeTile);
+      final String requestField = _parseRequestField(_primaryActiveTile);
       ref
           .read(activeResourceByStructureCodeProvider(
             _activeStructureCode,
@@ -72,7 +84,6 @@ class _ActiveResourceDetailViewState
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // TODO: call fieldTitle here
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
@@ -80,22 +91,34 @@ class _ActiveResourceDetailViewState
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: Text(
-                            data.liveAttributes[_activeTile.titleKey],
+                            data.liveAttributes[_primaryActiveTile.titleKey],
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ),
-                        if (data.liveAttributes[_activeTile.subtitleKey] !=
+                        if (data.liveAttributes[
+                                _primaryActiveTile.subtitleKey] !=
                             null)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(
-                                data.liveAttributes[_activeTile.subtitleKey]),
+                              data.liveAttributes[
+                                  _primaryActiveTile.subtitleKey],
+                            ),
                           ),
-                        for (final key in _activeTile.extraKeys)
+                        for (final key in _primaryActiveTile.extraKeys)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(data.liveAttributes[key]),
                           ),
+                        const SizedBox(
+                          height: AppSpacing.lg,
+                        ),
+
+                        ///
+                        ..._buildRefTileListView(
+                          data,
+                          _refTileList,
+                        ),
                       ],
                     ),
                     for (final addon in data.addons) ...[
@@ -111,6 +134,132 @@ class _ActiveResourceDetailViewState
                 ),
               ),
             ),
+      error: (error, stackTrace) => AppErrorWidget(
+        error,
+        stackTrace: stackTrace,
+      ),
+      loading: () => const AppCircularLoadingWidget(),
+    );
+  }
+
+  Iterable<Widget> _buildRefTileListView(ActiveResource activeResource,
+      List<template.ActiveRefsTileComponent> refTileList) sync* {
+    for (final refTile in refTileList) {
+      final refResourceId = activeResource.liveAttributes[refTile.fieldCode];
+      if (refResourceId == null ||
+          (refResourceId is String && refResourceId.isEmpty) ||
+          refResourceId == '0') continue;
+
+      yield const Divider();
+      yield _ActiveResourceRefTileView(
+        refsTitleComponent: refTile,
+        resourceId: refResourceId,
+      );
+    }
+  }
+}
+
+class _ActiveResourceRefTileView extends ConsumerStatefulWidget {
+  final template.ActiveRefsTileComponent refsTitleComponent;
+  final String resourceId;
+
+  const _ActiveResourceRefTileView({
+    required this.refsTitleComponent,
+    required this.resourceId,
+  });
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ActiveResourceRefTileViewState();
+}
+
+class _ActiveResourceRefTileViewState
+    extends ConsumerState<_ActiveResourceRefTileView> {
+  template.ActiveRefsTileComponent get _tile => widget.refsTitleComponent;
+
+  late final ActiveResourceByStructureCodeProvider _activeResourceProvider;
+
+  String _parseRequestField(template.ActiveRefsTileComponent tile) {
+    return RequestField.children([
+      RequestField.name('id'),
+      RequestField(name: 'liveAttributes', children: [
+        RequestField.name(tile.titleKey),
+        if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
+      ]),
+    ]).build();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _activeResourceProvider = activeResourceByStructureCodeProvider(
+      _tile.activeStructureCode,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        final String requestField = _parseRequestField(_tile);
+        ref
+            .read(
+              _activeResourceProvider.notifier,
+            )
+            .loadActiveResource(
+              requestField: requestField,
+              id: widget.resourceId,
+            );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final activeResource = ref.watch(
+      _activeResourceProvider,
+    );
+    return activeResource.when(
+      data: (data) {
+        if (data == null) {
+          return const SizedBox.shrink();
+        }
+        final borderRadius = BorderRadius.circular(AppSpacing.lg);
+        return Material(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          borderRadius: borderRadius,
+          child: InkWell(
+            borderRadius: borderRadius,
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    _tile.fieldTitle,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Text(
+                      data.liveAttributes[_tile.titleKey],
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                  if (data.liveAttributes[_tile.subtitleKey] != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Text(
+                        data.liveAttributes[_tile.subtitleKey],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
       error: (error, stackTrace) => AppErrorWidget(
         error,
         stackTrace: stackTrace,

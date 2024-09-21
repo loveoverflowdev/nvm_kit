@@ -25,6 +25,7 @@ class ActiveCollectionComponent extends ActiveViewComponent {
   factory ActiveCollectionComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveCollectionComponentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ActiveCollectionComponentToJson(this)
     ..addAll(
       {

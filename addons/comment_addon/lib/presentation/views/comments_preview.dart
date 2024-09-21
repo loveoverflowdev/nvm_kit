@@ -130,7 +130,8 @@ class _CommentsPreviewState extends ConsumerState<CommentsPreview> {
               padding: const EdgeInsets.all(AppSpacing.lg),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: data.length * commentTileHeight + commentTileHeight + 28,
+                  maxHeight:
+                      data.length * commentTileHeight + commentTileHeight + 28,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

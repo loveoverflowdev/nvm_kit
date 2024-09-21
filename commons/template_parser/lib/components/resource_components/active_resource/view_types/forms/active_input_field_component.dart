@@ -4,8 +4,6 @@ import 'package:template_parser/core.dart';
 part 'active_input_field_component.freezed.dart';
 
 @freezed
-
-/// Will add field type in the future
 class ActiveInputFieldComponent
     with _$ActiveInputFieldComponent
     implements Component {
@@ -16,21 +14,29 @@ class ActiveInputFieldComponent
     dynamic initialValue,
   }) = _PrimitiveType;
 
-  factory ActiveInputFieldComponent.resourcesSelection({
+  factory ActiveInputFieldComponent.activeResourcesSelection({
     required String fieldCode,
     required final String activeStructureCode,
     required final String titleKey,
     required final String subtitleKey,
-  }) = _ResourcesSelectionType;
+  }) = _ActiveResourcesSelectionType;
+
+  factory ActiveInputFieldComponent.usersSelection({
+    required String fieldCode,
+    final String? avatarKey,
+    required final String titleKey,
+    required final String subtitleKey,
+  }) = _UsersSelectionType;
 
   @override
   Map<String, dynamic> toJson() {
     return when(
       primitive: (fieldCode, initialValue) => {
         'type': 'PRIMITIVE',
+        'fieldCode': fieldCode,
         'initialValue': initialValue,
       },
-      resourcesSelection: (
+      activeResourcesSelection: (
         fieldCode,
         activeStructureCode,
         titleKey,
@@ -38,7 +44,20 @@ class ActiveInputFieldComponent
       ) =>
           {
         'type': 'RESOURCES_SELECTION',
+        'fieldCode': fieldCode,
         'activeStructureCode': activeStructureCode,
+        'titleKey': titleKey,
+        'subtitleKey': subtitleKey,
+      },
+      usersSelection: (
+        String fieldCode,
+        String? avatarKey,
+        String titleKey,
+        String subtitleKey,
+      ) =>
+          {
+        'type': 'USERS_SELECTION',
+        'fieldCode': fieldCode,
         'titleKey': titleKey,
         'subtitleKey': subtitleKey,
       },
@@ -54,9 +73,15 @@ class ActiveInputFieldComponent
           initialValue: json['initialValue'],
         );
       case 'RESOURCES_SELECTION':
-        return ActiveInputFieldComponent.resourcesSelection(
+        return ActiveInputFieldComponent.activeResourcesSelection(
           fieldCode: json['fieldCode'] as String,
           activeStructureCode: json['activeStructureCode'] as String,
+          titleKey: json['titleKey'] as String,
+          subtitleKey: json['subtitleKey'] as String,
+        );
+      case 'USERS_SELECTION':
+        return ActiveInputFieldComponent.usersSelection(
+          fieldCode: json['fieldCode'] as String,
           titleKey: json['titleKey'] as String,
           subtitleKey: json['subtitleKey'] as String,
         );

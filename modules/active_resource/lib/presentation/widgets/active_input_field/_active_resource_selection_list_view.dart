@@ -5,8 +5,8 @@ import 'package:app_ui/app_ui.dart';
 
 import '../../providers.dart'
     show
-        activeResourceListByStructureCodeProvider,
-        activeResourceListByStructureIdProvider;
+        ActiveResourceListByStructureCodeProvider,
+        activeResourceListByStructureCodeProvider;
 
 class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
   final String projectId;
@@ -17,7 +17,10 @@ class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
   final String? initialResourceId;
 
   /// return selected resource id
-  final void Function(String) onResourceSelected;
+  final void Function({
+    required String resourceId,
+    required String resourceTitle,
+  }) onResourceSelected;
 
   const ActiveResourceSelectionListView({
     super.key,
@@ -25,7 +28,6 @@ class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
     required this.projectId,
     required this.titleKey,
     required this.subtitleKey,
-
     required this.onResourceSelected,
     this.initialResourceId,
   });
@@ -37,6 +39,9 @@ class ActiveResourceSelectionListView extends ConsumerStatefulWidget {
 
 class _ActiveResourceSelectionListViewState
     extends ConsumerState<ActiveResourceSelectionListView> {
+  late final ActiveResourceListByStructureCodeProvider
+      _activeResourceListProvider;
+
   String _parseRequestField() {
     return RequestField.children([
       RequestField.name('id'),
@@ -54,12 +59,13 @@ class _ActiveResourceSelectionListViewState
   @override
   void initState() {
     super.initState();
+    _activeResourceListProvider =
+        activeResourceListByStructureCodeProvider(widget.activeStructureCode);
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(
-            activeResourceListByStructureCodeProvider(
-              widget.activeStructureCode,
-            ).notifier,
+            _activeResourceListProvider.notifier,
           )
           .loadActiveResourceList(
             projectId: widget.projectId,
@@ -71,38 +77,59 @@ class _ActiveResourceSelectionListViewState
   @override
   Widget build(BuildContext context) {
     final activeResourceList = ref.watch(
-      activeResourceListByStructureIdProvider(widget.activeStructureCode),
+      _activeResourceListProvider,
     );
-    return Stack(
-      children: [
-        activeResourceList.when(
-          data: (data) => Visibility(
-            visible: data.isNotEmpty,
-            replacement: const AppEmptyWidget(),
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                final activeResource = data[index];
-                final liveAttributes = activeResource.liveAttributes;
-                return ListTile(
-                  onTap: () {},
-                  title: Text(
-                    liveAttributes[widget.titleKey] ?? '',
-                  ),
-                  subtitle: Text(
-                    liveAttributes[widget.subtitleKey] ?? '',
-                  ),
-                );
-              },
-            ),
-          ),
-          error: (error, stackTrace) => AppErrorWidget(
-            error,
-            stackTrace: stackTrace,
-          ),
-          loading: () => const AppCircularLoadingWidget(),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.clear),
         ),
-      ],
+        title: const Text('Select Resource'),
+      ),
+      body: Stack(
+        children: [
+          activeResourceList.when(
+            data: (data) {
+              return Visibility(
+                visible: true,
+                replacement: const AppEmptyWidget(),
+                child: ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    final activeResource = data[index];
+                    final liveAttributes = activeResource.liveAttributes;
+                    final title = liveAttributes[widget.titleKey] ?? '';
+                    final subtitle = liveAttributes[widget.subtitleKey] ?? '';
+                    return ListTile(
+                      onTap: () {
+                        widget.onResourceSelected.call(
+                          resourceId: activeResource.id,
+                          resourceTitle: title,
+                        );
+                        Navigator.pop(context);
+                      },
+                      title: Text(
+                        title,
+                      ),
+                      subtitle: Text(
+                        subtitle,
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+            error: (error, stackTrace) => AppErrorWidget(
+              error,
+              stackTrace: stackTrace,
+            ),
+            loading: () => const AppCircularLoadingWidget(),
+          ),
+        ],
+      ),
     );
   }
 }

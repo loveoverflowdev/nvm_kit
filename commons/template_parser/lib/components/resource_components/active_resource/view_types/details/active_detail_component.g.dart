@@ -9,11 +9,18 @@ part of 'active_detail_component.dart';
 ActiveDetailComponent _$ActiveDetailComponentFromJson(
         Map<String, dynamic> json) =>
     ActiveDetailComponent(
-      tile: ActiveTileComponent.fromJson(json['tile'] as Map<String, dynamic>),
+      primaryTile: ActiveTileComponent.fromJson(
+          json['primaryTile'] as Map<String, dynamic>),
+      refTileList: (json['refTileList'] as List<dynamic>?)
+              ?.map((e) =>
+                  ActiveRefsTileComponent.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$ActiveDetailComponentToJson(
         ActiveDetailComponent instance) =>
     <String, dynamic>{
-      'tile': instance.tile,
+      'primaryTile': instance.primaryTile,
+      'refTileList': instance.refTileList,
     };

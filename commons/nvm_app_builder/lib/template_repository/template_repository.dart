@@ -33,12 +33,20 @@ final class _ExampleTemplateRepository implements TemplateRepository {
           ActivePageComponent(
             contextName: 'task_detail',
             view: ActiveDetailComponent(
-              tile: ActiveTileComponent(
+              primaryTile: ActiveTileComponent(
                 activeStructureCode: 'tasks',
                 titleKey: 'task_name',
                 subtitleKey: 'task_description',
-                // TODO:
               ),
+              refTileList: [
+                ActiveRefsTileComponent(
+                  fieldTitle: 'User Story',
+                  fieldCode: 'task_user_story',
+                  activeStructureCode: 'user_stories',
+                  titleKey: 'as_a',
+                  subtitleKey: 'i_want',
+                ),
+              ],
             ),
           ),
           ActivePageComponent(
@@ -52,6 +60,12 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 ),
                 ActiveInputFieldComponent.primitive(
                   fieldCode: 'task_description',
+                ),
+                ActiveInputFieldComponent.activeResourcesSelection(
+                  fieldCode: 'task_user_story',
+                  titleKey: 'as_a',
+                  subtitleKey: 'i_want',
+                  activeStructureCode: 'user_stories',
                 ),
               ],
               listViewContextName: 'task_list',
@@ -73,7 +87,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
           ActivePageComponent(
             contextName: 'user_story_detail',
             view: ActiveDetailComponent(
-              tile: ActiveTileComponent(
+              primaryTile: ActiveTileComponent(
                 activeStructureCode: 'user_stories',
                 titleKey: 'i_want',
                 subtitleKey: 'as_a',

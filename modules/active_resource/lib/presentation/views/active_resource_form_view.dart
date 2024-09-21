@@ -39,9 +39,7 @@ class _ActiveResourceFormViewState
   }
 
   void _submissionListener(AsyncValue<void>? previous, AsyncValue<void> next) {
-    print('++++++ _submissionListener 1');
     if (next.hasError) {
-      print('++++++ _submissionListener 2');
       return showScaffoldMessage(
         context,
         next.error?.toString() ?? 'Error',
@@ -49,8 +47,6 @@ class _ActiveResourceFormViewState
     }
 
     if (next.hasValue) {
-      // Seem not work
-      print('++++++ _submissionListener 3');
       widget.onRouteListView?.call(
         contextName: widget.formComponent.listViewContextName,
       );
@@ -59,8 +55,6 @@ class _ActiveResourceFormViewState
         'New Task Created',
       );
     }
-
-    print('++++++ _submissionListener 4');
   }
 
   @override
@@ -170,18 +164,7 @@ class _ActiveResourceFormViewState
             ActiveFieldDataType.textList => ActiveInputFieldDataType.textList(),
             ActiveFieldDataType.binaryCheckbox =>
               ActiveInputFieldDataType.binaryCheckbox(),
-            ActiveFieldDataType.multiActiveResourceCheckbox =>
-              throw UnimplementedError(),
-            ActiveFieldDataType.singleActiveResourceSelection =>
-              throw UnimplementedError(),
-            ActiveFieldDataType.selectListLiveResource =>
-              throw UnimplementedError(),
-            ActiveFieldDataType.singleUserSelection =>
-              throw UnimplementedError(),
-            ActiveFieldDataType.multiUserSelection =>
-              throw UnimplementedError(),
-            ActiveFieldDataType.multiUserCheckbox => throw UnimplementedError(),
-            ActiveFieldDataType.unsupported => throw UnimplementedError(),
+            _ => throw UnimplementedError(),
           };
           // Temporily use title of structure
           return ActiveInputFieldSpecification(
@@ -194,7 +177,7 @@ class _ActiveResourceFormViewState
             isRequired: activeFieldStructure.isRequired,
           );
         },
-        resourcesSelection:
+        activeResourcesSelection:
             (fieldCode, activeStructureCode, titleKey, subtitleKey) {
           final index =
               activeFieldStructures.indexWhere((e) => e.key == fieldCode);
@@ -204,16 +187,6 @@ class _ActiveResourceFormViewState
           }
           final activeFieldStructure = activeFieldStructures[index];
           final activeInputFieldDataType = switch (activeFieldStructure.type) {
-            ActiveFieldDataType.shortText => throw UnimplementedError(),
-            ActiveFieldDataType.paragraph => throw UnimplementedError(),
-            ActiveFieldDataType.date => throw UnimplementedError(),
-            ActiveFieldDataType.dateTime => throw UnimplementedError(),
-            ActiveFieldDataType.integer => throw UnimplementedError(),
-            ActiveFieldDataType.numeric => throw UnimplementedError(),
-            ActiveFieldDataType.email => throw UnimplementedError(),
-            ActiveFieldDataType.url => throw UnimplementedError(),
-            ActiveFieldDataType.textList => throw UnimplementedError(),
-            ActiveFieldDataType.binaryCheckbox => throw UnimplementedError(),
             ActiveFieldDataType.multiActiveResourceCheckbox =>
               ActiveInputFieldDataType.multiActiveResourceCheckbox(
                 activeStructureCode: activeStructureCode,
@@ -226,29 +199,13 @@ class _ActiveResourceFormViewState
                 titleKey: titleKey,
                 subtitleKey: subtitleKey,
               ),
-            ActiveFieldDataType.selectListLiveResource =>
+            ActiveFieldDataType.multiResourceSelection =>
               ActiveInputFieldDataType.multiActiveResourceSelection(
                 activeStructureCode: activeStructureCode,
                 titleKey: titleKey,
                 subtitleKey: subtitleKey,
               ),
-            ActiveFieldDataType.singleUserSelection =>
-              ActiveInputFieldDataType.singleUserSelection(
-                titleKey: titleKey,
-                subtitleKey: subtitleKey,
-              ),
-            ActiveFieldDataType.multiUserSelection =>
-              ActiveInputFieldDataType.singleActiveResourceSelection(
-                activeStructureCode: activeStructureCode,
-                titleKey: titleKey,
-                subtitleKey: subtitleKey,
-              ),
-            ActiveFieldDataType.multiUserCheckbox =>
-              ActiveInputFieldDataType.multiUserCheckbox(
-                titleKey: titleKey,
-                subtitleKey: subtitleKey,
-              ),
-            ActiveFieldDataType.unsupported => throw UnimplementedError(),
+            _ => throw UnimplementedError(),
           };
           return ActiveInputFieldSpecification(
             projectId: widget.projectId,
@@ -256,6 +213,46 @@ class _ActiveResourceFormViewState
             title: activeFieldStructure.title,
             placeholder: activeFieldStructure.placeholder,
             description: activeFieldStructure.description,
+            dataType: activeInputFieldDataType,
+            isRequired: activeFieldStructure.isRequired,
+          );
+        },
+        usersSelection: (
+          String fieldCode,
+          String? avatarKey,
+          String titleKey,
+          String subtitleKey,
+        ) {
+          final index =
+              activeFieldStructures.indexWhere((e) => e.key == fieldCode);
+          if (index == -1) {
+            throw Exception(
+                'ActiveInputFieldComponent code not found: $fieldCode');
+          }
+          final activeFieldStructure = activeFieldStructures[index];
+          final activeInputFieldDataType = switch (activeFieldStructure.type) {
+            ActiveFieldDataType.singleUserSelection =>
+              ActiveInputFieldDataType.singleUserSelection(
+                titleKey: titleKey,
+                subtitleKey: subtitleKey,
+              ),
+            ActiveFieldDataType.multiUserCheckbox =>
+              ActiveInputFieldDataType.multiUserCheckbox(
+                titleKey: titleKey,
+              ),
+            ActiveFieldDataType.multiUserSelection =>
+              ActiveInputFieldDataType.multiUserSelection(
+                titleKey: titleKey,
+                subtitleKey: subtitleKey,
+              ),
+            _ => throw UnimplementedError(),
+          };
+          return ActiveInputFieldSpecification(
+            projectId: widget.projectId,
+            key: fieldCode,
+            title: 'Users',
+            placeholder: '',
+            description: '',
             dataType: activeInputFieldDataType,
             isRequired: activeFieldStructure.isRequired,
           );

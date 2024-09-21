@@ -5,15 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '_active_resource_selection_list_view.dart';
 
-
 class MultiResourceSelectionInputField extends ConsumerStatefulWidget {
   const MultiResourceSelectionInputField({
     super.key,
     this.isRequiredIconVisible = false,
     required this.activeStructureCode,
-    required this.labeltext, 
+    required this.labeltext,
     required this.titleKey,
-    required this.projectId, 
+    required this.projectId,
     required this.onChanged,
     this.subtitleKey,
   });
@@ -27,10 +26,12 @@ class MultiResourceSelectionInputField extends ConsumerStatefulWidget {
   final void Function(String) onChanged;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MultiResourceSelectionInputFieldState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MultiResourceSelectionInputFieldState();
 }
 
-class _MultiResourceSelectionInputFieldState extends ConsumerState<MultiResourceSelectionInputField> {
+class _MultiResourceSelectionInputFieldState
+    extends ConsumerState<MultiResourceSelectionInputField> {
   late String? _selectedResourceId;
 
   @override
@@ -59,7 +60,10 @@ class _MultiResourceSelectionInputFieldState extends ConsumerState<MultiResource
               activeStructureCode: widget.activeStructureCode,
               titleKey: widget.titleKey,
               subtitleKey: widget.subtitleKey,
-              onResourceSelected: (resourceId) {
+              onResourceSelected: ({
+                required String resourceId,
+                required String resourceTitle,
+              }) {
                 _selectedResourceId = resourceId;
                 _onChanged();
               },

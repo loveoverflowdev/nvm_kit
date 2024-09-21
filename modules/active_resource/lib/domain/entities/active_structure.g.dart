@@ -78,7 +78,7 @@ const _$ActiveFieldDataTypeEnumMap = {
       'multiActiveResourceCheckbox',
   ActiveFieldDataType.singleActiveResourceSelection:
       'singleActiveResourceSelection',
-  ActiveFieldDataType.selectListLiveResource: 'selectListLiveResource',
+  ActiveFieldDataType.multiResourceSelection: 'selectListLiveResource',
   ActiveFieldDataType.singleUserSelection: 'singleUserSelection',
   ActiveFieldDataType.multiUserSelection: 'multiUserSelection',
   ActiveFieldDataType.multiUserCheckbox: 'multiUserCheckbox',

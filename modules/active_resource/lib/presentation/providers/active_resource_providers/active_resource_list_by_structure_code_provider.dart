@@ -9,7 +9,7 @@ typedef _ActiveResourceListState = AsyncValue<List<ActiveResource>>;
 class ActiveResourceListByStructureCode
     extends _$ActiveResourceListByStructureCode {
   @override
-  _ActiveResourceListState build(
+  AsyncValue<List<ActiveResource>> build(
     String activeStructureCode,
   ) =>
       _ActiveResourceListState.data(List.empty());

@@ -10,20 +10,36 @@ class ActiveDetailComponent extends ActiveViewComponent {
   // ignore: overridden_fields
   late final String type = super.type;
 
-  final ActiveTileComponent tile;
+  final ActiveTileComponent primaryTile;
+
+  final List<ActiveRefsTileComponent> refTileList;
 
   ActiveDetailComponent({
-    required this.tile,
+    required this.primaryTile,
+    this.refTileList = const [],
   });
 
   @override
   factory ActiveDetailComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveDetailComponentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ActiveDetailComponentToJson(this)
     ..addAll(
       {
         'type': type,
       },
     );
+
+  // static List<ActiveRefsTileComponent> _refTileListFromJson(
+  //   List<dynamic> list,
+  // ) {
+  //   return list.map((e) => ActiveRefsTileComponent.fromJson(e)).toList();
+  // }
+
+  // static List<dynamic> _refTileListToJson(
+  //   List<ActiveRefsTileComponent> refTileList,
+  // ) {
+  //   return refTileList.map((e) => e.toJson()).toList();
+  // }
 }

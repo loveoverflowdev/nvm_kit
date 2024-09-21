@@ -11,7 +11,6 @@ class ActiveTileComponent implements Component {
   late final List<String> extraKeys;
 
   // TODO: urgent: GenericTagListComponent
-
   ActiveTileComponent({
     required this.activeStructureCode,
     required this.titleKey,
@@ -23,5 +22,6 @@ class ActiveTileComponent implements Component {
   factory ActiveTileComponent.fromJson(Map<String, dynamic> json) =>
       _$ActiveTileComponentFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ActiveTileComponentToJson(this);
 }

@@ -15,7 +15,6 @@ import '_single_user_input_field.dart';
 import '_text_list_input_field.dart';
 import '_url_input_field.dart';
 
-
 final class ActiveInputField extends StatelessWidget {
   /// Return raw value to fill submission form
   final void Function(dynamic) onSelected;
@@ -31,7 +30,6 @@ final class ActiveInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return specification.dataType.when(
       shortText: () {
-        print('++++ shortText');
         return ShortTextInputField(
           isRequiredIconVisible: specification.isRequired,
           labeltext: specification.title,
@@ -40,11 +38,10 @@ final class ActiveInputField extends StatelessWidget {
         );
       },
       paragraph: () {
-        print('++++ paragraph');
         return ParagraphInputField(
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
-          labeltext: specification.title, 
+          labeltext: specification.title,
           onChanged: onSelected,
         );
       },
@@ -58,7 +55,7 @@ final class ActiveInputField extends StatelessWidget {
         return NumericInputField(
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
-          labeltext: specification.title, 
+          labeltext: specification.title,
           onChanged: onSelected,
         );
       },
@@ -66,7 +63,7 @@ final class ActiveInputField extends StatelessWidget {
         return NumericInputField(
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
-          labeltext: specification.title, 
+          labeltext: specification.title,
           onChanged: onSelected,
         );
       },
@@ -93,7 +90,7 @@ final class ActiveInputField extends StatelessWidget {
           activeStructureCode: activeStructureCode,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
-          projectId: specification.projectId, 
+          projectId: specification.projectId,
           onChanged: onSelected,
         );
       },
@@ -108,8 +105,8 @@ final class ActiveInputField extends StatelessWidget {
           labeltext: specification.title,
           activeStructureCode: activeStructureCode,
           titleKey: titleKey,
-          subtitleKey: subtitleKey, 
-          onChanged: onSelected, 
+          subtitleKey: subtitleKey,
+          onChanged: onSelected,
         );
       },
       multiActiveResourceSelection: (

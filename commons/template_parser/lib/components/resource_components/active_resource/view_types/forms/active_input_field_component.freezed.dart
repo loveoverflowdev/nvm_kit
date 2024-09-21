@@ -22,7 +22,10 @@ mixin _$ActiveInputFieldComponent {
     required TResult Function(String fieldCode, dynamic initialValue) primitive,
     required TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)
-        resourcesSelection,
+        activeResourcesSelection,
+    required TResult Function(String fieldCode, String? avatarKey,
+            String titleKey, String subtitleKey)
+        usersSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,7 +33,10 @@ mixin _$ActiveInputFieldComponent {
     TResult? Function(String fieldCode, dynamic initialValue)? primitive,
     TResult? Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult? Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,26 +44,35 @@ mixin _$ActiveInputFieldComponent {
     TResult Function(String fieldCode, dynamic initialValue)? primitive,
     TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_PrimitiveType value) primitive,
-    required TResult Function(_ResourcesSelectionType value) resourcesSelection,
+    required TResult Function(_ActiveResourcesSelectionType value)
+        activeResourcesSelection,
+    required TResult Function(_UsersSelectionType value) usersSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PrimitiveType value)? primitive,
-    TResult? Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult? Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult? Function(_UsersSelectionType value)? usersSelection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PrimitiveType value)? primitive,
-    TResult Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult Function(_UsersSelectionType value)? usersSelection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -189,7 +204,10 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
     required TResult Function(String fieldCode, dynamic initialValue) primitive,
     required TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)
-        resourcesSelection,
+        activeResourcesSelection,
+    required TResult Function(String fieldCode, String? avatarKey,
+            String titleKey, String subtitleKey)
+        usersSelection,
   }) {
     return primitive(fieldCode, initialValue);
   }
@@ -200,7 +218,10 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
     TResult? Function(String fieldCode, dynamic initialValue)? primitive,
     TResult? Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult? Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
   }) {
     return primitive?.call(fieldCode, initialValue);
   }
@@ -211,7 +232,10 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
     TResult Function(String fieldCode, dynamic initialValue)? primitive,
     TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
     required TResult orElse(),
   }) {
     if (primitive != null) {
@@ -224,7 +248,9 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_PrimitiveType value) primitive,
-    required TResult Function(_ResourcesSelectionType value) resourcesSelection,
+    required TResult Function(_ActiveResourcesSelectionType value)
+        activeResourcesSelection,
+    required TResult Function(_UsersSelectionType value) usersSelection,
   }) {
     return primitive(this);
   }
@@ -233,7 +259,9 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PrimitiveType value)? primitive,
-    TResult? Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult? Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult? Function(_UsersSelectionType value)? usersSelection,
   }) {
     return primitive?.call(this);
   }
@@ -242,7 +270,9 @@ class _$PrimitiveTypeImpl extends _PrimitiveType {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PrimitiveType value)? primitive,
-    TResult Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult Function(_UsersSelectionType value)? usersSelection,
     required TResult orElse(),
   }) {
     if (primitive != null) {
@@ -271,12 +301,12 @@ abstract class _PrimitiveType extends ActiveInputFieldComponent {
 }
 
 /// @nodoc
-abstract class _$$ResourcesSelectionTypeImplCopyWith<$Res>
+abstract class _$$ActiveResourcesSelectionTypeImplCopyWith<$Res>
     implements $ActiveInputFieldComponentCopyWith<$Res> {
-  factory _$$ResourcesSelectionTypeImplCopyWith(
-          _$ResourcesSelectionTypeImpl value,
-          $Res Function(_$ResourcesSelectionTypeImpl) then) =
-      __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>;
+  factory _$$ActiveResourcesSelectionTypeImplCopyWith(
+          _$ActiveResourcesSelectionTypeImpl value,
+          $Res Function(_$ActiveResourcesSelectionTypeImpl) then) =
+      __$$ActiveResourcesSelectionTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -287,13 +317,13 @@ abstract class _$$ResourcesSelectionTypeImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>
+class __$$ActiveResourcesSelectionTypeImplCopyWithImpl<$Res>
     extends _$ActiveInputFieldComponentCopyWithImpl<$Res,
-        _$ResourcesSelectionTypeImpl>
-    implements _$$ResourcesSelectionTypeImplCopyWith<$Res> {
-  __$$ResourcesSelectionTypeImplCopyWithImpl(
-      _$ResourcesSelectionTypeImpl _value,
-      $Res Function(_$ResourcesSelectionTypeImpl) _then)
+        _$ActiveResourcesSelectionTypeImpl>
+    implements _$$ActiveResourcesSelectionTypeImplCopyWith<$Res> {
+  __$$ActiveResourcesSelectionTypeImplCopyWithImpl(
+      _$ActiveResourcesSelectionTypeImpl _value,
+      $Res Function(_$ActiveResourcesSelectionTypeImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ActiveInputFieldComponent
@@ -306,7 +336,7 @@ class __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>
     Object? titleKey = null,
     Object? subtitleKey = null,
   }) {
-    return _then(_$ResourcesSelectionTypeImpl(
+    return _then(_$ActiveResourcesSelectionTypeImpl(
       fieldCode: null == fieldCode
           ? _value.fieldCode
           : fieldCode // ignore: cast_nullable_to_non_nullable
@@ -329,8 +359,8 @@ class __$$ResourcesSelectionTypeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
-  _$ResourcesSelectionTypeImpl(
+class _$ActiveResourcesSelectionTypeImpl extends _ActiveResourcesSelectionType {
+  _$ActiveResourcesSelectionTypeImpl(
       {required this.fieldCode,
       required this.activeStructureCode,
       required this.titleKey,
@@ -348,14 +378,14 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
 
   @override
   String toString() {
-    return 'ActiveInputFieldComponent.resourcesSelection(fieldCode: $fieldCode, activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+    return 'ActiveInputFieldComponent.activeResourcesSelection(fieldCode: $fieldCode, activeStructureCode: $activeStructureCode, titleKey: $titleKey, subtitleKey: $subtitleKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResourcesSelectionTypeImpl &&
+            other is _$ActiveResourcesSelectionTypeImpl &&
             (identical(other.fieldCode, fieldCode) ||
                 other.fieldCode == fieldCode) &&
             (identical(other.activeStructureCode, activeStructureCode) ||
@@ -375,9 +405,10 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ResourcesSelectionTypeImplCopyWith<_$ResourcesSelectionTypeImpl>
-      get copyWith => __$$ResourcesSelectionTypeImplCopyWithImpl<
-          _$ResourcesSelectionTypeImpl>(this, _$identity);
+  _$$ActiveResourcesSelectionTypeImplCopyWith<
+          _$ActiveResourcesSelectionTypeImpl>
+      get copyWith => __$$ActiveResourcesSelectionTypeImplCopyWithImpl<
+          _$ActiveResourcesSelectionTypeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -385,9 +416,12 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
     required TResult Function(String fieldCode, dynamic initialValue) primitive,
     required TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)
-        resourcesSelection,
+        activeResourcesSelection,
+    required TResult Function(String fieldCode, String? avatarKey,
+            String titleKey, String subtitleKey)
+        usersSelection,
   }) {
-    return resourcesSelection(
+    return activeResourcesSelection(
         fieldCode, activeStructureCode, titleKey, subtitleKey);
   }
 
@@ -397,9 +431,12 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
     TResult? Function(String fieldCode, dynamic initialValue)? primitive,
     TResult? Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult? Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
   }) {
-    return resourcesSelection?.call(
+    return activeResourcesSelection?.call(
         fieldCode, activeStructureCode, titleKey, subtitleKey);
   }
 
@@ -409,11 +446,14 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
     TResult Function(String fieldCode, dynamic initialValue)? primitive,
     TResult Function(String fieldCode, String activeStructureCode,
             String titleKey, String subtitleKey)?
-        resourcesSelection,
+        activeResourcesSelection,
+    TResult Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
     required TResult orElse(),
   }) {
-    if (resourcesSelection != null) {
-      return resourcesSelection(
+    if (activeResourcesSelection != null) {
+      return activeResourcesSelection(
           fieldCode, activeStructureCode, titleKey, subtitleKey);
     }
     return orElse();
@@ -423,41 +463,47 @@ class _$ResourcesSelectionTypeImpl extends _ResourcesSelectionType {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_PrimitiveType value) primitive,
-    required TResult Function(_ResourcesSelectionType value) resourcesSelection,
+    required TResult Function(_ActiveResourcesSelectionType value)
+        activeResourcesSelection,
+    required TResult Function(_UsersSelectionType value) usersSelection,
   }) {
-    return resourcesSelection(this);
+    return activeResourcesSelection(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PrimitiveType value)? primitive,
-    TResult? Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult? Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult? Function(_UsersSelectionType value)? usersSelection,
   }) {
-    return resourcesSelection?.call(this);
+    return activeResourcesSelection?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PrimitiveType value)? primitive,
-    TResult Function(_ResourcesSelectionType value)? resourcesSelection,
+    TResult Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult Function(_UsersSelectionType value)? usersSelection,
     required TResult orElse(),
   }) {
-    if (resourcesSelection != null) {
-      return resourcesSelection(this);
+    if (activeResourcesSelection != null) {
+      return activeResourcesSelection(this);
     }
     return orElse();
   }
 }
 
-abstract class _ResourcesSelectionType extends ActiveInputFieldComponent {
-  factory _ResourcesSelectionType(
+abstract class _ActiveResourcesSelectionType extends ActiveInputFieldComponent {
+  factory _ActiveResourcesSelectionType(
       {required final String fieldCode,
       required final String activeStructureCode,
       required final String titleKey,
-      required final String subtitleKey}) = _$ResourcesSelectionTypeImpl;
-  _ResourcesSelectionType._() : super._();
+      required final String subtitleKey}) = _$ActiveResourcesSelectionTypeImpl;
+  _ActiveResourcesSelectionType._() : super._();
 
   @override
   String get fieldCode;
@@ -469,6 +515,220 @@ abstract class _ResourcesSelectionType extends ActiveInputFieldComponent {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResourcesSelectionTypeImplCopyWith<_$ResourcesSelectionTypeImpl>
+  _$$ActiveResourcesSelectionTypeImplCopyWith<
+          _$ActiveResourcesSelectionTypeImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UsersSelectionTypeImplCopyWith<$Res>
+    implements $ActiveInputFieldComponentCopyWith<$Res> {
+  factory _$$UsersSelectionTypeImplCopyWith(_$UsersSelectionTypeImpl value,
+          $Res Function(_$UsersSelectionTypeImpl) then) =
+      __$$UsersSelectionTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String fieldCode,
+      String? avatarKey,
+      String titleKey,
+      String subtitleKey});
+}
+
+/// @nodoc
+class __$$UsersSelectionTypeImplCopyWithImpl<$Res>
+    extends _$ActiveInputFieldComponentCopyWithImpl<$Res,
+        _$UsersSelectionTypeImpl>
+    implements _$$UsersSelectionTypeImplCopyWith<$Res> {
+  __$$UsersSelectionTypeImplCopyWithImpl(_$UsersSelectionTypeImpl _value,
+      $Res Function(_$UsersSelectionTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ActiveInputFieldComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fieldCode = null,
+    Object? avatarKey = freezed,
+    Object? titleKey = null,
+    Object? subtitleKey = null,
+  }) {
+    return _then(_$UsersSelectionTypeImpl(
+      fieldCode: null == fieldCode
+          ? _value.fieldCode
+          : fieldCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatarKey: freezed == avatarKey
+          ? _value.avatarKey
+          : avatarKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      titleKey: null == titleKey
+          ? _value.titleKey
+          : titleKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      subtitleKey: null == subtitleKey
+          ? _value.subtitleKey
+          : subtitleKey // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UsersSelectionTypeImpl extends _UsersSelectionType {
+  _$UsersSelectionTypeImpl(
+      {required this.fieldCode,
+      this.avatarKey,
+      required this.titleKey,
+      required this.subtitleKey})
+      : super._();
+
+  @override
+  final String fieldCode;
+  @override
+  final String? avatarKey;
+  @override
+  final String titleKey;
+  @override
+  final String subtitleKey;
+
+  @override
+  String toString() {
+    return 'ActiveInputFieldComponent.usersSelection(fieldCode: $fieldCode, avatarKey: $avatarKey, titleKey: $titleKey, subtitleKey: $subtitleKey)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UsersSelectionTypeImpl &&
+            (identical(other.fieldCode, fieldCode) ||
+                other.fieldCode == fieldCode) &&
+            (identical(other.avatarKey, avatarKey) ||
+                other.avatarKey == avatarKey) &&
+            (identical(other.titleKey, titleKey) ||
+                other.titleKey == titleKey) &&
+            (identical(other.subtitleKey, subtitleKey) ||
+                other.subtitleKey == subtitleKey));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, fieldCode, avatarKey, titleKey, subtitleKey);
+
+  /// Create a copy of ActiveInputFieldComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UsersSelectionTypeImplCopyWith<_$UsersSelectionTypeImpl> get copyWith =>
+      __$$UsersSelectionTypeImplCopyWithImpl<_$UsersSelectionTypeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String fieldCode, dynamic initialValue) primitive,
+    required TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)
+        activeResourcesSelection,
+    required TResult Function(String fieldCode, String? avatarKey,
+            String titleKey, String subtitleKey)
+        usersSelection,
+  }) {
+    return usersSelection(fieldCode, avatarKey, titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult? Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
+        activeResourcesSelection,
+    TResult? Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
+  }) {
+    return usersSelection?.call(fieldCode, avatarKey, titleKey, subtitleKey);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String fieldCode, dynamic initialValue)? primitive,
+    TResult Function(String fieldCode, String activeStructureCode,
+            String titleKey, String subtitleKey)?
+        activeResourcesSelection,
+    TResult Function(String fieldCode, String? avatarKey, String titleKey,
+            String subtitleKey)?
+        usersSelection,
+    required TResult orElse(),
+  }) {
+    if (usersSelection != null) {
+      return usersSelection(fieldCode, avatarKey, titleKey, subtitleKey);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PrimitiveType value) primitive,
+    required TResult Function(_ActiveResourcesSelectionType value)
+        activeResourcesSelection,
+    required TResult Function(_UsersSelectionType value) usersSelection,
+  }) {
+    return usersSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PrimitiveType value)? primitive,
+    TResult? Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult? Function(_UsersSelectionType value)? usersSelection,
+  }) {
+    return usersSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PrimitiveType value)? primitive,
+    TResult Function(_ActiveResourcesSelectionType value)?
+        activeResourcesSelection,
+    TResult Function(_UsersSelectionType value)? usersSelection,
+    required TResult orElse(),
+  }) {
+    if (usersSelection != null) {
+      return usersSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UsersSelectionType extends ActiveInputFieldComponent {
+  factory _UsersSelectionType(
+      {required final String fieldCode,
+      final String? avatarKey,
+      required final String titleKey,
+      required final String subtitleKey}) = _$UsersSelectionTypeImpl;
+  _UsersSelectionType._() : super._();
+
+  @override
+  String get fieldCode;
+  String? get avatarKey;
+  String get titleKey;
+  String get subtitleKey;
+
+  /// Create a copy of ActiveInputFieldComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UsersSelectionTypeImplCopyWith<_$UsersSelectionTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -97,7 +97,7 @@ enum ActiveFieldDataType {
   binaryCheckbox,
   multiActiveResourceCheckbox,
   singleActiveResourceSelection,
-  selectListLiveResource,
+  multiResourceSelection,
   singleUserSelection,
   multiUserSelection,
   multiUserCheckbox,
@@ -123,9 +123,11 @@ enum ActiveFieldDataType {
     'URL': ActiveFieldDataType.url,
     'TEXT_LIST': ActiveFieldDataType.textList,
     'CHECKBOX_ONE': ActiveFieldDataType.binaryCheckbox,
-    'CHECKBOX_LIST_LIVE_RESOURCE': ActiveFieldDataType.multiActiveResourceCheckbox,
-    'SELECT_ONE_LIVE_RESOURCE': ActiveFieldDataType.singleActiveResourceSelection,
-    'SELECT_LIST_LIVE_RESOURCE': ActiveFieldDataType.selectListLiveResource,
+    'CHECKBOX_LIST_LIVE_RESOURCE':
+        ActiveFieldDataType.multiActiveResourceCheckbox,
+    'SELECT_ONE_LIVE_RESOURCE':
+        ActiveFieldDataType.singleActiveResourceSelection,
+    'SELECT_LIST_LIVE_RESOURCE': ActiveFieldDataType.multiResourceSelection,
     'SELECT_ONE_USER': ActiveFieldDataType.singleUserSelection,
     'SELECT_LIST_USER': ActiveFieldDataType.multiUserSelection,
     'CHECKBOX_LIST_USER': ActiveFieldDataType.multiUserCheckbox,
