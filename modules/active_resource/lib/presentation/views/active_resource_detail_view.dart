@@ -8,7 +8,8 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart'
     show
         ActiveResourceByStructureCodeProvider,
-        activeResourceByStructureCodeProvider;
+        activeResourceByStructureCodeProvider,
+        activeStructureByCodeProvider;
 
 class ActiveResourceDetailView extends ConsumerStatefulWidget {
   final template.ActiveDetailComponent detailComponent;
@@ -47,8 +48,10 @@ class _ActiveResourceDetailViewState
         ///
         for (final refTile in _refTileList)
           RequestField.name(refTile.fieldCode),
+
+        ///
+        for (final key in tile.extraKeys) RequestField.name(key),
       ]),
-      for (final key in tile.extraKeys) RequestField.name(key),
     ]).build();
   }
 
@@ -75,6 +78,7 @@ class _ActiveResourceDetailViewState
         _activeStructureCode,
       ),
     );
+
     return activeResource.when(
       data: (data) => data == null
           ? const SizedBox.shrink()
@@ -84,42 +88,153 @@ class _ActiveResourceDetailViewState
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Text(
-                            data.liveAttributes[_primaryActiveTile.titleKey],
-                            style: Theme.of(context).textTheme.titleLarge,
+                    Consumer(
+                      builder: (_, WidgetRef ref, __) {
+                        final activeStructure = ref.watch(
+                          activeStructureByCodeProvider(
+                            _activeStructureCode,
                           ),
-                        ),
-                        if (data.liveAttributes[
-                                _primaryActiveTile.subtitleKey] !=
-                            null)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            child: Text(
-                              data.liveAttributes[
-                                  _primaryActiveTile.subtitleKey],
-                            ),
+                        );
+                        return activeStructure.when(
+                          loading: () => const AppCircularLoadingWidget(),
+                          error: (error, stackTrace) => AppErrorWidget(
+                            error,
+                            stackTrace: stackTrace,
                           ),
-                        for (final key in _primaryActiveTile.extraKeys)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            child: Text(data.liveAttributes[key]),
-                          ),
-                        const SizedBox(
-                          height: AppSpacing.lg,
-                        ),
+                          data: (activeStructure) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: AppSpacing.md,
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          final index =
+                                              activeStructure.fields.indexWhere(
+                                            (element) =>
+                                                element.key ==
+                                                _primaryActiveTile.titleKey,
+                                          );
+                                          final attributeLabel = activeStructure
+                                              .fields[index].title;
+                                          return Text(
+                                            attributeLabel,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          data.liveAttributes[
+                                              _primaryActiveTile.titleKey],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
 
-                        ///
-                        ..._buildRefTileListView(
-                          data,
-                          _refTileList,
-                        ),
-                      ],
+                                if (data.liveAttributes[
+                                        _primaryActiveTile.subtitleKey] !=
+                                    null)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: AppSpacing.md,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Builder(
+                                          builder: (context) {
+                                            final index = activeStructure.fields
+                                                .indexWhere(
+                                              (element) =>
+                                                  element.key ==
+                                                  _primaryActiveTile
+                                                      .subtitleKey,
+                                            );
+                                            final attributeLabel =
+                                                activeStructure
+                                                    .fields[index].title;
+                                            return Text(
+                                              attributeLabel,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        Flexible(
+                                          child: Text(
+                                            data.liveAttributes[
+                                                _primaryActiveTile.subtitleKey],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                for (final key in _primaryActiveTile.extraKeys)
+                                  Builder(builder: (context) {
+                                    final index =
+                                        activeStructure.fields.indexWhere(
+                                      (element) => element.key == key,
+                                    );
+                                    final attributeLabel =
+                                        activeStructure.fields[index].title;
+                                    final value = data.liveAttributes[key];
+                                    if (value == null ||
+                                        value?.isEmpty == true) {
+                                      return const SizedBox.shrink();
+                                    }
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: AppSpacing.md,
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            attributeLabel,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(data.liveAttributes[key]),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                                const SizedBox(
+                                  height: AppSpacing.lg,
+                                ),
+
+                                ///
+                                ..._buildRefTileListView(
+                                  data,
+                                  _refTileList,
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                     for (final addon in data.addons) ...[
                       const Divider(),
@@ -243,7 +358,7 @@ class _ActiveResourceRefTileViewState
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                      data.liveAttributes[_tile.titleKey],
+                      data.liveAttributes[_tile.titleKey] ?? '',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -251,7 +366,7 @@ class _ActiveResourceRefTileViewState
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Text(
-                        data.liveAttributes[_tile.subtitleKey],
+                        data.liveAttributes[_tile.subtitleKey] ?? '',
                       ),
                     ),
                 ],

@@ -18,7 +18,8 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     );
   }
 
-  Future<ActiveResourceResponse> getActiveResourceById(String id, {
+  Future<ActiveResourceResponse> getActiveResourceById(
+    String id, {
     required String activeStructureCode,
     String? requestField,
   }) {
@@ -46,7 +47,8 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     }
     return requestJson(
       endpoint: endpoints.getActiveResourceList(
-          activeStructureCode: activeStructureCode,),
+        activeStructureCode: activeStructureCode,
+      ),
       alchemistQuery: AlchemistQuery(
         // TODO: Opt request fields
         requestField: requestField ?? ActiveFieldRequestField.all.build(),
@@ -58,11 +60,10 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
     );
   }
 
-  Future<dynamic> deleteActiveResourceById(String id,
-    {
-      required String activeStructureCode,
-    }
-  ) {
+  Future<dynamic> deleteActiveResourceById(
+    String id, {
+    required String activeStructureCode,
+  }) {
     return requestJson(
       endpoint: endpoints.deleteActiveResourceById(
         id,

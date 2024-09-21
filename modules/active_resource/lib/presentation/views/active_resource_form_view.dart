@@ -50,9 +50,10 @@ class _ActiveResourceFormViewState
       widget.onRouteListView?.call(
         contextName: widget.formComponent.listViewContextName,
       );
+
       return showScaffoldMessage(
         context,
-        'New Task Created',
+        'New Resource Created',
       );
     }
   }

@@ -11,6 +11,7 @@ import '../widgets.dart';
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
   final template.ActiveCollectionComponent collectionComponent;
   final String? projectId;
+  final bool? setState;
 
   final void Function({
     required String? contextName,
@@ -27,6 +28,7 @@ class ActiveResourceCollectionView extends ConsumerStatefulWidget {
     super.key,
     required this.collectionComponent,
     required this.projectId,
+    this.setState,
     this.onRouteDetailView,
     this.onTapResource,
     this.onRouteCreateForm,
@@ -65,6 +67,17 @@ class _ActiveResourceCollectionViewState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadActiveResourceList();
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant ActiveResourceCollectionView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.setState == true) {
+        _loadActiveResourceList();
+      }
     });
   }
 

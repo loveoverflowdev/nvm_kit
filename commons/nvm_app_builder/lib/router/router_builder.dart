@@ -175,54 +175,60 @@ final class RouterBuilder {
                   },
                   branches: [
                     for (final page in app.pages)
-                      StatefulShellBranch(routes: [
-                        GoRoute(
-                          name: '@${page.contextName}',
-                          path: '@${page.contextName}',
-                          builder: (context, state) {
-                            final String projectId =
-                                state.pathParameters['project_id']!;
-                            return active_resource.ActiveResourcePage(
-                              projectId: projectId,
-                              pageComponent: page,
-                              resourceId: (state.extra as Map?)?['resource_id'],
-                              onRouteDetailView: ({
-                                required activeResourceId,
-                                required contextName,
-                              }) {
-                                if (contextName == null) return;
-                                final String projectId =
-                                    state.pathParameters['project_id']!;
-                                final path =
-                                    '/projects/$projectId/@$contextName';
-                                context.push(path, extra: {
-                                  'resource_id': activeResourceId,
-                                });
-                              },
-                              onRouteCreateForm: ({
-                                required contextName,
-                              }) {
-                                if (contextName == null) return;
-                                final String projectId =
-                                    state.pathParameters['project_id']!;
-                                final path =
-                                    '/projects/$projectId/@$contextName';
-                                context.push(path);
-                              },
-                              onRouteListView: ({
-                                required contextName,
-                              }) {
-                                if (contextName == null) return;
-                                final String projectId =
-                                    state.pathParameters['project_id']!;
-                                final path =
-                                    '/projects/$projectId/@$contextName';
-                                context.go(path);
-                              },
-                            );
-                          },
-                        ),
-                      ]),
+                      StatefulShellBranch(
+                        routes: [
+                          GoRoute(
+                            name: '@${page.contextName}',
+                            path: '@${page.contextName}',
+                            builder: (context, state) {
+                              final String projectId =
+                                  state.pathParameters['project_id']!;
+                              return active_resource.ActiveResourcePage(
+                                projectId: projectId,
+                                pageComponent: page,
+                                resourceId:
+                                    (state.extra as Map?)?['resource_id'],
+                                setState: (state.extra as Map?)?['set_state'],
+                                onRouteDetailView: ({
+                                  required activeResourceId,
+                                  required contextName,
+                                }) {
+                                  if (contextName == null) return;
+                                  final String projectId =
+                                      state.pathParameters['project_id']!;
+                                  final path =
+                                      '/projects/$projectId/@$contextName';
+                                  context.push(path, extra: {
+                                    'resource_id': activeResourceId,
+                                  });
+                                },
+                                onRouteCreateForm: ({
+                                  required contextName,
+                                }) {
+                                  if (contextName == null) return;
+                                  final String projectId =
+                                      state.pathParameters['project_id']!;
+                                  final path =
+                                      '/projects/$projectId/@$contextName';
+                                  context.push(path);
+                                },
+                                onRouteListView: ({
+                                  required contextName,
+                                }) {
+                                  if (contextName == null) return;
+                                  final String projectId =
+                                      state.pathParameters['project_id']!;
+                                  final path =
+                                      '/projects/$projectId/@$contextName';
+                                  context.go(path, extra: {
+                                    'set_state': true,
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ],

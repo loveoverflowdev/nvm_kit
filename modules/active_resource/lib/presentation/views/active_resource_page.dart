@@ -6,6 +6,7 @@ import 'package:template_parser/template_parser.dart' as template;
 class ActiveResourcePage extends StatelessWidget {
   final template.ActivePageComponent pageComponent;
   final String? resourceId;
+  final bool? setState;
   final String projectId;
 
   final void Function({
@@ -23,6 +24,7 @@ class ActiveResourcePage extends StatelessWidget {
 
   const ActiveResourcePage({
     super.key,
+    required this.setState,
     required this.resourceId,
     required this.projectId,
     required this.pageComponent,
@@ -38,6 +40,7 @@ class ActiveResourcePage extends StatelessWidget {
     Widget child = () {
       if (pageComponent.view is template.ActiveCollectionComponent) {
         return ActiveResourceCollectionView(
+          setState: setState,
           projectId: projectId,
           collectionComponent:
               pageComponent.view as template.ActiveCollectionComponent,

@@ -91,7 +91,10 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 activeStructureCode: 'user_stories',
                 titleKey: 'i_want',
                 subtitleKey: 'as_a',
-                extraKeys: [],
+                extraKeys: [
+                  'so_that',
+                  'acceptance_criteria',
+                ],
                 // TODO:
               ),
             ),
@@ -103,7 +106,18 @@ final class _ExampleTemplateRepository implements TemplateRepository {
               listViewContextName: 'user_story_list',
               activeStructureCode: 'user_stories',
               inputFields: [
-                // ActiveInputFieldComponent.primitive(),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'as_a',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'i_want',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'so_that',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'acceptance_criteria',
+                ),
               ],
             ),
           ),

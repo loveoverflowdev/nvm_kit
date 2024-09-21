@@ -35,7 +35,6 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
           .run(),
     );
 
-/// TODO:
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
     createActiveResourceTask({
   required ActiveStructure structure,
@@ -51,13 +50,15 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
         );
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
-  deleteActiveResourceByIdTask(String id, {
-    required ActiveStructure structure,
-  }) =>
-      ReaderTaskEither(
-        (repository) => repository
-          .deleteActiveResourceById(id, 
-            structure: structure,
-          )
-          .run(),
-      );
+    deleteActiveResourceByIdTask(
+  String id, {
+  required ActiveStructure structure,
+}) =>
+        ReaderTaskEither(
+          (repository) => repository
+              .deleteActiveResourceById(
+                id,
+                structure: structure,
+              )
+              .run(),
+        );

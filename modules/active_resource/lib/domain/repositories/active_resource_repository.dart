@@ -7,7 +7,8 @@ abstract interface class ActiveResourceRepository {
     required ActiveResourceForm form,
   });
 
-  TaskEither<ActiveResourceFailure, ActiveResource> getActiveResourceById(String id, {
+  TaskEither<ActiveResourceFailure, ActiveResource> getActiveResourceById(
+    String id, {
     required ActiveStructure structure,
     String? requestField,
   });
@@ -19,11 +20,13 @@ abstract interface class ActiveResourceRepository {
     String? requestField,
   });
 
-  TaskEither<ActiveResourceFailure, void> deleteActiveResourceById(String id, {
-    required ActiveStructure structure, 
+  TaskEither<ActiveResourceFailure, void> deleteActiveResourceById(
+    String id, {
+    required ActiveStructure structure,
   });
 
-  TaskEither<ActiveResourceFailure, void> updateActiveResourceById(String id, {  
+  TaskEither<ActiveResourceFailure, void> updateActiveResourceById(
+    String id, {
     required ActiveStructure structure,
     required ActiveResourceForm form,
   });
