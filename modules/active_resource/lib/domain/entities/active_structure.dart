@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'active_structure.g.dart';
+import 'addon_type/addon_type.dart';
 
-enum AddonType { comment, rolesBoard }
+part 'active_structure.g.dart';
 
 @JsonSerializable()
 final class ActiveStructure {
@@ -10,7 +10,22 @@ final class ActiveStructure {
   final String code;
   final String title;
   final List<ActiveFieldStructure> fields;
+
+  @JsonKey(
+    fromJson: _supportedAddonTypesFromJson,
+    toJson: _supportedAddonTypesToJson,
+  )
   final List<AddonType> supportedAddonTypes;
+
+  bool supportAddonType(bool Function(AddonType type) condition) {
+    return supportedAddonTypes.any(condition);
+  }
+
+  AddonType? getAddonTypeWhere(bool Function(AddonType type) condition) {
+    final index = supportedAddonTypes.indexWhere(condition);
+    if (index == -1) return null;
+    return supportedAddonTypes[index];
+  }
 
   ActiveStructure({
     required this.id,
@@ -24,6 +39,62 @@ final class ActiveStructure {
 
   factory ActiveStructure.fromJson(Map<String, dynamic> json) =>
       _$ActiveStructureFromJson(json);
+}
+
+List<AddonType> _supportedAddonTypesFromJson(Map<String, dynamic> json) {
+  return () sync* {
+    for (final entry in json.entries) {
+      switch (entry.key) {
+        case 'widgetBoardRole':
+          if (entry.value != false &&
+              entry.value != null &&
+              (entry.value['featureFields'] as Iterable?)?.isNotEmpty == true) {
+            yield AddonType.rolesBoard(
+              configurations: (entry.value['featureFields'] as Iterable).map(
+                (e) {
+                  return RolesBoardAddonConfiguration(
+                    fieldCode: e['featureFieldName'],
+                    widgetId: e['widgetId'],
+                    type: e['featureType'],
+                  );
+                },
+              ).toList(),
+            );
+          }
+          break;
+        case 'widgetComment':
+          if (entry.value != false && entry.value != null) {
+            yield AddonType.comment();
+          }
+          break;
+      }
+    }
+  }()
+      .toList();
+}
+
+Map<String, dynamic> _supportedAddonTypesToJson(List<AddonType> types) {
+  final result = <String, dynamic>{};
+  for (final type in types) {
+    type.when(
+      comment: () {
+        result['widgetComment'] = true;
+      },
+      rolesBoard: (configurations) {
+        result['widgetBoardRole'] = {
+          'featureFields': configurations.map((e) {
+            return {
+              'featureFieldName': e.fieldCode,
+              'widgetId': e.widgetId,
+              'featureType': e.type,
+            };
+          }).toList(),
+        };
+      },
+      unsupported: () => {},
+    );
+  }
+  return result;
 }
 
 @JsonSerializable()

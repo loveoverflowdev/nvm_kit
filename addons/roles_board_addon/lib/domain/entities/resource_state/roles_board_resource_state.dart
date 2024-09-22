@@ -15,6 +15,18 @@ final class RolesBoardResourceState {
     required this.finalStatus,
     required this.widgetRoles,
   });
+
+  factory RolesBoardResourceState.empty() {
+    return RolesBoardResourceState(
+      widgetBoardRoleId: '',
+      typeCode: '',
+      averageProgress: 0,
+      finalStatus: ProgressStatus.notStarted,
+      widgetRoles: [],
+    );
+  }
+
+  bool get isEmpty => widgetBoardRoleId == '' || widgetBoardRoleId == '0';
 }
 
 /*

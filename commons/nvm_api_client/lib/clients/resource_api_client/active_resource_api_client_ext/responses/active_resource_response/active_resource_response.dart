@@ -14,7 +14,8 @@ final class ActiveResourceResponse {
   @JsonKey(name: 'createdByUser')
   final ActiveResourceCreatorResponse? creator;
 
-  @JsonKey(name: 'liveFeatures', fromJson: _addonListFromJson)
+  @JsonKey(
+      name: 'liveFeatures', fromJson: _addonListFromJson, includeToJson: false)
   final List<AddonResponse> addons;
 
   ActiveResourceResponse({

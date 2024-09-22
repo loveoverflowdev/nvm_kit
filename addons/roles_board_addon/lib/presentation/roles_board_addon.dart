@@ -3,12 +3,13 @@ import 'package:roles_board_addon/domain.dart';
 
 import 'views.dart';
 
-final _RolesBoardAddonFactory rolesBoardAddon = _RolesBoardAddonFactory();
+final RolesBoardAddonFactory rolesBoardAddon = RolesBoardAddonFactory();
 
-final class _RolesBoardAddonFactory {
+final class RolesBoardAddonFactory {
   RolesBoardAddon call({
     required RolesBoardResourceState resourceState,
-  }) => _RolesBoardAddonImpl(resourceState: resourceState);
+  }) =>
+      _RolesBoardAddonImpl(resourceState: resourceState);
 }
 
 final class _RolesBoardAddonImpl extends RolesBoardAddon {
@@ -20,7 +21,7 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
 
   @override
   Widget resourceDetailAddonView({
-    required String activeStructureCode, 
+    required String activeStructureCode,
     required String resourceId,
   }) {
     return RolesBoardResourceStateView(
@@ -30,16 +31,14 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
 
   @override
   Widget resourceFormAddonView() {
-    return RolesBoardListView();
+    return const RolesBoardListView();
   }
 
   @override
   Widget resourceTileAddonIcon() {
     return IconButton(
-      onPressed: () {
-
-      }, 
-      icon: Icon(Icons.assignment_ind),
+      onPressed: () {},
+      icon: const Icon(Icons.assignment_ind),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../active_field_response/active_field_response.dart';
+import 'addon_type_response.dart';
 
 part 'active_structure_response.g.dart';
-
-enum AddonType { comment, rolesBoard }
 
 @JsonSerializable()
 final class ActiveStructureResponse {
@@ -19,8 +18,12 @@ final class ActiveStructureResponse {
   @JsonKey(name: 'activeFields')
   final List<ActiveFieldResponse> fields;
 
-  @JsonKey(name: 'activeFeatures', fromJson: _supportedAddonTypesFromJson)
-  final List<AddonType> supportedAddonTypes;
+  @JsonKey(
+    name: 'activeFeatures',
+    fromJson: _supportedAddonTypesFromJson,
+    includeToJson: false,
+  )
+  final List<AddonTypeResponse> supportedAddonTypes;
 
   ActiveStructureResponse({
     required this.id,
@@ -36,18 +39,44 @@ final class ActiveStructureResponse {
   Map<String, dynamic> toJson() => _$ActiveStructureResponseToJson(this);
 }
 
-List<AddonType> _supportedAddonTypesFromJson(Map<String, dynamic> json) {
+/*
+"widgetBoardRole": {
+  "featureFields": [
+      {
+          "featureFieldName": "assignee",
+          "widgetId": "657763459693282282",
+          "featureType": "WIDGET_BOARD_ROLE"
+      }
+  ],
+  "featureType": "WIDGET_BOARD_ROLE"
+},
+*/
+
+List<AddonTypeResponse> _supportedAddonTypesFromJson(
+    Map<String, dynamic> json) {
   return () sync* {
     for (final entry in json.entries) {
       switch (entry.key) {
         case 'widgetBoardRole':
-          if (entry.value != false && entry.value != null) {
-            yield AddonType.rolesBoard;
+          if (entry.value != false &&
+              entry.value != null &&
+              (entry.value['featureFields'] as Iterable?)?.isNotEmpty == true) {
+            yield AddonTypeResponse.rolesBoard(
+              configurations: (entry.value['featureFields'] as Iterable).map(
+                (e) {
+                  return RolesBoardAddonConfiguration(
+                    fieldCode: e['featureFieldName'],
+                    widgetId: e['widgetId'],
+                    type: e['featureType'],
+                  );
+                },
+              ).toList(),
+            );
           }
           break;
         case 'widgetComment':
           if (entry.value != false && entry.value != null) {
-            yield AddonType.comment;
+            yield AddonTypeResponse.comment();
           }
           break;
       }

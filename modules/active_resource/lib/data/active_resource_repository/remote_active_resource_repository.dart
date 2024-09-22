@@ -33,7 +33,8 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           activeStructureCode: structure.code,
           payload: api.ActiveResourcePayload(
             projectId: form.projectId,
-            liveAttributes: form.getAllAttributes(),
+            attributes: form.getAllAttributes(),
+            addonsAttributes: form.getAllAddonAttributes(),
           ),
         );
       },
@@ -45,8 +46,11 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   }
 
   @override
-  TaskEither<ActiveResourceFailure, void> updateActiveResourceById(String id,
-      {required ActiveStructure structure, required ActiveResourceForm form}) {
+  TaskEither<ActiveResourceFailure, void> updateActiveResourceById(
+    String id, {
+    required ActiveStructure structure,
+    required ActiveResourceForm form,
+  }) {
     // TODO: implement updateActiveResource
     throw UnimplementedError();
   }
@@ -131,12 +135,13 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   }) {
     List<addon.Addon> addons = [];
 
-    if (structure.supportedAddonTypes.contains(AddonType.comment)) {
+    if (structure.supportAddonType((e) => e.isComment)) {
       addons.add(comment_addon.commentAddon);
     }
 
-    if (structure.supportedAddonTypes.contains(AddonType.rolesBoard)) {
-      addons.addAll(
+    if (structure.supportAddonType((e) => e.isRolesBoard)) {
+      final rolesBoardAddons = <addon.Addon>[];
+      rolesBoardAddons.addAll(
         response.addons
             .whereType<api.RolesBoardStateResponse>()
             .map((response) {
@@ -160,6 +165,16 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
           );
         }).toList(),
       );
+
+      if (rolesBoardAddons.isNotEmpty) {
+        addons.addAll(rolesBoardAddons);
+      } else {
+        // addons.add(
+        //   roles_board_addon.rolesBoardAddon(
+        //     resourceState: roles_board_addon.RolesBoardResourceState.empty(),
+        //   ),
+        // );
+      }
     }
 
     addons.sort((a, b) => a.priority.compareTo(b.priority));

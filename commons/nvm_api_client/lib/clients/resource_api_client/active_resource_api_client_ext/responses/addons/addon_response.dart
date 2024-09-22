@@ -36,54 +36,6 @@ abstract class AddonResponse {
   }
 }
 
-// final class AddonResponseConverter
-//     implements JsonConverter<AddonResponse, MapEntry<String, dynamic>> {
-
-//     const AddonResponseConverter();
-    
-//     @override
-//     AddonResponse fromJson(MapEntry<String, dynamic> json) {
-//       return switch (json.key) {
-//         'assignee' => AssigneeResponse.fromJson(json.value),
-//         _ => throw UnimplementedError(),
-//       };
-//     }
-
-//     @override
-//     MapEntry<String, dynamic> toJson(AddonResponse object) {
-//       if (this is AssigneeResponse) {
-//         return (object as AssigneeResponse).toJson();
-//       }
-//       throw Exception('Unknown AddonResponse type');
-//     }
-
-// }
-// final class ActiveViewComponentConverter
-//     implements JsonConverter<ActiveViewComponent, Map<String, dynamic>> {
-//   const ActiveViewComponentConverter();
-
-//   @override
-//   ActiveViewComponent fromJson(Map<String, dynamic> json) {
-//     return switch (json['type']) {
-//       'ActiveCollectionComponent' => ActiveCollectionComponent.fromJson(json),
-//       'ActiveDetailComponent' => ActiveDetailComponent.fromJson(json),
-//       'ActiveFormComponent' => ActiveFormComponent.fromJson(json),
-//       _ => throw UnimplementedError(),
-//     };
-//   }
-
-//   @override
-//   Map<String, dynamic> toJson(ActiveViewComponent object) {
-//     return switch (object.type) {
-//       'ActiveCollectionComponent' =>
-//         (object as ActiveCollectionComponent).toJson(),
-//       'ActiveDetailComponent' => (object as ActiveDetailComponent).toJson(),
-//       'ActiveFormComponent' => (object as ActiveFormComponent).toJson(),
-//       _ => throw UnimplementedError(),
-//     };
-//   }
-// }
-
 /*
 "liveFeatures": {
   "assignee": {

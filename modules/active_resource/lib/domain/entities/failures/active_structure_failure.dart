@@ -35,6 +35,7 @@ class ActiveStructureFailure
     StackTrace? stackTrace,
   }) {
     if (failure is AlchemistApiRequestFailure) {
+      print('--------------------## $failure');
       return switch (failure.statusCode) {
         400 => ActiveStructureFailure.badRequest(
             message: failure.body['message'],
@@ -45,6 +46,7 @@ class ActiveStructureFailure
         _ => ActiveStructureFailure.unimplemented(),
       };
     }
+    print('-------------------- $failure');
     return ActiveStructureFailure.unimplemented();
   }
 

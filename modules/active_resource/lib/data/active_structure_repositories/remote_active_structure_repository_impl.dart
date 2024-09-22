@@ -2,12 +2,13 @@ import 'package:nvm_api_client/nvm_api_client.dart' as api;
 import 'package:fpdart/fpdart.dart' show TaskEither;
 import '../../domain.dart'
     show
-        ActiveFieldStructure,
         ActiveFieldDataType,
+        ActiveFieldStructure,
         ActiveStructure,
         ActiveStructureFailure,
+        AddonType,
         RemoteActiveStructureRepository,
-        AddonType;
+        RolesBoardAddonConfiguration;
 
 final class RemoteActiveStructureRepositoryImpl
     implements RemoteActiveStructureRepository {
@@ -88,10 +89,21 @@ final class RemoteActiveStructureRepositoryImpl
       title: response.title,
       supportedAddonTypes: response.supportedAddonTypes
           .map(
-            (e) => switch (e) {
-              api.AddonType.comment => AddonType.comment,
-              api.AddonType.rolesBoard => AddonType.rolesBoard,
-            },
+            (e) => e.when(
+              rolesBoard: (configurations) => AddonType.rolesBoard(
+                configurations: configurations
+                    .map(
+                      (e) => RolesBoardAddonConfiguration(
+                        fieldCode: e.fieldCode,
+                        widgetId: e.widgetId,
+                        type: e.type,
+                      ),
+                    )
+                    .toList(),
+              ),
+              comment: () => AddonType.comment(),
+              unsupported: () => AddonType.unsupported(),
+            ),
           )
           .toList(),
       fields: response.fields

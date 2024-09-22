@@ -11,7 +11,9 @@ class RolesBoardStateResponse extends AddonResponse {
   final String widgetBoardRoleId;
   final double averageProgress;
 
-  @JsonKey(fromJson: ProgressStatusResponse.fromJson, toJson: ProgressStatusResponse.toJson)
+  @JsonKey(
+      fromJson: ProgressStatusResponse.fromJson,
+      toJson: ProgressStatusResponse.toJson)
   final ProgressStatusResponse finalStatus;
 
   @JsonKey(name: 'widgetRoles')
@@ -31,10 +33,9 @@ class RolesBoardStateResponse extends AddonResponse {
     return instance;
   }
 
+  @override
   Map<String, dynamic> toJson() {
-    return {
-      this.typeCode: _$RolesBoardStateResponseToJson(this)
-    };
+    return {typeCode: _$RolesBoardStateResponseToJson(this)};
   }
 
   @override
@@ -49,7 +50,9 @@ class RoleStateResponse {
   @JsonKey(name: 'assignedTo')
   final String? assignedToUserId;
 
-  @JsonKey(fromJson: ProgressStatusResponse.fromJson, toJson: ProgressStatusResponse.toJson)
+  @JsonKey(
+      fromJson: ProgressStatusResponse.fromJson,
+      toJson: ProgressStatusResponse.toJson)
   final ProgressStatusResponse status;
   final double progress;
 

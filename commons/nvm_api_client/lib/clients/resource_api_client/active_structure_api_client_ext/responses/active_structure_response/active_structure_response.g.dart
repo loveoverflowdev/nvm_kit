@@ -26,12 +26,4 @@ Map<String, dynamic> _$ActiveStructureResponseToJson(
       'activeStructureCode': instance.code,
       'activeStructureTitle': instance.title,
       'activeFields': instance.fields,
-      'activeFeatures': instance.supportedAddonTypes
-          .map((e) => _$AddonTypeEnumMap[e]!)
-          .toList(),
     };
-
-const _$AddonTypeEnumMap = {
-  AddonType.comment: 'comment',
-  AddonType.rolesBoard: 'rolesBoard',
-};

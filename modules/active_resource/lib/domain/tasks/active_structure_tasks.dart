@@ -26,6 +26,14 @@ ReaderTaskEither<RemoteActiveStructureRepository, ActiveStructureFailure,
         );
 
 ReaderTaskEither<LocalActiveStructureRepository, ActiveStructureFailure,
+    ActiveStructure?> readLocalActiveStructureByCodeTask(
+  String code,
+) =>
+    ReaderTaskEither(
+      (repository) => repository.readActiveStructureByCode(code).run(),
+    );
+
+ReaderTaskEither<LocalActiveStructureRepository, ActiveStructureFailure,
         List<ActiveStructure>>
     readLocalActiveStructureListTask() => ReaderTaskEither(
           (repository) => repository.readActiveStructureList().run(),

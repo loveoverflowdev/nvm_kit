@@ -7,7 +7,7 @@ part of 'active_resource_delete_provider.dart';
 // **************************************************************************
 
 String _$activeResourceDeleteHash() =>
-    r'a81edc7b70129836260b6f0f9ac5622a0f4b3fc6';
+    r'f0d8baf6683e3e392e97c6d990d3ec4072592525';
 
 /// Copied from Dart SDK
 class _SystemHash {

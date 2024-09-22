@@ -14,9 +14,8 @@ ActiveStructure _$ActiveStructureFromJson(Map<String, dynamic> json) =>
       fields: (json['fields'] as List<dynamic>)
           .map((e) => ActiveFieldStructure.fromJson(e as Map<String, dynamic>))
           .toList(),
-      supportedAddonTypes: (json['supportedAddonTypes'] as List<dynamic>)
-          .map((e) => $enumDecode(_$AddonTypeEnumMap, e))
-          .toList(),
+      supportedAddonTypes: _supportedAddonTypesFromJson(
+          json['supportedAddonTypes'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ActiveStructureToJson(ActiveStructure instance) =>
@@ -25,15 +24,9 @@ Map<String, dynamic> _$ActiveStructureToJson(ActiveStructure instance) =>
       'code': instance.code,
       'title': instance.title,
       'fields': instance.fields,
-      'supportedAddonTypes': instance.supportedAddonTypes
-          .map((e) => _$AddonTypeEnumMap[e]!)
-          .toList(),
+      'supportedAddonTypes':
+          _supportedAddonTypesToJson(instance.supportedAddonTypes),
     };
-
-const _$AddonTypeEnumMap = {
-  AddonType.comment: 'comment',
-  AddonType.rolesBoard: 'rolesBoard',
-};
 
 ActiveFieldStructure _$ActiveFieldStructureFromJson(
         Map<String, dynamic> json) =>
@@ -78,7 +71,7 @@ const _$ActiveFieldDataTypeEnumMap = {
       'multiActiveResourceCheckbox',
   ActiveFieldDataType.singleActiveResourceSelection:
       'singleActiveResourceSelection',
-  ActiveFieldDataType.multiResourceSelection: 'selectListLiveResource',
+  ActiveFieldDataType.multiResourceSelection: 'multiResourceSelection',
   ActiveFieldDataType.singleUserSelection: 'singleUserSelection',
   ActiveFieldDataType.multiUserSelection: 'multiUserSelection',
   ActiveFieldDataType.multiUserCheckbox: 'multiUserCheckbox',

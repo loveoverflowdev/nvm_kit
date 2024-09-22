@@ -1,16 +1,19 @@
 final class ActiveResourcePayload {
   final String projectId;
-  final Map<String, dynamic> liveAttributes;
+  final Map<String, dynamic> attributes;
+  final Map<String, dynamic> addonsAttributes;
 
   ActiveResourcePayload({
     required this.projectId,
-    required this.liveAttributes,
+    required this.attributes,
+    required this.addonsAttributes,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'projectId': projectId,
-      'liveAttributes': liveAttributes,
+      'liveAttributes': attributes,
+      'liveFeatures': addonsAttributes,
     };
   }
 }

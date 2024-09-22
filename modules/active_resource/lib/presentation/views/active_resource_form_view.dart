@@ -97,6 +97,13 @@ class _ActiveResourceFormViewState
                   ),
                 ),
               //
+
+              const SizedBox(
+                height: AppSpacing.lg,
+              ),
+
+              ..._buildAddonInputFields(activeStructure),
+              //
               const Divider(),
               Consumer(
                 builder: (_, WidgetRef ref, __) {
@@ -134,6 +141,36 @@ class _ActiveResourceFormViewState
         loading: () => const AppCircularLoadingWidget(),
       ),
     );
+  }
+
+  List<Widget> _buildAddonInputFields(ActiveStructure activeStructure) {
+    final roleBoardAddonType =
+        activeStructure.getAddonTypeWhere((type) => type.isRolesBoard);
+    final List<Widget> inputFields = [];
+
+    ///
+    roleBoardAddonType?.whenOrNull(rolesBoard: (configurations) {
+      for (final configuration in configurations) {
+        inputFields.add(
+          Padding(
+            padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+            child: RolesBoardInputField(
+              onSelected: (rolesBoardSelection) {
+                if (rolesBoardSelection == null) {
+                  _form.setAddonAttribute(
+                      key: configuration.fieldCode, value: null);
+                } else {
+                  _form.setAddonAttribute(
+                      key: configuration.fieldCode,
+                      value: rolesBoardSelection.toJson());
+                }
+              },
+            ),
+          ),
+        );
+      }
+    });
+    return inputFields;
   }
 
   List<ActiveInputFieldSpecification> _combinedToGetInputFieldSpecifications({
