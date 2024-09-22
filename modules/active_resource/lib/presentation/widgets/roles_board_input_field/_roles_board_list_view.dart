@@ -4,11 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/roles_board_addon.dart';
 
 class RolesBoardListView extends ConsumerStatefulWidget {
-  final void Function(RolesBoardSelection?)? onSelected;
+  final RolesBoardSelection? initialSelection;
+  final void Function(RolesBoardSelection?, String? rolesBoardName)? onSubmited;
 
   const RolesBoardListView({
     super.key,
-    required this.onSelected,
+    required this.initialSelection,
+    required this.onSubmited,
   });
 
   @override
@@ -17,6 +19,7 @@ class RolesBoardListView extends ConsumerStatefulWidget {
 
 class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
   late RolesBoardSelection? _rolesBoardSelection;
+  late String? _rolesBoardName;
 
   @override
   void initState() {
@@ -24,7 +27,7 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => _loadRolesBoardList(),
     );
-    _rolesBoardSelection = null;
+    _rolesBoardSelection = widget.initialSelection;
   }
 
   void _loadRolesBoardList() {
@@ -36,17 +39,17 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
     required RolesBoard rolesBoard,
   }) {
     if (value == true) {
+      _rolesBoardName = rolesBoard.boardName;
       _rolesBoardSelection = RolesBoardSelection(
         rolesBoardId: rolesBoard.id,
         roleIdList: [],
       );
     } else {
+      _rolesBoardName = null;
       _rolesBoardSelection = null;
     }
 
-    setState(() {
-      widget.onSelected?.call(_rolesBoardSelection);
-    });
+    setState(() {});
   }
 
   @override
@@ -83,8 +86,10 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
                           CheckboxListTile(
                             value: isRolesBoardSelected,
                             onChanged: (bool? value) {
-                              _onSelectionChanged(value,
-                                  rolesBoard: rolesBoard);
+                              _onSelectionChanged(
+                                value,
+                                rolesBoard: rolesBoard,
+                              );
                             },
                             title: Text(rolesBoard.boardName),
                             subtitle: rolesBoard.description.isNotEmpty
@@ -134,7 +139,10 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: ElevatedButton(
             onPressed: () {
-              widget.onSelected?.call(_rolesBoardSelection);
+              widget.onSubmited?.call(
+                _rolesBoardSelection,
+                _rolesBoardSelection == null ? null : _rolesBoardName,
+              );
               Navigator.pop(context);
             },
             child: const Text('Done'),
@@ -156,8 +164,10 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
           value: _rolesBoardSelection?.roleIdList.contains(role.id) == true,
           onChanged: (value) {
             if (value == true) {
+              print('+++++++++++ Add ${_rolesBoardSelection?.toJson()}');
               _rolesBoardSelection?.roleIdList.add(role.id);
             } else {
+              print('+++++++++++ Remove ${_rolesBoardSelection?.toJson()}');
               _rolesBoardSelection?.roleIdList.remove(role.id);
             }
 

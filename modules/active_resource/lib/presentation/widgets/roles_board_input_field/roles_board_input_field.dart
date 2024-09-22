@@ -1,10 +1,11 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:roles_board_addon/domain.dart';
 
 import '_roles_board_list_view.dart';
 
-class RolesBoardInputField extends StatelessWidget {
+class RolesBoardInputField extends StatefulWidget {
   final void Function(RolesBoardSelection?)? onSelected;
 
   const RolesBoardInputField({
@@ -13,52 +14,60 @@ class RolesBoardInputField extends StatelessWidget {
   });
 
   @override
+  State<RolesBoardInputField> createState() => _RolesBoardInputFieldState();
+}
+
+class _RolesBoardInputFieldState extends State<RolesBoardInputField> {
+  late RolesBoardSelection? _rolesBoardSelection;
+  late final TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+    _rolesBoardSelection = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppSpacing.md),
-        onTap: () {
-          showAppModelBottomSheet(
-            context: context,
-            builder: (context) => Scaffold(
-              appBar: AppBar(
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.clear),
-                ),
-                title: const Text('Select a roles board'),
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        showAppModelBottomSheet(
+          context: context,
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.clear),
               ),
-              body: RolesBoardListView(
-                onSelected: onSelected,
-              ),
+              title: const Text('Select a roles board'),
             ),
-          );
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppSpacing.md),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.outline,
+            body: RolesBoardListView(
+              initialSelection: _rolesBoardSelection,
+              onSubmited: (rolesBoardSeletion, String? boardName) {
+                _textEditingController.text = boardName ?? '';
+                _rolesBoardSelection = rolesBoardSeletion;
+                //
+                widget.onSelected?.call(rolesBoardSeletion);
+              },
             ),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: AppSpacing.lg,
-              horizontal: AppSpacing.md,
+        );
+      },
+      child: IgnorePointer(
+        child: TextField(
+          controller: _textEditingController,
+          decoration: InputDecoration(
+            labelText: 'Select a roles board',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppSpacing.md),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Select a roles board',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+            suffixIcon: const Icon(
+              Icons.arrow_drop_down,
+              size: 28,
             ),
           ),
         ),

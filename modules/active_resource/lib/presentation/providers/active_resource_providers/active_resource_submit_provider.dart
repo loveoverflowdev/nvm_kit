@@ -21,6 +21,8 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
 
   void submit(ActiveResourceForm form) {
     state = const AsyncValue.loading();
+    print('@@@@@@@ Addons Attributes: ' +
+        form.getAllAddonAttributes().toString());
     ref
         .watch(
       activeStructureByCodeProvider(activeStructureCode).future,
