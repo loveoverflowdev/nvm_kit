@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:template_parser/template_parser.dart' as template;
+import 'package:share_plus/share_plus.dart';
 
 import '../providers.dart' show activeResourceListByStructureCodeProvider;
 import '../widgets.dart';
@@ -117,7 +118,7 @@ class _ActiveResourceCollectionViewState
         if (next.isLoading) {
           showLoadingDialog(context);
         } else {
-          hideLoadingDialog(context);
+          dismissLoadingDialog(context);
 
           if (next.hasValue) {
             showScaffoldMessage(context, 'Deleted');
@@ -158,7 +159,12 @@ class _ActiveResourceCollectionViewState
                         activeResourceId: activeResource.id,
                       );
                     },
-                    onShareAction: () {},
+                    onShareAction: () {
+                      Share.share(
+                        activeResource.liveAttributes[tileComponent.titleKey],
+                        subject: activeResource.liveAttributes.toString(),
+                      );
+                    },
                     onDeleteAction: () {
                       ref
                           .read(deleteProvider.notifier)

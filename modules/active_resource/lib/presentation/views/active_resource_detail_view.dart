@@ -106,44 +106,57 @@ class _ActiveResourceDetailViewState
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: AppSpacing.md,
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Builder(
-                                        builder: (context) {
-                                          final index =
-                                              activeStructure.fields.indexWhere(
-                                            (element) =>
-                                                element.key ==
-                                                _primaryActiveTile.titleKey,
-                                          );
-                                          final attributeLabel = activeStructure
-                                              .fields[index].title;
-                                          return Text(
-                                            attributeLabel,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: AppSpacing.md,
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Builder(
+                                            builder: (context) {
+                                              final index = activeStructure
+                                                  .fields
+                                                  .indexWhere(
+                                                (element) =>
+                                                    element.key ==
+                                                    _primaryActiveTile.titleKey,
+                                              );
+                                              final attributeLabel =
+                                                  activeStructure
+                                                      .fields[index].title;
+                                              return Text(
+                                                attributeLabel,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                              data.liveAttributes[
+                                                  _primaryActiveTile.titleKey],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
                                             ),
-                                          );
-                                        },
+                                          ),
+                                        ],
                                       ),
-                                      Flexible(
-                                        child: Text(
-                                          data.liveAttributes[
-                                              _primaryActiveTile.titleKey],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    const Spacer(),
+                                    IconButton(
+                                      onPressed: () {
+                                        context.push();
+                                      },
+                                      icon: const Icon(Icons.edit),
+                                    ),
+                                  ],
                                 ),
 
                                 if (data.liveAttributes[

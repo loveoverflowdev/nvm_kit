@@ -7,6 +7,7 @@ import '../providers.dart';
 import '../widgets.dart';
 
 class ActiveResourceFormView extends ConsumerStatefulWidget {
+  final String? resourceId;
   final String projectId;
   final template.ActiveFormComponent formComponent;
 
@@ -17,6 +18,7 @@ class ActiveResourceFormView extends ConsumerStatefulWidget {
   const ActiveResourceFormView({
     super.key,
     required this.projectId,
+    required this.resourceId,
     required this.formComponent,
     required this.onRouteListView,
   });
@@ -36,6 +38,39 @@ class _ActiveResourceFormViewState
     _form = ActiveResourceForm(
       projectId: widget.projectId,
     );
+
+    if (widget.resourceId != null) {
+      final resourceId = widget.resourceId!;
+      final activeResourceProvider = activeResourceByStructureCodeProvider(
+        widget.formComponent.activeStructureCode,
+      );
+      ref
+          .read(
+            activeResourceProvider.notifier,
+          )
+          .loadActiveResource(id: resourceId);
+
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          ref.listen(
+            activeResourceProvider,
+            (previous, next) {
+              next.when(
+                data: (activeResource) {
+                  dismissLoadingDialog(context);
+                },
+                error: (_, __) {
+                  dismissLoadingDialog(context);
+                },
+                loading: () {
+                  showLoadingDialog(context);
+                },
+              );
+            },
+          );
+        },
+      );
+    }
   }
 
   void _submissionListener(AsyncValue<void>? previous, AsyncValue<void> next) {
@@ -90,6 +125,7 @@ class _ActiveResourceFormViewState
                 Padding(
                   padding: const EdgeInsets.only(top: AppSpacing.md),
                   child: ActiveInputField(
+                    initialValue: specification.key,
                     specification: specification,
                     onSelected: (value) {
                       _form.setAttribute(key: specification.key, value: value);

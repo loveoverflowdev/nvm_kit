@@ -9,10 +9,12 @@ void showLoadingDialog(BuildContext context) {
   showDialog(
     context: context,
     useRootNavigator: true,
-    barrierDismissible: false, // Prevents dismissing the dialog by tapping outside
+    barrierDismissible:
+        false, // Prevents dismissing the dialog by tapping outside
     builder: (BuildContext context) {
       return Dialog(
-        backgroundColor: Colors.transparent, // Makes the dialog background transparent
+        backgroundColor:
+            Colors.transparent, // Makes the dialog background transparent
         child: Center(
           child: CircularProgressIndicator(), // Circular loading indicator
         ),
@@ -21,7 +23,7 @@ void showLoadingDialog(BuildContext context) {
   );
 }
 
-void hideLoadingDialog(BuildContext context) {
+void dismissLoadingDialog(BuildContext context) {
   WidgetsBinding.instance.addPostFrameCallback(
     (_) {
       if (_isShowed) {

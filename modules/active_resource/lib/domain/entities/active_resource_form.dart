@@ -18,6 +18,16 @@ final class ActiveResourceForm {
     _attributes[key] = value;
   }
 
+  void setAllAttribute(Map<String, dynamic> value) {
+    _attributes.clear();
+    _attributes.addAll(value);
+  }
+
+  void setAllAddonAttribute(Map<String, dynamic> value) {
+    _addonAttributes.clear();
+    _addonAttributes.addAll(value);
+  }
+
   void setAddonAttribute({
     required String key,
     required dynamic value,

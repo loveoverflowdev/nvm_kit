@@ -16,12 +16,15 @@ import '_text_list_input_field.dart';
 import '_url_input_field.dart';
 
 final class ActiveInputField extends StatelessWidget {
+  final Object? initialValue;
+
   /// Return raw value to fill submission form
   final void Function(dynamic) onSelected;
   final ActiveInputFieldSpecification specification;
 
   const ActiveInputField({
     super.key,
+    this.initialValue,
     required this.specification,
     required this.onSelected,
   });
@@ -31,6 +34,7 @@ final class ActiveInputField extends StatelessWidget {
     return specification.dataType.when(
       shortText: () {
         return ShortTextInputField(
+          initialValue: initialValue as String?,
           isRequiredIconVisible: specification.isRequired,
           labeltext: specification.title,
           hintText: specification.placeholder,
@@ -39,6 +43,7 @@ final class ActiveInputField extends StatelessWidget {
       },
       paragraph: () {
         return ParagraphInputField(
+          initialValue: initialValue as String?,
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
           labeltext: specification.title,
@@ -53,6 +58,7 @@ final class ActiveInputField extends StatelessWidget {
       },
       integer: () {
         return NumericInputField(
+          // TODO: add initialValue
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
           labeltext: specification.title,
@@ -61,6 +67,7 @@ final class ActiveInputField extends StatelessWidget {
       },
       numeric: () {
         return NumericInputField(
+          // TODO: add initialValue
           isRequiredIconVisible: specification.isRequired,
           hintText: specification.placeholder,
           labeltext: specification.title,

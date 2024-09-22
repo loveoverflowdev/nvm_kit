@@ -8,13 +8,15 @@ class ParagraphInputField extends StatelessWidget {
   final String labeltext;
   final String hintText;
   final void Function(String) onChanged;
+  final String? initialValue;
 
-  ParagraphInputField({
+  const ParagraphInputField({
     super.key,
     required this.labeltext,
     required this.hintText,
     required this.isRequiredIconVisible,
     required this.onChanged,
+    this.initialValue,
   });
 
   @override
@@ -25,17 +27,17 @@ class ParagraphInputField extends StatelessWidget {
         expands: true,
         maxLines: null,
         maxLength: 500,
+        initialValue: initialValue,
         decoration: InputDecoration(
           label: Row(
-          children: [
-            Text(labeltext),
-              if (isRequiredIconVisible)
-                ...[
-                  const SizedBox(width: AppSpacing.xs),
-                  AsteriskIcon(),  
-                ],           
+            children: [
+              Text(labeltext),
+              if (isRequiredIconVisible) ...[
+                const SizedBox(width: AppSpacing.xs),
+                const AsteriskIcon(),
+              ],
             ],
-          ), 
+          ),
           hintText: hintText,
         ),
       ),

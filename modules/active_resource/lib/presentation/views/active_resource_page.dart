@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
+// TODO: Chia tách page theo loại
 class ActiveResourcePage extends StatelessWidget {
   final template.ActivePageComponent pageComponent;
+
+  /// [resourceId] used for detail page and update page
   final String? resourceId;
+
+  /// [setState] used for list page
   final bool? setState;
+
   final String projectId;
 
   final void Function({
@@ -54,6 +60,7 @@ class ActiveResourcePage extends StatelessWidget {
         );
       } else if (pageComponent.view is template.ActiveFormComponent) {
         return ActiveResourceFormView(
+          resourceId: resourceId,
           formComponent: pageComponent.view as template.ActiveFormComponent,
           projectId: projectId,
           onRouteListView: onRouteListView,
