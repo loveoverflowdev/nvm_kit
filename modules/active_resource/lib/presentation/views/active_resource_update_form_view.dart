@@ -6,8 +6,8 @@ import 'package:template_parser/template_parser.dart' as template;
 import '../providers.dart';
 import '../widgets.dart';
 
-class ActiveResourceFormView extends ConsumerStatefulWidget {
-  final String? resourceId;
+class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
+  final String resourceId;
   final String projectId;
   final template.ActiveCreateFormComponent formComponent;
 
@@ -15,7 +15,7 @@ class ActiveResourceFormView extends ConsumerStatefulWidget {
     required String? contextName,
   })? onRouteListView;
 
-  const ActiveResourceFormView({
+  const ActiveResourceUpdateFormView({
     super.key,
     required this.projectId,
     required this.resourceId,
@@ -29,8 +29,9 @@ class ActiveResourceFormView extends ConsumerStatefulWidget {
 }
 
 class _ActiveResourceFormViewState
-    extends ConsumerState<ActiveResourceFormView> {
+    extends ConsumerState<ActiveResourceUpdateFormView> {
   late final ActiveResourceForm _form;
+  late final ActiveResourceByStructureCodeProvider _activeResourceByStructureCodeProvider;
 
   @override
   void initState() {
@@ -39,38 +40,17 @@ class _ActiveResourceFormViewState
       projectId: widget.projectId,
     );
 
-    if (widget.resourceId != null) {
-      final resourceId = widget.resourceId!;
-      final activeResourceProvider = activeResourceByStructureCodeProvider(
-        widget.formComponent.activeStructureCode,
-      );
+    _activeResourceByStructureCodeProvider = activeResourceByStructureCodeProvider(
+      widget.formComponent.activeStructureCode,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(
-            activeResourceProvider.notifier,
+            _activeResourceByStructureCodeProvider.notifier,
           )
-          .loadActiveResource(id: resourceId);
-
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) {
-          ref.listen(
-            activeResourceProvider,
-            (previous, next) {
-              next.when(
-                data: (activeResource) {
-                  dismissLoadingDialog(context);
-                },
-                error: (_, __) {
-                  dismissLoadingDialog(context);
-                },
-                loading: () {
-                  showLoadingDialog(context);
-                },
-              );
-            },
-          );
-        },
-      );
-    }
+          .loadActiveResource(id: widget.resourceId);
+    });
   }
 
   void _submissionListener(AsyncValue<void>? previous, AsyncValue<void> next) {
@@ -95,11 +75,18 @@ class _ActiveResourceFormViewState
 
   @override
   Widget build(BuildContext context) {
-    final result = ref.watch(
+    ;
+    final activeStructureResult = ref.watch(
       activeStructureByCodeProvider(
         widget.formComponent.activeStructureCode,
       ),
     );
+
+    final initialActiveResourceResult = ref.watch(
+      _activeResourceByStructureCodeProvider,
+    );
+
+
     final formInputFields = widget.formComponent.inputFields;
     return Container(
       margin: const EdgeInsets.all(AppSpacing.lg),
@@ -107,67 +94,77 @@ class _ActiveResourceFormViewState
         color: Theme.of(context).colorScheme.surfaceVariant,
         borderRadius: BorderRadius.circular(AppSpacing.md),
       ),
-      child: result.when(
+      child: activeStructureResult.when(
         data: (activeStructure) {
-          final activeInputFieldSpecifications =
-              _combinedToGetInputFieldSpecifications(
-            inputFieldComponents: formInputFields,
-            activeFieldStructures: activeStructure.fields,
-          );
-          return ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
-            ).copyWith(
-              bottom: AppSpacing.lg,
-            ),
-            children: [
-              for (final specification in activeInputFieldSpecifications)
-                Padding(
-                  padding: const EdgeInsets.only(top: AppSpacing.md),
-                  child: ActiveInputField(
-                    initialValue: specification.key,
-                    specification: specification,
-                    onSelected: (value) {
-                      _form.setAttribute(key: specification.key, value: value);
+
+          return initialActiveResourceResult.when(
+            data: (initialActiveResource) {
+              final activeInputFieldSpecifications =
+                  _combinedToGetInputFieldSpecifications(
+                inputFieldComponents: formInputFields,
+                activeFieldStructures: activeStructure.fields,
+              );
+              return ListView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.lg,
+                ).copyWith(
+                  bottom: AppSpacing.lg,
+                ),
+                children: [
+                  for (final specification in activeInputFieldSpecifications)
+                    Padding(
+                      padding: const EdgeInsets.only(top: AppSpacing.md),
+                      child: ActiveInputField(
+                        initialValue: specification.key,
+                        specification: specification,
+                        onSelected: (value) {
+                          _form.setAttribute(key: specification.key, value: value);
+                        },
+                      ),
+                    ),
+                  //
+
+                  const SizedBox(
+                    height: AppSpacing.lg,
+                  ),
+
+                  ..._buildAddonInputFields(activeStructure),
+                  //
+                  const Divider(),
+                  Consumer(
+                    builder: (_, WidgetRef ref, __) {
+                      final submitProvider = activeResourceSubmitProvider(
+                        activeStructureCode: activeStructure.code,
+                        key:
+                            'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
+                      );
+
+                      ref.listen(
+                        submitProvider,
+                        _submissionListener,
+                      );
+
+                      final submitStatus = ref.watch(submitProvider);
+
+                      if (submitStatus.isLoading) {
+                        return const AppCircularLoadingWidget();
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          ref.read(submitProvider.notifier).submit(_form);
+                        },
+                        child: const Text('Submit'),
+                      );
                     },
                   ),
-                ),
-              //
-
-              const SizedBox(
-                height: AppSpacing.lg,
-              ),
-
-              ..._buildAddonInputFields(activeStructure),
-              //
-              const Divider(),
-              Consumer(
-                builder: (_, WidgetRef ref, __) {
-                  final submitProvider = activeResourceSubmitProvider(
-                    activeStructureCode: activeStructure.code,
-                    key:
-                        'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
-                  );
-
-                  ref.listen(
-                    submitProvider,
-                    _submissionListener,
-                  );
-
-                  final submitStatus = ref.watch(submitProvider);
-
-                  if (submitStatus.isLoading) {
-                    return const AppCircularLoadingWidget();
-                  }
-                  return ElevatedButton(
-                    onPressed: () {
-                      ref.read(submitProvider.notifier).submit(_form);
-                    },
-                    child: const Text('Submit'),
-                  );
-                },
-              ),
-            ],
+                ],
+              );
+            }, 
+            error: (error, stackTrace) => AppErrorWidget(
+              error,
+              stackTrace: stackTrace,
+            ),
+            loading: () => const AppCircularLoadingWidget(),
           );
         },
         error: (error, stackTrace) => AppErrorWidget(

@@ -1,7 +1,11 @@
-import 'package:active_resource/active_resource.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
+
+import 'active_resource_collection_view.dart';
+import 'active_resource_create_form_view.dart';
+import 'active_resource_detail_view.dart';
+import 'active_resource_update_form_view.dart';
 
 // TODO: Chia tách page theo loại
 class ActiveResourcePage extends StatelessWidget {
@@ -59,12 +63,18 @@ class ActiveResourcePage extends StatelessWidget {
           resourceId: resourceId!,
         );
       } else if (pageComponent.view is template.ActiveCreateFormComponent) {
-        return ActiveResourceFormView(
-          resourceId: resourceId,
+        return ActiveResourceCreateFormView(
           formComponent: pageComponent.view as template.ActiveCreateFormComponent,
           projectId: projectId,
           onRouteListView: onRouteListView,
         );
+      } else if (pageComponent.view is template.ActiveUpdateFormComponent)  {
+        return ActiveResourceUpdateFormView(
+          resourceId: resourceId!,
+          formComponent: pageComponent.view as template.ActiveCreateFormComponent,
+          projectId: projectId,
+          onRouteListView: onRouteListView,
+        ); 
       }
       return const Placeholder(
         child: Text('Unimplemented Active Component'),

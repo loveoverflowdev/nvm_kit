@@ -10,24 +10,6 @@ abstract class ActiveViewComponent implements Component {
     // Add more cases as needed
     _ => 'Unknown', // Default case for unexpected types
   };
-
-  // ActiveViewComponent fromJson(Map<String, dynamic> json) {
-  //   return switch (json['type']) {
-  //     'ActiveCollectionComponent' => ActiveCollectionComponent.fromJson(json),
-  //     'ActiveDetailComponent' => ActiveDetailComponent.fromJson(json),
-  //     'ActiveFormComponent' => ActiveFormComponent.fromJson(json),
-  //     _ => throw UnimplementedError(),
-  //   };
-  // }
-
-  // Map<String, dynamic> toJson() {
-  //   return switch (type) {
-  //     'ActiveCollectionComponent' => toJson(),
-  //     'ActiveDetailComponent' => toJson(),
-  //     'ActiveFormComponent' => toJson(),
-  //     _ => throw UnimplementedError(),
-  //   };
-  // }
 }
 
 final class ActiveViewComponentConverter
@@ -39,7 +21,8 @@ final class ActiveViewComponentConverter
     return switch (json['type']) {
       'ActiveCollectionComponent' => ActiveCollectionComponent.fromJson(json),
       'ActiveDetailComponent' => ActiveDetailComponent.fromJson(json),
-      'ActiveFormComponent' => ActiveCreateFormComponent.fromJson(json),
+      'ActiveCreateFormComponent' => ActiveCreateFormComponent.fromJson(json),
+      'ActiveUpdateFormComponent' => ActiveUpdateFormComponent.fromJson(json),
       _ => throw UnimplementedError(),
     };
   }
@@ -50,7 +33,9 @@ final class ActiveViewComponentConverter
       'ActiveCollectionComponent' =>
         (object as ActiveCollectionComponent).toJson(),
       'ActiveDetailComponent' => (object as ActiveDetailComponent).toJson(),
-      'ActiveFormComponent' => (object as ActiveCreateFormComponent).toJson(),
+      'ActiveCreateFormComponent' => (object as ActiveCreateFormComponent).toJson(),
+      'ActiveUpdateFormComponent' =>
+        (object as ActiveUpdateFormComponent).toJson(),
       _ => throw UnimplementedError(),
     };
   }
