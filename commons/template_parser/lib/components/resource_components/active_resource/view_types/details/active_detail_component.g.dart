@@ -11,6 +11,7 @@ ActiveDetailComponent _$ActiveDetailComponentFromJson(
     ActiveDetailComponent(
       primaryTile: ActiveTileComponent.fromJson(
           json['primaryTile'] as Map<String, dynamic>),
+      updateFormContextName: json['updateFormContextName'] as String?,
       refTileList: (json['refTileList'] as List<dynamic>?)
               ?.map((e) =>
                   ActiveRefsTileComponent.fromJson(e as Map<String, dynamic>))
@@ -23,4 +24,5 @@ Map<String, dynamic> _$ActiveDetailComponentToJson(
     <String, dynamic>{
       'primaryTile': instance.primaryTile,
       'refTileList': instance.refTileList,
+      'updateFormContextName': instance.updateFormContextName,
     };

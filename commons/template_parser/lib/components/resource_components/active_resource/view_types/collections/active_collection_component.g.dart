@@ -11,6 +11,7 @@ ActiveCollectionComponent _$ActiveCollectionComponentFromJson(
     ActiveCollectionComponent(
       tile: ActiveTileComponent.fromJson(json['tile'] as Map<String, dynamic>),
       detailContextName: json['detailContextName'] as String?,
+      updateFormContextName: json['updateFormContextName'] as String?,
       createFormContextName: json['createFormContextName'] as String?,
     );
 
@@ -20,4 +21,5 @@ Map<String, dynamic> _$ActiveCollectionComponentToJson(
       'tile': instance.tile,
       'detailContextName': instance.detailContextName,
       'createFormContextName': instance.createFormContextName,
+      'updateFormContextName': instance.updateFormContextName,
     };

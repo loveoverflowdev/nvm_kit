@@ -11,11 +11,12 @@ class ActiveDetailComponent extends ActiveViewComponent {
   late final String type = super.type;
 
   final ActiveTileComponent primaryTile;
-
   final List<ActiveRefsTileComponent> refTileList;
+  final String? updateFormContextName;
 
   ActiveDetailComponent({
     required this.primaryTile,
+    required this.updateFormContextName,
     this.refTileList = const [],
   });
 

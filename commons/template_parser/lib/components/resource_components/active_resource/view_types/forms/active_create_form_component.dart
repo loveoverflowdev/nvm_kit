@@ -3,10 +3,10 @@ import 'package:json_annotation/json_annotation.dart';
 import '../active_view_component.dart';
 import 'active_input_field_component.dart';
 
-part 'active_form_component.g.dart';
+part 'active_create_form_component.g.dart';
 
 @JsonSerializable()
-class ActiveFormComponent extends ActiveViewComponent {
+class ActiveCreateFormComponent extends ActiveViewComponent {
   @override
   // ignore: overridden_fields
   late final String type = super.type;
@@ -18,18 +18,18 @@ class ActiveFormComponent extends ActiveViewComponent {
   @JsonKey(fromJson: _inputFieldsFromJson, toJson: _inputFieldsToJson)
   final List<ActiveInputFieldComponent> inputFields;
 
-  ActiveFormComponent({
+  ActiveCreateFormComponent({
     required this.activeStructureCode,
     required this.inputFields,
     required this.listViewContextName,
   });
 
   @override
-  factory ActiveFormComponent.fromJson(Map<String, dynamic> json) =>
-      _$ActiveFormComponentFromJson(json);
+  factory ActiveCreateFormComponent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveCreateFormComponentFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$ActiveFormComponentToJson(this)
+  Map<String, dynamic> toJson() => _$ActiveCreateFormComponentToJson(this)
     ..addAll(
       {
         'type': type,

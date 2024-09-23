@@ -27,7 +27,8 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 activeStructureCode: 'tasks',
                 titleKey: 'task_name',
                 subtitleKey: 'task_description',
-              ),
+              ), 
+              updateFormContextName: null,
             ),
           ),
           ActivePageComponent(
@@ -46,13 +47,14 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   titleKey: 'as_a',
                   subtitleKey: 'i_want',
                 ),
-              ],
+              ], 
+              updateFormContextName: null,
             ),
           ),
           ActivePageComponent(
             contextName: 'create_task_form',
             title: 'New Task',
-            view: ActiveFormComponent(
+            view: ActiveCreateFormComponent(
               activeStructureCode: 'tasks',
               inputFields: [
                 ActiveInputFieldComponent.primitive(
@@ -72,6 +74,28 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             ),
           ),
           ActivePageComponent(
+            contextName: 'update_task_form',
+            title: 'Update Task',
+            view: ActiveUpdateFormComponent(
+              activeStructureCode: 'tasks',
+              inputFields: [
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'task_name',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'task_description',
+                ),
+                ActiveInputFieldComponent.activeResourcesSelection(
+                  fieldCode: 'task_user_story',
+                  titleKey: 'as_a',
+                  subtitleKey: 'i_want',
+                  activeStructureCode: 'user_stories',
+                ),
+              ],
+              detailContextName: 'task_detail',
+            ),
+          ),
+          ActivePageComponent(
             contextName: 'user_story_list',
             title: 'User Stories',
             view: ActiveCollectionComponent(
@@ -81,7 +105,8 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 activeStructureCode: 'user_stories',
                 titleKey: 'i_want',
                 subtitleKey: 'as_a',
-              ),
+              ), 
+              updateFormContextName: '',
             ),
           ),
           ActivePageComponent(
@@ -97,13 +122,36 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 ],
                 // TODO:
               ),
+              updateFormContextName: '',
             ),
           ),
           ActivePageComponent(
             contextName: 'create_user_story_form',
             title: 'New User Story',
-            view: ActiveFormComponent(
+            view: ActiveCreateFormComponent(
               listViewContextName: 'user_story_list',
+              activeStructureCode: 'user_stories',
+              inputFields: [
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'as_a',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'i_want',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'so_that',
+                ),
+                ActiveInputFieldComponent.primitive(
+                  fieldCode: 'acceptance_criteria',
+                ),
+              ],
+            ),
+          ),
+          ActivePageComponent(
+            contextName: 'update_user_story_form',
+            title: 'Update User Story',
+            view: ActiveUpdateFormComponent(
+              detailContextName: 'user_story_detail',
               activeStructureCode: 'user_stories',
               inputFields: [
                 ActiveInputFieldComponent.primitive(

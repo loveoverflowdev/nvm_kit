@@ -3,6 +3,7 @@ import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 
 import '../providers.dart'
@@ -36,6 +37,8 @@ class _ActiveResourceDetailViewState
 
   List<template.ActiveRefsTileComponent> get _refTileList =>
       widget.detailComponent.refTileList;
+  
+  String? get _updateFormContextName => widget.detailComponent.updateFormContextName;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -150,12 +153,13 @@ class _ActiveResourceDetailViewState
                                       ),
                                     ),
                                     const Spacer(),
-                                    IconButton(
-                                      onPressed: () {
-                                        context.push();
-                                      },
-                                      icon: const Icon(Icons.edit),
-                                    ),
+                                    if (_updateFormContextName != null)
+                                      IconButton(
+                                        onPressed: () {
+                                          context.go(_updateFormContextName!);
+                                        },
+                                        icon: const Icon(Icons.edit),
+                                      ),
                                   ],
                                 ),
 

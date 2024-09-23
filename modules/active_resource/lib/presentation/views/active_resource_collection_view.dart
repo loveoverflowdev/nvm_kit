@@ -1,12 +1,12 @@
-import 'package:active_resource/presentation/providers/active_resource_providers/active_resource_delete_provider.dart';
 import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
+import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 import 'package:share_plus/share_plus.dart';
 
-import '../providers.dart' show activeResourceListByStructureCodeProvider;
+import '../providers.dart' show activeResourceDeleteProvider, activeResourceListByStructureCodeProvider;
 import '../widgets.dart';
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
@@ -52,6 +52,9 @@ class _ActiveResourceCollectionViewState
       widget.collectionComponent.detailContextName;
   String? get _createFormContextName =>
       widget.collectionComponent.createFormContextName;
+  String? get _updateFormContextName =>
+      widget.collectionComponent.updateFormContextName;
+
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -170,7 +173,9 @@ class _ActiveResourceCollectionViewState
                           .read(deleteProvider.notifier)
                           .deleteById(activeResource.id);
                     },
-                    onEditAction: () {},
+                    onEditAction: _updateFormContextName == null ? null : () {
+                      context.go(_updateFormContextName!);
+                    },
                   );
                 },
               ),

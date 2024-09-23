@@ -58,10 +58,10 @@ class ActiveResourcePage extends StatelessWidget {
           detailComponent: pageComponent.view as template.ActiveDetailComponent,
           resourceId: resourceId!,
         );
-      } else if (pageComponent.view is template.ActiveFormComponent) {
+      } else if (pageComponent.view is template.ActiveCreateFormComponent) {
         return ActiveResourceFormView(
           resourceId: resourceId,
-          formComponent: pageComponent.view as template.ActiveFormComponent,
+          formComponent: pageComponent.view as template.ActiveCreateFormComponent,
           projectId: projectId,
           onRouteListView: onRouteListView,
         );
@@ -71,7 +71,7 @@ class ActiveResourcePage extends StatelessWidget {
       );
     }();
 
-    final Widget? leading = (pageComponent.view is template.ActiveFormComponent)
+    final Widget? leading = (pageComponent.view is template.ActiveCreateFormComponent)
         ? IconButton(
             icon: const Icon(Icons.clear),
             onPressed: () {

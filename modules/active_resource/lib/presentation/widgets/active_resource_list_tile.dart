@@ -45,27 +45,32 @@ class ActiveResourceListTile extends StatelessWidget {
         }
       }, itemBuilder: (context) {
         return [
-          const PopupMenuItem<_Menu>(
-            value: _Menu.edit,
-            child: ListTile(
-              leading: Icon(Icons.edit),
-              title: Text('Edit'),
+          if (onEditAction != null)
+            const PopupMenuItem<_Menu>(
+              value: _Menu.edit,
+              child: ListTile(
+                leading: Icon(Icons.edit),
+                title: Text('Edit'),
+              ),
             ),
-          ),
-          const PopupMenuItem<_Menu>(
-            value: _Menu.share,
-            child: ListTile(
-              leading: Icon(Icons.share),
-              title: Text('Share'),
+          //
+          if (onShareAction != null)
+            const PopupMenuItem<_Menu>(
+              value: _Menu.share,
+              child: ListTile(
+                leading: Icon(Icons.share),
+                title: Text('Share'),
+              ),
             ),
-          ),
-          const PopupMenuItem<_Menu>(
-            value: _Menu.remove,
-            child: ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Delete'),
+          //
+          if (onDeleteAction != null)
+            const PopupMenuItem<_Menu>(
+              value: _Menu.remove,
+              child: ListTile(
+                leading: Icon(Icons.delete),
+                title: Text('Delete'),
+              ),
             ),
-          ),
         ];
       }),
     );

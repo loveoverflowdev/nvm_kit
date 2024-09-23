@@ -12,8 +12,7 @@ import '../../domain.dart'
         ActiveResourceFailure,
         ActiveResourceForm,
         ActiveResourceRepository,
-        ActiveStructure,
-        AddonType;
+        ActiveStructure;
 
 final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   final api.ResourceApiClient _apiClient;

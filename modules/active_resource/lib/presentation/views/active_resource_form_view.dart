@@ -9,7 +9,7 @@ import '../widgets.dart';
 class ActiveResourceFormView extends ConsumerStatefulWidget {
   final String? resourceId;
   final String projectId;
-  final template.ActiveFormComponent formComponent;
+  final template.ActiveCreateFormComponent formComponent;
 
   final void Function({
     required String? contextName,

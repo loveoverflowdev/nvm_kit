@@ -6,7 +6,7 @@ abstract class ActiveViewComponent implements Component {
   late final String type = switch (runtimeType) {
     const (ActiveCollectionComponent) => 'ActiveCollectionComponent',
     const (ActiveDetailComponent) => 'ActiveDetailComponent',
-    const (ActiveFormComponent) => 'ActiveFormComponent',
+    const (ActiveCreateFormComponent) => 'ActiveFormComponent',
     // Add more cases as needed
     _ => 'Unknown', // Default case for unexpected types
   };
@@ -39,7 +39,7 @@ final class ActiveViewComponentConverter
     return switch (json['type']) {
       'ActiveCollectionComponent' => ActiveCollectionComponent.fromJson(json),
       'ActiveDetailComponent' => ActiveDetailComponent.fromJson(json),
-      'ActiveFormComponent' => ActiveFormComponent.fromJson(json),
+      'ActiveFormComponent' => ActiveCreateFormComponent.fromJson(json),
       _ => throw UnimplementedError(),
     };
   }
@@ -50,7 +50,7 @@ final class ActiveViewComponentConverter
       'ActiveCollectionComponent' =>
         (object as ActiveCollectionComponent).toJson(),
       'ActiveDetailComponent' => (object as ActiveDetailComponent).toJson(),
-      'ActiveFormComponent' => (object as ActiveFormComponent).toJson(),
+      'ActiveFormComponent' => (object as ActiveCreateFormComponent).toJson(),
       _ => throw UnimplementedError(),
     };
   }
