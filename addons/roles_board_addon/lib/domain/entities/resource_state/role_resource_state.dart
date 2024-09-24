@@ -7,7 +7,6 @@
 },
 */
 
-
 import 'progress_status.dart';
 
 final class RoleResourceState {

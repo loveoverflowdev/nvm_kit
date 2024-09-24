@@ -24,7 +24,7 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
     required String activeStructureCode,
     required String resourceId,
   }) {
-    return RolesBoardResourceStateView(
+    return RolesBoardResourceStatePreview(
       rolesBoardResourceState: _resourceState,
     );
   }

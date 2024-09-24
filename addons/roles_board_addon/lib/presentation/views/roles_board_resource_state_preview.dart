@@ -4,22 +4,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/domain.dart';
 
 import '../providers.dart';
+import 'roles_board_resource_state_detail_view.dart';
 
-class RolesBoardResourceStateView extends ConsumerStatefulWidget {
+class RolesBoardResourceStatePreview extends ConsumerStatefulWidget {
   final RolesBoardResourceState rolesBoardResourceState;
 
-  const RolesBoardResourceStateView({
+  const RolesBoardResourceStatePreview({
     super.key,
     required this.rolesBoardResourceState,
   });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _RolesBoardResourceStateViewState();
+      _RolesBoardResourceStatePreviewState();
 }
 
-class _RolesBoardResourceStateViewState
-    extends ConsumerState<RolesBoardResourceStateView> {
+class _RolesBoardResourceStatePreviewState
+    extends ConsumerState<RolesBoardResourceStatePreview> {
   @override
   void initState() {
     super.initState();
@@ -35,7 +36,14 @@ class _RolesBoardResourceStateViewState
       borderRadius: borderRadius,
       color: Theme.of(context).colorScheme.surfaceVariant,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          showAppModelBottomSheet(
+            context: context,
+            builder: (context) => RolesBoardResourceStateDetailView(
+              rolesBoardResourceState: widget.rolesBoardResourceState,
+            ),
+          );
+        },
         borderRadius: borderRadius,
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -43,7 +51,7 @@ class _RolesBoardResourceStateViewState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Roles',
+                'Progresses & Roles',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -83,30 +91,27 @@ class _RolesBoardResourceStateViewState
                         child: ListView.separated(
                           itemCount: roleStates.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Builder(
-                            builder: (_) {
-                              final roleState = roleStates[index];
-                              final role = rolesBoard.roles
-                                  .firstWhere((e) => e.id == roleState.roleId);
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    role.shortName,
+                          itemBuilder: (context, index) {
+                            final roleState = roleStates[index];
+                            final role = rolesBoard.roles
+                                .firstWhere((e) => e.id == roleState.roleId);
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  role.shortName,
+                                ),
+                                Text(
+                                  roleState.status.description,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  Text(
-                                    roleState.status.description,
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
+                                ),
+                              ],
+                            );
+                          },
                           separatorBuilder: (BuildContext context, int index) {
                             return const VerticalDivider();
                           },

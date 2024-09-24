@@ -6,12 +6,9 @@ Make late final for all response properties
 
 Global error message for button
 
-reload state after creating resource
-
-reload state after deleting
-
 Dynamic height for active field
 
 Remember state in select bottom sheet
 
-Edit
+remember push state in go router
+
