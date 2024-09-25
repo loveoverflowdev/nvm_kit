@@ -1,3 +1,4 @@
+import 'package:active_resource/active_resource.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,11 @@ class SingleResourceSelectionInputField extends ConsumerStatefulWidget {
     required this.titleKey,
     required this.projectId,
     required this.onChanged,
+    required this.initialResourceId,
     this.subtitleKey,
   });
 
+  final String? initialResourceId;
   final bool isRequiredIconVisible;
   final String projectId;
   final String activeStructureCode;
@@ -34,6 +37,7 @@ class _SingleResourceSelectionInputFieldState
   late String? _selectedResourceId;
   late String? _selectedResourceTitle;
   late final TextEditingController _textEditingController;
+  late final ActiveResourceByStructureCodeProvider  _activeResourceByStructureCodeProvider;
 
   @override
   void initState() {
@@ -41,18 +45,52 @@ class _SingleResourceSelectionInputFieldState
     _selectedResourceId = null;
     _selectedResourceTitle = null;
     _textEditingController = TextEditingController();
+
+    if (widget.initialResourceId != null) {
+      _activeResourceByStructureCodeProvider = activeResourceByStructureCodeProvider(
+        widget.activeStructureCode,
+      );
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(_activeResourceByStructureCodeProvider.notifier).loadActiveResource(id: widget.initialResourceId!);
+      });
+    }
   }
 
   void _onChanged() {
     if (_selectedResourceId != null) {
       widget.onChanged(_selectedResourceId!);
     }
-    _textEditingController.text = _selectedResourceTitle ?? '';
     setState(() {});
   }
 
   @override
+  void setState(void Function() fn) {
+    _textEditingController.text = _selectedResourceTitle ?? '';
+    super.setState(fn);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (widget.initialResourceId != null) {
+      ref.listen(_activeResourceByStructureCodeProvider, (previous, next) {
+        print('++++++++++++++++++++++++++++++++++++');
+        print('Listen');
+        print('++++++++++++++++++++++++++++++++++++');
+        next.whenData(
+          (activeResource) {
+            _selectedResourceId = activeResource?.id;
+            
+            _selectedResourceTitle = activeResource?.liveAttributes[widget.titleKey];
+
+            print('++++++++++++++++++++++++++++++++++++');
+            print(_selectedResourceTitle);
+            print('++++++++++++++++++++++++++++++++++++');
+            setState(() {});
+          }
+        );
+      });
+    }
     return CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: () {

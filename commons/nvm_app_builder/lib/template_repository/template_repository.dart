@@ -28,7 +28,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 titleKey: 'task_name',
                 subtitleKey: 'task_description',
               ), 
-              updateFormContextName: null,
+              updateFormContextName: 'update_task_form',
             ),
           ),
           ActivePageComponent(
@@ -48,7 +48,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   subtitleKey: 'i_want',
                 ),
               ], 
-              updateFormContextName: null,
+              updateFormContextName: 'update_task_form',
             ),
           ),
           ActivePageComponent(
@@ -101,12 +101,13 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             view: ActiveCollectionComponent(
               detailContextName: 'user_story_detail',
               createFormContextName: 'create_user_story_form',
+              updateFormContextName: 'update_user_story_form',
               tile: ActiveTileComponent(
                 activeStructureCode: 'user_stories',
                 titleKey: 'i_want',
                 subtitleKey: 'as_a',
               ), 
-              updateFormContextName: '',
+              
             ),
           ),
           ActivePageComponent(
@@ -122,7 +123,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                 ],
                 // TODO:
               ),
-              updateFormContextName: '',
+              updateFormContextName: 'update_user_story_form',
             ),
           ),
           ActivePageComponent(

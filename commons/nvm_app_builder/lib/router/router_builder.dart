@@ -224,6 +224,19 @@ final class RouterBuilder {
                                     'set_state': true,
                                   });
                                 },
+                                onRouteUpdateForm: ({
+                                  required activeResourceId,
+                                  required contextName,
+                                }) {
+                                  if (contextName == null) return;
+                                  final String projectId =
+                                      state.pathParameters['project_id']!;
+                                  final path =
+                                      '/projects/$projectId/@$contextName';
+                                  context.push(path, extra: {
+                                    'resource_id': activeResourceId,
+                                  });
+                                },
                               );
                             },
                           ),

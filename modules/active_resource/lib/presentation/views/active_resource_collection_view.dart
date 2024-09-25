@@ -2,7 +2,6 @@ import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
-import 'package:go_router/go_router.dart';
 import 'package:template_parser/template_parser.dart' as template;
 // import 'package:share_plus/share_plus.dart';
 
@@ -23,6 +22,11 @@ class ActiveResourceCollectionView extends ConsumerStatefulWidget {
     required String? contextName,
   })? onRouteCreateForm;
 
+  final void Function({
+    required String? contextName,
+    required String activeResourceId,
+  })? onRouteUpdateForm;
+
   final void Function(String resourceId)? onTapResource;
 
   const ActiveResourceCollectionView({
@@ -33,6 +37,7 @@ class ActiveResourceCollectionView extends ConsumerStatefulWidget {
     this.onRouteDetailView,
     this.onTapResource,
     this.onRouteCreateForm,
+    this.onRouteUpdateForm,
   });
 
   @override
@@ -174,7 +179,7 @@ class _ActiveResourceCollectionViewState
                           .deleteById(activeResource.id);
                     },
                     onEditAction: _updateFormContextName == null ? null : () {
-                      context.go(_updateFormContextName!);
+                      widget.onRouteUpdateForm?.call(contextName: _updateFormContextName, activeResourceId: activeResource.id,);
                     },
                   );
                 },

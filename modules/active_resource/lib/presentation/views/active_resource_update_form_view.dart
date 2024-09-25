@@ -1,15 +1,17 @@
 import 'package:active_resource/domain.dart';
+import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:template_parser/template_parser.dart' as template;
+import 'package:template_parser/template_parser.dart';
 import '../providers.dart';
 import '../widgets.dart';
 
 class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
   final String resourceId;
   final String projectId;
-  final template.ActiveCreateFormComponent formComponent;
+  final template.ActiveUpdateFormComponent formComponent;
 
   final void Function({
     required String? contextName,
@@ -25,13 +27,15 @@ class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ActiveResourceFormViewState();
+      _ActiveResourceUpdateFormViewState();
 }
 
-class _ActiveResourceFormViewState
+class _ActiveResourceUpdateFormViewState
     extends ConsumerState<ActiveResourceUpdateFormView> {
   late final ActiveResourceForm _form;
   late final ActiveResourceByStructureCodeProvider _activeResourceByStructureCodeProvider;
+
+  List<ActiveInputFieldComponent> get _formInputFields => widget.formComponent.inputFields;
 
   @override
   void initState() {
@@ -49,8 +53,19 @@ class _ActiveResourceFormViewState
           .read(
             _activeResourceByStructureCodeProvider.notifier,
           )
-          .loadActiveResource(id: widget.resourceId);
+          .loadActiveResource(id: widget.resourceId, requestField: _parseRequestField());
     });
+  }
+
+  String _parseRequestField() {
+    return RequestField.children([
+      RequestField.name('liveFeatures'),
+      RequestField.name('id'),
+      RequestField(name: 'liveAttributes', children: [
+        for (final field in _formInputFields)
+          RequestField.name(field.fieldCode),
+      ]),
+    ]).build();
   }
 
   void _submissionListener(AsyncValue<void>? previous, AsyncValue<void> next) {
@@ -62,9 +77,9 @@ class _ActiveResourceFormViewState
     }
 
     if (next.hasValue) {
-      widget.onRouteListView?.call(
-        contextName: widget.formComponent.listViewContextName,
-      );
+      // widget.onRouteListView?.call(
+      //   contextName: widget.formComponent.listViewContextName,
+      // );
 
       return showScaffoldMessage(
         context,
@@ -87,7 +102,6 @@ class _ActiveResourceFormViewState
     );
 
 
-    final formInputFields = widget.formComponent.inputFields;
     return Container(
       margin: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
@@ -101,7 +115,7 @@ class _ActiveResourceFormViewState
             data: (initialActiveResource) {
               final activeInputFieldSpecifications =
                   _combinedToGetInputFieldSpecifications(
-                inputFieldComponents: formInputFields,
+                inputFieldComponents: _formInputFields,
                 activeFieldStructures: activeStructure.fields,
               );
               return ListView(
@@ -115,7 +129,7 @@ class _ActiveResourceFormViewState
                     Padding(
                       padding: const EdgeInsets.only(top: AppSpacing.md),
                       child: ActiveInputField(
-                        initialValue: specification.key,
+                        initialValue: initialActiveResource?.liveAttributes[specification.key] ?? '',
                         specification: specification,
                         onSelected: (value) {
                           _form.setAttribute(key: specification.key, value: value);

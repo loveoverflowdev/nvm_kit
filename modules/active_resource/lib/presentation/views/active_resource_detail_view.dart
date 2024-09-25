@@ -14,12 +14,19 @@ import '../providers.dart'
 
 class ActiveResourceDetailView extends ConsumerStatefulWidget {
   final template.ActiveDetailComponent detailComponent;
+
+  final void Function({
+    required String? contextName,
+    required String activeResourceId,
+  })? onRouteUpdateForm;
+
   final String resourceId;
 
   const ActiveResourceDetailView({
     super.key,
     required this.detailComponent,
     required this.resourceId,
+    required this.onRouteUpdateForm,
   });
 
   @override
@@ -156,7 +163,7 @@ class _ActiveResourceDetailViewState
                                     if (_updateFormContextName != null)
                                       IconButton(
                                         onPressed: () {
-                                          context.go(_updateFormContextName!);
+                                          widget.onRouteUpdateForm?.call(contextName: _updateFormContextName, activeResourceId: widget.resourceId,);
                                         },
                                         icon: const Icon(Icons.edit),
                                       ),

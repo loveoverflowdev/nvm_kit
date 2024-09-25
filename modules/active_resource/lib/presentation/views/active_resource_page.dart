@@ -32,6 +32,11 @@ class ActiveResourcePage extends StatelessWidget {
     required String? contextName,
   })? onRouteListView;
 
+  final void Function({
+    required String? contextName,
+    required String activeResourceId,
+  })? onRouteUpdateForm;
+
   const ActiveResourcePage({
     super.key,
     required this.setState,
@@ -43,6 +48,7 @@ class ActiveResourcePage extends StatelessWidget {
     required this.onRouteDetailView,
     required this.onRouteListView,
     required this.onRouteCreateForm,
+    required this.onRouteUpdateForm,
   });
 
   @override
@@ -56,11 +62,13 @@ class ActiveResourcePage extends StatelessWidget {
               pageComponent.view as template.ActiveCollectionComponent,
           onRouteDetailView: onRouteDetailView,
           onRouteCreateForm: onRouteCreateForm,
+          onRouteUpdateForm: onRouteUpdateForm,
         );
       } else if (pageComponent.view is template.ActiveDetailComponent) {
         return ActiveResourceDetailView(
           detailComponent: pageComponent.view as template.ActiveDetailComponent,
-          resourceId: resourceId!,
+          resourceId: resourceId!, 
+          onRouteUpdateForm: onRouteUpdateForm,
         );
       } else if (pageComponent.view is template.ActiveCreateFormComponent) {
         return ActiveResourceCreateFormView(
@@ -71,7 +79,7 @@ class ActiveResourcePage extends StatelessWidget {
       } else if (pageComponent.view is template.ActiveUpdateFormComponent)  {
         return ActiveResourceUpdateFormView(
           resourceId: resourceId!,
-          formComponent: pageComponent.view as template.ActiveCreateFormComponent,
+          formComponent: pageComponent.view as template.ActiveUpdateFormComponent,
           projectId: projectId,
           onRouteListView: onRouteListView,
         ); 

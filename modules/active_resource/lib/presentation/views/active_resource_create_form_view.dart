@@ -23,10 +23,10 @@ class ActiveResourceCreateFormView extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ActiveResourceFormViewState();
+      _ActiveResourceCreateFormViewState();
 }
 
-class _ActiveResourceFormViewState
+class _ActiveResourceCreateFormViewState
     extends ConsumerState<ActiveResourceCreateFormView> {
   late final ActiveResourceForm _form;
 

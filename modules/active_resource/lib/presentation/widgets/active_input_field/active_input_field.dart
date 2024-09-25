@@ -107,6 +107,7 @@ final class ActiveInputField extends StatelessWidget {
         String? subtitleKey,
       ) {
         return SingleResourceSelectionInputField(
+          initialResourceId: initialValue as String?,
           isRequiredIconVisible: specification.isRequired,
           projectId: specification.projectId,
           labeltext: specification.title,
