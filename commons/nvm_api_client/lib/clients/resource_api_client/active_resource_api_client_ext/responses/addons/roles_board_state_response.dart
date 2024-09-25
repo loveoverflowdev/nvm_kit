@@ -1,1 +1,1 @@
-export 'roles_board_state_response/roles_board_state_response.dart';
+export 'roles_board_resource_state_response/roles_board_resource_state_response.dart';

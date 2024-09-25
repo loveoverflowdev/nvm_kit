@@ -2,10 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../addon_response.dart';
 
-part 'roles_board_state_response.g.dart';
+part 'roles_board_resource_state_response.g.dart';
 
 @JsonSerializable()
-class RolesBoardStateResponse extends AddonResponse {
+class RolesBoardResourceStateResponse extends AddonResponse {
   @JsonKey(includeToJson: false, includeFromJson: false)
   late final String typeCode;
   final String widgetBoardRoleId;
@@ -19,23 +19,23 @@ class RolesBoardStateResponse extends AddonResponse {
   @JsonKey(name: 'widgetRoles')
   final List<RoleStateResponse> roles;
 
-  RolesBoardStateResponse({
+  RolesBoardResourceStateResponse({
     required this.widgetBoardRoleId,
     required this.averageProgress,
     required this.finalStatus,
     required this.roles,
   });
 
-  factory RolesBoardStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
+  factory RolesBoardResourceStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
     final json = entry.value as Map<String, dynamic>;
-    final instance = _$RolesBoardStateResponseFromJson(json);
+    final instance = _$RolesBoardResourceStateResponseFromJson(json);
     instance.typeCode = entry.key;
     return instance;
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return {typeCode: _$RolesBoardStateResponseToJson(this)};
+    return {typeCode: _$RolesBoardResourceStateResponseToJson(this)};
   }
 
   @override

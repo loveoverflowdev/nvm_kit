@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'roles_board_state_response.dart';
+part of 'roles_board_resource_state_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RolesBoardStateResponse _$RolesBoardStateResponseFromJson(
+RolesBoardResourceStateResponse _$RolesBoardResourceStateResponseFromJson(
         Map<String, dynamic> json) =>
-    RolesBoardStateResponse(
+    RolesBoardResourceStateResponse(
       widgetBoardRoleId: json['widgetBoardRoleId'] as String,
       averageProgress: (json['averageProgress'] as num).toDouble(),
       finalStatus:
@@ -18,8 +18,8 @@ RolesBoardStateResponse _$RolesBoardStateResponseFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$RolesBoardStateResponseToJson(
-        RolesBoardStateResponse instance) =>
+Map<String, dynamic> _$RolesBoardResourceStateResponseToJson(
+        RolesBoardResourceStateResponse instance) =>
     <String, dynamic>{
       'widgetBoardRoleId': instance.widgetBoardRoleId,
       'averageProgress': instance.averageProgress,

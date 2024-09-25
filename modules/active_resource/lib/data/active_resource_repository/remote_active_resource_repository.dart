@@ -142,15 +142,15 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       final rolesBoardAddons = <addon.Addon>[];
       rolesBoardAddons.addAll(
         response.addons
-            .whereType<api.RolesBoardStateResponse>()
+            .whereType<api.RolesBoardResourceStateResponse>()
             .map((response) {
           return roles_board_addon.rolesBoardAddon(
             resourceState: roles_board_addon.RolesBoardResourceState(
               typeCode: response.typeCode,
-              widgetBoardRoleId: response.widgetBoardRoleId,
+              boardRoleId: response.widgetBoardRoleId,
               averageProgress: response.averageProgress,
               finalStatus: _mapProgressStatus(response.finalStatus),
-              widgetRoles: response.roles
+              roleStates: response.roles
                   .map(
                     (role) => roles_board_addon.RoleResourceState(
                       assignedToUserId: role.assignedToUserId ?? '',

@@ -108,7 +108,7 @@ class _RolesBoardResourceStateDetailViewState
                                 final index = rolesBoardList.indexWhere((e) =>
                                     e.id ==
                                     widget.rolesBoardResourceState
-                                        .widgetBoardRoleId);
+                                        .boardRoleId);
                                 if (index == -1) {
                                   return const SizedBox.shrink();
                                 }
@@ -119,14 +119,14 @@ class _RolesBoardResourceStateDetailViewState
                                 return ListView.separated(
                                   shrinkWrap: true,
                                   itemCount: rolesBoardResourceState
-                                      .widgetRoles.length,
+                                      .roleStates.length,
                                   separatorBuilder:
                                       (BuildContext context, int index) {
                                     return const Divider();
                                   },
                                   itemBuilder: (context, index) {
                                     final roleState = rolesBoardResourceState
-                                        .widgetRoles[index];
+                                        .roleStates[index];
                                     final role = rolesBoard.roles.firstWhere(
                                       (e) => e.id == roleState.roleId,
                                     );

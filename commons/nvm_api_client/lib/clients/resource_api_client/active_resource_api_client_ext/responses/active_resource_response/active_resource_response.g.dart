@@ -29,5 +29,4 @@ Map<String, dynamic> _$ActiveResourceResponseToJson(
       'liveAttributes': instance.liveAttributes,
       'projectId': instance.projectId,
       'createdByUser': instance.creator,
-      'liveFeatures': instance.addons,
     };

@@ -2,31 +2,31 @@ import 'progress_status.dart';
 import 'role_resource_state.dart';
 
 final class RolesBoardResourceState {
-  final String widgetBoardRoleId;
+  final String boardRoleId;
   final String typeCode;
   final double averageProgress;
   final ProgressStatus finalStatus;
-  final List<RoleResourceState> widgetRoles;
+  final List<RoleResourceState> roleStates;
 
   RolesBoardResourceState({
-    required this.widgetBoardRoleId,
+    required this.boardRoleId,
     required this.typeCode,
     required this.averageProgress,
     required this.finalStatus,
-    required this.widgetRoles,
+    required this.roleStates,
   });
 
   factory RolesBoardResourceState.empty() {
     return RolesBoardResourceState(
-      widgetBoardRoleId: '',
+      boardRoleId: '',
       typeCode: '',
       averageProgress: 0,
       finalStatus: ProgressStatus.notStarted,
-      widgetRoles: [],
+      roleStates: [],
     );
   }
 
-  bool get isEmpty => widgetBoardRoleId == '' || widgetBoardRoleId == '0';
+  bool get isEmpty => boardRoleId == '' || boardRoleId == '0';
 }
 
 /*

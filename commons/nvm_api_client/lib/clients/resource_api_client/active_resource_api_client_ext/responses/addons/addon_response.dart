@@ -24,13 +24,13 @@ abstract class AddonResponse {
   factory AddonResponse.fromEntry(MapEntry<String, dynamic> entry) {
     switch (AddonFeatureType.fromKey(entry.value['featureType'])) {
       case AddonFeatureType.rolesBoard:
-        return RolesBoardStateResponse.fromEntry(entry);
+        return RolesBoardResourceStateResponse.fromEntry(entry);
     }
   }
 
   Map<String, dynamic> toJson() {
     return switch (this) {
-      RolesBoardStateResponse() => (this as RolesBoardStateResponse).toJson(),
+      RolesBoardResourceStateResponse() => (this as RolesBoardResourceStateResponse).toJson(),
       _ => throw UnimplementedError(),
     };
   }

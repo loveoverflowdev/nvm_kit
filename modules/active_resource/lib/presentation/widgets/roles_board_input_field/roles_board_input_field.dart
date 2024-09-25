@@ -6,11 +6,13 @@ import 'package:roles_board_addon/domain.dart';
 import '_roles_board_list_view.dart';
 
 class RolesBoardInputField extends StatefulWidget {
+  final RolesBoardResourceState? currentRolesBoardResourceState;
   final void Function(RolesBoardSelection?)? onSelected;
 
   const RolesBoardInputField({
     super.key,
     required this.onSelected,
+    this.currentRolesBoardResourceState,
   });
 
   @override
@@ -25,7 +27,19 @@ class _RolesBoardInputFieldState extends State<RolesBoardInputField> {
   void initState() {
     super.initState();
     _textEditingController = TextEditingController();
-    _rolesBoardSelection = null;
+    final resourceState = widget.currentRolesBoardResourceState;
+
+    if (resourceState != null) {
+      _rolesBoardSelection = RolesBoardSelection(
+        rolesBoardId: resourceState.boardRoleId, 
+        roleIdList: resourceState.roleStates.map(
+          (role) => role.roleId,
+        ).toList(),
+      );
+    } else {
+      _rolesBoardSelection = null;
+    }
+    
   }
 
   @override

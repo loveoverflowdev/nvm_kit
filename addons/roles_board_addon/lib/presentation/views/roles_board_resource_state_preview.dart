@@ -76,7 +76,7 @@ class _RolesBoardResourceStatePreviewState
                     data: (rolesBoardList) {
                       final index = rolesBoardList.indexWhere((e) =>
                           e.id ==
-                          widget.rolesBoardResourceState.widgetBoardRoleId);
+                          widget.rolesBoardResourceState.boardRoleId);
                       if (index == -1) {
                         return const SizedBox.shrink();
                       }
@@ -85,7 +85,7 @@ class _RolesBoardResourceStatePreviewState
 
                       // ====>
                       final roleStates =
-                          widget.rolesBoardResourceState.widgetRoles;
+                          widget.rolesBoardResourceState.roleStates;
                       return SizedBox(
                         height: 48,
                         child: ListView.separated(
