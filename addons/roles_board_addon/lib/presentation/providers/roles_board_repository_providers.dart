@@ -8,3 +8,7 @@ final remoteRolesBoardRepositoryProvider = AutoDisposeProvider<RemoteRolesBoardR
 final localRolesBoardRepositoryProvider = AutoDisposeProvider<LocalRolesBoardRepository>(
   (ref) => throw UnimplementedError(),
 );
+
+final rolesBoardResourceStateRepository = AutoDisposeProvider<RolesBoardResourceStateRepository>(
+  (ref) => throw UnimplementedError(),
+);
