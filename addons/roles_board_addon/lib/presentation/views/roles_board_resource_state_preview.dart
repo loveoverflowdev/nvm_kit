@@ -64,7 +64,7 @@ class _RolesBoardResourceStatePreviewState
               ),
               _Label(
                 label: 'Final status',
-                value: widget.rolesBoardResourceState.finalStatus.description,
+                value: widget.rolesBoardResourceState.finalStatus.title,
               ),
               const SizedBox(
                 height: AppSpacing.md,
@@ -102,7 +102,7 @@ class _RolesBoardResourceStatePreviewState
                                   role.shortName,
                                 ),
                                 Text(
-                                  roleState.status.description,
+                                  roleState.status.title,
                                   style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.secondary,

@@ -66,7 +66,7 @@ class _RolesBoardResourceStateDetailViewState
                     _Label(
                       label: 'Final status',
                       value: widget
-                          .rolesBoardResourceState.finalStatus.description,
+                          .rolesBoardResourceState.finalStatus.title,
                     ),
                   ],
                 ),
@@ -151,7 +151,7 @@ class _RolesBoardResourceStateDetailViewState
                                                   ),
                                                   Text(
                                                     roleState
-                                                        .status.description,
+                                                        .status.title,
                                                     style: TextStyle(
                                                       color: Theme.of(context)
                                                           .colorScheme
@@ -160,20 +160,36 @@ class _RolesBoardResourceStateDetailViewState
                                                           FontWeight.w600,
                                                     ),
                                                   ),
-                                                  Text(
-                                                    "${roleState.progress.round()} %",
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
+                                                  
                                                 ],
                                               ),
                                             ),
                                             const SizedBox(
                                               width: AppSpacing.sm,
                                             ),
-                                            const Icon(Icons.edit),
+                                            Column(
+                                              children: [
+                                                Flexible(
+                                                  child: Text(
+                                                      "${roleState.progress.round()} %",
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                ),
+
+                                                Flexible(
+                                                  child: Text(
+                                                    roleState.status.title,
+                                                    style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ],
                                         ),
                                       ),

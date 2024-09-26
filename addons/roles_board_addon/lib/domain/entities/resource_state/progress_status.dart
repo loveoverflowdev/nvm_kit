@@ -3,11 +3,12 @@ enum ProgressStatus {
   inProgress,
   completed;
 
-  String get description {
+  String get title {
     return switch (this) {
       ProgressStatus.notStarted => 'Not started',
       ProgressStatus.inProgress => 'In progress',
       ProgressStatus.completed => 'Completed',
     };
   }
+
 }
