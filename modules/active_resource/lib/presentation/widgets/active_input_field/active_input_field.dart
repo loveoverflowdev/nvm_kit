@@ -16,18 +16,20 @@ import '_text_list_input_field.dart';
 import '_url_input_field.dart';
 
 final class ActiveInputField extends StatelessWidget {
-  final Object? initialValue;
+  late final Object? initialValue;
 
   /// Return raw value to fill submission form
   final void Function(dynamic) onSelected;
   final ActiveInputFieldSpecification specification;
 
-  const ActiveInputField({
+  ActiveInputField({
     super.key,
-    this.initialValue,
+    Object? initialValue,
     required this.specification,
     required this.onSelected,
-  });
+  }) {
+    this.initialValue = specification.dataType.isUndefinedValue(initialValue) ? null : initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -10,13 +10,13 @@ ActiveResourceResponse _$ActiveResourceResponseFromJson(
         Map<String, dynamic> json) =>
     ActiveResourceResponse(
       id: json['id'] as String,
-      liveAttributes: json['liveAttributes'] as Map<String, dynamic>?,
+      primaryAttributes: json['liveAttributes'] as Map<String, dynamic>?,
       projectId: json['projectId'] as String?,
       creator: json['createdByUser'] == null
           ? null
           : ActiveResourceCreatorResponse.fromJson(
               json['createdByUser'] as Map<String, dynamic>),
-      addons: json['liveFeatures'] == null
+      addonAttributes: json['liveFeatures'] == null
           ? const []
           : ActiveResourceResponse._addonListFromJson(
               json['liveFeatures'] as Map<String, dynamic>),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$ActiveResourceResponseToJson(
         ActiveResourceResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'liveAttributes': instance.liveAttributes,
+      'liveAttributes': instance.primaryAttributes,
       'projectId': instance.projectId,
       'createdByUser': instance.creator,
     };

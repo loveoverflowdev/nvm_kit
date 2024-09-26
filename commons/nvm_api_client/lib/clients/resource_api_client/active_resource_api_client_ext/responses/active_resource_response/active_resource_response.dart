@@ -8,7 +8,7 @@ part 'active_resource_response.g.dart';
 @JsonSerializable()
 final class ActiveResourceResponse {
   final String id;
-  final Map<String, dynamic>? liveAttributes;
+  final Map<String, dynamic>? primaryAttributes;
   final String? projectId;
 
   @JsonKey(name: 'createdByUser')
@@ -16,14 +16,14 @@ final class ActiveResourceResponse {
 
   @JsonKey(
       name: 'liveFeatures', fromJson: _addonListFromJson, includeToJson: false)
-  final List<AddonResponse> addons;
+  final List<AddonResponse> addonAttributes;
 
   ActiveResourceResponse({
     required this.id,
-    required this.liveAttributes,
+    required this.primaryAttributes,
     this.projectId,
     this.creator,
-    this.addons = const [],
+    this.addonAttributes = const [],
   });
 
   factory ActiveResourceResponse.fromJson(Map<String, dynamic> json) {

@@ -27,6 +27,28 @@ final class ActiveInputFieldSpecification {
 class ActiveInputFieldDataType with _$ActiveInputFieldDataType {
   ActiveInputFieldDataType._();
 
+  bool isUndefinedValue(dynamic value) {
+    return when(
+      shortText: () => value == null || value.isEmpty,
+      paragraph: () => value == null || value.isEmpty,
+      date: () => value == null,
+      dateTime: () => value == null,
+      integer: () => value == null,
+      numeric: () => value == null,
+      email: () => value == null || value.isEmpty,
+      url: () => value == null || value.isEmpty,
+      textList: () => value == null || value.isEmpty,
+      binaryCheckbox: () => value == null,
+      multiActiveResourceCheckbox: (_, __, ___) => value == null || value == '0',
+      singleActiveResourceSelection: (_, __, ___) => value == null || value == '0',
+      multiActiveResourceSelection: (_, __, ___) => value == null || value == '0',
+      singleUserSelection: (_, __) => value == null || value == '0',
+      multiUserSelection: (_, __) => value == null || value == '0',
+      multiUserCheckbox: (_, __) => value == null || value == '0',
+      unsupported: () => value == null,
+    );
+  }
+
   factory ActiveInputFieldDataType.shortText() = _ShortText;
   factory ActiveInputFieldDataType.paragraph() = _Paragraph;
   factory ActiveInputFieldDataType.date() = _Date;
