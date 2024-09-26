@@ -157,3 +157,27 @@ ApiEndpoint createRolesBoard() => ApiEndpoint(
       requiredAuthorization: true,
       jsonPayload: true,
     );
+
+// {{domain}}/api/workspaces/{{workspace}}/active-module/resources/tasks/664724104737195066/features/widget-board-role/post/role_status
+ApiEndpoint updateRolesBoardResourceRoleStatus({
+  required String activeStructureCode,
+  required String resourceId,
+}) => ApiEndpoint(
+  uriTemplate: '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_status',
+  requiredWorkspace: true,
+  requiredAuthorization: true,
+  jsonPayload: true,
+);
+
+// {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_progress
+ApiEndpoint updateRolesBoardResourceRoleProgress({
+  required String activeStructureCode,
+  required String resourceId,
+}) => ApiEndpoint(
+  uriTemplate: '/api/workspaces/{{workspace}}/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_progress',
+  requiredWorkspace: true,
+  requiredAuthorization: true,
+  jsonPayload: true,
+);
+
+// {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_progress

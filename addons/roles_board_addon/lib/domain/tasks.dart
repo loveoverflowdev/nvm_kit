@@ -32,3 +32,34 @@ ReaderTaskEither<LocalRolesBoardRepository, RolesBoardFailure, bool>
               .writeRolesBoardList(rolesBoardList)
               .run(),
         );
+
+ReaderTaskEither<RolesBoardResourceStateRepository, RolesBoardFailure, dynamic>
+  updateRolesBoardResourceRoleProgressTask({
+    required String activeStructureCode,
+    required String resourceId,
+    required RolesBoardRoleProgressPayload payload,
+}) =>
+        ReaderTaskEither(
+          (repository) => repository
+              .updateRolesBoardResourceRoleProgress(
+                activeStructureCode: activeStructureCode,
+                resourceId: resourceId,
+                payload: payload,
+              )
+              .run(),
+        );
+
+ReaderTaskEither<RolesBoardResourceStateRepository, RolesBoardFailure, dynamic>
+  updateRolesBoardResourceRoleStatusTask({
+    required String activeStructureCode,
+    required String resourceId,
+    required RolesBoardRoleStatusPayload payload,
+  }) => ReaderTaskEither(
+    (repository) => repository
+        .updateRolesBoardResourceRoleStatus(
+          activeStructureCode: activeStructureCode,
+          resourceId: resourceId,
+          payload: payload,
+        )
+        .run(),
+  );

@@ -147,7 +147,7 @@ class _RolesBoardResourceStateDetailViewState
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    role.shortName,
+                                                    role.name,
                                                   ),
                                                   Text(
                                                     roleState

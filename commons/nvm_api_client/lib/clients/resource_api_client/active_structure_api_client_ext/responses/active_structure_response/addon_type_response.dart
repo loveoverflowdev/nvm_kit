@@ -15,12 +15,12 @@ class AddonTypeResponse with _$AddonTypeResponse {
 
 class RolesBoardAddonConfiguration {
   final String fieldCode;
-  final String widgetId;
+  final String addonId;
   final String type;
 
   RolesBoardAddonConfiguration({
     required this.fieldCode,
-    required this.widgetId,
+    required this.addonId,
     required this.type,
   });
 }

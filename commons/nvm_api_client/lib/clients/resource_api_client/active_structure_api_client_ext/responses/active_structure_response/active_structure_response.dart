@@ -66,7 +66,7 @@ List<AddonTypeResponse> _supportedAddonTypesFromJson(
                 (e) {
                   return RolesBoardAddonConfiguration(
                     fieldCode: e['featureFieldName'],
-                    widgetId: e['widgetId'],
+                    addonId: e['widgetId'],
                     type: e['featureType'],
                   );
                 },

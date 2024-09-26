@@ -95,7 +95,7 @@ final class RemoteActiveStructureRepositoryImpl
                     .map(
                       (e) => RolesBoardAddonConfiguration(
                         fieldCode: e.fieldCode,
-                        widgetId: e.widgetId,
+                        widgetId: e.addonId,
                         type: e.type,
                       ),
                     )
