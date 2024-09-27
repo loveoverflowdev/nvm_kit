@@ -140,11 +140,17 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
 
     if (structure.supportAddonType((e) => e.isRolesBoard)) {
       final rolesBoardAddons = <addon.Addon>[];
+      final rolesBoardAddonType =
+          structure.getAddonTypeWhere((e) => e.isRolesBoard)?.whenOrNull(
+                (List) => e,
+              );
+
       rolesBoardAddons.addAll(
         response.addonAttributes
             .whereType<api.RolesBoardResourceStateResponse>()
             .map((response) {
           return roles_board_addon.rolesBoardAddon(
+            addonInstanceCode: rolesBoardAddonType.w,
             resourceState: roles_board_addon.RolesBoardResourceState(
               typeCode: response.typeCode,
               boardRoleId: response.widgetBoardRoleId,

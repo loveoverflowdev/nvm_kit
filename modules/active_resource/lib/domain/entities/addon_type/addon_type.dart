@@ -18,12 +18,12 @@ class AddonType with _$AddonType {
 }
 
 class RolesBoardAddonConfiguration {
-  final String fieldCode;
+  final String addonInstanceCode;
   final String widgetId;
   final String type;
 
   RolesBoardAddonConfiguration({
-    required this.fieldCode,
+    required this.addonInstanceCode,
     required this.widgetId,
     required this.type,
   });

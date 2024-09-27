@@ -12,8 +12,9 @@ class RolesBoardResourceStateResponse extends AddonResponse {
   final double averageProgress;
 
   @JsonKey(
-      fromJson: ProgressStatusResponse.fromJson,
-      toJson: ProgressStatusResponse.toJson)
+    fromJson: ProgressStatusResponse.fromJson,
+    toJson: ProgressStatusResponse.toJson,
+  )
   final ProgressStatusResponse finalStatus;
 
   @JsonKey(name: 'widgetRoles')
@@ -26,7 +27,8 @@ class RolesBoardResourceStateResponse extends AddonResponse {
     required this.roles,
   });
 
-  factory RolesBoardResourceStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
+  factory RolesBoardResourceStateResponse.fromEntry(
+      MapEntry<String, dynamic> entry) {
     final json = entry.value as Map<String, dynamic>;
     final instance = _$RolesBoardResourceStateResponseFromJson(json);
     instance.typeCode = entry.key;
@@ -35,7 +37,9 @@ class RolesBoardResourceStateResponse extends AddonResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return {typeCode: _$RolesBoardResourceStateResponseToJson(this)};
+    return {
+      typeCode: _$RolesBoardResourceStateResponseToJson(this),
+    };
   }
 
   @override

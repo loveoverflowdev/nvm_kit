@@ -1,17 +1,17 @@
 final class RolesBoardRoleStatusPayload {
-  final String addonId;
-  final String fieldCode;
+  final String roleId;
+  final String addonInstanceCode;
   final String status;
 
   RolesBoardRoleStatusPayload({
-    required this.addonId,
-    required this.fieldCode,
+    required this.roleId,
+    required this.addonInstanceCode,
     required this.status,
   });
 
   Map<String, dynamic> toJson() => {
-        "widgetRoleId": addonId,
-        "featureFieldName": fieldCode,
+        "widgetRoleId": roleId,
+        "featureFieldName": addonInstanceCode,
         "status": status,
       };
 }
@@ -19,7 +19,7 @@ final class RolesBoardRoleStatusPayload {
 /*
 {
 	"widgetRoleId":"657763459697477371",
-    "featureFieldName": "assignee",
+  "featureFieldName": "assignee",
 	"status":"PROCESSING"
 }
 */

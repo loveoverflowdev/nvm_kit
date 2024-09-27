@@ -159,10 +159,10 @@ class _ActiveResourceCreateFormViewState
               onSelected: (rolesBoardSelection) {
                 if (rolesBoardSelection == null) {
                   _form.setAddonAttribute(
-                      key: configuration.fieldCode, value: null);
+                      key: configuration.addonInstanceCode, value: null);
                 } else {
                   _form.setAddonAttribute(
-                      key: configuration.fieldCode,
+                      key: configuration.addonInstanceCode,
                       value: rolesBoardSelection.toJson());
                 }
               },

@@ -33,9 +33,11 @@ class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
 class _ActiveResourceUpdateFormViewState
     extends ConsumerState<ActiveResourceUpdateFormView> {
   late final ActiveResourceForm _form;
-  late final ActiveResourceByStructureCodeProvider _activeResourceByStructureCodeProvider;
+  late final ActiveResourceByStructureCodeProvider
+      _activeResourceByStructureCodeProvider;
 
-  List<ActiveInputFieldComponent> get _formInputFields => widget.formComponent.inputFields;
+  List<ActiveInputFieldComponent> get _formInputFields =>
+      widget.formComponent.inputFields;
 
   @override
   void initState() {
@@ -44,7 +46,8 @@ class _ActiveResourceUpdateFormViewState
       projectId: widget.projectId,
     );
 
-    _activeResourceByStructureCodeProvider = activeResourceByStructureCodeProvider(
+    _activeResourceByStructureCodeProvider =
+        activeResourceByStructureCodeProvider(
       widget.formComponent.activeStructureCode,
     );
 
@@ -53,7 +56,8 @@ class _ActiveResourceUpdateFormViewState
           .read(
             _activeResourceByStructureCodeProvider.notifier,
           )
-          .loadActiveResource(id: widget.resourceId, requestField: _parseRequestField());
+          .loadActiveResource(
+              id: widget.resourceId, requestField: _parseRequestField());
     });
   }
 
@@ -101,7 +105,6 @@ class _ActiveResourceUpdateFormViewState
       _activeResourceByStructureCodeProvider,
     );
 
-
     return Container(
       margin: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
@@ -110,7 +113,6 @@ class _ActiveResourceUpdateFormViewState
       ),
       child: activeStructureResult.when(
         data: (activeStructure) {
-
           return initialActiveResourceResult.when(
             data: (initialActiveResource) {
               final activeInputFieldSpecifications =
@@ -129,10 +131,13 @@ class _ActiveResourceUpdateFormViewState
                     Padding(
                       padding: const EdgeInsets.only(top: AppSpacing.md),
                       child: ActiveInputField(
-                        initialValue: initialActiveResource?.liveAttributes[specification.key] ?? '',
+                        initialValue: initialActiveResource
+                                ?.liveAttributes[specification.key] ??
+                            '',
                         specification: specification,
                         onSelected: (value) {
-                          _form.setAttribute(key: specification.key, value: value);
+                          _form.setAttribute(
+                              key: specification.key, value: value);
                         },
                       ),
                     ),
@@ -173,7 +178,7 @@ class _ActiveResourceUpdateFormViewState
                   ),
                 ],
               );
-            }, 
+            },
             error: (error, stackTrace) => AppErrorWidget(
               error,
               stackTrace: stackTrace,
@@ -205,10 +210,10 @@ class _ActiveResourceUpdateFormViewState
               onSelected: (rolesBoardSelection) {
                 if (rolesBoardSelection == null) {
                   _form.setAddonAttribute(
-                      key: configuration.fieldCode, value: null);
+                      key: configuration.addonInstanceCode, value: null);
                 } else {
                   _form.setAddonAttribute(
-                      key: configuration.fieldCode,
+                      key: configuration.addonInstanceCode,
                       value: rolesBoardSelection.toJson());
                 }
               },

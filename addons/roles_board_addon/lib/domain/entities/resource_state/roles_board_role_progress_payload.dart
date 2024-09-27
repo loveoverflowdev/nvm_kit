@@ -1,17 +1,17 @@
 final class RolesBoardRoleProgressPayload {
-  final String addonId;
-  final String fieldCode;
+  final String roleId;
+  final String addonInstanceCode;
   final double progress;
 
   RolesBoardRoleProgressPayload({
-    required this.addonId,
-    required this.fieldCode,
+    required this.roleId,
+    required this.addonInstanceCode,
     required this.progress,
   });
 
   Map<String, dynamic> toJson() => {
-        "widgetRoleId": addonId,
-        "featureFieldName": fieldCode,
+        "widgetRoleId": roleId,
+        "featureFieldName": addonInstanceCode,
         "progress": progress,
       };
 }

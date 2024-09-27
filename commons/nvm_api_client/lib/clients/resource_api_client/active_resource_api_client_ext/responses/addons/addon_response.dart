@@ -30,7 +30,8 @@ abstract class AddonResponse {
 
   Map<String, dynamic> toJson() {
     return switch (this) {
-      RolesBoardResourceStateResponse() => (this as RolesBoardResourceStateResponse).toJson(),
+      RolesBoardResourceStateResponse() =>
+        (this as RolesBoardResourceStateResponse).toJson(),
       _ => throw UnimplementedError(),
     };
   }

@@ -53,7 +53,7 @@ List<AddonType> _supportedAddonTypesFromJson(Map<String, dynamic> json) {
               configurations: (entry.value['featureFields'] as Iterable).map(
                 (e) {
                   return RolesBoardAddonConfiguration(
-                    fieldCode: e['featureFieldName'],
+                    addonInstanceCode: e['featureFieldName'],
                     widgetId: e['widgetId'],
                     type: e['featureType'],
                   );
@@ -84,7 +84,7 @@ Map<String, dynamic> _supportedAddonTypesToJson(List<AddonType> types) {
         result['widgetBoardRole'] = {
           'featureFields': configurations.map((e) {
             return {
-              'featureFieldName': e.fieldCode,
+              'featureFieldName': e.addonInstanceCode,
               'widgetId': e.widgetId,
               'featureType': e.type,
             };

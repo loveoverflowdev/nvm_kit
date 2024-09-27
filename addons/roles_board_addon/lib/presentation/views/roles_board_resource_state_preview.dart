@@ -7,11 +7,17 @@ import '../providers.dart';
 import 'roles_board_resource_state_detail_view.dart';
 
 class RolesBoardResourceStatePreview extends ConsumerStatefulWidget {
+  final String activeStructureCode;
+  final String resourceId;
   final RolesBoardResourceState rolesBoardResourceState;
+  final String addonInstanceCode;
 
   const RolesBoardResourceStatePreview({
     super.key,
+    required this.activeStructureCode,
+    required this.resourceId,
     required this.rolesBoardResourceState,
+    required this.addonInstanceCode,
   });
 
   @override
@@ -41,6 +47,9 @@ class _RolesBoardResourceStatePreviewState
             context: context,
             builder: (context) => RolesBoardResourceStateDetailView(
               rolesBoardResourceState: widget.rolesBoardResourceState,
+              activeStructureCode: widget.activeStructureCode,
+              resourceId: widget.resourceId,
+              addonInstanceCode: '',
             ),
           );
         },
@@ -75,8 +84,7 @@ class _RolesBoardResourceStatePreviewState
                   return rolesBoardList.when(
                     data: (rolesBoardList) {
                       final index = rolesBoardList.indexWhere((e) =>
-                          e.id ==
-                          widget.rolesBoardResourceState.boardRoleId);
+                          e.id == widget.rolesBoardResourceState.boardRoleId);
                       if (index == -1) {
                         return const SizedBox.shrink();
                       }
