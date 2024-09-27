@@ -117,6 +117,10 @@ void main() async {
   final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository =
       roles_board_addon.LocalRolesBoardRepositoryImpl(
           sharedPreferences: await SharedPreferences.getInstance());
+  final roles_board_addon.RolesBoardResourceStateRepository rolesBoardResourceStateRepository =
+      roles_board_addon.RemoteRolesBoardResourceStateRepository(
+    apiClient: rolesBoardApiClient,
+  );
 
   runApp(NvmApp(
     templateRepository: TemplateRepository.example(),
@@ -133,5 +137,6 @@ void main() async {
     commentRepository: commentRepository,
     remoteRolesBoardRepository: remoteRolesBoardRepository,
     localRolesBoardRepository: localRolesBoardRepository,
+    rolesBoardResourceStateRepository: rolesBoardResourceStateRepository,
   ));
 }

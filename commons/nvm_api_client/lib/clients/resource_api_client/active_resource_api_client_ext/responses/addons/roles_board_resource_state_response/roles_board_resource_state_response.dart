@@ -1,13 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../addon_response.dart';
+import '../addon_resource_state_response.dart';
 
 part 'roles_board_resource_state_response.g.dart';
 
 @JsonSerializable()
-class RolesBoardResourceStateResponse extends AddonResponse {
+class RolesBoardResourceStateResponse extends AddonResourceStateResponse {
   @JsonKey(includeToJson: false, includeFromJson: false)
   late final String typeCode;
+
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  late final String addonInstanceCode;
+
   final String widgetBoardRoleId;
   final double averageProgress;
 
@@ -32,6 +37,7 @@ class RolesBoardResourceStateResponse extends AddonResponse {
     final json = entry.value as Map<String, dynamic>;
     final instance = _$RolesBoardResourceStateResponseFromJson(json);
     instance.typeCode = entry.key;
+    instance.addonInstanceCode = entry.key;
     return instance;
   }
 

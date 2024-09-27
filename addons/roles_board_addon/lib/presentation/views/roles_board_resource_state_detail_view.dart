@@ -229,41 +229,64 @@ class _RoleResourceStateTile extends StatelessWidget {
                         activeStructureCode: activeStructureCode,
                         resourceId: resourceId,
                       );
+                      ref.listen(provider, (previous, next) {
+                        next.whenOrNull(
+                          error: (error, stackTrace) => showAppAlertDialog(
+                            context: context, 
+                            title: 'Error',
+                            description: '$error\n$stackTrace',
+                          ),
+                        );
+                      });
+
                       final submitStatus = ref.watch(provider);
-                      return submitStatus.when(
-                        data: (_) {
-                          return ElevatedButton(
-                            onPressed: () async {
-                              final progress = await showInputLineDialog(
-                                context,
-                                keyboardType: TextInputType.number,
-                                title: 'Enter new progress',
-                                hintText: 'New progress',
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.allow(
-                                    RegExp(
-                                      r'^\d+\.?\d{0,2}',
-                                    ),
-                                  ), // Allows numbers with up to 2 decimal places
-                                ],
-                              );
+                      if (submitStatus.isLoading) {
+                        return const AppCircularLoadingWidget();
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          showInputLineDialog(
+                            context,
+                            keyboardType: TextInputType.number,
+                            title: 'Enter new progress',
+                            hintText: 'New progress',
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                RegExp(
+                                  r'^\d+\.?\d{0,2}',
+                                ),
+                              ), // Allows numbers with up to 2 decimal places
+                            ],
+                          ).then(
+                            (value) {
+                              if (value != null) {
+                                final progressValue = double.tryParse(value);
+                                if (progressValue == null) {
+                                  // TODO: show error
+                                  return;
+                                }
+                                ref.read(provider.notifier).submit(
+                                      payload: RolesBoardRoleProgressPayload(
+                                        progress: progressValue,
+                                        roleId: role.id,
+                                        addonInstanceCode:
+                                            addonInstanceCode,
+                                      ),
+                                    );
+                              }
                             },
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${roleState.progress.round()} %',
-                                ),
-                                const SizedBox(
-                                  width: AppSpacing.sm,
-                                ),
-                                const Icon(Icons.edit),
-                              ],
-                            ),
                           );
                         },
-                        loading: () => const CircularProgressIndicator(),
-                        error: (error, stackTrace) => AppErrorWidget(
-                          error.toString(),
+                        child: Row(
+                          children: [
+                            Text(
+                              '${roleState.progress.round()} %',
+                            ),
+                            const SizedBox(
+                              width: AppSpacing.sm,
+                            ),
+                            const Icon(Icons.edit),
+                          ],
                         ),
                       );
                     },

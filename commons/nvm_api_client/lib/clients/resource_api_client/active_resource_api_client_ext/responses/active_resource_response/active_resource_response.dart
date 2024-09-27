@@ -16,7 +16,7 @@ final class ActiveResourceResponse {
 
   @JsonKey(
       name: 'liveFeatures', fromJson: _addonListFromJson, includeToJson: false)
-  final List<AddonResponse> addonAttributes;
+  final List<AddonResourceStateResponse> addonAttributes;
 
   ActiveResourceResponse({
     required this.id,
@@ -30,10 +30,10 @@ final class ActiveResourceResponse {
     return _$ActiveResourceResponseFromJson(json);
   }
 
-  static List<AddonResponse> _addonListFromJson(Map<String, dynamic> json) {
+  static List<AddonResourceStateResponse> _addonListFromJson(Map<String, dynamic> json) {
     return json.entries
         .map(
-          (entry) => AddonResponse.fromEntry(entry),
+          (entry) => AddonResourceStateResponse.fromEntry(entry),
         )
         .toList();
   }

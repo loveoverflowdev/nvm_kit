@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 import 'alchemist_api_request_failure.dart';
 import 'alchemist_query.dart';
@@ -9,10 +10,14 @@ import 'api_endpoint.dart';
 
 final class AlchemistApiClient {
   final http.Client _httpClient;
+  final Logger? _logger;
 
   AlchemistApiClient({
     http.Client? httpClient,
-  }) : _httpClient = httpClient ?? http.Client();
+    Logger? logger,
+  }) : 
+    _httpClient = httpClient ?? http.Client(), 
+    _logger = Logger();
 
   Future<T> requestJson<T>({
     required ApiEndpoint endpoint,
@@ -35,10 +40,8 @@ final class AlchemistApiClient {
     );
 
     final uri = Uri.parse('${endpointParams.baseUrl}${endpointParams.uri}');
-
-    debugPrint('Uri: $uri');
-    debugPrint('Params: $uriParams');
-    debugPrint('Body: ${endpointParams.body}');
+    
+    _logger?.d('Uri: $uri\nParams: $uriParams\nBody: ${endpointParams.body}');
 
     try {
       final response = await _httpClient.post(
@@ -61,7 +64,7 @@ final class AlchemistApiClient {
       }
 
       final json = _responseBodyToJson(response);
-      debugPrint(json.toString());
+      _logger?.d(json.toString());
       return dataHandler(json);
     } on http.ClientException catch (_) {
       throw AlchemistApiRequestFailure(statusCode: -1, body: {

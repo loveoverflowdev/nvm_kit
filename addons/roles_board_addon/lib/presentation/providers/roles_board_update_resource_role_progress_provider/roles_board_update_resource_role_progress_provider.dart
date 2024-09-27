@@ -30,7 +30,7 @@ class RolesBoardUpdateResourceRoleProgress extends _$RolesBoardUpdateResourceRol
       (_) => state = const _RolesBoardUpdateResourceRoleProgressState.data(null),
     )
     .run(
-      ref.watch(rolesBoardResourceStateRepository),
+      ref.watch(rolesBoardResourceStateRepositoryProvider),
     );
   }
 

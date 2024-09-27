@@ -16,12 +16,13 @@ enum AddonFeatureType {
   }
 }
 
-abstract class AddonResponse {
+abstract class AddonResourceStateResponse {
   AddonFeatureType get type;
+  String get addonInstanceCode;
 
-  AddonResponse();
+  AddonResourceStateResponse();
 
-  factory AddonResponse.fromEntry(MapEntry<String, dynamic> entry) {
+  factory AddonResourceStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
     switch (AddonFeatureType.fromKey(entry.value['featureType'])) {
       case AddonFeatureType.rolesBoard:
         return RolesBoardResourceStateResponse.fromEntry(entry);
