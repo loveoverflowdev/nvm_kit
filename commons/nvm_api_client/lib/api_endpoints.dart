@@ -174,7 +174,7 @@ ApiEndpoint updateRolesBoardResourceRoleProgress({
   required String activeStructureCode,
   required String resourceId,
 }) => ApiEndpoint(
-  uriTemplate: '/api/workspaces/{{workspace}}/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_progress',
+  uriTemplate: '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_progress',
   requiredWorkspace: true,
   requiredAuthorization: true,
   jsonPayload: true,

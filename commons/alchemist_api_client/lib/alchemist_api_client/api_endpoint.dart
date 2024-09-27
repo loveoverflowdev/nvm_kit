@@ -111,6 +111,11 @@ class ApiEndpoint {
   String _buildUri(Map<String, dynamic> params) {
     var uri = uriTemplate;
 
+    print('+++++++++++++++++++++++++++++++');
+    print('object: $uri');
+    print('object: $params');
+    print('+++++++++++++++++++++++++++++++');
+
     params.forEach((key, value) {
       if (!uri.contains(':$key')) {
         throw Exception(
