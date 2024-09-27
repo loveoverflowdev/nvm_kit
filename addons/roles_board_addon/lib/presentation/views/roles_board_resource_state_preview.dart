@@ -10,14 +10,12 @@ class RolesBoardResourceStatePreview extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
   final RolesBoardResourceState rolesBoardResourceState;
-  final String addonInstanceCode;
 
   const RolesBoardResourceStatePreview({
     super.key,
     required this.activeStructureCode,
     required this.resourceId,
     required this.rolesBoardResourceState,
-    required this.addonInstanceCode,
   });
 
   @override
@@ -49,7 +47,6 @@ class _RolesBoardResourceStatePreviewState
               rolesBoardResourceState: widget.rolesBoardResourceState,
               activeStructureCode: widget.activeStructureCode,
               resourceId: widget.resourceId,
-              addonInstanceCode: '',
             ),
           );
         },

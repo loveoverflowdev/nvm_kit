@@ -8,23 +8,18 @@ final RolesBoardAddonFactory rolesBoardAddon = RolesBoardAddonFactory();
 final class RolesBoardAddonFactory {
   RolesBoardAddon call({
     required RolesBoardResourceState resourceState,
-    required String addonInstanceCode,
   }) =>
       _RolesBoardAddonImpl(
         resourceState: resourceState,
-        addonInstanceCode: addonInstanceCode,
       );
 }
 
 final class _RolesBoardAddonImpl extends RolesBoardAddon {
   final RolesBoardResourceState _resourceState;
-  final String _addonInstanceCode;
 
   _RolesBoardAddonImpl({
     required RolesBoardResourceState resourceState,
-    required String addonInstanceCode,
-  })  : _resourceState = resourceState,
-        _addonInstanceCode = addonInstanceCode;
+  })  : _resourceState = resourceState;
 
   @override
   Widget resourceDetailAddonView({
@@ -35,7 +30,6 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
       rolesBoardResourceState: _resourceState,
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
-      addonInstanceCode: _addonInstanceCode,
     );
   }
 

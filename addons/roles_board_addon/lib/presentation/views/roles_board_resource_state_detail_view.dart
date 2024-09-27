@@ -14,13 +14,11 @@ import '../widgets.dart';
 class RolesBoardResourceStateDetailView extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
-  final String addonInstanceCode;
   final RolesBoardResourceState rolesBoardResourceState;
 
   const RolesBoardResourceStateDetailView({
     super.key,
     required this.activeStructureCode,
-    required this.addonInstanceCode,
     required this.resourceId,
     required this.rolesBoardResourceState,
   });
@@ -144,7 +142,7 @@ class _RolesBoardResourceStateDetailViewState
                                       role: role,
                                       roleState: roleState,
                                       addonInstanceCode:
-                                          widget.addonInstanceCode,
+                                          rolesBoardResourceState.addonInstanceCode,
                                       activeStructureCode:
                                           widget.activeStructureCode,
                                       resourceId: widget.resourceId,

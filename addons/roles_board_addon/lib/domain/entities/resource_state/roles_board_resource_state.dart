@@ -7,6 +7,7 @@ final class RolesBoardResourceState {
   final double averageProgress;
   final ProgressStatus finalStatus;
   final List<RoleResourceState> roleStates;
+  final String addonInstanceCode;
 
   RolesBoardResourceState({
     required this.boardRoleId,
@@ -14,6 +15,7 @@ final class RolesBoardResourceState {
     required this.averageProgress,
     required this.finalStatus,
     required this.roleStates,
+    required this.addonInstanceCode,
   });
 
   factory RolesBoardResourceState.empty() {
@@ -23,6 +25,7 @@ final class RolesBoardResourceState {
       averageProgress: 0,
       finalStatus: ProgressStatus.notStarted,
       roleStates: [],
+      addonInstanceCode: '',
     );
   }
 
