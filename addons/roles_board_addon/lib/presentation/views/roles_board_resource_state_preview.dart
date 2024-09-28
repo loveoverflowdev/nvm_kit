@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/domain.dart';
+import 'package:roles_board_addon/presentation/providers/roles_board_resource_state_notifier_provider.dart';
 
 import '../providers.dart';
 import 'roles_board_resource_state_detail_view.dart';
@@ -10,12 +11,14 @@ class RolesBoardResourceStatePreview extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
   final RolesBoardResourceState rolesBoardResourceState;
+  final void Function() reloadResourceState;
 
   const RolesBoardResourceStatePreview({
     super.key,
     required this.activeStructureCode,
     required this.resourceId,
     required this.rolesBoardResourceState,
+    required this.reloadResourceState,
   });
 
   @override
@@ -28,8 +31,25 @@ class _RolesBoardResourceStatePreviewState
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(rolesBoardListProvider.notifier).loadRolesBoardList();
+
+      ref
+          .read(
+            rolesBoardResourceStateNotifierProvider(
+              resourceId: widget.resourceId,
+              addonInstanceCode:
+                  widget.rolesBoardResourceState.addonInstanceCode,
+            ).notifier,
+          )
+          .setState(
+            widget.rolesBoardResourceState,
+          );
+      print('################ initState_1');
+      print(widget.resourceId);
+      print(widget.rolesBoardResourceState.addonInstanceCode);
+      print('################ initState_1');
     });
   }
 
@@ -47,6 +67,7 @@ class _RolesBoardResourceStatePreviewState
               rolesBoardResourceState: widget.rolesBoardResourceState,
               activeStructureCode: widget.activeStructureCode,
               resourceId: widget.resourceId,
+              onUpdated: widget.reloadResourceState,
             ),
           );
         },

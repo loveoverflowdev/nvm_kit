@@ -37,7 +37,8 @@ class _SingleResourceSelectionInputFieldState
   late String? _selectedResourceId;
   late String? _selectedResourceTitle;
   late final TextEditingController _textEditingController;
-  late final ActiveResourceByStructureCodeProvider  _activeResourceByStructureCodeProvider;
+  late final ActiveResourceByStructureCodeProvider
+      _activeResourceByStructureCodeProvider;
 
   @override
   void initState() {
@@ -46,17 +47,22 @@ class _SingleResourceSelectionInputFieldState
     _selectedResourceTitle = null;
     _textEditingController = TextEditingController();
 
-    print('############################## _SingleResourceSelectionInputFieldState');
+    print(
+        '############################## _SingleResourceSelectionInputFieldState');
     print('+++++++ ${widget.initialResourceId}');
-    print('############################## _SingleResourceSelectionInputFieldState');
+    print(
+        '############################## _SingleResourceSelectionInputFieldState');
 
     if (widget.initialResourceId != null) {
-      _activeResourceByStructureCodeProvider = activeResourceByStructureCodeProvider(
+      _activeResourceByStructureCodeProvider =
+          activeResourceByStructureCodeProvider(
         widget.activeStructureCode,
       );
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(_activeResourceByStructureCodeProvider.notifier).loadActiveResource(id: widget.initialResourceId!);
+        ref
+            .read(_activeResourceByStructureCodeProvider.notifier)
+            .loadActiveResource(id: widget.initialResourceId!);
       });
     }
   }
@@ -78,21 +84,14 @@ class _SingleResourceSelectionInputFieldState
   Widget build(BuildContext context) {
     if (widget.initialResourceId != null) {
       ref.listen(_activeResourceByStructureCodeProvider, (previous, next) {
-        print('++++++++++++++++++++++++++++++++++++');
-        print('Listen');
-        print('++++++++++++++++++++++++++++++++++++');
-        next.whenData(
-          (activeResource) {
-            _selectedResourceId = activeResource?.id;
-            
-            _selectedResourceTitle = activeResource?.liveAttributes[widget.titleKey];
+        next.whenData((activeResource) {
+          _selectedResourceId = activeResource?.id;
 
-            print('++++++++++++++++++++++++++++++++++++');
-            print(_selectedResourceTitle);
-            print('++++++++++++++++++++++++++++++++++++');
-            setState(() {});
-          }
-        );
+          _selectedResourceTitle =
+              activeResource?.liveAttributes[widget.titleKey];
+
+          setState(() {});
+        });
       });
     }
     return CupertinoButton(

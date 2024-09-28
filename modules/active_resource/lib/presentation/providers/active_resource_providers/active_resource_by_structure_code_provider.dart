@@ -26,10 +26,10 @@ class ActiveResourceByStructureCode extends _$ActiveResourceByStructureCode {
         .then(
       (structure) {
         domain
-            .getActiveResourceTask(
+            .getActiveResourceByIdTask(
+          id,
           structure: structure,
           requestField: requestField,
-          id: id,
         )
             .match(
           (failure) {

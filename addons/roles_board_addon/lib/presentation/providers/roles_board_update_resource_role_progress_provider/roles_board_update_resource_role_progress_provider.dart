@@ -8,30 +8,33 @@ part 'roles_board_update_resource_role_progress_provider.g.dart';
 typedef _RolesBoardUpdateResourceRoleProgressState = AsyncValue<dynamic>;
 
 @riverpod
-class RolesBoardUpdateResourceRoleProgress extends _$RolesBoardUpdateResourceRoleProgress {
-
+class RolesBoardUpdateResourceRoleProgress
+    extends _$RolesBoardUpdateResourceRoleProgress {
   @override
   AsyncValue<dynamic> build({
-    required String activeStructureCode, 
-    required String resourceId, 
-  }) => const _RolesBoardUpdateResourceRoleProgressState.data(null);
+    required String roleId,
+    required String activeStructureCode,
+    required String resourceId,
+  }) =>
+      const _RolesBoardUpdateResourceRoleProgressState.data(null);
 
   void submit({
-    required RolesBoardRoleProgressPayload payload
+    required RolesBoardRoleProgressPayload payload,
   }) {
     state = const _RolesBoardUpdateResourceRoleProgressState.loading();
     updateRolesBoardResourceRoleProgressTask(
-      activeStructureCode: activeStructureCode, 
-      resourceId: resourceId, 
+      activeStructureCode: activeStructureCode,
+      resourceId: resourceId,
       payload: payload,
     )
-    .match(
-      _onFailure,
-      (_) => state = const _RolesBoardUpdateResourceRoleProgressState.data(null),
-    )
-    .run(
-      ref.watch(rolesBoardResourceStateRepositoryProvider),
-    );
+        .match(
+          _onFailure,
+          (_) => state =
+              const _RolesBoardUpdateResourceRoleProgressState.data(null),
+        )
+        .run(
+          ref.watch(rolesBoardResourceStateRepositoryProvider),
+        );
   }
 
   _onFailure(RolesBoardFailure failure) {

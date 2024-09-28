@@ -7,7 +7,7 @@ part of 'roles_board_update_resource_role_progress_provider.dart';
 // **************************************************************************
 
 String _$rolesBoardUpdateResourceRoleProgressHash() =>
-    r'4bd199804eab090cfd2914d04c1bb425c1457936';
+    r'b2a3fe449ee982d71b1adbe84b6d97bb2b33bd02';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,12 @@ class _SystemHash {
 
 abstract class _$RolesBoardUpdateResourceRoleProgress
     extends BuildlessAutoDisposeNotifier<AsyncValue<dynamic>> {
+  late final String roleId;
   late final String activeStructureCode;
   late final String resourceId;
 
   AsyncValue<dynamic> build({
+    required String roleId,
     required String activeStructureCode,
     required String resourceId,
   });
@@ -54,10 +56,12 @@ class RolesBoardUpdateResourceRoleProgressFamily
 
   /// See also [RolesBoardUpdateResourceRoleProgress].
   RolesBoardUpdateResourceRoleProgressProvider call({
+    required String roleId,
     required String activeStructureCode,
     required String resourceId,
   }) {
     return RolesBoardUpdateResourceRoleProgressProvider(
+      roleId: roleId,
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
     );
@@ -68,6 +72,7 @@ class RolesBoardUpdateResourceRoleProgressFamily
     covariant RolesBoardUpdateResourceRoleProgressProvider provider,
   ) {
     return call(
+      roleId: provider.roleId,
       activeStructureCode: provider.activeStructureCode,
       resourceId: provider.resourceId,
     );
@@ -94,10 +99,12 @@ class RolesBoardUpdateResourceRoleProgressProvider
         RolesBoardUpdateResourceRoleProgress, AsyncValue<dynamic>> {
   /// See also [RolesBoardUpdateResourceRoleProgress].
   RolesBoardUpdateResourceRoleProgressProvider({
+    required String roleId,
     required String activeStructureCode,
     required String resourceId,
   }) : this._internal(
           () => RolesBoardUpdateResourceRoleProgress()
+            ..roleId = roleId
             ..activeStructureCode = activeStructureCode
             ..resourceId = resourceId,
           from: rolesBoardUpdateResourceRoleProgressProvider,
@@ -110,6 +117,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
               RolesBoardUpdateResourceRoleProgressFamily._dependencies,
           allTransitiveDependencies: RolesBoardUpdateResourceRoleProgressFamily
               ._allTransitiveDependencies,
+          roleId: roleId,
           activeStructureCode: activeStructureCode,
           resourceId: resourceId,
         );
@@ -121,10 +129,12 @@ class RolesBoardUpdateResourceRoleProgressProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
+    required this.roleId,
     required this.activeStructureCode,
     required this.resourceId,
   }) : super.internal();
 
+  final String roleId;
   final String activeStructureCode;
   final String resourceId;
 
@@ -133,6 +143,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
     covariant RolesBoardUpdateResourceRoleProgress notifier,
   ) {
     return notifier.build(
+      roleId: roleId,
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
     );
@@ -145,6 +156,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
       origin: this,
       override: RolesBoardUpdateResourceRoleProgressProvider._internal(
         () => create()
+          ..roleId = roleId
           ..activeStructureCode = activeStructureCode
           ..resourceId = resourceId,
         from: from,
@@ -152,6 +164,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
+        roleId: roleId,
         activeStructureCode: activeStructureCode,
         resourceId: resourceId,
       ),
@@ -167,6 +180,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
   @override
   bool operator ==(Object other) {
     return other is RolesBoardUpdateResourceRoleProgressProvider &&
+        other.roleId == roleId &&
         other.activeStructureCode == activeStructureCode &&
         other.resourceId == resourceId;
   }
@@ -174,6 +188,7 @@ class RolesBoardUpdateResourceRoleProgressProvider
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, roleId.hashCode);
     hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
     hash = _SystemHash.combine(hash, resourceId.hashCode);
 
@@ -183,6 +198,9 @@ class RolesBoardUpdateResourceRoleProgressProvider
 
 mixin RolesBoardUpdateResourceRoleProgressRef
     on AutoDisposeNotifierProviderRef<AsyncValue<dynamic>> {
+  /// The parameter `roleId` of this provider.
+  String get roleId;
+
   /// The parameter `activeStructureCode` of this provider.
   String get activeStructureCode;
 
@@ -196,6 +214,9 @@ class _RolesBoardUpdateResourceRoleProgressProviderElement
         AsyncValue<dynamic>> with RolesBoardUpdateResourceRoleProgressRef {
   _RolesBoardUpdateResourceRoleProgressProviderElement(super.provider);
 
+  @override
+  String get roleId =>
+      (origin as RolesBoardUpdateResourceRoleProgressProvider).roleId;
   @override
   String get activeStructureCode =>
       (origin as RolesBoardUpdateResourceRoleProgressProvider)

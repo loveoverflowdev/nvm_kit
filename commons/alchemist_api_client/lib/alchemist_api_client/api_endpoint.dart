@@ -5,6 +5,7 @@ import '../alchemist_api_client.dart';
 class ApiEndpoint {
   // static const String baseUrl = 'http://172.23.63.211:8001'; // captainbolt
   static const String baseUrl = 'http://172.23.124.11:80'; // nvmteam-office
+  // static const String baseUrl = 'http://172.23.240.222'; // nvmteam-light
 
   final String method;
   final String uriTemplate;
@@ -110,11 +111,6 @@ class ApiEndpoint {
 
   String _buildUri(Map<String, dynamic> params) {
     var uri = uriTemplate;
-
-    print('+++++++++++++++++++++++++++++++');
-    print('object: $uri');
-    print('object: $params');
-    print('+++++++++++++++++++++++++++++++');
 
     params.forEach((key, value) {
       if (!uri.contains(':$key')) {

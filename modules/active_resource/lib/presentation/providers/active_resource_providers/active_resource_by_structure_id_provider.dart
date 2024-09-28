@@ -24,10 +24,10 @@ class ActiveResourceByStructureId extends _$ActiveResourceByStructureId {
         .then(
       (structure) {
         domain
-            .getActiveResourceTask(
+            .getActiveResourceByIdTask(
+          id,
           structure: structure,
           requestField: requestField,
-          id: id,
         )
             .match(
           (failure) {

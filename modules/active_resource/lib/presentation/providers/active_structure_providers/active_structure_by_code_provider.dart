@@ -16,7 +16,6 @@ final activeStructureByCodeProvider =
     )
         .then(
       (activeStructure) {
-        print('+++++++++++++++++++++ $activeStructure');
         return activeStructure.fold(
           (failure) => throw failure,
           (data) => data,

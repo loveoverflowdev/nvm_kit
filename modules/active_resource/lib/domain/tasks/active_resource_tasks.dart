@@ -4,8 +4,8 @@ import '../entities.dart';
 import '../repositories.dart' show ActiveResourceRepository;
 
 ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure,
-    ActiveResource> getActiveResourceTask({
-  required String id,
+    ActiveResource> getActiveResourceByIdTask(
+  String id, {
   required ActiveStructure structure,
   String? requestField,
 }) =>

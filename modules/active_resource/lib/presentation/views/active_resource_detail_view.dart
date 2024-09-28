@@ -44,8 +44,12 @@ class _ActiveResourceDetailViewState
 
   List<template.ActiveRefsTileComponent> get _refTileList =>
       widget.detailComponent.refTileList;
-  
-  String? get _updateFormContextName => widget.detailComponent.updateFormContextName;
+
+  String? get _updateFormContextName =>
+      widget.detailComponent.updateFormContextName;
+
+  late final ActiveResourceByStructureCodeProvider
+      _activeResourceByStructureCodeProvider;
 
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
@@ -68,25 +72,29 @@ class _ActiveResourceDetailViewState
   @override
   void initState() {
     super.initState();
+    _activeResourceByStructureCodeProvider =
+        activeResourceByStructureCodeProvider(
+      _activeStructureCode,
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final String requestField = _parseRequestField(_primaryActiveTile);
-      ref
-          .read(activeResourceByStructureCodeProvider(
-            _activeStructureCode,
-          ).notifier)
-          .loadActiveResource(
-            requestField: requestField,
-            id: widget.resourceId,
-          );
+      _loadActiveResource();
     });
+  }
+
+  void _loadActiveResource() {
+    final String requestField = _parseRequestField(_primaryActiveTile);
+    ref
+        .read(_activeResourceByStructureCodeProvider.notifier)
+        .loadActiveResource(
+          requestField: requestField,
+          id: widget.resourceId,
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     final activeResource = ref.watch(
-      activeResourceByStructureCodeProvider(
-        _activeStructureCode,
-      ),
+      _activeResourceByStructureCodeProvider,
     );
 
     return activeResource.when(
@@ -163,7 +171,10 @@ class _ActiveResourceDetailViewState
                                     if (_updateFormContextName != null)
                                       IconButton(
                                         onPressed: () {
-                                          widget.onRouteUpdateForm?.call(contextName: _updateFormContextName, activeResourceId: widget.resourceId,);
+                                          widget.onRouteUpdateForm?.call(
+                                            contextName: _updateFormContextName,
+                                            activeResourceId: widget.resourceId,
+                                          );
                                         },
                                         icon: const Icon(Icons.edit),
                                       ),
@@ -266,6 +277,9 @@ class _ActiveResourceDetailViewState
                         child: addon.resourceDetailAddonView(
                           activeStructureCode: _activeStructureCode,
                           resourceId: widget.resourceId,
+                          reload: () {
+                            _loadActiveResource();
+                          },
                         ),
                       ),
                     ]
@@ -337,17 +351,21 @@ class _ActiveResourceRefTileViewState
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        final String requestField = _parseRequestField(_tile);
-        ref
-            .read(
-              _activeResourceProvider.notifier,
-            )
-            .loadActiveResource(
-              requestField: requestField,
-              id: widget.resourceId,
-            );
+        _loadActiveResource();
       },
     );
+  }
+
+  void _loadActiveResource() {
+    final String requestField = _parseRequestField(_tile);
+    ref
+        .read(
+          _activeResourceProvider.notifier,
+        )
+        .loadActiveResource(
+          requestField: requestField,
+          id: widget.resourceId,
+        );
   }
 
   @override

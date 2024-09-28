@@ -7,7 +7,7 @@ part of 'roles_board_update_resource_role_status_provider.dart';
 // **************************************************************************
 
 String _$rolesBoardUpdateResourceRoleStatusHash() =>
-    r'6318a3153c81f8bbd4aae385723831ae6d7fb93e';
+    r'26eafaf5d073da2e4a8547f202ef02f4d630b1cb';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,10 +34,12 @@ abstract class _$RolesBoardUpdateResourceRoleStatus
     extends BuildlessAutoDisposeNotifier<AsyncValue<dynamic>> {
   late final String activeStructureCode;
   late final String resourceId;
+  late final String roleId;
 
   AsyncValue<dynamic> build({
     required String activeStructureCode,
     required String resourceId,
+    required String roleId,
   });
 }
 
@@ -56,10 +58,12 @@ class RolesBoardUpdateResourceRoleStatusFamily
   RolesBoardUpdateResourceRoleStatusProvider call({
     required String activeStructureCode,
     required String resourceId,
+    required String roleId,
   }) {
     return RolesBoardUpdateResourceRoleStatusProvider(
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
+      roleId: roleId,
     );
   }
 
@@ -70,6 +74,7 @@ class RolesBoardUpdateResourceRoleStatusFamily
     return call(
       activeStructureCode: provider.activeStructureCode,
       resourceId: provider.resourceId,
+      roleId: provider.roleId,
     );
   }
 
@@ -96,10 +101,12 @@ class RolesBoardUpdateResourceRoleStatusProvider
   RolesBoardUpdateResourceRoleStatusProvider({
     required String activeStructureCode,
     required String resourceId,
+    required String roleId,
   }) : this._internal(
           () => RolesBoardUpdateResourceRoleStatus()
             ..activeStructureCode = activeStructureCode
-            ..resourceId = resourceId,
+            ..resourceId = resourceId
+            ..roleId = roleId,
           from: rolesBoardUpdateResourceRoleStatusProvider,
           name: r'rolesBoardUpdateResourceRoleStatusProvider',
           debugGetCreateSourceHash:
@@ -111,6 +118,7 @@ class RolesBoardUpdateResourceRoleStatusProvider
               ._allTransitiveDependencies,
           activeStructureCode: activeStructureCode,
           resourceId: resourceId,
+          roleId: roleId,
         );
 
   RolesBoardUpdateResourceRoleStatusProvider._internal(
@@ -122,10 +130,12 @@ class RolesBoardUpdateResourceRoleStatusProvider
     required super.from,
     required this.activeStructureCode,
     required this.resourceId,
+    required this.roleId,
   }) : super.internal();
 
   final String activeStructureCode;
   final String resourceId;
+  final String roleId;
 
   @override
   AsyncValue<dynamic> runNotifierBuild(
@@ -134,6 +144,7 @@ class RolesBoardUpdateResourceRoleStatusProvider
     return notifier.build(
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
+      roleId: roleId,
     );
   }
 
@@ -144,7 +155,8 @@ class RolesBoardUpdateResourceRoleStatusProvider
       override: RolesBoardUpdateResourceRoleStatusProvider._internal(
         () => create()
           ..activeStructureCode = activeStructureCode
-          ..resourceId = resourceId,
+          ..resourceId = resourceId
+          ..roleId = roleId,
         from: from,
         name: null,
         dependencies: null,
@@ -152,6 +164,7 @@ class RolesBoardUpdateResourceRoleStatusProvider
         debugGetCreateSourceHash: null,
         activeStructureCode: activeStructureCode,
         resourceId: resourceId,
+        roleId: roleId,
       ),
     );
   }
@@ -166,7 +179,8 @@ class RolesBoardUpdateResourceRoleStatusProvider
   bool operator ==(Object other) {
     return other is RolesBoardUpdateResourceRoleStatusProvider &&
         other.activeStructureCode == activeStructureCode &&
-        other.resourceId == resourceId;
+        other.resourceId == resourceId &&
+        other.roleId == roleId;
   }
 
   @override
@@ -174,6 +188,7 @@ class RolesBoardUpdateResourceRoleStatusProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, activeStructureCode.hashCode);
     hash = _SystemHash.combine(hash, resourceId.hashCode);
+    hash = _SystemHash.combine(hash, roleId.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -186,6 +201,9 @@ mixin RolesBoardUpdateResourceRoleStatusRef
 
   /// The parameter `resourceId` of this provider.
   String get resourceId;
+
+  /// The parameter `roleId` of this provider.
+  String get roleId;
 }
 
 class _RolesBoardUpdateResourceRoleStatusProviderElement
@@ -201,6 +219,9 @@ class _RolesBoardUpdateResourceRoleStatusProviderElement
   @override
   String get resourceId =>
       (origin as RolesBoardUpdateResourceRoleStatusProvider).resourceId;
+  @override
+  String get roleId =>
+      (origin as RolesBoardUpdateResourceRoleStatusProvider).roleId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

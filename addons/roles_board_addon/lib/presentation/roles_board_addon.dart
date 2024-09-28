@@ -19,17 +19,22 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
 
   _RolesBoardAddonImpl({
     required RolesBoardResourceState resourceState,
-  })  : _resourceState = resourceState;
+  }) : _resourceState = resourceState;
 
   @override
   Widget resourceDetailAddonView({
     required String activeStructureCode,
     required String resourceId,
+    required void Function() reload,
   }) {
     return RolesBoardResourceStatePreview(
+      key: ValueKey(
+        activeStructureCode + _resourceState.addonInstanceCode + resourceId,
+      ),
       rolesBoardResourceState: _resourceState,
       activeStructureCode: activeStructureCode,
       resourceId: resourceId,
+      reloadResourceState: reload,
     );
   }
 

@@ -22,7 +22,8 @@ abstract class AddonResourceStateResponse {
 
   AddonResourceStateResponse();
 
-  factory AddonResourceStateResponse.fromEntry(MapEntry<String, dynamic> entry) {
+  factory AddonResourceStateResponse.fromEntry(
+      MapEntry<String, dynamic> entry) {
     switch (AddonFeatureType.fromKey(entry.value['featureType'])) {
       case AddonFeatureType.rolesBoard:
         return RolesBoardResourceStateResponse.fromEntry(entry);

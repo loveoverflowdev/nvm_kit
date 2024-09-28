@@ -24,15 +24,15 @@ abstract class ActiveFieldStructureRequestField {
           RequestField.name('isRequired'),
         ],
       ),
-      RequestField(
-        name: 'createdBy',
-        children: [
-          RequestField.name('id'),
-          RequestField.name('username'),
-          RequestField.name('email'),
-          RequestField.name('phone'),
-        ],
-      ),
+      // RequestField(
+      //   name: 'createdByUser',
+      //   children: [
+      //     RequestField.name('id'),
+      //     RequestField.name('username'),
+      //     RequestField.name('email'),
+      //     RequestField.name('phone'),
+      //   ],
+      // ),
     ],
   );
 }

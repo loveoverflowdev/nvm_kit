@@ -7,6 +7,7 @@ import 'package:roles_board_addon/domain.dart';
 import '../providers.dart'
     show
         rolesBoardListProvider,
+        rolesBoardResourceStateNotifierProvider,
         rolesBoardUpdateResourceRoleProgressProvider,
         rolesBoardUpdateResourceRoleStatusProvider;
 import '../widgets.dart';
@@ -15,12 +16,14 @@ class RolesBoardResourceStateDetailView extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
   final RolesBoardResourceState rolesBoardResourceState;
+  final void Function() onUpdated;
 
   const RolesBoardResourceStateDetailView({
     super.key,
     required this.activeStructureCode,
     required this.resourceId,
     required this.rolesBoardResourceState,
+    required this.onUpdated,
   });
 
   @override
@@ -112,17 +115,42 @@ class _RolesBoardResourceStateDetailViewState
                             final rolesBoardListResult = ref.watch(
                               rolesBoardListProvider,
                             );
+
                             return rolesBoardListResult.when(
                               data: (rolesBoardList) {
-                                final index = rolesBoardList.indexWhere((e) =>
-                                    e.id ==
-                                    widget.rolesBoardResourceState.boardRoleId);
+                                final index = rolesBoardList.indexWhere(
+                                  (e) =>
+                                      e.id ==
+                                      widget
+                                          .rolesBoardResourceState.boardRoleId,
+                                );
+
                                 if (index == -1) {
                                   return const SizedBox.shrink();
                                 }
 
+                                final rolesBoardResourceStateResult = ref.watch(
+                                  rolesBoardResourceStateNotifierProvider(
+                                    resourceId: widget.resourceId,
+                                    addonInstanceCode: widget
+                                        .rolesBoardResourceState
+                                        .addonInstanceCode,
+                                  ),
+                                );
+
+                                print('################ initState_2');
+                                print(widget.resourceId);
+                                print(widget
+                                    .rolesBoardResourceState.addonInstanceCode);
+                                print('################ initState_2');
+
+                                if (rolesBoardResourceStateResult.value ==
+                                    null) {
+                                  return const AppCircularLoadingWidget();
+                                }
+
                                 final rolesBoardResourceState =
-                                    widget.rolesBoardResourceState;
+                                    rolesBoardResourceStateResult.value!;
                                 final rolesBoard = rolesBoardList[index];
                                 return ListView.separated(
                                   shrinkWrap: true,
@@ -141,11 +169,14 @@ class _RolesBoardResourceStateDetailViewState
                                     return _RoleResourceStateTile(
                                       role: role,
                                       roleState: roleState,
-                                      addonInstanceCode:
-                                          rolesBoardResourceState.addonInstanceCode,
+                                      addonInstanceCode: rolesBoardResourceState
+                                          .addonInstanceCode,
                                       activeStructureCode:
                                           widget.activeStructureCode,
                                       resourceId: widget.resourceId,
+                                      onUpdated: () {
+                                        widget.onUpdated.call();
+                                      },
                                     );
                                   },
                                 );
@@ -178,6 +209,7 @@ class _RoleResourceStateTile extends StatelessWidget {
     required this.roleState,
     required this.activeStructureCode,
     required this.resourceId,
+    required this.onUpdated,
   });
 
   final Role role;
@@ -185,6 +217,7 @@ class _RoleResourceStateTile extends StatelessWidget {
   final RoleResourceState roleState;
   final String activeStructureCode;
   final String resourceId;
+  final void Function() onUpdated;
 
   @override
   Widget build(BuildContext context) {
@@ -228,16 +261,24 @@ class _RoleResourceStateTile extends StatelessWidget {
                           rolesBoardUpdateResourceRoleProgressProvider(
                         activeStructureCode: activeStructureCode,
                         resourceId: resourceId,
+                        roleId: role.id,
                       );
-                      ref.listen(provider, (previous, next) {
-                        next.whenOrNull(
-                          error: (error, stackTrace) => showAppAlertDialog(
-                            context: context, 
-                            title: 'Error',
-                            description: '$error\n$stackTrace',
-                          ),
-                        );
-                      });
+                      ref.listen(
+                        provider,
+                        (previous, next) {
+                          next.whenOrNull(
+                            error: (error, stackTrace) => showAppAlertDialog(
+                              context: context,
+                              title: 'Error',
+                              description: '$error\n$stackTrace',
+                            ),
+                          );
+
+                          next.whenData(
+                            (data) => onUpdated.call(),
+                          );
+                        },
+                      );
 
                       final submitStatus = ref.watch(provider);
                       if (submitStatus.isLoading) {
@@ -269,8 +310,7 @@ class _RoleResourceStateTile extends StatelessWidget {
                                       payload: RolesBoardRoleProgressPayload(
                                         progress: progressValue,
                                         roleId: role.id,
-                                        addonInstanceCode:
-                                            addonInstanceCode,
+                                        addonInstanceCode: addonInstanceCode,
                                       ),
                                     );
                               }
@@ -299,46 +339,59 @@ class _RoleResourceStateTile extends StatelessWidget {
                           rolesBoardUpdateResourceRoleStatusProvider(
                         activeStructureCode: activeStructureCode,
                         resourceId: resourceId,
+                        roleId: role.id,
                       );
-                      final submitStatus = ref.watch(provider);
-                      return submitStatus.when(
-                        data: (_) {
-                          return ElevatedButton(
-                            onPressed: () {
-                              showInputLineDialog(
-                                context,
-                                keyboardType: TextInputType.text,
-                                title: 'Enter new status',
-                                hintText: 'New status',
-                              ).then(
-                                (value) {
-                                  if (value != null) {
-                                    ref.read(provider.notifier).submit(
-                                          payload: RolesBoardRoleStatusPayload(
-                                            status: value,
-                                            roleId: role.id,
-                                            addonInstanceCode:
-                                                addonInstanceCode,
-                                          ),
-                                        );
-                                  }
-                                },
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                Text(roleState.status.title),
-                                const SizedBox(
-                                  width: AppSpacing.sm,
-                                ),
-                                const Icon(Icons.edit),
-                              ],
+
+                      ref.listen(
+                        provider,
+                        (previous, next) {
+                          next.whenOrNull(
+                            error: (error, stackTrace) => showAppAlertDialog(
+                              context: context,
+                              title: 'Error',
+                              description: '$error\n$stackTrace',
                             ),
                           );
+
+                          next.whenData(
+                            (data) => onUpdated.call(),
+                          );
                         },
-                        loading: () => const CircularProgressIndicator(),
-                        error: (error, stackTrace) => AppErrorWidget(
-                          error.toString(),
+                      );
+
+                      final submitStatus = ref.watch(provider);
+                      if (submitStatus.isLoading) {
+                        return const AppCircularLoadingWidget();
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          showInputLineDialog(
+                            context,
+                            keyboardType: TextInputType.text,
+                            title: 'Enter new status',
+                            hintText: 'New status',
+                          ).then(
+                            (value) {
+                              if (value != null) {
+                                ref.read(provider.notifier).submit(
+                                      payload: RolesBoardRoleStatusPayload(
+                                        status: value,
+                                        roleId: role.id,
+                                        addonInstanceCode: addonInstanceCode,
+                                      ),
+                                    );
+                              }
+                            },
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Text(roleState.status.title),
+                            const SizedBox(
+                              width: AppSpacing.sm,
+                            ),
+                            const Icon(Icons.edit),
+                          ],
                         ),
                       );
                     },

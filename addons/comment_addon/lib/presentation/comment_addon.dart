@@ -6,11 +6,11 @@ import 'views.dart';
 final commentAddon = _CommentAddonImpl();
 
 final class _CommentAddonImpl extends CommentAddon {
-  
   @override
   Widget resourceDetailAddonView({
     required String activeStructureCode,
     required String resourceId,
+    required void Function() reload,
   }) {
     return CommentsPreview(
       activeStructureCode: activeStructureCode,

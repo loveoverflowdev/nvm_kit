@@ -164,10 +164,8 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
           value: _rolesBoardSelection?.roleIdList.contains(role.id) == true,
           onChanged: (value) {
             if (value == true) {
-              print('+++++++++++ Add ${_rolesBoardSelection?.toJson()}');
               _rolesBoardSelection?.roleIdList.add(role.id);
             } else {
-              print('+++++++++++ Remove ${_rolesBoardSelection?.toJson()}');
               _rolesBoardSelection?.roleIdList.remove(role.id);
             }
 
