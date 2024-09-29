@@ -15,15 +15,15 @@ import '../widgets.dart';
 class RolesBoardResourceStateDetailView extends ConsumerStatefulWidget {
   final String activeStructureCode;
   final String resourceId;
-  final RolesBoardResourceState rolesBoardResourceState;
+  final String addonInstanceCode;
   final void Function() onUpdated;
 
   const RolesBoardResourceStateDetailView({
     super.key,
     required this.activeStructureCode,
     required this.resourceId,
-    required this.rolesBoardResourceState,
     required this.onUpdated,
+    required this.addonInstanceCode,
   });
 
   @override
@@ -43,6 +43,17 @@ class _RolesBoardResourceStateDetailViewState
 
   @override
   Widget build(BuildContext context) {
+    final rolesBoardResourceStateResult = ref.watch(
+      rolesBoardResourceStateNotifierProvider(
+        resourceId: widget.resourceId,
+        addonInstanceCode: widget.addonInstanceCode,
+      ),
+    );
+
+    if (rolesBoardResourceStateResult.value == null) {
+      return const AppCircularLoadingWidget();
+    }
+    final rolesBoardResourceState = rolesBoardResourceStateResult.value!;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Progresses & Roles'),
@@ -74,11 +85,11 @@ class _RolesBoardResourceStateDetailViewState
                     _Label(
                       label: 'Average progress',
                       value:
-                          '${widget.rolesBoardResourceState.averageProgress.round()} %',
+                          '${rolesBoardResourceState.averageProgress.round()} %',
                     ),
                     _Label(
                       label: 'Final status',
-                      value: widget.rolesBoardResourceState.finalStatus.label,
+                      value: rolesBoardResourceState.finalStatus.label,
                     ),
                   ],
                 ),
@@ -121,30 +132,13 @@ class _RolesBoardResourceStateDetailViewState
                                 final index = rolesBoardList.indexWhere(
                                   (e) =>
                                       e.id ==
-                                      widget
-                                          .rolesBoardResourceState.boardRoleId,
+                                      rolesBoardResourceState.boardRoleId,
                                 );
 
                                 if (index == -1) {
                                   return const SizedBox.shrink();
                                 }
 
-                                final rolesBoardResourceStateResult = ref.watch(
-                                  rolesBoardResourceStateNotifierProvider(
-                                    resourceId: widget.resourceId,
-                                    addonInstanceCode: widget
-                                        .rolesBoardResourceState
-                                        .addonInstanceCode,
-                                  ),
-                                );
-
-                                if (rolesBoardResourceStateResult.value ==
-                                    null) {
-                                  return const AppCircularLoadingWidget();
-                                }
-
-                                final rolesBoardResourceState =
-                                    rolesBoardResourceStateResult.value!;
                                 final rolesBoard = rolesBoardList[index];
                                 return ListView.separated(
                                   shrinkWrap: true,

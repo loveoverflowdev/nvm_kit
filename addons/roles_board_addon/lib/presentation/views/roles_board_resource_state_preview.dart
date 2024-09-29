@@ -59,7 +59,8 @@ class _RolesBoardResourceStatePreviewState
           showAppModelBottomSheet(
             context: context,
             builder: (context) => RolesBoardResourceStateDetailView(
-              rolesBoardResourceState: widget.rolesBoardResourceState,
+              addonInstanceCode:
+                  widget.rolesBoardResourceState.addonInstanceCode,
               activeStructureCode: widget.activeStructureCode,
               resourceId: widget.resourceId,
               onUpdated: widget.reloadResourceState,
