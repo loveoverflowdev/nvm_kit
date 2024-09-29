@@ -81,7 +81,7 @@ class RoleStateResponse {
 
 enum ProgressStatusResponse {
   notStarted('NOT_STARTED'),
-  inProgress('IN_PROGRESS'),
+  processing('PROCESSING'),
   completed('COMPLETED');
 
   final String raw;

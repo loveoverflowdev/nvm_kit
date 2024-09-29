@@ -1,20 +1,17 @@
+import 'progress_status.dart';
+
 final class RolesBoardRoleStatusPayload {
   final String roleId;
   final String addonInstanceCode;
-  final String status;
+  final ProgressStatus status;
 
   RolesBoardRoleStatusPayload({
     required this.roleId,
     required this.addonInstanceCode,
     required this.status,
   });
-
-  Map<String, dynamic> toJson() => {
-        "widgetRoleId": roleId,
-        "featureFieldName": addonInstanceCode,
-        "status": status,
-      };
 }
+
 
 /*
 {

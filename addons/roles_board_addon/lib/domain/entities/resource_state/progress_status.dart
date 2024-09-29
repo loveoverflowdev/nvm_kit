@@ -1,14 +1,23 @@
 enum ProgressStatus {
   notStarted,
-  inProgress,
-  completed;
+  processing,
+  completed,
+  ;
 
-  String get title {
+  factory ProgressStatus.fromName(String name) {
+    for (final status in values) {
+      if (status.name == name) {
+        return status;
+      }
+    }
+    throw Exception('Unknown status: $name');
+  }
+
+  String get label {
     return switch (this) {
       ProgressStatus.notStarted => 'Not started',
-      ProgressStatus.inProgress => 'In progress',
+      ProgressStatus.processing => 'Processing',
       ProgressStatus.completed => 'Completed',
     };
   }
-
 }

@@ -2,7 +2,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/domain.dart';
-import 'package:roles_board_addon/presentation/providers/roles_board_resource_state_notifier_provider.dart';
 
 import '../providers.dart';
 import 'roles_board_resource_state_detail_view.dart';
@@ -46,10 +45,6 @@ class _RolesBoardResourceStatePreviewState
           .setState(
             widget.rolesBoardResourceState,
           );
-      print('################ initState_1');
-      print(widget.resourceId);
-      print(widget.rolesBoardResourceState.addonInstanceCode);
-      print('################ initState_1');
     });
   }
 
@@ -91,7 +86,7 @@ class _RolesBoardResourceStatePreviewState
               ),
               _Label(
                 label: 'Final status',
-                value: widget.rolesBoardResourceState.finalStatus.title,
+                value: widget.rolesBoardResourceState.finalStatus.label,
               ),
               const SizedBox(
                 height: AppSpacing.md,
@@ -128,7 +123,7 @@ class _RolesBoardResourceStatePreviewState
                                   role.shortName,
                                 ),
                                 Text(
-                                  roleState.status.title,
+                                  roleState.status.label,
                                   style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.secondary,
@@ -163,6 +158,7 @@ class _Label extends StatelessWidget {
   final String value;
 
   const _Label({
+    // ignore: unused_element
     super.key,
     required this.label,
     required this.value,

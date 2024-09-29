@@ -46,7 +46,15 @@ final class RemoteRolesBoardResourceStateRepository
         payload: api.RolesBoardRoleStatusPayload(
           roleId: payload.roleId,
           addonInstanceCode: payload.addonInstanceCode,
-          status: payload.status,
+          status: () {
+            return switch (payload.status) {
+              ProgressStatus.notStarted =>
+                api.ProgressStatusResponse.notStarted,
+              ProgressStatus.processing =>
+                api.ProgressStatusResponse.processing,
+              ProgressStatus.completed => api.ProgressStatusResponse.completed,
+            };
+          }(),
         ),
       ),
       (error, stackTrace) => RolesBoardFailure.fromError(

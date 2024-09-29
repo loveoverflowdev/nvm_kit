@@ -1,7 +1,9 @@
+import '../../../resource_api_client.dart';
+
 final class RolesBoardRoleStatusPayload {
   final String roleId;
   final String addonInstanceCode;
-  final String status;
+  final ProgressStatusResponse status;
 
   RolesBoardRoleStatusPayload({
     required this.roleId,
@@ -12,7 +14,7 @@ final class RolesBoardRoleStatusPayload {
   Map<String, dynamic> toJson() => {
         "widgetRoleId": roleId,
         "featureFieldName": addonInstanceCode,
-        "status": status,
+        "status": status.toString(),
       };
 }
 

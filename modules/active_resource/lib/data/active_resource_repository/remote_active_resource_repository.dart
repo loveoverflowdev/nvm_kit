@@ -200,7 +200,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
   ProgressStatus _mapProgressStatus(api.ProgressStatusResponse response) {
     return switch (response) {
       api.ProgressStatusResponse.notStarted => ProgressStatus.notStarted,
-      api.ProgressStatusResponse.inProgress => ProgressStatus.inProgress,
+      api.ProgressStatusResponse.processing => ProgressStatus.processing,
       api.ProgressStatusResponse.completed => ProgressStatus.completed,
     };
   }

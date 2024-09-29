@@ -78,7 +78,7 @@ class _RolesBoardResourceStateDetailViewState
                     ),
                     _Label(
                       label: 'Final status',
-                      value: widget.rolesBoardResourceState.finalStatus.title,
+                      value: widget.rolesBoardResourceState.finalStatus.label,
                     ),
                   ],
                 ),
@@ -137,12 +137,6 @@ class _RolesBoardResourceStateDetailViewState
                                         .addonInstanceCode,
                                   ),
                                 );
-
-                                print('################ initState_2');
-                                print(widget.resourceId);
-                                print(widget
-                                    .rolesBoardResourceState.addonInstanceCode);
-                                print('################ initState_2');
 
                                 if (rolesBoardResourceStateResult.value ==
                                     null) {
@@ -239,7 +233,7 @@ class _RoleResourceStateTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    roleState.status.title,
+                    roleState.status.label,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w600,
@@ -365,17 +359,29 @@ class _RoleResourceStateTile extends StatelessWidget {
                       }
                       return ElevatedButton(
                         onPressed: () {
-                          showInputLineDialog(
+                          final initialRawStatus = roleState.status.name;
+
+                          showDropdownDialog(
                             context,
-                            keyboardType: TextInputType.text,
-                            title: 'Enter new status',
-                            hintText: 'New status',
+                            title: 'Select a status',
+                            initialOption: initialRawStatus,
+                            options: [
+                              for (final status in ProgressStatus.values)
+                                status.name
+                            ],
+                            optionLabelBuilder: (String name) {
+                              return ProgressStatus.fromName(name).label;
+                            },
                           ).then(
-                            (value) {
-                              if (value != null) {
+                            (rawStatus) {
+                              if (rawStatus != null &&
+                                  rawStatus != initialRawStatus) {
+                                final status =
+                                    ProgressStatus.fromName(rawStatus);
+
                                 ref.read(provider.notifier).submit(
                                       payload: RolesBoardRoleStatusPayload(
-                                        status: value,
+                                        status: status,
                                         roleId: role.id,
                                         addonInstanceCode: addonInstanceCode,
                                       ),
@@ -386,7 +392,7 @@ class _RoleResourceStateTile extends StatelessWidget {
                         },
                         child: Row(
                           children: [
-                            Text(roleState.status.title),
+                            Text(roleState.status.label),
                             const SizedBox(
                               width: AppSpacing.sm,
                             ),
