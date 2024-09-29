@@ -47,12 +47,6 @@ class _SingleResourceSelectionInputFieldState
     _selectedResourceTitle = null;
     _textEditingController = TextEditingController();
 
-    print(
-        '############################## _SingleResourceSelectionInputFieldState');
-    print('+++++++ ${widget.initialResourceId}');
-    print(
-        '############################## _SingleResourceSelectionInputFieldState');
-
     if (widget.initialResourceId != null) {
       _activeResourceByStructureCodeProvider =
           activeResourceByStructureCodeProvider(

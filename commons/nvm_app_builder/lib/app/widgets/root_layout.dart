@@ -4,15 +4,16 @@ import 'package:go_router/go_router.dart';
 class RootLayout extends StatelessWidget {
   const RootLayout({
     super.key,
-    required this.navigationIndex,
-    required this.onDestination,
+    required this.navigationShell,
+    required this.children,
     required this.destinations,
-    required this.child,
   });
 
-  final Widget child;
-  final int navigationIndex;
-  final ValueChanged<int> onDestination;
+  /// The navigation shell and container for the branch Navigators.
+  final StatefulNavigationShell navigationShell;
+
+  /// Body, i.e. the container for the branch Navigators.
+  final List<Widget> children;
   final List<RootDestination> destinations;
 
   @override
@@ -42,14 +43,18 @@ class RootLayout extends StatelessWidget {
                   destinations: destinations
                       .map((d) => d.toNavigationRailDestination())
                       .toList(),
-                  selectedIndex: navigationIndex,
+                  selectedIndex: navigationShell.currentIndex,
                   labelType: NavigationRailLabelType.selected,
-                  onDestinationSelected: onDestination,
+                  onDestinationSelected: navigationShell.goBranch,
                 ),
               )
             ],
           ),
-          Expanded(child: Scaffold(body: child)),
+          Expanded(
+            child: Scaffold(
+              body: children[navigationShell.currentIndex],
+            ),
+          ),
         ],
       ),
     );
@@ -57,39 +62,12 @@ class RootLayout extends StatelessWidget {
 
   Widget buildMobile(BuildContext context) {
     return Scaffold(
-      // drawer: Drawer(
-      //   child: Column(
-      //     children: [
-      //       const DrawerHeader(child: Text('NVM')),
-      //       Expanded(
-      //         child: ListView.builder(
-      //           itemCount: destinations.length,
-      //           itemBuilder: (context, index) {
-      //             final destination = destinations[index];
-      //             final selected = index == navigationIndex;
-      //             return ListTile(
-      //               title: Text(destination.label),
-      //               leading: Icon(selected
-      //                   ? destination.selectedIcon
-      //                   : destination.unselectedIcon),
-      //               selected: selected,
-      //               onTap: () {
-      //                 onDestination(index);
-      //                 Navigator.pop(context);
-      //               },
-      //             );
-      //           },
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      body: child,
+      body: children[navigationShell.currentIndex],
       bottomNavigationBar: NavigationBar(
         destinations:
             destinations.map((e) => e.toNavigationDestination()).toList(),
-        selectedIndex: navigationIndex,
-        onDestinationSelected: onDestination,
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: navigationShell.goBranch,
       ),
     );
   }

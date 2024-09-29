@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nvm_app_builder/app.dart';
@@ -36,11 +37,10 @@ final class RouterBuilder {
           builder: (context, state) => const WorkspacesPage(),
           redirect: (context, state) async {
             if (await navigationGuard.didSelectWorkspace) {
-              return '/';
+              return '/projects';
             }
             return null;
           },
-          routes: [],
         ),
         _homeRoutes(app),
       ],
@@ -48,17 +48,35 @@ final class RouterBuilder {
   }
 
   StatefulShellRoute _homeRoutes(AppComponent app) {
-    return StatefulShellRoute.indexedStack(
-      builder: (context, state, child) {
-        int index = 0;
-        final location = state.matchedLocation;
-        if (location.startsWith('/projects')) {
-          index = 0;
-        } else if (location.startsWith('/notifications')) {
-          index = 1;
-        } else if (location.startsWith('/preferences')) {
-          index = 2;
-        }
+    return StatefulShellRoute(
+      branches: [
+        _projectRoutes(app),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/notifications',
+              builder: (_, state) => const NotificationsPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/preferences',
+              builder: (_, state) => const PreferencesPage(),
+            ),
+          ],
+        ),
+      ],
+      builder: (BuildContext context, GoRouterState state,
+          StatefulNavigationShell navigationShell) {
+        return navigationShell;
+      },
+      navigatorContainerBuilder: (
+        BuildContext context,
+        StatefulNavigationShell navigationShell,
+        List<Widget> children,
+      ) {
         return RootLayout(
           destinations: const [
             RootDestination(
@@ -77,42 +95,10 @@ final class RouterBuilder {
               unselectedIcon: Icons.settings_outlined,
             ),
           ],
-          navigationIndex: index,
-          onDestination: (index) {
-            switch (index) {
-              case 0:
-                context.go('/');
-                break;
-              case 1:
-                context.go('/notifications');
-                break;
-              case 2:
-                context.go('/preferences');
-                break;
-            }
-          },
-          child: child,
+          navigationShell: navigationShell,
+          children: children,
         );
       },
-      branches: [
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/preferences',
-              builder: (_, state) => const PreferencesPage(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/notifications',
-              builder: (_, state) => const NotificationsPage(),
-            ),
-          ],
-        ),
-        _projectRoutes(app)
-      ],
     );
   }
 
@@ -120,53 +106,51 @@ final class RouterBuilder {
     return StatefulShellBranch(
       routes: [
         GoRoute(
-          path: '/',
+          path: '/projects',
           builder: (_, state) => const ProjectsPage(),
           routes: [
             GoRoute(
-              path: 'projects/:project_id',
+              path: ':project_id',
               redirect: (context, state) {
-                final location = state.fullPath ?? '';
-                if (!location.contains('@')) {
-                  final projectId = state.pathParameters['project_id']!;
+                final projectId = state.pathParameters['project_id']!;
+                if (state.fullPath?.endsWith(':project_id') == true) {
                   final path =
-                      '/projects/$projectId/@${app.pages.first.contextName}';
+                      '/projects/$projectId/${app.collectionTypePages.first.contextName}';
                   return path;
                 }
+
                 return null;
               },
               routes: [
                 StatefulShellRoute.indexedStack(
+                  restorationScopeId: 'root',
                   builder: (context, state, child) {
                     int index = 0;
-                    final location = state.fullPath ?? '';
+                    final location = state.matchedLocation;
                     for (int i = 0; i < app.collectionTypePages.length; i++) {
-                      if (location.contains('@${app.pages[i].contextName}')) {
+                      if (location.contains(app.pages[i].contextName)) {
                         index = i;
                         break;
                       }
                     }
                     final String projectId =
                         state.pathParameters['project_id']!;
-                    final String? resourceId =
-                        (state.extra as Map?)?['resource_id'];
+
                     final destinations = [
                       for (final page in app.collectionTypePages)
                         TabBarDestination(
                           label: page.title ?? '',
                         ),
                     ];
-                    return TabBarLayout(
+
+                    return ProjectTabBarLayout(
+                      projectId: projectId,
                       navigationIndex: index,
                       onDestination: (int value) {
                         final page = app.collectionTypePages[value];
-                        final path =
-                            '/projects/$projectId/@${page.contextName}';
+                        final path = '/projects/$projectId/${page.contextName}';
                         context.go(
                           path,
-                          extra: {
-                            'resource_id': resourceId,
-                          },
                         );
                       },
                       destinations: destinations,
@@ -174,20 +158,18 @@ final class RouterBuilder {
                     );
                   },
                   branches: [
-                    for (final page in app.pages)
+                    for (final page in app.collectionTypePages)
                       StatefulShellBranch(
                         routes: [
                           GoRoute(
-                            name: '@${page.contextName}',
-                            path: '@${page.contextName}',
+                            path: page.contextName,
                             builder: (context, state) {
                               final String projectId =
                                   state.pathParameters['project_id']!;
-                              return active_resource.ActiveResourcePage(
+                              return active_resource
+                                  .ActiveResourceCollectionPage(
                                 projectId: projectId,
                                 pageComponent: page,
-                                resourceId:
-                                    (state.extra as Map?)?['resource_id'],
                                 setState: (state.extra as Map?)?['set_state'],
                                 onRouteDetailView: ({
                                   required activeResourceId,
@@ -197,10 +179,8 @@ final class RouterBuilder {
                                   final String projectId =
                                       state.pathParameters['project_id']!;
                                   final path =
-                                      '/projects/$projectId/@$contextName';
-                                  context.push(path, extra: {
-                                    'resource_id': activeResourceId,
-                                  });
+                                      '/projects/$projectId/$contextName/$activeResourceId';
+                                  context.push(path);
                                 },
                                 onRouteCreateForm: ({
                                   required contextName,
@@ -209,20 +189,8 @@ final class RouterBuilder {
                                   final String projectId =
                                       state.pathParameters['project_id']!;
                                   final path =
-                                      '/projects/$projectId/@$contextName';
+                                      '/projects/$projectId/$contextName';
                                   context.push(path);
-                                },
-                                onRouteListView: ({
-                                  required contextName,
-                                }) {
-                                  if (contextName == null) return;
-                                  final String projectId =
-                                      state.pathParameters['project_id']!;
-                                  final path =
-                                      '/projects/$projectId/@$contextName';
-                                  context.go(path, extra: {
-                                    'set_state': true,
-                                  });
                                 },
                                 onRouteUpdateForm: ({
                                   required activeResourceId,
@@ -232,23 +200,129 @@ final class RouterBuilder {
                                   final String projectId =
                                       state.pathParameters['project_id']!;
                                   final path =
-                                      '/projects/$projectId/@$contextName';
-                                  context.push(path, extra: {
-                                    'resource_id': activeResourceId,
-                                  });
+                                      '/projects/$projectId/$contextName/$activeResourceId';
+                                  context.push(path);
                                 },
                               );
                             },
                           ),
                         ],
                       ),
+
+                    //
                   ],
                 ),
+                for (final page in app.createFormTypePages)
+                  GoRoute(
+                    path: page.contextName,
+                    builder: (context, state) {
+                      final String projectId =
+                          state.pathParameters['project_id']!;
+                      return active_resource.ActiveResourceCreateFormPage(
+                        projectId: projectId,
+                        pageComponent: page,
+                        onRouteListView: ({
+                          required contextName,
+                        }) {
+                          if (contextName == null) return;
+                          final String projectId =
+                              state.pathParameters['project_id']!;
+                          final path = '/projects/$projectId/$contextName';
+                          context.go(path, extra: {
+                            'set_state': true,
+                          });
+                        },
+                      );
+                    },
+                  ),
+                //
+                for (final page in app.updateFormTypePages)
+                  GoRoute(
+                    path: '${page.contextName}/:resource_id',
+                    builder: (context, state) {
+                      final String projectId =
+                          state.pathParameters['project_id']!;
+                      final String resourceId =
+                          state.pathParameters['resource_id']!;
+                      return active_resource.ActiveResourceUpdateFormPage(
+                        projectId: projectId,
+                        pageComponent: page,
+                        resourceId: resourceId,
+                        onRouteListView: ({
+                          required contextName,
+                        }) {
+                          if (contextName == null) return;
+                          final String projectId =
+                              state.pathParameters['project_id']!;
+                          final path = '/projects/$projectId/$contextName';
+                          context.go(path, extra: {
+                            'set_state': true,
+                          });
+                        },
+                      );
+                    },
+                  ),
+                for (final page in app.detailTypePages)
+                  GoRoute(
+                    path: '${page.contextName}/:resource_id',
+                    builder: (context, state) {
+                      final String resourceId =
+                          state.pathParameters['resource_id']!;
+                      return active_resource.ActiveResourceDetailPage(
+                        pageComponent: page,
+                        resourceId: resourceId,
+                        onRouteUpdateForm: ({
+                          required activeResourceId,
+                          required contextName,
+                        }) {
+                          if (contextName == null) return;
+                          final String projectId =
+                              state.pathParameters['project_id']!;
+                          final path =
+                              '/projects/$projectId/$contextName/$activeResourceId';
+                          context.push(path);
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
           ],
         ),
       ],
+    );
+  }
+}
+
+class ScaffoldWithNavBar extends StatelessWidget {
+  /// Constructs an [ScaffoldWithNavBar].
+  const ScaffoldWithNavBar({
+    required this.navigationShell,
+    required this.children,
+    Key? key,
+  }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
+
+  /// The navigation shell and container for the branch Navigators.
+  final StatefulNavigationShell navigationShell;
+
+  /// Body, i.e. the container for the branch Navigators.
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Section A'),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Section B'),
+          BottomNavigationBarItem(icon: Icon(Icons.tab), label: 'Section C'),
+        ],
+        currentIndex: navigationShell.currentIndex,
+        onTap: (int tappedIndex) => navigationShell.goBranch(tappedIndex),
+      ),
+      tabBuilder: (BuildContext context, int index) {
+        return children[index];
+      },
     );
   }
 }

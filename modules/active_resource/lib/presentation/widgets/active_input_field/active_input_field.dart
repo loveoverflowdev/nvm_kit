@@ -28,7 +28,9 @@ final class ActiveInputField extends StatelessWidget {
     required this.specification,
     required this.onSelected,
   }) {
-    this.initialValue = specification.dataType.isUndefinedValue(initialValue) ? null : initialValue;
+    this.initialValue = specification.dataType.isUndefinedValue(initialValue)
+        ? null
+        : initialValue;
   }
 
   @override

@@ -21,7 +21,7 @@ class WorkspacesPage extends StatelessWidget {
             (previous, current) {
               current.when(
                 data: (_) {
-                  context.go('/');
+                  context.go('/projects');
                 },
                 error: (error, _) {
                   showScaffoldMessage(context, error.toString());

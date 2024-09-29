@@ -90,7 +90,6 @@ class _ActiveResourceCreateFormViewState
                 Padding(
                   padding: const EdgeInsets.only(top: AppSpacing.md),
                   child: ActiveInputField(
-                    initialValue: specification.key,
                     specification: specification,
                     onSelected: (value) {
                       _form.setAttribute(key: specification.key, value: value);

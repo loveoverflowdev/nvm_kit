@@ -6,9 +6,8 @@ Make late final for all response properties
 
 Global error message for button
 
-Dynamic height for active field
-
 Remember state in select bottom sheet
 
-remember push state in go router
+Pop back when error;
+
 

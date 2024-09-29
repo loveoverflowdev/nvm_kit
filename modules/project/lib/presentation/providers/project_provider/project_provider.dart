@@ -9,11 +9,7 @@ Future<Project> project(
   ProjectRef ref, {
   required String projectId,
 }) {
-  return ref
-      .read(projectRepositoryProvider)
-      .getProjectId( projectId)
-      .run()
-      .then(
+  return ref.read(projectRepositoryProvider).getProjectId(projectId).run().then(
     (project) {
       return project.fold(
         (failure) => throw failure,
