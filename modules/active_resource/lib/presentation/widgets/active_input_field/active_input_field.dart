@@ -145,6 +145,7 @@ final class ActiveInputField extends StatelessWidget {
           labeltext: specification.title,
           titleKey: titleKey,
           subtitleKey: subtitleKey,
+          onChanged: onSelected,
         );
       },
       multiUserSelection: (String titleKey, String? subtitleKey) {

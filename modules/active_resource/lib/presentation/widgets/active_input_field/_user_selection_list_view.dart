@@ -7,29 +7,29 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class UserSelectionListView extends ConsumerStatefulWidget {
   const UserSelectionListView({
     super.key,
-    required this.projectId,
     required this.titleKey,
     required this.subtitleKey,
-
     required this.onResourceSelected,
-    this.initialResourceId,
+    this.initialUserId,
   });
 
-  final String projectId;
   final String titleKey;
   final String? subtitleKey;
   //
-  final String? initialResourceId;
+  final String? initialUserId;
 
   /// return selected resource id
-  final void Function(String) onResourceSelected;
+  final void Function({
+    required String userId,
+    required String resourceTitle,
+  }) onResourceSelected;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UserSelectionListViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserSelectionListViewState();
 }
 
 class _UserSelectionListViewState extends ConsumerState<UserSelectionListView> {
-
   String _parseRequestField() {
     return RequestField.children([
       RequestField.name('id'),
@@ -45,8 +45,7 @@ class _UserSelectionListViewState extends ConsumerState<UserSelectionListView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(
-            userListProvider
-            .notifier,
+            userListProvider.notifier,
           )
           .loadUserList(
             requestField: _parseRequestField(),
@@ -60,24 +59,26 @@ class _UserSelectionListViewState extends ConsumerState<UserSelectionListView> {
     return userList.when(
       data: (data) {
         return ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            final user = data[index];
-            return ListTile(
-              title: Text(user.fullName),
-              subtitle: Text(user.username),
-              onTap: () {
-                widget.onResourceSelected(user.id);
-              },
-            );
-          }
-        );
-      }, 
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final user = data[index];
+              return ListTile(
+                title: Text(user.fullName),
+                subtitle: Text(user.username),
+                onTap: () {
+                  widget.onResourceSelected(
+                    userId: user.id,
+                    resourceTitle: user.fullName,
+                  );
+                },
+              );
+            });
+      },
       error: (error, stackTrace) => AppErrorWidget(
         error,
         stackTrace: stackTrace,
-      ), 
-      loading: () => AppCircularLoadingWidget(),
+      ),
+      loading: () => const AppCircularLoadingWidget(),
     );
   }
 }
