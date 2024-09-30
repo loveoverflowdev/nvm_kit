@@ -70,11 +70,6 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   subtitleKey: 'i_want',
                   activeStructureCode: 'user_stories',
                 ),
-                ActiveInputFieldComponent.usersSelection(
-                  fieldCode: 'task_user_story',
-                  titleKey: 'as_a',
-                  subtitleKey: 'i_want',
-                ),
               ],
             ),
           ),

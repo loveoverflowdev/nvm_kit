@@ -50,6 +50,11 @@ final class _RolesBoardAddonImpl extends RolesBoardAddon {
       icon: const Icon(Icons.assignment_ind),
     );
   }
+
+  @override
+  RolesBoardResourceState getResourceState() {
+    return _resourceState;
+  }
 }
 
 /*

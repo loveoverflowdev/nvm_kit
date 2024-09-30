@@ -19,6 +19,7 @@ class RolesBoardFailure with _$RolesBoardFailure implements AppFailure {
       );
 
   RolesBoardFailure._();
+
   factory RolesBoardFailure.badRequest({
     required String message,
     StackTrace? stackTrace,

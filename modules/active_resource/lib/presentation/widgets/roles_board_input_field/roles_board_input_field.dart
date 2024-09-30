@@ -6,12 +6,14 @@ import 'package:roles_board_addon/domain.dart';
 import '_roles_board_list_view.dart';
 
 class RolesBoardInputField extends StatefulWidget {
+  final String label;
   final RolesBoardResourceState? currentRolesBoardResourceState;
   final void Function(RolesBoardSelection?)? onSelected;
 
   const RolesBoardInputField({
     super.key,
     required this.onSelected,
+    required this.label,
     this.currentRolesBoardResourceState,
   });
 
@@ -31,15 +33,24 @@ class _RolesBoardInputFieldState extends State<RolesBoardInputField> {
 
     if (resourceState != null) {
       _rolesBoardSelection = RolesBoardSelection(
-        rolesBoardId: resourceState.boardRoleId, 
-        roleIdList: resourceState.roleStates.map(
-          (role) => role.roleId,
-        ).toList(),
+        rolesBoardId: resourceState.boardRoleId,
+        roleIdList: resourceState.roleStates
+            .map(
+              (role) => role.roleId,
+            )
+            .toList(),
       );
+
+      _textEditingController.text =
+          _getLabelBySelection(_rolesBoardSelection) ?? '';
     } else {
       _rolesBoardSelection = null;
     }
-    
+  }
+
+  String? _getLabelBySelection(RolesBoardSelection? rolesBoardSelection) {
+    if (rolesBoardSelection == null) return null;
+    return '${rolesBoardSelection.roleIdList.length} roles';
   }
 
   @override
@@ -57,12 +68,15 @@ class _RolesBoardInputFieldState extends State<RolesBoardInputField> {
                 },
                 icon: const Icon(Icons.clear),
               ),
-              title: const Text('Select a roles board'),
+              title: Text(
+                widget.label,
+              ),
             ),
             body: RolesBoardListView(
               initialSelection: _rolesBoardSelection,
-              onSubmited: (rolesBoardSeletion, String? boardName) {
-                _textEditingController.text = boardName ?? '';
+              onSubmited: (rolesBoardSeletion) {
+                _textEditingController.text =
+                    _getLabelBySelection(rolesBoardSeletion) ?? '';
                 _rolesBoardSelection = rolesBoardSeletion;
                 //
                 widget.onSelected?.call(rolesBoardSeletion);
@@ -75,7 +89,7 @@ class _RolesBoardInputFieldState extends State<RolesBoardInputField> {
         child: TextField(
           controller: _textEditingController,
           decoration: InputDecoration(
-            labelText: 'Select a roles board',
+            labelText: widget.label,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.md),
             ),

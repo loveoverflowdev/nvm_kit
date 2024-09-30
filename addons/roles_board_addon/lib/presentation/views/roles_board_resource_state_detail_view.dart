@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/domain.dart';
+import 'package:roles_board_addon/presentation/providers/user_providers/user_by_id_provider.dart';
+import 'user_selection_list_view.dart';
 
 import '../providers.dart'
     show
         rolesBoardListProvider,
         rolesBoardResourceStateNotifierProvider,
         rolesBoardUpdateResourceRoleProgressProvider,
-        rolesBoardUpdateResourceRoleStatusProvider;
+        rolesBoardUpdateResourceRoleStatusProvider,
+        rolesBoardUpdateResourceRoleAssigneeProvider,
+        userListProvider;
 import '../widgets.dart';
 
 class RolesBoardResourceStateDetailView extends ConsumerStatefulWidget {
@@ -38,7 +42,10 @@ class _RolesBoardResourceStateDetailViewState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(rolesBoardListProvider.notifier).loadRolesBoardList();
+      ref.read(userListProvider.notifier).loadUserList();
     });
+
+    //
   }
 
   @override
@@ -53,7 +60,9 @@ class _RolesBoardResourceStateDetailViewState
     if (rolesBoardResourceStateResult.value == null) {
       return const AppCircularLoadingWidget();
     }
+
     final rolesBoardResourceState = rolesBoardResourceStateResult.value!;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Progresses & Roles'),
@@ -214,7 +223,7 @@ class _RoleResourceStateTile extends StatelessWidget {
         horizontal: AppSpacing.md,
       ),
       child: SizedBox(
-        height: 100,
+        height: 140,
         child: Row(
           children: [
             Expanded(
@@ -387,6 +396,99 @@ class _RoleResourceStateTile extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(roleState.status.label),
+                            const SizedBox(
+                              width: AppSpacing.sm,
+                            ),
+                            const Icon(Icons.edit),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                //
+                Flexible(
+                  child: Consumer(
+                    builder: (_, WidgetRef ref, __) {
+                      final provider =
+                          rolesBoardUpdateResourceRoleAssigneeProvider(
+                        activeStructureCode: activeStructureCode,
+                        resourceId: resourceId,
+                        roleId: role.id,
+                      );
+
+                      ref.listen(
+                        provider,
+                        (previous, next) {
+                          next.whenOrNull(
+                            error: (error, stackTrace) => showAppAlertDialog(
+                              context: context,
+                              title: 'Error',
+                              description: '$error\n$stackTrace',
+                            ),
+                          );
+
+                          next.whenData(
+                            (data) => onUpdated.call(),
+                          );
+                        },
+                      );
+
+                      final submitStatus = ref.watch(provider);
+                      if (submitStatus.isLoading) {
+                        return const AppCircularLoadingWidget();
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          showAppModelBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return UserSelectionListView(
+                                initialUserId: roleState.assignedToUserId,
+                                onResourceSelected: ({
+                                  required userId,
+                                }) {
+                                  ref.read(provider.notifier).submit(
+                                        payload: RolesBoardRoleAssigneePayload(
+                                          roleId: role.id,
+                                          addonInstanceCode: addonInstanceCode,
+                                          userId: userId,
+                                        ),
+                                      );
+                                },
+                              );
+                            },
+                          );
+                          // final initialRawStatus = roleState.status.name;
+                        },
+                        child: Row(
+                          children: [
+                            if (roleState.isUserAssigned)
+                              Consumer(
+                                builder: (_, WidgetRef ref, __) {
+                                  return ref
+                                      .watch(userByIdProvider(
+                                        id: roleState.assignedToUserId,
+                                      ))
+                                      .when(
+                                        data: (user) {
+                                          return Text(
+                                            user?.fullName ?? '',
+                                          );
+                                        },
+                                        error: (error, stackTrace) =>
+                                            AppErrorWidget(
+                                          error,
+                                          stackTrace: stackTrace,
+                                        ),
+                                        loading: () =>
+                                            const AppCircularLoadingWidget(),
+                                      );
+                                },
+                              )
+                            else
+                              const Text('Unassigned'),
+                            //
                             const SizedBox(
                               width: AppSpacing.sm,
                             ),

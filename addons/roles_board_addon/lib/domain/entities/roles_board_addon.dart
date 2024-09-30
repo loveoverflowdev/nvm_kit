@@ -1,4 +1,5 @@
 import 'package:addon/addon.dart';
+import 'package:roles_board_addon/domain.dart' show RolesBoardResourceState;
 
 abstract class RolesBoardAddon implements Addon {
   @override
@@ -12,4 +13,6 @@ abstract class RolesBoardAddon implements Addon {
 
   @override
   bool get isRequiredInNewResourceForm => false;
+
+  RolesBoardResourceState getResourceState();
 }

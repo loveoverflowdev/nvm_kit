@@ -3,8 +3,10 @@ import 'package:alchemist_query/alchemist_query.dart' show RequestField;
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roles_board_addon/domain.dart';
+import 'package:addon/addon.dart';
+
 import 'package:template_parser/template_parser.dart' as template;
-import 'package:template_parser/template_parser.dart';
 import '../providers.dart';
 import '../widgets.dart';
 
@@ -36,7 +38,7 @@ class _ActiveResourceUpdateFormViewState
   late final ActiveResourceByStructureCodeProvider
       _activeResourceByStructureCodeProvider;
 
-  List<ActiveInputFieldComponent> get _formInputFields =>
+  List<template.ActiveInputFieldComponent> get _formInputFields =>
       widget.formComponent.inputFields;
 
   @override
@@ -124,6 +126,16 @@ class _ActiveResourceUpdateFormViewState
                 inputFieldComponents: _formInputFields,
                 activeFieldStructures: activeStructure.fields,
               );
+
+              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Trick, tell back end to not require liveAttr when update
+              for (final specification in activeInputFieldSpecifications) {
+                _form.setAttribute(
+                  key: specification.key,
+                  value:
+                      initialActiveResource?.liveAttributes[specification.key],
+                );
+              }
+
               return ListView(
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.lg,
@@ -141,7 +153,9 @@ class _ActiveResourceUpdateFormViewState
                         specification: specification,
                         onSelected: (value) {
                           _form.setAttribute(
-                              key: specification.key, value: value);
+                            key: specification.key,
+                            value: value,
+                          );
                         },
                       ),
                     ),
@@ -151,7 +165,10 @@ class _ActiveResourceUpdateFormViewState
                     height: AppSpacing.lg,
                   ),
 
-                  ..._buildAddonInputFields(activeStructure),
+                  ..._buildAddonInputFields(
+                    activeStructure: activeStructure,
+                    addons: initialActiveResource?.addons ?? [],
+                  ),
                   //
                   const Divider(),
                   Consumer(
@@ -202,34 +219,55 @@ class _ActiveResourceUpdateFormViewState
     );
   }
 
-  List<Widget> _buildAddonInputFields(ActiveStructure activeStructure) {
+  List<Widget> _buildAddonInputFields({
+    required ActiveStructure activeStructure,
+    required List<Addon> addons,
+  }) {
     final roleBoardAddonType =
         activeStructure.getAddonTypeWhere((type) => type.isRolesBoard);
     final List<Widget> inputFields = [];
 
     ///
-    roleBoardAddonType?.whenOrNull(rolesBoard: (configurations) {
-      for (final configuration in configurations) {
-        inputFields.add(
-          Padding(
-            padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-            child: RolesBoardInputField(
-              onSelected: (rolesBoardSelection) {
-                if (rolesBoardSelection == null) {
-                  _form.setAddonAttribute(
-                      key: configuration.addonInstanceCode, value: null);
-                } else {
-                  _form.setAddonAttribute(
-                      key: configuration.addonInstanceCode,
-                      value: rolesBoardSelection.toJson());
-                }
-              },
-            ),
-          ),
-        );
-      }
-    });
+    final rolesBoardAddons = addons.whereType<RolesBoardAddon>();
+
+    for (final roleBoardAddon in rolesBoardAddons) {
+      final resourceState = roleBoardAddon.getResourceState();
+      roleBoardAddonType?.whenOrNull(
+        rolesBoard: (configurations) {
+          for (final configuration in configurations) {
+            inputFields.add(
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                child: RolesBoardInputField(
+                  currentRolesBoardResourceState: resourceState,
+                  label: _capitalizeFirstLetter(
+                    configuration.addonInstanceCode,
+                  ),
+                  onSelected: (rolesBoardSelection) {
+                    if (rolesBoardSelection == null) {
+                      _form.setAddonAttribute(
+                          key: configuration.addonInstanceCode, value: null);
+                    } else {
+                      _form.setAddonAttribute(
+                        key: configuration.addonInstanceCode,
+                        value: rolesBoardSelection.toJson(),
+                      );
+                    }
+                  },
+                ),
+              ),
+            );
+          }
+        },
+      );
+    }
+
     return inputFields;
+  }
+
+  String _capitalizeFirstLetter(String input) {
+    if (input.isEmpty) return input;
+    return input.replaceFirst(input[0], input[0].toUpperCase());
   }
 
   List<ActiveInputFieldSpecification> _combinedToGetInputFieldSpecifications({

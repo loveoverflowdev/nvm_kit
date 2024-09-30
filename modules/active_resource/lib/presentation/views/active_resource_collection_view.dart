@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:template_parser/template_parser.dart' as template;
-// import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/share_plus.dart';
 
-import '../providers.dart' show activeResourceDeleteProvider, activeResourceListByStructureCodeProvider;
+import '../providers.dart'
+    show
+        activeResourceDeleteProvider,
+        activeResourceListByStructureCodeProvider;
 import '../widgets.dart';
 
 class ActiveResourceCollectionView extends ConsumerStatefulWidget {
@@ -60,14 +63,16 @@ class _ActiveResourceCollectionViewState
   String? get _updateFormContextName =>
       widget.collectionComponent.updateFormContextName;
 
-
   String _parseRequestField(template.ActiveTileComponent tile) {
     return RequestField.children([
       RequestField.name('id'),
-      RequestField(name: 'liveAttributes', children: [
-        RequestField.name(tile.titleKey),
-        if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
-      ]),
+      RequestField(
+        name: 'liveAttributes',
+        children: [
+          RequestField.name(tile.titleKey),
+          if (tile.subtitleKey != null) RequestField.name(tile.subtitleKey!),
+        ],
+      ),
     ]).build();
   }
 
@@ -168,19 +173,24 @@ class _ActiveResourceCollectionViewState
                       );
                     },
                     onShareAction: () {
-                      // Share.share(
-                      //   activeResource.liveAttributes[tileComponent.titleKey],
-                      //   subject: activeResource.liveAttributes.toString(),
-                      // );
+                      Share.share(
+                        activeResource.liveAttributes[tileComponent.titleKey],
+                        subject: activeResource.liveAttributes.toString(),
+                      );
                     },
                     onDeleteAction: () {
                       ref
                           .read(deleteProvider.notifier)
                           .deleteById(activeResource.id);
                     },
-                    onEditAction: _updateFormContextName == null ? null : () {
-                      widget.onRouteUpdateForm?.call(contextName: _updateFormContextName, activeResourceId: activeResource.id,);
-                    },
+                    onEditAction: _updateFormContextName == null
+                        ? null
+                        : () {
+                            widget.onRouteUpdateForm?.call(
+                              contextName: _updateFormContextName,
+                              activeResourceId: activeResource.id,
+                            );
+                          },
                   );
                 },
               ),

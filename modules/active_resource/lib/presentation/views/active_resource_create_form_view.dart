@@ -155,6 +155,7 @@ class _ActiveResourceCreateFormViewState
           Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.lg),
             child: RolesBoardInputField(
+              label: _capitalizeFirstLetter(configuration.addonInstanceCode),
               onSelected: (rolesBoardSelection) {
                 if (rolesBoardSelection == null) {
                   _form.setAddonAttribute(
@@ -171,6 +172,11 @@ class _ActiveResourceCreateFormViewState
       }
     });
     return inputFields;
+  }
+
+  String _capitalizeFirstLetter(String input) {
+    if (input.isEmpty) return input;
+    return input.replaceFirst(input[0], input[0].toUpperCase());
   }
 
   List<ActiveInputFieldSpecification> _combinedToGetInputFieldSpecifications({
@@ -202,7 +208,7 @@ class _ActiveResourceCreateFormViewState
             ActiveFieldDataType.textList => ActiveInputFieldDataType.textList(),
             ActiveFieldDataType.binaryCheckbox =>
               ActiveInputFieldDataType.binaryCheckbox(),
-            _ => throw UnimplementedError(),
+            _ => throw UnimplementedError(activeFieldStructure.type.toString()),
           };
           // Temporily use title of structure
           return ActiveInputFieldSpecification(
@@ -243,7 +249,7 @@ class _ActiveResourceCreateFormViewState
                 titleKey: titleKey,
                 subtitleKey: subtitleKey,
               ),
-            _ => throw UnimplementedError(),
+            _ => throw UnimplementedError(activeFieldStructure.type.toString()),
           };
           return ActiveInputFieldSpecification(
             projectId: widget.projectId,
@@ -283,7 +289,7 @@ class _ActiveResourceCreateFormViewState
                 titleKey: titleKey,
                 subtitleKey: subtitleKey,
               ),
-            _ => throw UnimplementedError(),
+            _ => throw UnimplementedError(activeFieldStructure.type.toString()),
           };
           return ActiveInputFieldSpecification(
             projectId: widget.projectId,

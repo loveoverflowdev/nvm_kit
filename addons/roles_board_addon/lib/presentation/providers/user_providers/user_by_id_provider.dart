@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roles_board_addon/domain.dart';
-
-import 'roles_board_user_repository_provider.dart';
+import 'user_list_provider.dart';
 
 part 'user_by_id_provider.g.dart';
 
@@ -10,20 +9,23 @@ typedef _UserState = AsyncValue<User?>;
 @Riverpod(keepAlive: true)
 class UserById extends _$UserById {
   @override
-  AsyncValue<User?> build() => const _UserState.data(null);
+  AsyncValue<User?> build({
+    required String id,
+  }) {
+    _loadUser();
+    return const _UserState.data(null);
+  }
 
-  void loadUser(String id) async {
+  void _loadUser() {
     state = const AsyncValue.loading();
-    getUserByIdTask(id).match(
-      (failure) {
-        state = AsyncValue.error(
-          failure,
-          failure.stackTrace ?? StackTrace.current,
-        );
-      },
-      (data) {
-        state = AsyncValue.data(data);
-      },
-    ).run(ref.watch(rolesBoardUserRepositoryProvider));
+    ref.listen(userListProvider, (pre, next) {
+      next.whenData((data) {
+        final index = data.indexWhere((e) => e.id == id);
+
+        final user = index == -1 ? null : data[index];
+
+        state = AsyncValue.data(user);
+      });
+    });
   }
 }

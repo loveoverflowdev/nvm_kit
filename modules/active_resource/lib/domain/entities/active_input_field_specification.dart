@@ -39,9 +39,12 @@ class ActiveInputFieldDataType with _$ActiveInputFieldDataType {
       url: () => value == null || value.isEmpty,
       textList: () => value == null || value.isEmpty,
       binaryCheckbox: () => value == null,
-      multiActiveResourceCheckbox: (_, __, ___) => value == null || value == '0',
-      singleActiveResourceSelection: (_, __, ___) => value == null || value == '0',
-      multiActiveResourceSelection: (_, __, ___) => value == null || value == '0',
+      multiActiveResourceCheckbox: (_, __, ___) =>
+          value == null || value == '0',
+      singleActiveResourceSelection: (_, __, ___) =>
+          value == null || value == '0',
+      multiActiveResourceSelection: (_, __, ___) =>
+          value == null || value == '0',
       singleUserSelection: (_, __) => value == null || value == '0',
       multiUserSelection: (_, __) => value == null || value == '0',
       multiUserCheckbox: (_, __) => value == null || value == '0',

@@ -15,6 +15,9 @@ final class RoleResourceState {
   final ProgressStatus status;
   final double progress;
 
+  bool get isUserAssigned =>
+      assignedToUserId != '0' && assignedToUserId.isNotEmpty;
+
   RoleResourceState({
     required this.roleId,
     required this.assignedToUserId,

@@ -5,7 +5,7 @@ import 'package:roles_board_addon/roles_board_addon.dart';
 
 class RolesBoardListView extends ConsumerStatefulWidget {
   final RolesBoardSelection? initialSelection;
-  final void Function(RolesBoardSelection?, String? rolesBoardName)? onSubmited;
+  final void Function(RolesBoardSelection?)? onSubmited;
 
   const RolesBoardListView({
     super.key,
@@ -19,7 +19,6 @@ class RolesBoardListView extends ConsumerStatefulWidget {
 
 class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
   late RolesBoardSelection? _rolesBoardSelection;
-  late String? _rolesBoardName;
 
   @override
   void initState() {
@@ -39,13 +38,11 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
     required RolesBoard rolesBoard,
   }) {
     if (value == true) {
-      _rolesBoardName = rolesBoard.boardName;
       _rolesBoardSelection = RolesBoardSelection(
         rolesBoardId: rolesBoard.id,
         roleIdList: [],
       );
     } else {
-      _rolesBoardName = null;
       _rolesBoardSelection = null;
     }
 
@@ -141,7 +138,6 @@ class _RolesBoardListViewState extends ConsumerState<RolesBoardListView> {
             onPressed: () {
               widget.onSubmited?.call(
                 _rolesBoardSelection,
-                _rolesBoardSelection == null ? null : _rolesBoardName,
               );
               Navigator.pop(context);
             },
