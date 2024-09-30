@@ -153,7 +153,7 @@ class ActiveResourceUpdateFormPage extends StatelessWidget {
 
   final void Function({
     required String? contextName,
-  })? onRouteListView;
+  })? onRouteDetailView;
 
   const ActiveResourceUpdateFormPage({
     super.key,
@@ -162,7 +162,7 @@ class ActiveResourceUpdateFormPage extends StatelessWidget {
     required this.pageComponent,
 
     ///
-    required this.onRouteListView,
+    required this.onRouteDetailView,
   });
 
   @override
@@ -188,7 +188,8 @@ class ActiveResourceUpdateFormPage extends StatelessWidget {
           formComponent:
               pageComponent.view as template.ActiveUpdateFormComponent,
           projectId: projectId,
-          onRouteListView: onRouteListView,
+          onRouteDetailView: onRouteDetailView,
+          // onRouteListView: onRouteListView,
         ),
       ),
     );

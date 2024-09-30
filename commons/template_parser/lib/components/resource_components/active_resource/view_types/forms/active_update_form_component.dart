@@ -37,7 +37,8 @@ class ActiveUpdateFormComponent extends ActiveViewComponent {
     );
 
   static Map<String, dynamic> _inputFieldsToJson(
-          final List<ActiveInputFieldComponent> inputFields,) =>
+    final List<ActiveInputFieldComponent> inputFields,
+  ) =>
       {
         'inputFields': inputFields.map((component) => component.toJson()),
       };

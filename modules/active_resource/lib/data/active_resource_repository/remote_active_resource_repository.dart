@@ -50,8 +50,23 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
     required ActiveStructure structure,
     required ActiveResourceForm form,
   }) {
-    // TODO: implement updateActiveResource
-    throw UnimplementedError();
+    return TaskEither.tryCatch(
+      () {
+        return _apiClient.updateActiveResource(
+          id,
+          activeStructureCode: structure.code,
+          payload: api.ActiveResourcePayload(
+            projectId: form.projectId,
+            attributes: form.getAllAttributes(),
+            addonsAttributes: form.getAllAddonAttributes(),
+          ),
+        );
+      },
+      (error, stackTrace) => ActiveResourceFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
+    );
   }
 
   @override

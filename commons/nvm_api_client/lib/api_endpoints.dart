@@ -27,14 +27,26 @@ ApiEndpoint createActiveResource({
     );
 
 ApiEndpoint deleteActiveResourceById(
-  String id,{
-    required String activeStructureCode,
-  }
-) => ApiEndpoint(
-  uriTemplate: '/api/workspaces/:workspace_id/active-module/delete/resources/$activeStructureCode/$id',
-  requiredAuthorization: true,
-  requiredWorkspace: true,
-);
+  String id, {
+  required String activeStructureCode,
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-module/delete/resources/$activeStructureCode/$id',
+      requiredAuthorization: true,
+      requiredWorkspace: true,
+    );
+
+ApiEndpoint updateActiveResourceById(
+  String id, {
+  required String activeStructureCode,
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-module/patch/resources/$activeStructureCode/$id',
+      requiredAuthorization: true,
+      requiredWorkspace: true,
+    );
 
 ApiEndpoint getActiveResourceById(
   String id, {
@@ -162,22 +174,26 @@ ApiEndpoint createRolesBoard() => ApiEndpoint(
 ApiEndpoint updateRolesBoardResourceRoleStatus({
   required String activeStructureCode,
   required String resourceId,
-}) => ApiEndpoint(
-  uriTemplate: '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_status',
-  requiredWorkspace: true,
-  requiredAuthorization: true,
-  jsonPayload: true,
-);
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_status',
+      requiredWorkspace: true,
+      requiredAuthorization: true,
+      jsonPayload: true,
+    );
 
 // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_progress
 ApiEndpoint updateRolesBoardResourceRoleProgress({
   required String activeStructureCode,
   required String resourceId,
-}) => ApiEndpoint(
-  uriTemplate: '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_progress',
-  requiredWorkspace: true,
-  requiredAuthorization: true,
-  jsonPayload: true,
-);
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_progress',
+      requiredWorkspace: true,
+      requiredAuthorization: true,
+      jsonPayload: true,
+    );
 
 // {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_progress

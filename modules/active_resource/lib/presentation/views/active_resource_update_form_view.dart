@@ -15,14 +15,14 @@ class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
 
   final void Function({
     required String? contextName,
-  })? onRouteListView;
+  })? onRouteDetailView;
 
   const ActiveResourceUpdateFormView({
     super.key,
     required this.projectId,
     required this.resourceId,
     required this.formComponent,
-    required this.onRouteListView,
+    required this.onRouteDetailView,
   });
 
   @override
@@ -84,6 +84,10 @@ class _ActiveResourceUpdateFormViewState
       // widget.onRouteListView?.call(
       //   contextName: widget.formComponent.listViewContextName,
       // );
+
+      widget.onRouteDetailView?.call(
+        contextName: widget.formComponent.detailContextName,
+      );
 
       return showScaffoldMessage(
         context,
@@ -155,7 +159,7 @@ class _ActiveResourceUpdateFormViewState
                       final submitProvider = activeResourceSubmitProvider(
                         activeStructureCode: activeStructure.code,
                         key:
-                            'create_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
+                            'update_resource@${widget.projectId}@${widget.formComponent.activeStructureCode}',
                       );
 
                       ref.listen(
@@ -170,7 +174,10 @@ class _ActiveResourceUpdateFormViewState
                       }
                       return ElevatedButton(
                         onPressed: () {
-                          ref.read(submitProvider.notifier).submit(_form);
+                          ref.read(submitProvider.notifier).update(
+                                id: widget.resourceId,
+                                form: _form,
+                              );
                         },
                         child: const Text('Submit'),
                       );

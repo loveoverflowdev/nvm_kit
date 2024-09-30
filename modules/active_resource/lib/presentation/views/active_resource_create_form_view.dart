@@ -125,7 +125,7 @@ class _ActiveResourceCreateFormViewState
                   }
                   return ElevatedButton(
                     onPressed: () {
-                      ref.read(submitProvider.notifier).submit(_form);
+                      ref.read(submitProvider.notifier).create(form: _form);
                     },
                     child: const Text('Submit'),
                   );

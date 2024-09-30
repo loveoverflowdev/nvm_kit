@@ -74,10 +74,17 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
   }
 
   Future<void> updateActiveResource(
-    String activeStructureCode,
-    String id,
-    ActiveResourcePayload payload,
-  ) {
-    throw UnimplementedError();
+    String id, {
+    required String activeStructureCode,
+    required ActiveResourcePayload payload,
+  }) {
+    return requestJson(
+      endpoint: endpoints.updateActiveResourceById(
+        id,
+        activeStructureCode: activeStructureCode,
+      ),
+      payload: payload.toJson(),
+      dataHandler: (json) => json,
+    );
   }
 }

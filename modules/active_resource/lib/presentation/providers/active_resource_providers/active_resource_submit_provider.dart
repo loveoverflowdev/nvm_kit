@@ -19,10 +19,10 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
   }) =>
       const _ActiveResourceSubmitState.data(null);
 
-  void submit(ActiveResourceForm form) {
+  void create({
+    required ActiveResourceForm form,
+  }) {
     state = const AsyncValue.loading();
-    print('@@@@@@@ Addons Attributes: ' +
-        form.getAllAddonAttributes().toString());
     ref
         .watch(
       activeStructureByCodeProvider(activeStructureCode).future,
@@ -30,6 +30,45 @@ class ActiveResourceSubmit extends _$ActiveResourceSubmit {
         .then(
       (structure) {
         createActiveResourceTask(
+          structure: structure,
+          form: form,
+        ).match(
+          (failure) {
+            state = _ActiveResourceSubmitState.error(
+              failure,
+              failure.stackTrace ?? StackTrace.current,
+            );
+          },
+          (response) {
+            state = const _ActiveResourceSubmitState.data(null);
+          },
+        ).run(
+          ref.watch(activeResourceRepositoryProvider),
+        );
+      },
+    ).catchError(
+      (error, stackTrace) {
+        state = _ActiveResourceSubmitState.error(
+          error,
+          stackTrace,
+        );
+      },
+    );
+  }
+
+  void update({
+    required String id,
+    required ActiveResourceForm form,
+  }) {
+    state = const AsyncValue.loading();
+    ref
+        .watch(
+      activeStructureByCodeProvider(activeStructureCode).future,
+    )
+        .then(
+      (structure) {
+        updateActiveResourceByIdTask(
+          id,
           structure: structure,
           form: form,
         ).match(

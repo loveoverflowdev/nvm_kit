@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nvm_app_builder/app.dart';
@@ -248,17 +247,27 @@ final class RouterBuilder {
                         projectId: projectId,
                         pageComponent: page,
                         resourceId: resourceId,
-                        onRouteListView: ({
+                        onRouteDetailView: ({
                           required contextName,
                         }) {
                           if (contextName == null) return;
                           final String projectId =
                               state.pathParameters['project_id']!;
-                          final path = '/projects/$projectId/$contextName';
-                          context.go(path, extra: {
-                            'set_state': true,
-                          });
+                          final path =
+                              '/projects/$projectId/$contextName/$resourceId';
+                          context.go(path);
                         },
+                        // onRouteListView: ({
+                        //   required contextName,
+                        // }) {
+                        //   if (contextName == null) return;
+                        //   final String projectId =
+                        //       state.pathParameters['project_id']!;
+                        //   final path = '/projects/$projectId/$contextName';
+                        //   context.go(path, extra: {
+                        //     'set_state': true,
+                        //   });
+                        // },
                       );
                     },
                   ),
@@ -290,39 +299,6 @@ final class RouterBuilder {
           ],
         ),
       ],
-    );
-  }
-}
-
-class ScaffoldWithNavBar extends StatelessWidget {
-  /// Constructs an [ScaffoldWithNavBar].
-  const ScaffoldWithNavBar({
-    required this.navigationShell,
-    required this.children,
-    Key? key,
-  }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
-
-  /// The navigation shell and container for the branch Navigators.
-  final StatefulNavigationShell navigationShell;
-
-  /// Body, i.e. the container for the branch Navigators.
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Section A'),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Section B'),
-          BottomNavigationBarItem(icon: Icon(Icons.tab), label: 'Section C'),
-        ],
-        currentIndex: navigationShell.currentIndex,
-        onTap: (int tappedIndex) => navigationShell.goBranch(tappedIndex),
-      ),
-      tabBuilder: (BuildContext context, int index) {
-        return children[index];
-      },
     );
   }
 }

@@ -62,3 +62,19 @@ ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
               )
               .run(),
         );
+
+ReaderTaskEither<ActiveResourceRepository, ActiveResourceFailure, void>
+    updateActiveResourceByIdTask(
+  String id, {
+  required ActiveStructure structure,
+  required ActiveResourceForm form,
+}) =>
+        ReaderTaskEither(
+          (repository) => repository
+              .updateActiveResourceById(
+                id,
+                structure: structure,
+                form: form,
+              )
+              .run(),
+        );
