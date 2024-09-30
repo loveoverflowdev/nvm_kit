@@ -56,6 +56,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             title: 'New Task',
             view: ActiveCreateFormComponent(
               activeStructureCode: 'tasks',
+              listViewContextName: 'task_list',
               inputFields: [
                 ActiveInputFieldComponent.primitive(
                   fieldCode: 'task_name',
@@ -75,7 +76,6 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   subtitleKey: 'i_want',
                 ),
               ],
-              listViewContextName: 'task_list',
             ),
           ),
           ActivePageComponent(
@@ -83,6 +83,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             title: 'Update Task',
             view: ActiveUpdateFormComponent(
               activeStructureCode: 'tasks',
+              listViewContextName: 'task_list',
               inputFields: [
                 ActiveInputFieldComponent.primitive(
                   fieldCode: 'task_name',
@@ -97,7 +98,6 @@ final class _ExampleTemplateRepository implements TemplateRepository {
                   activeStructureCode: 'user_stories',
                 ),
               ],
-              detailContextName: 'task_detail',
             ),
           ),
           ActivePageComponent(
@@ -156,7 +156,7 @@ final class _ExampleTemplateRepository implements TemplateRepository {
             contextName: 'update_user_story_form',
             title: 'Update User Story',
             view: ActiveUpdateFormComponent(
-              detailContextName: 'user_story_detail',
+              listViewContextName: 'user_story_list',
               activeStructureCode: 'user_stories',
               inputFields: [
                 ActiveInputFieldComponent.primitive(

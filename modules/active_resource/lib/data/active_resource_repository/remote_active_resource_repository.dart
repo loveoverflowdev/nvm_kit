@@ -30,7 +30,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
       () {
         return _apiClient.createActiveResource(
           activeStructureCode: structure.code,
-          payload: api.ActiveResourcePayload(
+          payload: api.ActiveResourceCreatePayload(
             projectId: form.projectId,
             attributes: form.getAllAttributes(),
             addonsAttributes: form.getAllAddonAttributes(),
@@ -55,8 +55,7 @@ final class RemoteActiveResourceRepository implements ActiveResourceRepository {
         return _apiClient.updateActiveResource(
           id,
           activeStructureCode: structure.code,
-          payload: api.ActiveResourcePayload(
-            projectId: form.projectId,
+          payload: api.ActiveResourceUpdatePayload(
             attributes: form.getAllAttributes(),
             addonsAttributes: form.getAllAddonAttributes(),
           ),

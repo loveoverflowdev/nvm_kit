@@ -46,6 +46,7 @@ ApiEndpoint updateActiveResourceById(
           '/api/workspaces/:workspace_id/active-module/patch/resources/$activeStructureCode/$id',
       requiredAuthorization: true,
       requiredWorkspace: true,
+      jsonPayload: true,
     );
 
 ApiEndpoint getActiveResourceById(

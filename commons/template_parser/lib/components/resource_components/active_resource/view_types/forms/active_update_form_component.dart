@@ -11,7 +11,7 @@ class ActiveUpdateFormComponent extends ActiveViewComponent {
   // ignore: overridden_fields
   late final String type = super.type;
 
-  final String? detailContextName;
+  final String? listViewContextName;
 
   final String activeStructureCode;
 
@@ -21,7 +21,7 @@ class ActiveUpdateFormComponent extends ActiveViewComponent {
   ActiveUpdateFormComponent({
     required this.activeStructureCode,
     required this.inputFields,
-    required this.detailContextName,
+    required this.listViewContextName,
   });
 
   @override

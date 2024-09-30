@@ -12,13 +12,13 @@ ActiveUpdateFormComponent _$ActiveUpdateFormComponentFromJson(
       activeStructureCode: json['activeStructureCode'] as String,
       inputFields: ActiveUpdateFormComponent._inputFieldsFromJson(
           json['inputFields'] as Map<String, dynamic>),
-      detailContextName: json['detailContextName'] as String?,
+      listViewContextName: json['listViewContextName'] as String?,
     );
 
 Map<String, dynamic> _$ActiveUpdateFormComponentToJson(
         ActiveUpdateFormComponent instance) =>
     <String, dynamic>{
-      'detailContextName': instance.detailContextName,
+      'listViewContextName': instance.listViewContextName,
       'activeStructureCode': instance.activeStructureCode,
       'inputFields':
           ActiveUpdateFormComponent._inputFieldsToJson(instance.inputFields),

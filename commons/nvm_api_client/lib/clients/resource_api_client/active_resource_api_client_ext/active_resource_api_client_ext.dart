@@ -7,7 +7,7 @@ import 'responses.dart';
 extension ActiveResourceApiClientExt on ResourceApiClient {
   Future<dynamic> createActiveResource({
     required String activeStructureCode,
-    required ActiveResourcePayload payload,
+    required ActiveResourceCreatePayload payload,
   }) {
     return requestJson(
       endpoint: endpoints.createActiveResource(
@@ -76,8 +76,11 @@ extension ActiveResourceApiClientExt on ResourceApiClient {
   Future<void> updateActiveResource(
     String id, {
     required String activeStructureCode,
-    required ActiveResourcePayload payload,
+    required ActiveResourceUpdatePayload payload,
   }) {
+    print('&&&&&&&&&&&&&&&&&&&&');
+    print(payload.toJson());
+    print('&&&&&&&&&&&&&&&&&&&&');
     return requestJson(
       endpoint: endpoints.updateActiveResourceById(
         id,

@@ -36,7 +36,9 @@ class NvmApp extends StatefulWidget {
   final comment_addon.CommentRepository commentRepository;
   final roles_board_addon.RemoteRolesBoardRepository remoteRolesBoardRepository;
   final roles_board_addon.LocalRolesBoardRepository localRolesBoardRepository;
-  final roles_board_addon.RolesBoardResourceStateRepository rolesBoardResourceStateRepository;
+  final roles_board_addon.RolesBoardResourceStateRepository
+      rolesBoardResourceStateRepository;
+  final roles_board_addon.RolesBoardUserRepository rolesBoardUserRepository;
 
   const NvmApp({
     super.key,
@@ -55,6 +57,7 @@ class NvmApp extends StatefulWidget {
     required this.remoteRolesBoardRepository,
     required this.localRolesBoardRepository,
     required this.rolesBoardResourceStateRepository,
+    required this.rolesBoardUserRepository,
   });
 
   @override
@@ -120,8 +123,12 @@ class _NvmAppState extends State<NvmApp> {
         roles_board_addon.localRolesBoardRepositoryProvider.overrideWithValue(
           widget.localRolesBoardRepository,
         ),
-        roles_board_addon.rolesBoardResourceStateRepositoryProvider.overrideWithValue(
+        roles_board_addon.rolesBoardResourceStateRepositoryProvider
+            .overrideWithValue(
           widget.rolesBoardResourceStateRepository,
+        ),
+        roles_board_addon.rolesBoardUserRepositoryProvider.overrideWithValue(
+          widget.rolesBoardUserRepository,
         ),
       ],
       child: Consumer(

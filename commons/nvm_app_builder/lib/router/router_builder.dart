@@ -247,26 +247,26 @@ final class RouterBuilder {
                         projectId: projectId,
                         pageComponent: page,
                         resourceId: resourceId,
-                        onRouteDetailView: ({
+                        onRouteListView: ({
                           required contextName,
                         }) {
                           if (contextName == null) return;
                           final String projectId =
                               state.pathParameters['project_id']!;
-                          final path =
-                              '/projects/$projectId/$contextName/$resourceId';
-                          context.go(path);
+                          final path = '/projects/$projectId/$contextName';
+                          context.go(path, extra: {
+                            'set_state': true,
+                          });
                         },
-                        // onRouteListView: ({
+                        // onRouteDetailView: ({
                         //   required contextName,
                         // }) {
                         //   if (contextName == null) return;
                         //   final String projectId =
                         //       state.pathParameters['project_id']!;
-                        //   final path = '/projects/$projectId/$contextName';
-                        //   context.go(path, extra: {
-                        //     'set_state': true,
-                        //   });
+                        //   final path =
+                        //       '/projects/$projectId/$contextName/$resourceId';
+                        //   context.pushReplacement(path);
                         // },
                       );
                     },

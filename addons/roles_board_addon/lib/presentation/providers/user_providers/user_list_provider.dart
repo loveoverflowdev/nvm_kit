@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:roles_board_addon/domain.dart';
 
-import 'user_repository_provider.dart';
+import 'roles_board_user_repository_provider.dart';
 
 part 'user_list_provider.g.dart';
 
@@ -24,6 +24,6 @@ class UserList extends _$UserList {
       (data) {
         state = AsyncValue.data(data);
       },
-    ).run(ref.watch(userRepositoryProvider));
+    ).run(ref.watch(rolesBoardUserRepositoryProvider));
   }
 }

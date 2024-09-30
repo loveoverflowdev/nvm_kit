@@ -78,15 +78,16 @@ ReaderTaskEither<RolesBoardResourceStateRepository, RolesBoardFailure, dynamic>
         );
 
 @Deprecated('This code will remove when permission is required')
-ReaderTaskEither<UserRepository, RolesBoardFailure, List<User>>
+ReaderTaskEither<RolesBoardUserRepository, RolesBoardFailure, List<User>>
     getAllUsersTask() => ReaderTaskEither(
           (repository) => repository.getAllUsers().run(),
         );
 
 @Deprecated('This code will remove when permission is required')
-ReaderTaskEither<UserRepository, RolesBoardFailure, User> getUserByIdTask(
+ReaderTaskEither<RolesBoardUserRepository, RolesBoardFailure, User>
+    getUserByIdTask(
   String id,
 ) =>
-    ReaderTaskEither(
-      (repository) => repository.getUserById(id).run(),
-    );
+        ReaderTaskEither(
+          (repository) => repository.getUserById(id).run(),
+        );

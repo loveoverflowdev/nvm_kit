@@ -40,7 +40,7 @@ final class AlchemistApiClient {
 
     final uri = Uri.parse('${endpointParams.baseUrl}${endpointParams.uri}');
 
-    // _logger?.d('Uri: $uri\nParams: $uriParams\nBody: ${endpointParams.body}');
+    _logger?.d('Uri: $uri\nParams: $uriParams\nBody: ${endpointParams.body}');
 
     try {
       final response = await _httpClient.post(
@@ -63,7 +63,7 @@ final class AlchemistApiClient {
       }
 
       final json = _responseBodyToJson(response);
-      // _logger?.d(json.toString());
+      _logger?.d(json.toString());
       return dataHandler(json);
     } on http.ClientException catch (_) {
       throw AlchemistApiRequestFailure(statusCode: -1, body: {

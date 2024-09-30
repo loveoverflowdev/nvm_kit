@@ -15,14 +15,14 @@ class ActiveResourceUpdateFormView extends ConsumerStatefulWidget {
 
   final void Function({
     required String? contextName,
-  })? onRouteDetailView;
+  })? onRouteListView;
 
   const ActiveResourceUpdateFormView({
     super.key,
     required this.projectId,
     required this.resourceId,
     required this.formComponent,
-    required this.onRouteDetailView,
+    required this.onRouteListView,
   });
 
   @override
@@ -85,13 +85,13 @@ class _ActiveResourceUpdateFormViewState
       //   contextName: widget.formComponent.listViewContextName,
       // );
 
-      widget.onRouteDetailView?.call(
-        contextName: widget.formComponent.detailContextName,
+      widget.onRouteListView?.call(
+        contextName: widget.formComponent.listViewContextName,
       );
 
       return showScaffoldMessage(
         context,
-        'New Resource Created',
+        'Resource Updated',
       );
     }
   }
