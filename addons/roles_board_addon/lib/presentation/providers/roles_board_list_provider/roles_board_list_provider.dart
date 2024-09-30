@@ -8,7 +8,7 @@ part 'roles_board_list_provider.g.dart';
 
 typedef RolesBoardListState = AsyncValue<List<RolesBoard>>;
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RolesBoardList extends _$RolesBoardList {
   @override
   RolesBoardListState build() => RolesBoardListState.data(List.empty());

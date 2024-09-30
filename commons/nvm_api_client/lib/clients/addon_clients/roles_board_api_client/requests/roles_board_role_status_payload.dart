@@ -1,4 +1,4 @@
-import '../../../resource_api_client.dart';
+import '../../../resource_api_client.dart' show ProgressStatusResponse;
 
 final class RolesBoardRoleStatusPayload {
   final String roleId;

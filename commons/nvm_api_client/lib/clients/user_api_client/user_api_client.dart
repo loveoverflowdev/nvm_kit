@@ -14,7 +14,8 @@ final class UserApiClient {
   })  : _alchemistApiClient = alchemistApiClient,
         _tokenProvider = tokenProvider;
 
-  Future<UserResponse> getUserById(String userId, {
+  Future<UserResponse> getUserById(
+    String userId, {
     String? requestField,
   }) async {
     // {{domain}}/api/user/get/users/605303072528270018?fields=id,username,fullName,email,phone,phoneCountryCode,avatar,thumbnailAvatar,emailVerifiedAt,phoneVerifiedAt,createdAt,updatedAt

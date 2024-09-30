@@ -1,7 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:roles_board_addon/domain.dart';
 
-
 abstract interface class RolesBoardResourceStateRepository {
   TaskEither<RolesBoardFailure, dynamic> updateRolesBoardResourceRoleProgress({
     required String activeStructureCode,
@@ -13,6 +12,12 @@ abstract interface class RolesBoardResourceStateRepository {
     required String activeStructureCode,
     required String resourceId,
     required RolesBoardRoleStatusPayload payload,
+  });
+
+  TaskEither<RolesBoardFailure, dynamic> updateRolesBoardResourceRoleAssignee({
+    required String activeStructureCode,
+    required String resourceId,
+    required RolesBoardRoleAssigneePayload payload,
   });
 }
 

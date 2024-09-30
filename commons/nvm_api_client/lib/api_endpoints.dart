@@ -196,4 +196,15 @@ ApiEndpoint updateRolesBoardResourceRoleProgress({
       jsonPayload: true,
     );
 
-// {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_progress
+// {{domain}}/api/workspaces/{{workspace}}/active-module/resources/task/658944065433241641/features/widget-board-role/post/role_assignee
+ApiEndpoint updateRolesBoardResourceRoleAssignee({
+  required String activeStructureCode,
+  required String resourceId,
+}) =>
+    ApiEndpoint(
+      uriTemplate:
+          '/api/workspaces/:workspace_id/active-module/resources/$activeStructureCode/$resourceId/features/widget-board-role/post/role_assignee',
+      requiredWorkspace: true,
+      requiredAuthorization: true,
+      jsonPayload: true,
+    );

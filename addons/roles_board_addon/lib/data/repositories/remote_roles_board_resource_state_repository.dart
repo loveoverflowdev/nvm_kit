@@ -63,4 +63,27 @@ final class RemoteRolesBoardResourceStateRepository
       ),
     );
   }
+
+  @override
+  TaskEither<RolesBoardFailure, dynamic> updateRolesBoardResourceRoleAssignee({
+    required String activeStructureCode,
+    required String resourceId,
+    required RolesBoardRoleAssigneePayload payload,
+  }) {
+    return TaskEither.tryCatch(
+      () => _apiClient.updateRolesBoardResourceRoleAssignee(
+        activeStructureCode: activeStructureCode,
+        resourceId: resourceId,
+        payload: api.RolesBoardRoleAssigneePayload(
+          roleId: payload.roleId,
+          addonInstanceCode: payload.addonInstanceCode,
+          userId: payload.userId,
+        ),
+      ),
+      (error, stackTrace) => RolesBoardFailure.fromError(
+        error,
+        stackTrace: stackTrace,
+      ),
+    );
+  }
 }

@@ -5,3 +5,4 @@ export 'entities/failures.dart';
 export 'entities/roles_board_addon.dart';
 export 'entities/resource_state.dart';
 export 'entities/roles_board_selection.dart';
+export 'entities/user.dart';

@@ -71,9 +71,24 @@ final class RolesBoardApiClient {
   }) {
     return _requestJson(
       endpoint: endpoints.updateRolesBoardResourceRoleStatus(
-        activeStructureCode: activeStructureCode, 
+        activeStructureCode: activeStructureCode,
         resourceId: resourceId,
-      ), 
+      ),
+      payload: payload.toJson(),
+      dataHandler: (json) => json,
+    );
+  }
+
+  Future<dynamic> updateRolesBoardResourceRoleAssignee({
+    required String activeStructureCode,
+    required String resourceId,
+    required RolesBoardRoleAssigneePayload payload,
+  }) {
+    return _requestJson(
+      endpoint: endpoints.updateRolesBoardResourceRoleAssignee(
+        activeStructureCode: activeStructureCode,
+        resourceId: resourceId,
+      ),
       payload: payload.toJson(),
       dataHandler: (json) => json,
     );

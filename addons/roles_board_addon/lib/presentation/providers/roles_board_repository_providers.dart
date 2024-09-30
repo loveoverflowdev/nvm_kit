@@ -1,17 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roles_board_addon/domain.dart';
 
-final remoteRolesBoardRepositoryProvider =
-    AutoDisposeProvider<RemoteRolesBoardRepository>(
+final remoteRolesBoardRepositoryProvider = Provider<RemoteRolesBoardRepository>(
   (ref) => throw UnimplementedError(),
 );
 
-final localRolesBoardRepositoryProvider =
-    AutoDisposeProvider<LocalRolesBoardRepository>(
+final localRolesBoardRepositoryProvider = Provider<LocalRolesBoardRepository>(
   (ref) => throw UnimplementedError(),
 );
 
 final rolesBoardResourceStateRepositoryProvider =
-    AutoDisposeProvider<RolesBoardResourceStateRepository>(
+    Provider<RolesBoardResourceStateRepository>(
   (ref) => throw UnimplementedError(),
 );
